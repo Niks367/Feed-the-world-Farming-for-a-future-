@@ -1,5 +1,4 @@
-/* Space class for modeling spaces (rooms, caves, ...)
- */
+package main;
 
 import java.util.Set;
 

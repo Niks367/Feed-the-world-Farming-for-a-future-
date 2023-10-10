@@ -1,6 +1,5 @@
-/* Help command
+package main;/* Help command
  */
-
 import java.util.Arrays;
 
 class CommandHelp extends BaseCommand implements Command {

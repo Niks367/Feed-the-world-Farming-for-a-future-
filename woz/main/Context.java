@@ -1,4 +1,4 @@
-/* Context class to hold all context relevant to a session.
+package main;/* Context class to hold all context relevant to a session.
  */
 
 class Context {

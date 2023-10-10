@@ -1,4 +1,4 @@
-/* Baseclass for commands
+package main;/* Baseclass for commands
  */
 
 class BaseCommand {

@@ -1,5 +1,4 @@
-/* World class for modeling the entire in-game world
- */
+package main;
 
 class World {
   Space entry;

@@ -1,4 +1,4 @@
-/* Command for transitioning between spaces
+package main;/* Command for transitioning between spaces
  */
 
 class CommandGo extends BaseCommand implements Command {

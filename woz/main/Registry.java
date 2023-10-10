@@ -1,4 +1,4 @@
-/* Command registry
+package main;/* Command registry
  */
 
 import java.util.HashMap;

@@ -1,8 +1,8 @@
-/* Command interface
+package main;/* Command interface
  */
 
-interface Command {
-  void execute (Context context, String command, String parameters[]);
+public interface Command {
+  void execute (Context context, String command, String[] parameters);
   String getDescription ();
 }
 

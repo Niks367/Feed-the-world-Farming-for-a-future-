@@ -1,4 +1,4 @@
-/* Main class for launching the game
+package main;/* Main class for launching the game
  */
 
 import java.util.Scanner;
@@ -19,13 +19,13 @@ class Game {
     registry.register("help", new CommandHelp(registry));
   }
   
-  public static void main (String args[]) {
+  public static void main (String[] args) {
     System.out.println("Welcome to the World of Zuul!");
     
     initRegistry();
     context.getCurrent().welcome();
     
-    while (context.isDone()==false) {
+    while (!context.isDone()) {
       System.out.print("> ");
       String line = scanner.nextLine();
       registry.dispatch(line);
