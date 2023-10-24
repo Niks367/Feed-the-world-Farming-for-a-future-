@@ -1,4 +1,4 @@
-package presentation;
+package business.interfaces;
 
 public interface Seed {
     int seedAmount = 0;

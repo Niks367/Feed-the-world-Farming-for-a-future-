@@ -1,4 +1,4 @@
-package presentation;
+package business.entity;
 
 import java.lang.reflect.Array;
 

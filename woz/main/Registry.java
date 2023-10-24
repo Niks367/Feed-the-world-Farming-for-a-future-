@@ -7,7 +7,7 @@ import java.util.Map;
 class Registry {
   Context context;
   Command fallback;
-  Map<String, Command> commands = new HashMap<String, Command>();
+  Map<String, Command> commands = new HashMap<>();
   
   Registry (Context context, Command fallback) {
     this.context = context;
