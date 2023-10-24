@@ -1,8 +1,10 @@
 package business.interfaces;
 
 public interface City {
-    int hunger = 0;
-    int population = 0;
+    boolean setIsInCity(boolean z);
+    boolean getIsInCity();
+    int getHunger();
+    int getPopulation();
     public void visitShop();
     public void visitUni();
     public void visitMadman();

@@ -10,12 +10,12 @@ class World {
     Space pit      = new Space("Darkest Pit");
     Space outside  = new Space("Outside");
     
-    entry.addEdge("door", corridor);
-    corridor.addEdge("door", cave);
-    cave.addEdge("north", pit);
-    cave.addEdge("south", outside);
-    pit.addEdge("door", cave);
-    outside.addEdge("door", cave);
+    entry.addEdge("door", farm);
+    farm.addEdge("door", city);
+    city.addEdge("north", pit);
+    city.addEdge("south", outside);
+    pit.addEdge("door", city);
+    outside.addEdge("door", city);
     
     this.entry = entry;
   }

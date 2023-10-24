@@ -6,7 +6,7 @@ import java.util.Map;
 
 class Node {
   String name;
-  Map<String, Node> edges = new HashMap<String, Node>();
+  Map<String, Node> edges = new HashMap<>();
   
   Node (String name) {
     this.name = name;

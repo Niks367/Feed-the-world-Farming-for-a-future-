@@ -1,9 +1,10 @@
 package business.interfaces;
 
-import java.lang.reflect.Array;
-
 public interface Farm {
-    int scalePhosphor = 0;
-
-    Array getScale();
+    /**
+     * Gets the amount of phosphor.
+     *
+     * @return      Returns the amount of phosphor.
+     */
+    int getScale();
 }
