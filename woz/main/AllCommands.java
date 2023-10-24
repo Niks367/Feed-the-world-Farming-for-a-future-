@@ -13,6 +13,7 @@ public class AllCommands extends BaseCommand implements Command {
             case "get_phosphor":
                 int scale = farmImplementation.getScale();
                 System.out.println("The amount of phosphor is " + scale);
+                break;
             case "visit_city":
                 cityImplementation.setIsInCity(true);
                 System.out.println("You are in the city now, hunger: " + cityImplementation.getHunger() + " population: " + cityImplementation.getPopulation());

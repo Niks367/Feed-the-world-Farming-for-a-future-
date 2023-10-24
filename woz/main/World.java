@@ -5,8 +5,8 @@ class World {
   
   World () {
     Space entry    = new Space("Entry");
-    Space corridor = new Space("Corridor");
-    Space cave     = new Space("Cave");
+    Space farm = new Space("Farm");
+    Space city     = new Space("City");
     Space pit      = new Space("Darkest Pit");
     Space outside  = new Space("Outside");
     
