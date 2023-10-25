@@ -5,17 +5,28 @@ class World {
   
   World () {
     Space entry    = new Space("Entry");
-    Space corridor = new Space("Corridor");
-    Space cave     = new Space("Cave");
-    Space pit      = new Space("Darkest Pit");
-    Space outside  = new Space("Outside");
+    Space farm = new Space("Farm");
+    Space city     = new Space("City");
+    Space uni      = new Space("Uni");
+    Space shop  = new Space("Shop");
+    Space madman  = new Space("MadMan");
+    Space fields  = new Space("Fields");
+    Space river  = new Space("River");
     
-    entry.addEdge("door", farm);
-    farm.addEdge("door", city);
-    city.addEdge("north", pit);
-    city.addEdge("south", outside);
-    pit.addEdge("door", city);
-    outside.addEdge("door", city);
+    entry.addEdge("to_farm", farm);
+    farm.addEdge("to_river", river);
+    river.addEdge("river_to_farm", farm);
+    farm.addEdge("to_fields", fields);
+    fields.addEdge("fields_to_farm", farm);
+    river.addEdge("to_city", city);
+    city.addEdge("city_to_river", river);
+    city.addEdge("to_uni", uni);
+    uni.addEdge("east", city);
+    city.addEdge("to_shop", shop);
+    shop.addEdge("west", city);
+    city.addEdge("to_madman", madman);
+    madman.addEdge("north", city);
+
     
     this.entry = entry;
   }
@@ -23,5 +34,6 @@ class World {
   Space getEntry () {
     return entry;
   }
+
 }
 

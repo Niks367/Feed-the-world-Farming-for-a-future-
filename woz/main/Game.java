@@ -18,8 +18,9 @@ class Game {
         registry.register("bye", cmdExit);
         registry.register("go", new CommandGo());
         registry.register("help", new CommandHelp(registry));
-        registry.register("get_phosphor", new AllCommands());
-        registry.register("visit_city", new AllCommands());
+        registry.register("show_phosphor", new AllCommands());
+
+
     }
 
     public static void main(String[] args) {

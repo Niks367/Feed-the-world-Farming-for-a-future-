@@ -1,12 +1,12 @@
 package business.interfaces;
 
 public interface City {
-    boolean setIsInCity(boolean z);
+    void setIsInCity();
     boolean getIsInCity();
     int getHunger();
     int getPopulation();
     public void visitShop();
     public void visitUni();
-    public void visitMadman();
+    public String visitMadman();
     void calculateHunger();
 }

@@ -15,7 +15,8 @@ class Space extends Node {
       System.out.println(" - "+exit);
     }
   }
-  
+
+
   public void goodbye () {
   }
   
