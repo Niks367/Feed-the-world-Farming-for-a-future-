@@ -2,6 +2,7 @@ package main;
 
 import business.implementations.CityImplementation;
 import business.implementations.FarmImplementation;
+import business.implementations.ShopImplementation;
 
 import java.util.Scanner;
 
@@ -9,6 +10,7 @@ import java.util.Scanner;
 class Context {
   FarmImplementation farmImplementation = new FarmImplementation();
   CityImplementation cityImplementation = new CityImplementation();
+  ShopImplementation shopImplementation = new ShopImplementation();
   Space current;
   boolean done = false;
   
@@ -25,18 +27,20 @@ class Context {
     switch(direction) {
       case "south":
         //System.out.println(getCurrent().edges);
-      case "city":
+      case "to_city":
         cityImplementation.setIsInCity();
         System.out.println("hunger: " + cityImplementation.getHunger() + " population: " + cityImplementation.getPopulation());
         break;
-      case "madman":
+      case "to_madman":
         System.out.println("BOOOOH!!!");
         System.out.println("The madman is the hut: '" + cityImplementation.visitMadman() + "'");
         break;
-      case "shop":
+      case "to_shop":
         cityImplementation.visitShop();
-      case "uni":
+        break;
+      case "to_uni":
         cityImplementation.visitUni();
+        break;
 
     }
 

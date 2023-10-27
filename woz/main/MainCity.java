@@ -1,16 +1,13 @@
-package business.implementations;
+package main;
 
 import business.interfaces.City;
 
-
-import javax.naming.Context;
 import java.util.Scanner;
 
-public class CityImplementation implements City {
+public class MainCity implements City {
     int hunger = 0;
     boolean isInCity;
     int population = 0;
-
     private String[] madArray = new String[]{
             "Go not forth hastily to strive, lest thou know not what to do in the end thereof, when thy neighbour hath put thee to shame.",
             "Hast thou found honey? eat so much as is sufficient for thee, lest thou be filled therewith, and vomit it.",
@@ -20,35 +17,21 @@ public class CityImplementation implements City {
             "Be thou diligent to know the state of thy flocks, and look well to thy herds. For riches are not for ever: and doth the crown endure to every generation?"};
 
 
-    @Override
     public void setIsInCity() {
-        isInCity = true;
-    }
-
-    public void leave() {
 
     }
-
-    @Override
     public boolean getIsInCity() {
         return isInCity;
     }
-
-    @Override
     public int getHunger() {
         return this.hunger;
     }
-
-    @Override
     public int getPopulation() {
-        return this.population;
+        return population;
     }
-
-
     @Override
     public void visitShop() {
         boolean leaveShop = false;
-        boolean leaveUni = true;
         Scanner shopScanner = new Scanner(System.in);
         System.out.println("Boy in the shop: 'What can I do for you today??'");
         System.out.println("Following items are available for purchase...");
@@ -71,8 +54,6 @@ public class CityImplementation implements City {
                     //Farm array increase by one field, Fields_for_purchase array decrease by one
                     break;
                 case "leave_shop":
-
-
                     leaveShop = true; // Set the leaveShop flag to true to exit the shop
                     break;
                 default:
@@ -85,57 +66,12 @@ public class CityImplementation implements City {
 
 
     }
-
-    @Override
     public void visitUni() {
-        boolean leaveUni = false;
-        Scanner uniScanner = new Scanner(System.in);
-        System.out.println("Dean : 'Good to see you, we have some very promising projects, but we are in lack of sufficient funds'");
-        System.out.println("Would you like to support any of our projects??");
-        System.out.println("We currently have 2 projects, a superfarm (SF) and a purification plant (PP)");
-        System.out.println("To support with 100 gold type SF or PP, if not well....just type leave_uni.");
-
-        while (!leaveUni) {
-            try {
-                String uniInput = uniScanner.nextLine();
-                switch (uniInput) {
-                    case "SF":
-                        System.out.println("You have helped the project of building a super farm, the project is at {sf_scale}. \nYou can leave by typing leave_uni or support more projects by typing SF or PP");
-                        // superfarm_scale increase by one
-                        break;
-                    case "PP":
-                        System.out.println("You have helped the project of building a purification plant, the project is at {pp_scale}.\nYou can leave by typing leave_uni or support more projects by typing SF or PP");
-                        // purification_scale is increase by one
-                        break;
-                    case "leave_uni":
-                        leaveUni = true; // Set the leaveUni flag to true to exit the university
-                        break;
-                    default:
-                        System.out.println("Dean: 'We count on you!!, what do you say??'");
-                }
-
-            }
-            finally {
-                //uniScanner.close();
-            }
-
-
-        }
-        System.out.println("Dean: 'Hope to see you again soon!'");
-
-
-
 
     }
-
-
-
-    @Override
     public String visitMadman() {
         return (this.madArray[(int)(Math.random()*6)]);
     }
-
-    @Override
     public void calculateHunger() {
 
     }
