@@ -21,27 +21,6 @@ class Context {
   
   public void transition (String direction) {
     Space next = current.followEdge(direction);
-    switch(direction) {
-      case "south":
-        //System.out.println(getCurrent().edges);
-      case "to_city":
-        cityImplementation.setIsInCity(true);
-        System.out.println("hunger: " + cityImplementation.getHunger() + " population: " + cityImplementation.getPopulation());
-        break;
-      case "to_madman":
-        System.out.println("BOOOOH!!!");
-        System.out.println("The madman is the hut: '" + cityImplementation.visitMadman() + "'");
-        break;
-      case "to_shop":
-        cityImplementation.visitShop();
-        break;
-      case "to_uni":
-        cityImplementation.visitUni();
-        break;
-
-    }
-
-
     if (next==null) {
       System.out.println("You are confused, and walk in a circle looking for '"+direction+"'. In the end you give up 😩");
     }
@@ -49,6 +28,25 @@ class Context {
       current.goodbye();
       current = next;
       current.welcome();
+      switch(direction) {
+        case "south":
+          //System.out.println(getCurrent().edges);
+          break;
+        case "to_city":
+          cityImplementation.setIsInCity(true);
+          System.out.println("hunger: " + cityImplementation.getHunger() + " population: " + cityImplementation.getPopulation());
+          break;
+      case "to_madman":
+        System.out.println("BOOOOH!!!");
+        System.out.println("The madman is the hut: '" + cityImplementation.visitMadman() + "'");
+        break;
+        case "to_shop":
+          cityImplementation.visitShop();
+          break;
+        case "to_uni":
+          cityImplementation.visitUni();
+          break;
+      }
     }
   }
 

@@ -18,6 +18,7 @@ class Space extends Node {
 
 
   public void goodbye () {
+    System.out.println("You are leaving "+name);
   }
   
   @Override
