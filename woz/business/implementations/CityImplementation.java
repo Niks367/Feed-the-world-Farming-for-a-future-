@@ -19,8 +19,8 @@ public class CityImplementation implements City {
 
 
     @Override
-    public void setIsInCity() {
-        isInCity = true;
+    public void setIsInCity(boolean z) {
+        isInCity = z;
     }
 
 
@@ -65,8 +65,6 @@ public class CityImplementation implements City {
                     //Farm array increase by one field, Fields_for_purchase array decrease by one
                     break;
                 case "leave_shop":
-
-
                     leaveShop = true; // Set the leaveShop flag to true to exit the shop
                     break;
                 default:
@@ -108,25 +106,23 @@ public class CityImplementation implements City {
                         System.out.println("Dean: 'We count on you!!, what do you say??'");
                 }
 
-            }
-            finally {
+            } catch (Exception e) {
+                System.out.println("There has been a problem with the input");
+                e.printStackTrace();
+            } finally {
                 //uniScanner.close();
             }
-
 
         }
         System.out.println("Dean: 'Hope to see you again soon!'");
 
 
-
-
     }
-
 
 
     @Override
     public String visitMadman() {
-        return (this.madArray[(int)(Math.random()*6)]);
+        return (this.madArray[(int) (Math.random() * 6)]);
     }
 
     @Override

@@ -1,7 +1,7 @@
 package business.interfaces;
 
 public interface City {
-    void setIsInCity();
+    void setIsInCity(boolean z);
     boolean getIsInCity();
     int getHunger();
     int getPopulation();

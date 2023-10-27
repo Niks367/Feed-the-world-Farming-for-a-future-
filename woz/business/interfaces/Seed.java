@@ -1,9 +1,7 @@
 package business.interfaces;
 
 public interface Seed {
-    int seedAmount = 0;
-    int valueSeed = 0;
-    void calculateProfit();
+    int calculateProfit();
     void sendMoney();
     boolean isSeedRipe();
 

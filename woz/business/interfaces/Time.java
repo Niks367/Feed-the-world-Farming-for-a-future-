@@ -6,5 +6,6 @@ public interface Time {
     public void setDays();
     public void setSpecialEvent();
     public void getSpecialEvent();
+    int getDaysPassed();
 }
 

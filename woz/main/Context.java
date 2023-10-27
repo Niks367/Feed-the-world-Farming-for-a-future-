@@ -25,7 +25,7 @@ class Context {
       case "south":
         //System.out.println(getCurrent().edges);
       case "to_city":
-        cityImplementation.setIsInCity();
+        cityImplementation.setIsInCity(true);
         System.out.println("hunger: " + cityImplementation.getHunger() + " population: " + cityImplementation.getPopulation());
         break;
       case "to_madman":
