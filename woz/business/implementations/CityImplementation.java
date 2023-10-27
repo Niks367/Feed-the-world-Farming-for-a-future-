@@ -2,8 +2,6 @@ package business.implementations;
 
 import business.interfaces.City;
 
-
-import javax.naming.Context;
 import java.util.Scanner;
 
 public class CityImplementation implements City {
@@ -11,7 +9,7 @@ public class CityImplementation implements City {
     boolean isInCity;
     int population = 0;
 
-    private String[] madArray = new String[]{
+    private final String[] madArray = new String[]{
             "Go not forth hastily to strive, lest thou know not what to do in the end thereof, when thy neighbour hath put thee to shame.",
             "Hast thou found honey? eat so much as is sufficient for thee, lest thou be filled therewith, and vomit it.",
             "It is not good to eat much honey: so for men to search their own glory is not glory.",
@@ -25,9 +23,6 @@ public class CityImplementation implements City {
         isInCity = true;
     }
 
-    public void leave() {
-
-    }
 
     @Override
     public boolean getIsInCity() {
@@ -48,7 +43,6 @@ public class CityImplementation implements City {
     @Override
     public void visitShop() {
         boolean leaveShop = false;
-        boolean leaveUni = true;
         Scanner shopScanner = new Scanner(System.in);
         System.out.println("Boy in the shop: 'What can I do for you today??'");
         System.out.println("Following items are available for purchase...");

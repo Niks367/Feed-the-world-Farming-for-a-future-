@@ -2,15 +2,12 @@ package main;
 
 import business.implementations.CityImplementation;
 import business.implementations.FarmImplementation;
-import business.implementations.ShopImplementation;
-
-import java.util.Scanner;
 
 
 class Context {
   FarmImplementation farmImplementation = new FarmImplementation();
   CityImplementation cityImplementation = new CityImplementation();
-  ShopImplementation shopImplementation = new ShopImplementation();
+
   Space current;
   boolean done = false;
   
