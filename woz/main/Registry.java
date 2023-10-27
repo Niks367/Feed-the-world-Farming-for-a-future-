@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Registry {
+
   Context context;
   Command fallback;
   Map<String, Command> commands = new HashMap<>();

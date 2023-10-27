@@ -7,6 +7,10 @@ public class AllCommands extends BaseCommand implements Command {
     FarmImplementation farmImplementation = new FarmImplementation();
     CityImplementation cityImplementation = new CityImplementation();
 
+    AllCommands () {
+        description = "Other commands";
+    }
+
     @Override
     public void execute(Context context, String command, String[] parameters) {
         switch (command) {
