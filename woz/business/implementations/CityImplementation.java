@@ -109,14 +109,13 @@ public class CityImplementation implements City {
             } catch (Exception e) {
                 System.out.println("There has been a problem with the input");
                 e.printStackTrace();
-            } finally {
+            } finally
+            {
                 //uniScanner.close();
             }
 
         }
         System.out.println("Dean: 'Hope to see you again soon!'");
-
-
     }
 
 

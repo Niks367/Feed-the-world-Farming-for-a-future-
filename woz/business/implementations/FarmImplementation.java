@@ -5,14 +5,15 @@ import business.interfaces.Farm;
 import java.util.Scanner;
 
 public class FarmImplementation implements Farm {
-    int scalePhosphor = 0;
+    int scalePhosphor = 1000;
 
     @Override
     public int getScale() {
         return this.scalePhosphor;
     }
-
+    // TODO make checker for scalePhosphor for events
     int dayCount = 0; //Integer that tells us the day we are currently at.
+    // TODO When dayCount hits certain values: Events
     int phosphor = 1; //Integer that tells us the amount of phosphor we have.
     private boolean endDay = false; // We initialize the boolean for endDay, so it is defined in our code and we can use it later to end the day.
 

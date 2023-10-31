@@ -34,6 +34,9 @@ class Context {
         case "to_river":
           riverImplementation.visitRiver();
           break;
+        case "city_to_river":
+          riverImplementation.visitRiver();
+          break;
         case "south":
           //System.out.println(getCurrent().edges);
           break;
