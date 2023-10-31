@@ -19,6 +19,7 @@ class Game {
         registry.register("go", new CommandGo());
         registry.register("help", new CommandHelp(registry));
         registry.register("show_phosphor", new AllCommands());
+        registry.register("end_day", new AllCommands());
 
 
     }

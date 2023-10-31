@@ -5,9 +5,11 @@ public class RiverImplementation implements River{
     // info on status for the pollution of the river, from 0 to 100,
     private int riverStatus = 0;
     boolean isDanger = false;
+    @Override
     public int getRiverStatus() {
         return riverStatus;
     }
+    @Override
     public void setRiverStatus(int status) {
         if (riverStatus + status < 100) {
             riverStatus += status;
@@ -18,7 +20,7 @@ public class RiverImplementation implements River{
         }
 
     }
-
+    @Override
     public void visitRiver() {
         if (riverStatus < 20) {
             System.out.println("The birds are singing and as you cross the river towards the city, you notice that the fresh water in the river is so clean that you see a fish standing in the shade under the bridge");
