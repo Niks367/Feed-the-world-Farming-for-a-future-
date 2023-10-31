@@ -19,7 +19,7 @@ public class AllCommands extends BaseCommand implements Command {
                 System.out.println("The amount of phosphor is " + scale);
                 break;
             case "end_day":
-                farmImplementation.runDay();
+                farmImplementation.runDay("end_day");
                 break;
             default:
 

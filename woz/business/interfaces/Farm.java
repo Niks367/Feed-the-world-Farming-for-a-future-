@@ -7,6 +7,6 @@ public interface Farm {
      * @return      Returns the amount of phosphor.
      */
     int getScale();
-    void runDay();
+    void runDay(String input);
     void endDay();
 }

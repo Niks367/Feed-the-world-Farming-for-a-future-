@@ -16,22 +16,19 @@ public class FarmImplementation implements Farm {
     int phosphor = 1; //Integer that tells us the amount of phosphor we have.
     private boolean endDay = false; // We initialize the boolean for endDay, so it is defined in our code and we can use it later to end the day.
 
+    //TODO do some changes to this later, so it works with the day count.
     @Override
-    public void runDay() {
-        Scanner scanner = new Scanner(System.in);
-
-        while (!endDay) {
-            // This will be displayed when the game is launched and display this message, so people playing will know how to end the day.
-           // System.out.println("Type 'endDay' to end the day:");
-            String userInput = scanner.nextLine();
-            if ("endDay".equalsIgnoreCase(userInput)) {
-                endDay = true;
-                endDay(); //Space for the method to define how we end the day, i havent filled it out yet cuz im not sure how to do it.
-                dayCount += 1; //Adds days to the dayCount integer, so everytime we end the day, the dayCount integer goes up by one.
-            }
-
-
+    public void runDay(String input) {
+        // This will be displayed when the game is launched and display this message, so people playing will know how to end the day.
+        if ("end_day".equalsIgnoreCase(input)) {
+            endDay = true;
+            endDay(); //Space for the method to define how we end the day, i havent filled it out yet cuz im not sure how to do it.
+            dayCount += 1; //Adds days to the dayCount integer, so everytime we end the day, the dayCount integer goes up by one.
+        } else {
+            System.out.println("Type 'endDay' to end the day:");
         }
+
+
     }
 
     @Override
