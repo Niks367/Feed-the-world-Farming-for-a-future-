@@ -20,6 +20,12 @@ class Game {
         registry.register("help", new CommandHelp(registry));
         registry.register("show_phosphor", new AllCommands());
         registry.register("end_day", new AllCommands());
+        registry.register("buy_seeds", new AllCommands());
+        registry.register("buy_phosphor", new AllCommands());
+        registry.register("buy_land", new AllCommands());
+        registry.register("SF", new AllCommands());
+        registry.register("PP", new AllCommands());
+
 
 
     }
