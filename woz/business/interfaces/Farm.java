@@ -9,4 +9,5 @@ public interface Farm {
     int getScale();
     void runDay(String input);
     void endDay();
+    void dayCount(String input);
 }

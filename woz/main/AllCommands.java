@@ -13,6 +13,9 @@ public class AllCommands extends BaseCommand implements Command {
     @Override
     public void execute(Context context, String command, String[] parameters) {
         switch (command) {
+            case "day_count":
+                Context.farmImplementation.dayCount(command);
+                break;
             case "show_phosphor":
                 description = "show the current phosphor reserves";
                 int scale = Context.farmImplementation.getScale();

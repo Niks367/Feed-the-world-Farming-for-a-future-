@@ -25,6 +25,7 @@ class Game {
         registry.register("buy_land", new AllCommands());
         registry.register("SF", new AllCommands());
         registry.register("PP", new AllCommands());
+        registry.register("day_count",new AllCommands());
 
 
 

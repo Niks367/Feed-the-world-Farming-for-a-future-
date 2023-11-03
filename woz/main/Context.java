@@ -33,46 +33,51 @@ public class Context {
             current.goodbye();
             current = next;
             current.welcome();
-            switch (direction) {
-                case "to_river", "city_to_river":
-                    riverImplementation.visitRiver();
-                    break;
-                case "to_city":
-                    cityImplementation.setIsInCity(true);
-                    System.out.println("hunger: " + cityImplementation.getHunger() + " population: " + cityImplementation.getPopulation());
-                    break;
+            farmImplementation.dayProgress +=1;
+            if (farmImplementation.dayProgress == 4) {
+                farmImplementation.endDay();
 
-                case "to_madman":
-                    System.out.println("BOOOOH!!!");
-                    System.out.println("The madman is the hut: '" + cityImplementation.visitMadman() + "'");
-                    break;
+            } else {
+                switch (direction) {
+                    case "to_river", "city_to_river":
+                        riverImplementation.visitRiver();
+                        break;
+                    case "to_city":
+                        cityImplementation.setIsInCity(true);
+                        System.out.println("hunger: " + cityImplementation.getHunger() + " population: " + cityImplementation.getPopulation());
+                        break;
 
-                case "to_shop":
-                    cityImplementation.visitShop();
-                    //System.out.println("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
-                    break;
+                    case "to_madman":
+                        System.out.println("BOOOOH!!!");
+                        System.out.println("The madman is the hut: '" + cityImplementation.visitMadman() + "'");
+                        break;
 
-                case "west":
-                    cityImplementation.setIsInShop(false);
-                    break;
+                    case "to_shop":
+                        cityImplementation.visitShop();
+                        //System.out.println("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
+                        break;
 
-                case "to_uni":
-                    cityImplementation.visitUni();
-                    //System.out.println("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
-                    break;
+                    case "west":
+                        cityImplementation.setIsInShop(false);
+                        break;
 
-                case "east":
-                    cityImplementation.setIsInUni(false);
-                    break;
+                    case "to_uni":
+                        cityImplementation.visitUni();
+                        //System.out.println("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
+                        break;
+
+                    case "east":
+                        cityImplementation.setIsInUni(false);
+                        break;
 
 
 //        case "to_uni":
 //          cityImplementation.visitUni();
 //          break;
+                }
             }
         }
     }
-
 
     public void makeDone() {
         done = true;
