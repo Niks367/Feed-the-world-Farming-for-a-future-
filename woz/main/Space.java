@@ -8,7 +8,20 @@ class Space extends Node {
   }
   
   public void welcome () {
-    System.out.println("You are now at "+name);
+
+      System.out.println("You are now walking to " + name);
+      System.out.println("You will be arriving in");
+
+      for (int i = 5; i > 0; i--) {
+        try {
+          Thread.sleep(1000);
+        } catch (InterruptedException e) {
+          throw new RuntimeException(e);
+        }
+        System.out.println(i);
+      }
+      System.out.println("You are now at "+name);
+
     Set<String> exits = edges.keySet();
     System.out.println("Current exits are:");
     for (String exit: exits) {
