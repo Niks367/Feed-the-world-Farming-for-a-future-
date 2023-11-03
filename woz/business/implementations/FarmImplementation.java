@@ -2,20 +2,21 @@ package business.implementations;
 
 import business.interfaces.Farm;
 
-import java.util.Scanner;
-
 public class FarmImplementation implements Farm {
-    int scalePhosphor = 1000;
-
+    public int scalePhosphor = 1000;
+    FieldImplementation fieldImplementation;
+    public boolean isFarm;
     @Override
     public int getScale() {
         return this.scalePhosphor;
     }
-
+    public void fieldInterface(FieldImplementation fieldImplementation){
+        this.fieldImplementation = fieldImplementation;
+    }
     // TODO make checker for scalePhosphor for events
-    int dayCount = 0; //Integer that tells us the day we are currently at.
+    public int dayCount = 0; //Integer that tells us the day we are currently at.
     // TODO When dayCount hits certain values: Events
-    int phosphor = 1; //Integer that tells us the amount of phosphor we have.
+    public int phosphor = 1; //Integer that tells us the amount of phosphor we have.
     public int dayProgress = 0;
     private boolean endDay = false; // We initialize the boolean for endDay, so it is defined in our code and we can use it later to end the day.
 
@@ -46,8 +47,8 @@ public class FarmImplementation implements Farm {
         //This is where we will type the code to end the day, but im not quite sure how we are gonna do that yet. We need the day counter and the time im pretty sure, before we can write the code for this.
         System.out.println("Ending Day "+dayCount);
         //TODO All the events that happen after the day need to be implemented, eks: seed growth or events, university research projects.
-
         // This is so that the endDay command doesnt just contiously end the day, but we actually reset it, so we can type it again the next day.
+        fieldImplementation.sowSeed(1, phosphor);
         endDay = false;
         dayProgress = 0;
         dayCount += 1;

@@ -7,19 +7,23 @@ public class AllCommands extends BaseCommand implements Command {
         description = "Other commands";
     }
 
+    public void printOnScreen(String text) {
+        System.out.println(text);
+    }
+
     @Override
     public void execute(Context context, String command, String[] parameters) {
+        context.initInterfaces();
         switch (command) {
             case "day_count":
                 Context.farmImplementation.dayCount(command);
                 break;
             case "show_phosphor":
                 description = "show the current phosphor reserves";
-                int scale = Context.farmImplementation.getScale();
-                System.out.println("The amount of phosphor is " + scale);
+                printOnScreen("The amount of phosphor you have is " + Context.farmImplementation.phosphor + " and the phosphor there is in the world is " + Context.farmImplementation.scalePhosphor);
                 break;
             case "end_day":
-                Context.farmImplementation.runDay("end_day");
+                Context.farmImplementation.endDay();
                 break;
             case "buy_seeds":
                 if (Context.cityImplementation.getIsInShop()) {
@@ -66,6 +70,13 @@ public class AllCommands extends BaseCommand implements Command {
                     System.out.println("You have to be in the university to support our projects");
                     break;
                 }
+            case "check_seed":
+                if (Context.farmImplementation.isFarm) {
+                    printOnScreen(String.valueOf(Context.seedImplementation.seedAmount));
+                } else {
+                    printOnScreen("You need to be in farm to check the seeds");
+                }
+                break;
 
             default:
 //                if (Context.cityImplementation.getIsInShop()) {

@@ -11,7 +11,7 @@ public class CityImplementation implements City {
     private boolean isInCity;
     private boolean isInUni;
     private boolean isInShop = false;
-    int population = 0;
+    int population = 1;
 
 
     /* allProjectsList is a list of all projects that can be available during different phases of the game:

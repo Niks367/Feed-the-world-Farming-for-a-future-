@@ -8,15 +8,18 @@ public class Context {
     public static CityImplementation cityImplementation = new CityImplementation();
     public static RiverImplementation riverImplementation = new RiverImplementation();
     public static FieldImplementation fieldImplementation = new FieldImplementation();
-   // public static SeedImplementation seedImplementation = new SeedImplementation();
+    public static PlayerImplementation playerImplementation = new PlayerImplementation();
+    public static SeedImplementation seedImplementation = new SeedImplementation();
+    public static TimeImplementation timeImplementation = new TimeImplementation();
 
     Space current;
     boolean done = false;
     public boolean getIsInShop() {
-        boolean z = cityImplementation.getIsInShop();
-        return z;
+        return cityImplementation.getIsInShop();
     }
-
+    public void initPlayer(){
+        playerImplementation.spawn();
+    }
     Context(Space node) {
         current = node;
     }
@@ -25,8 +28,16 @@ public class Context {
         return current;
     }
 
+    public void initInterfaces(){
+        farmImplementation.fieldInterface(fieldImplementation);
+        fieldImplementation.seedInterface(seedImplementation);
+        seedImplementation.initPlayerInterface(playerImplementation);
+        fieldImplementation.farmInterface(farmImplementation);
+    }
+
     public void transition(String direction) {
         Space next = current.followEdge(direction);
+        initInterfaces();
         if (next == null) { // changed to print help
             System.out.println("You are confused, and walk in a circle looking for '" + direction + "'. Type 'help' to view list of commands");
         } else {
@@ -34,11 +45,13 @@ public class Context {
             current = next;
             current.welcome();
             farmImplementation.dayProgress +=1;
-            if (farmImplementation.dayProgress == 4) {
+            if (farmImplementation.dayProgress == 4) {//TODO this function stop some functionality, does not do switch.
                 farmImplementation.endDay();
-
             } else {
                 switch (direction) {
+                    case "to_farm", "river_to_farm", "fields_to_farm":
+                        farmImplementation.isFarm = true;
+                        break;
                     case "to_river", "city_to_river":
                         riverImplementation.visitRiver();
                         break;

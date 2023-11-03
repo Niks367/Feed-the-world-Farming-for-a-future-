@@ -26,9 +26,7 @@ class Game {
         registry.register("SF", new AllCommands());
         registry.register("PP", new AllCommands());
         registry.register("day_count",new AllCommands());
-
-
-
+        registry.register("check_seed",new AllCommands());
     }
 
     public static void main(String[] args) {
@@ -36,6 +34,7 @@ class Game {
 
         initRegistry();
         context.getCurrent().welcome();
+        context.initPlayer();
 
         while (!context.isDone()) {
             try {

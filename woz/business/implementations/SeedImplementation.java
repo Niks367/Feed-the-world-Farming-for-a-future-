@@ -5,18 +5,16 @@ import business.interfaces.Seed;
 import business.interfaces.Time;
 
 public class SeedImplementation implements Seed {
+    PlayerImplementation playerImplementation;
     int profit = 0;
-    int seedAmount = 1; //Har kun sat den til én, da vi skal have fundet ud af hvor mange frø der skal involveres.
+    public int seedAmount = 1; //Har kun sat den til én, da vi skal have fundet ud af hvor mange frø der skal involveres.
     int valueSeed = 100; //Ved ikke hvad værdien af vores frø skal være.
     int daysToRipe = 1; //Bruges til "isSeedRipe" metoden, tænker at frøene skal være modne hver dag.
-    private Player player;
     private Time time;// Kalder på player for at få adgang til money.
 
-    // Construktor til at opdatere Player.
-    public SeedImplementation(Player player){
-        this.player = player;
+    public void initPlayerInterface(PlayerImplementation playerImplementation) {
+    this.playerImplementation = playerImplementation;
     }
-
     // Metoden til at udregne vores spillers profit, tænker at udregningen giver lidt sig selv.
 
     @Override
@@ -31,12 +29,13 @@ public class SeedImplementation implements Seed {
         Jeg tænkte det kunne være en nem måde at gøre det på, men ved ikke om jeg tager fejl.
          */
     @Override
-    public void sendMoney(){
-        if(isSeedRipe()) {
+    public void sendMoney() {
+        if (isSeedRipe()) {
             int profit = calculateProfit();
-            player.addMoney(profit);
+            playerImplementation.addMoney(profit);
         }
     }
+
     /*metode til at fortælle om frøene er modne, den tager udgangspunkt i vores "time" klasse,
         så frøene bliver modne hver dag. Jeg bruger midlertidigt Time som parameter, fordi jeg stadig er usikker på om,
         vi skal have en seperat klasse for time, eller om vi bare skal have den implementeret i de klasser der nu skal bruge,
@@ -46,7 +45,5 @@ public class SeedImplementation implements Seed {
     public boolean isSeedRipe() {
         return time.getDaysPassed() >= daysToRipe;
     }
-
-
 
 }
