@@ -1,14 +1,14 @@
 package main;
 
-import business.implementations.CityImplementation;
-import business.implementations.FarmImplementation;
-import business.implementations.RiverImplementation;
+import business.implementations.*;
 
 
 public class Context {
     public static FarmImplementation farmImplementation = new FarmImplementation();
     public static CityImplementation cityImplementation = new CityImplementation();
     public static RiverImplementation riverImplementation = new RiverImplementation();
+    public static FieldImplementation fieldImplementation = new FieldImplementation();
+   // public static SeedImplementation seedImplementation = new SeedImplementation();
 
     Space current;
     boolean done = false;

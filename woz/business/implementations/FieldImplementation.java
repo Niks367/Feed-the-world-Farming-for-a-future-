@@ -1,16 +1,14 @@
 package business.implementations;
 
-import business.implementations.SeedImplementation;
 import business.interfaces.Field;
 import business.interfaces.Player;
-import business.interfaces.Seed;
 
 public class FieldImplementation implements Field {
     private SeedImplementation seedsInField; //oprettes for at kunne bruge Seed klassen.
     private double phosphorEffekt = 20; //jeg har gjort fertilizer effekt til en ratio af 1:20, for at gøre den meget ekstrem.
     private Player player;
     //constructor til at kalde på Seed()
-    private FieldImplementation(){
+    public FieldImplementation(){
         seedsInField = new SeedImplementation(player);
     }
 

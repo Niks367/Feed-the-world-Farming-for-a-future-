@@ -1,8 +1,5 @@
 package main;
 
-import business.implementations.CityImplementation;
-import business.implementations.FarmImplementation;
-
 public class AllCommands extends BaseCommand implements Command {
 
 
@@ -53,7 +50,7 @@ public class AllCommands extends BaseCommand implements Command {
                 }
             case "SF":
                 if (Context.cityImplementation.getIsInUni()) {
-                    System.out.println("You have helped the project of building a super farm, the project is at {sf_scale}. \nYou can leave by typing leave_uni or support more projects by typing SF or PP");
+                    System.out.println("You have helped the project of building a super farm, the project is at {sf_scale}. \nYou can leave by typing go east or support more projects by typing SF or PP");
                     // superfarm_scale increase by one
                     break;
                 } else {
@@ -62,7 +59,7 @@ public class AllCommands extends BaseCommand implements Command {
                 }
             case "PP":
                 if (Context.cityImplementation.getIsInUni()) {
-                    System.out.println("You have helped the project of building a purification plant, the project is at {pp_scale}.\nYou can leave by typing leave_uni or support more projects by typing SF or PP");
+                    System.out.println("You have helped the project of building a purification plant, the project is at {pp_scale}.\nYou can leave by typing go east or support more projects by typing SF or PP");
                     // purification_scale is increase by one
                     break;
                 } else {

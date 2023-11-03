@@ -2,15 +2,15 @@ package main;/* Baseclass for commands
  */
 
 class BaseCommand {
-  String description = "Undocumented";
-  
-  protected boolean guardEq (String[] parameters, int bound) {
+    String description = "Undocumented";
 
-    return parameters.length!=bound;
-  }
-  
-  public String getDescription () {
+    protected boolean guardEq(String[] parameters, int bound) {
 
-    return description;
-  }
+        return parameters.length != bound;
+    }
+
+    public String getDescription() {
+
+        return description;
+    }
 }
