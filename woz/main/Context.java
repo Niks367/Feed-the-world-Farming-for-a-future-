@@ -2,6 +2,8 @@ package main;
 
 import business.implementations.*;
 
+import java.util.Set;
+
 
 public class Context {
     public static FarmImplementation farmImplementation = new FarmImplementation();
@@ -54,6 +56,10 @@ public class Context {
     public void show(String command) {
 
         switch (command) {
+            case "exits":
+                System.out.println(Game.context.current.edges.keySet());
+                // TODO make this nicer, without brackets
+
             case "days":
                 farmImplementation.dayCount(command);
                 break;

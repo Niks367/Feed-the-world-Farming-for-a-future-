@@ -112,11 +112,20 @@ public class FarmImplementation implements Farm {
     }
     public void endWeek() {
         System.out.println("Ending Week ");
+        for (int i = 5; i > 0; i--) {
+            try {
+                Thread.sleep(400);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.print(".");
+        }
+        System.out.println("");
         System.out.println("Harvesting the corn on you fields amounts to: ");
         System.out.println(calculateProfit());
         Context.playerImplementation.addMoney(calculateProfit());
         Context.cityImplementation.isHunger = calculateIsHunger();
-        System.out.println("You have: "+Context.playerImplementation.money+" money.");
+        System.out.println("You now have: "+Context.playerImplementation.money+" money.");
         System.out.println("The city needs food, and the population is: " + Context.cityImplementation.population);
         System.out.println("After paying for food you have: ");
         Context.playerImplementation.useMoney(Context.cityImplementation.population);

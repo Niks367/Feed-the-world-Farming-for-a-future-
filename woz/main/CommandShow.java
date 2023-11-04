@@ -3,7 +3,7 @@ package main;/* Command for transitioning between spaces
 
 class CommandShow extends BaseCommand implements Command {
     CommandShow () {
-        description = "Show stats for phosphor, seeds, hunger, population or days played";
+        description = "Show stats for phosphor, seeds, hunger, money, population, days played, exits";
     }
 
     @Override
