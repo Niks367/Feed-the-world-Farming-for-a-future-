@@ -64,8 +64,7 @@ public class Context {
                 farmImplementation.dayCount(command);
                 break;
             case "phosphor":
-                System.out.println("The amount of phosphor you have is " + farmImplementation.phosphor +
-                        " and the phosphor there is in the world is " + Context.farmImplementation.scalePhosphor);
+                System.out.println("The phosphor reserves in the world is " + Context.farmImplementation.scalePhosphor);
                 break;
             case "seeds":
                 if (farmImplementation.getIsInFarm()) {
@@ -202,7 +201,7 @@ public class Context {
         }
     }
 
-    void checkEndday() {
+    void checkEndDay() {
         System.out.println("It's currently " + farmImplementation.dayProgress + " o'clock");
         if (farmImplementation.dayProgress == 4) {//TODO ADDED by Lars: Check it it works by using this function
             //TODO earlier is stop some functionality, does not do switch if day ends.
@@ -213,7 +212,7 @@ public class Context {
     public void transition(String direction) {
         Space next = current.followEdge(direction);
         initInterfaces();
-        checkEndday();
+        checkEndDay();
         if (next == null) { // changed to print help
             System.out.println("You are confused, and walk in a circle looking for '" + direction +
                     "'. Type 'help' to view list of commands");
@@ -233,7 +232,14 @@ public class Context {
                         break;
                     case "to_city":
                         cityImplementation.setIsInCity(true);
-                        System.out.println("hunger: " + cityImplementation.isHunger + " population: " + cityImplementation.getPopulation());
+                        System.out.println("You are entering the Capital City...");
+                        System.out.println(" population is : " + cityImplementation.getPopulation());
+                        if (cityImplementation.isHunger) {
+                            System.out.println("The people in the city are starving! Hurry up and give them something to eat.");
+                        }
+                        else {
+                            System.out.println("The people in the city are happy and not hungry.");
+                        }
                         break;
                     case "to_madman":
                         System.out.println("BOOOOH!!!");

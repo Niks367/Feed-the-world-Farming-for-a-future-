@@ -130,6 +130,8 @@ public class FarmImplementation implements Farm {
         System.out.println("After paying for food you have: ");
         Context.playerImplementation.useMoney(Context.cityImplementation.population);
         System.out.print(Context.playerImplementation.money+ " money.");
+        System.out.println("The phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more...");
+        Context.farmImplementation.isPhophorized = false;
 
         if(!Context.cityImplementation.isHunger) { // If there is no
             Context.cityImplementation.population += 25;
