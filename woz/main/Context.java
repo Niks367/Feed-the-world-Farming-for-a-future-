@@ -79,7 +79,7 @@ public class Context {
     public void support(String command) {
         //context.initInterfaces();
         switch (command) {
-            case "PP":
+            case "PP", "pp":
                 if (Context.cityImplementation.getIsInUni()) {
                     System.out.println("You have helped the project of building a purification plant, the project is at {pp_scale}.\nYou can leave by typing go east or support more projects by typing SF or PP");
                     // purification_scale is increase by one
@@ -88,9 +88,9 @@ public class Context {
                     System.out.println("You have to be in the university to support our projects");
                     break;
                 }
-            case "SF":
+            case "SF", "sf":
                 if (Context.cityImplementation.getIsInUni()) {
-                    System.out.println("You have helped the project of building a super farm, the project is at {sf_scale}. \nYou can leave by typing go east or support more projects by typing SF or PP");
+                    System.out.println("You have helped the project of building a super farm, the project is at {sf_scale}. \nYou can leave by typing go east or support more projects by typing support plus SF or PP");
                     // superfarm_scale increase by one
                     break;
                 } else {

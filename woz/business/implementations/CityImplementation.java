@@ -96,12 +96,12 @@ public class CityImplementation implements City {
 
     @Override
     public void setIsInUni(boolean z) {
-        isInShop = z;
+        isInUni = z;
     }
 
     @Override
     public boolean getIsInUni() {
-        return isInShop;
+        return isInUni;
     }
 
 
@@ -122,7 +122,7 @@ public class CityImplementation implements City {
         System.out.println("Would you like to support any of our projects??");
         System.out.printf("We currently have %d projects)", calculateAvailableProjects());
         printAllProjectsList();
-        System.out.println("To support with 100 gold type SF or PP, if not well....just type 'go east' and you will be back in the city in a jiffy.");
+        System.out.println("To support with 100 gold type support plus SF or PP, if not well....just type 'go east' and you will be back in the city in a jiffy.");
     }
 //
 //        while (!leaveUni) {
