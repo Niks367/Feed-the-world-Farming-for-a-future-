@@ -143,7 +143,7 @@ public class Context {
             current.welcome();
             farmImplementation.dayProgress += 1;
             if (farmImplementation.dayProgress == 4) {//TODO this function stop some functionality, does not do switch.
-                farmImplementation.endDay();
+                farmImplementation.endDay();//TODO visitriver() virker kun hvis man krydser floden fra byen
 
                 switch (direction) {
                     case "to_farm", "river_to_farm", "fields_to_farm":

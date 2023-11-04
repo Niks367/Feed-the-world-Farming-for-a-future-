@@ -17,12 +17,6 @@ public class AllCommands extends BaseCommand implements Command {
         switch (command) {
 
 
-            case "end_day":
-                Context.farmImplementation.endDay();
-                break;
-
-
-
             default:
 
         }
