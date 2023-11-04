@@ -1,9 +1,10 @@
 package business.implementations;
 import business.interfaces.River;
+import main.Context;
 
 public class RiverImplementation implements River{
     // info on status for the pollution of the river, from 0 to 100,
-    private int riverStatus = 0;
+    private int riverStatus = (100-Context.farmImplementation.scalePhosphor)*15;
     boolean isDanger = false;
     @Override
     public int getRiverStatus() {

@@ -5,17 +5,17 @@ import main.*;
 
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 100;
-    private double phosphorEffect = 3;
+    private double phosphorEffect = 5;
     FieldImplementation fieldImplementation;
     public boolean isInFarm;
     public boolean isPhophorized;
-    public int phosphorPrice = 25;
+    public int phosphorPrice = 10;
     public void setIsPhosphorized(boolean z) {
         isPhophorized = z;
     }
     private int priceOfLand = 100;
-    private int yieldOfLand = 30;
-    private int fieldsForPurchase = 10;
+    private int yieldOfLand = 25;
+    private int fieldsForPurchase = 5;
     @Override
     public void reduceFieldsForPurchase() {
         fieldsForPurchase -= 1;

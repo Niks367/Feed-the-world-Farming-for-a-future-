@@ -11,7 +11,7 @@ public class CityImplementation implements City {
     private boolean isInCity;
     private boolean isInUni;
     private boolean isInShop = false;
-    int population = 50;
+    int population = 100;
     public boolean isHunger = false;
 
 

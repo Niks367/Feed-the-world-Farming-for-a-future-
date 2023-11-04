@@ -6,7 +6,7 @@ class World {
   World () {
     Space entry    = new Space("Entry");
     Space farm = new Space("Farm");
-    Space city     = new Space("City");
+    Space city     = new Space("DowntownCity");
     Space uni      = new Space("Uni");
     Space shop  = new Space("Shop");
     Space madman  = new Space("MadMan");

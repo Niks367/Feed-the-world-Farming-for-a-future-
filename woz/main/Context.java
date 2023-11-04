@@ -63,6 +63,9 @@ public class Context {
             case "days":
                 farmImplementation.dayCount(command);
                 break;
+            case "land":
+                System.out.println("You currently own " + farmImplementation.land + " fields.");
+                break;
             case "phosphor":
                 System.out.println("The phosphor reserves in the world is " + Context.farmImplementation.scalePhosphor);
                 break;
@@ -134,14 +137,14 @@ public class Context {
             case "land":
                 if (cityImplementation.getIsInShop()) {
                     if (!farmImplementation.getIsPhosphorized()){
-                        if (playerImplementation.money > farmImplementation.getPriceOfLand()) {
+                        if (playerImplementation.money > farmImplementation.getPriceOfLand() && farmImplementation.land <= farmImplementation.getFieldsForPurchase()) {
                             System.out.println("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
                             farmImplementation.land += 1;
                             playerImplementation.useMoney(100);
                             farmImplementation.reduceFieldsForPurchase();
                             break;
                         } else {
-                            System.out.println("Unfortunately, you don't seem to have the required amount of cash!");
+                            System.out.println("Unfortunately, you don't seem to have the required amount of cash or there is not any more land to purchase!");
                             break;
                         }
                     }else {
@@ -202,10 +205,21 @@ public class Context {
     }
 
     void checkEndDay() {
-        System.out.println("It's currently " + farmImplementation.dayProgress + " o'clock");
-        if (farmImplementation.dayProgress == 4) {//TODO ADDED by Lars: Check it it works by using this function
-            //TODO earlier is stop some functionality, does not do switch if day ends.
-            farmImplementation.endDay();
+        switch((int)farmImplementation.dayProgress) {
+            case 0:
+                System.out.println("It's morning.");
+                break;
+            case 1:
+                System.out.println("It's noon.");
+                break;
+            case 2:
+                System.out.println("it's afternoon.");
+                break;
+            case 3:
+                System.out.println("it's evening.");
+                farmImplementation.endDay();
+                break;
+
         }
     }
 
