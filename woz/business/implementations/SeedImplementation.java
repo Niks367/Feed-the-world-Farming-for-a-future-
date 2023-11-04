@@ -9,7 +9,7 @@ public class SeedImplementation implements Seed {
     int profit = 0;
     public int seedAmount = 1; //Har kun sat den til én, da vi skal have fundet ud af hvor mange frø der skal involveres.
     int valueSeed = 100; //Ved ikke hvad værdien af vores frø skal være.
-    int daysToRipe = 1; //Bruges til "isSeedRipe" metoden, tænker at frøene skal være modne hver dag.
+    int daysToRipe = 7; //Bruges til "isSeedRipe" metoden, tænker at frøene skal være modne hver uge.
     private Time time;// Kalder på player for at få adgang til money.
 
     public void initPlayerInterface(PlayerImplementation playerImplementation) {

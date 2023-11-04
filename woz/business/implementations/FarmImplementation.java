@@ -1,6 +1,7 @@
 package business.implementations;
 
 import business.interfaces.Farm;
+import main.*;
 
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 1000;
@@ -10,6 +11,9 @@ public class FarmImplementation implements Farm {
     public int getScale() {
         return this.scalePhosphor;
     }
+    public void printOnScreen(String text) {
+        System.out.println(text);
+    }
     public void fieldInterface(FieldImplementation fieldImplementation){
         this.fieldImplementation = fieldImplementation;
     }
@@ -18,6 +22,7 @@ public class FarmImplementation implements Farm {
     // TODO When dayCount hits certain values: Events
     public int phosphor = 1; //Integer that tells us the amount of phosphor we have.
     public int dayProgress = 0;
+    public int land = 1;
     private boolean endDay = false; // We initialize the boolean for endDay, so it is defined in our code and we can use it later to end the day.
 
     //TODO do some changes to this later, so it works with the day count.
@@ -37,7 +42,7 @@ public class FarmImplementation implements Farm {
 
     @Override
     public void dayCount(String input) {
-        if ("day_count".equalsIgnoreCase(input)) {
+        if ("days".equalsIgnoreCase(input)) {
             System.out.println("You are currently on Day " + dayCount);
         }
     }
@@ -48,10 +53,46 @@ public class FarmImplementation implements Farm {
         System.out.println("Ending Day "+dayCount);
         //TODO All the events that happen after the day need to be implemented, eks: seed growth or events, university research projects.
         // This is so that the endDay command doesnt just contiously end the day, but we actually reset it, so we can type it again the next day.
-        fieldImplementation.sowSeed(1, phosphor);
+        fieldImplementation.sowSeed(1, phosphor, land);
+        if((dayCount+1)%3 == 0) // making a week 3 days
+            endWeek();
         endDay = false;
         dayProgress = 0;
         dayCount += 1;
+    }
+    public boolean calculateIsHunger() {
+        if (Context.playerImplementation.money < Context.cityImplementation.population) {
+            return true;
+        }
+        else
+            return false;
+    }
+    public void endWeek() {
+        System.out.println("Ending Week ");
+        Context.cityImplementation.isHunger = calculateIsHunger();
+        fieldImplementation.harvestSeed(fieldImplementation.checkSeed());
+        if(!Context.cityImplementation.isHunger) {
+            Context.playerImplementation.money = Context.playerImplementation.money - Context.cityImplementation.population;
+            System.out.println(Context.cityImplementation.isHunger);
+            Context.cityImplementation.population += 25;
+            System.out.println("Population is growing, city now has " + Context.cityImplementation.population + " inhabitants");
+            System.out.println("You now have "+Context.playerImplementation.money+ " money");
+            if(Context.playerImplementation.money <= 0) {
+                System.out.println("Game Over");
+                main.Game.context.makeDone();
+
+
+            }
+
+
+        }else {
+            Context.cityImplementation.population /= 2;
+            printOnScreen("Hunger has hit the city, the population has fallen to "+Context.cityImplementation.population);
+            System.out.println(Context.playerImplementation.money);
+
+        }
+
+
     }
 }
 

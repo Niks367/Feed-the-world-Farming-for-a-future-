@@ -18,7 +18,10 @@ class Registry {
   public void register (String name, Command command) {
     commands.put(name, command);
   }
-  
+
+  // reads input from user, first word is command after that
+  // is put into new list in getParameters
+
   public void dispatch (String line) {
     String[] elements = line.split(" ");
     String command = elements[0];
@@ -35,7 +38,7 @@ class Registry {
     return commands.keySet().toArray(new String[0]);
   }
   
-  // helpers
+  // helpers returnerer resten af listen
   
   private String[] getParameters (String[] input) {
     String[] output = new String[input.length-1];

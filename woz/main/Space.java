@@ -14,7 +14,7 @@ class Space extends Node {
 
         for (int i = 5; i > 0; i--) {
             try {
-                Thread.sleep(500);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

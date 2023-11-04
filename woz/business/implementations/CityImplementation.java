@@ -11,7 +11,8 @@ public class CityImplementation implements City {
     private boolean isInCity;
     private boolean isInUni;
     private boolean isInShop = false;
-    int population = 1;
+    int population = 100;
+    public boolean isHunger = false;
 
 
     /* allProjectsList is a list of all projects that can be available during different phases of the game:
@@ -40,6 +41,9 @@ public class CityImplementation implements City {
     public int calculateAvailableProjects() {
         return allProjectsList.size(); //TODO to be changed to availableProjectsList!
         //return availableProjectsList.size();
+    }
+    public void printOnScreen(String text) {
+        System.out.println(text);
     }
 
     public ArrayList<String> returnCurrentProjects(ArrayList<Integer> index) {
