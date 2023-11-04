@@ -131,10 +131,18 @@ public class Context {
                 }
         }
     }
+    void checkEndday() {
+        System.out.println(farmImplementation.dayProgress);
+        if (Context.farmImplementation.dayProgress == 4) {//TODO ADDED by Lars: Check it it works by using this function
+            //TODO earlier is stop some functionality, does not do switch if day ends.
+            farmImplementation.endDay();
+        }
+    }
 
     public void transition(String direction) {
         Space next = current.followEdge(direction);
         initInterfaces();
+        checkEndday();
         if (next == null) { // changed to print help
             System.out.println("You are confused, and walk in a circle looking for '" + direction + "'. Type 'help' to view list of commands");
         } else {
@@ -142,9 +150,8 @@ public class Context {
             current = next;
             current.welcome();
             farmImplementation.dayProgress += 1;
-            if (farmImplementation.dayProgress == 4) {//TODO this function stop some functionality, does not do switch.
-                farmImplementation.endDay();//TODO visitriver() virker kun hvis man krydser floden fra byen
 
+                {
                 switch (direction) {
                     case "to_farm", "river_to_farm", "fields_to_farm":
                         farmImplementation.isFarm = true;
@@ -156,32 +163,25 @@ public class Context {
                         cityImplementation.setIsInCity(true);
                         System.out.println("hunger: " + cityImplementation.getHunger() + " population: " + cityImplementation.getPopulation());
                         break;
-
                     case "to_madman":
                         System.out.println("BOOOOH!!!");
                         System.out.println("The madman is the hut: '" + cityImplementation.visitMadman() + "'");
                         break;
-
                     case "to_shop":
                         cityImplementation.setIsInShop(true);
                         cityImplementation.visitShop();
                         //System.out.println("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
                         break;
-
                     case "west":
                         cityImplementation.setIsInShop(false);
                         break;
-
                     case "to_uni":
                         cityImplementation.visitUni();
                         //System.out.println("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
                         break;
-
                     case "east":
                         cityImplementation.setIsInUni(false);
                         break;
-
-
 //        case "to_uni":
 //          cityImplementation.visitUni();
 //          break;
