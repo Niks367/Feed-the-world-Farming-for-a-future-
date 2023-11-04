@@ -57,13 +57,17 @@ public class Context {
                 break;
             case "seeds":
                 if (Context.farmImplementation.isFarm) {
-                    System.out.println(String.valueOf(Context.seedImplementation.seedAmount));
+                    System.out.println("There is "+String.valueOf(Context.seedImplementation.seedAmount+" seed your inventory."));
                 } else {
                     System.out.println("You need to be in farm to check the seeds");
                 }
                 break;
             case "hunger":
-                System.out.println(Context.cityImplementation.getHunger());
+                if(Context.cityImplementation.isHunger) {
+                    System.out.println("The people in the city are starving! Hurry up and give them something to eat.");
+                }else {
+                    System.out.println("The people in the city are happy and not hungry.");
+                }
                 break;
             case "population":
                 System.out.println(Context.cityImplementation.getPopulation());
@@ -132,7 +136,7 @@ public class Context {
         }
     }
     void checkEndday() {
-        System.out.println(farmImplementation.dayProgress);
+        System.out.println("It's currently "+farmImplementation.dayProgress+" o'clock");
         if (Context.farmImplementation.dayProgress == 4) {//TODO ADDED by Lars: Check it it works by using this function
             //TODO earlier is stop some functionality, does not do switch if day ends.
             farmImplementation.endDay();
