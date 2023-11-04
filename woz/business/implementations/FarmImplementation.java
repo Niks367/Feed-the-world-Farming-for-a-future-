@@ -4,9 +4,34 @@ import business.interfaces.Farm;
 import main.*;
 
 public class FarmImplementation implements Farm {
-    public int scalePhosphor = 1000;
+    public int scalePhosphor = 100;
+    private double phosphorEffect = 3;
     FieldImplementation fieldImplementation;
     public boolean isInFarm;
+    public boolean isPhophorized;
+    public int phosphorPrice = 25;
+    public void setIsPhosphorized(boolean z) {
+        isPhophorized = z;
+    }
+    private int priceOfLand = 100;
+    private int yieldOfLand = 30;
+    private int fieldsForPurchase = 10;
+    @Override
+    public void reduceFieldsForPurchase() {
+        fieldsForPurchase -= 1;
+    }
+
+    @Override
+    public int getFieldsForPurchase() {
+        return fieldsForPurchase;
+    }
+
+    public int getPriceOfLand() {
+        return priceOfLand;
+    }
+    public boolean getIsPhosphorized() {
+        return isPhophorized;
+    }
     @Override
     public int getScale() {
         return this.scalePhosphor;
@@ -29,7 +54,7 @@ public class FarmImplementation implements Farm {
     // TODO make checker for scalePhosphor for events
     public int dayCount = 0; //Integer that tells us the day we are currently at.
     // TODO When dayCount hits certain values: Events
-    public int phosphor = 1; //Integer that tells us the amount of phosphor we have.
+    public int phosphor = 0; //Integer that tells us the amount of phosphor we have.
     public int dayProgress = 0;
     public int land = 1;
     private boolean endDay = false; // We initialize the boolean for endDay, so it is defined in our code and we can use it later to end the day.
@@ -69,6 +94,15 @@ public class FarmImplementation implements Farm {
         dayProgress = 0;
         dayCount += 1;
     }
+    public double calculateProfit() {
+        double profit = 0;
+        if(isPhophorized) {
+            profit = land*phosphorEffect*yieldOfLand;
+        } else{
+            profit = land*2*yieldOfLand;
+        }
+        return profit;
+    }
     public boolean calculateIsHunger() {
         if (Context.playerImplementation.money < Context.cityImplementation.population) {
             return true;
@@ -78,26 +112,31 @@ public class FarmImplementation implements Farm {
     }
     public void endWeek() {
         System.out.println("Ending Week ");
+        System.out.println("Harvesting the corn on you fields amounts to: ");
+        System.out.println(calculateProfit());
+        Context.playerImplementation.addMoney(calculateProfit());
         Context.cityImplementation.isHunger = calculateIsHunger();
-        fieldImplementation.harvestSeed(fieldImplementation.checkSeed());
-        if(!Context.cityImplementation.isHunger) {
-            Context.playerImplementation.money = Context.playerImplementation.money - Context.cityImplementation.population;
-            System.out.println(Context.cityImplementation.isHunger);
+        System.out.println("You have: "+Context.playerImplementation.money+" money.");
+        System.out.println("The city needs food, and the population is: " + Context.cityImplementation.population);
+        System.out.println("After paying for food you have: ");
+        Context.playerImplementation.useMoney(Context.cityImplementation.population);
+        System.out.print(Context.playerImplementation.money+ " money.");
+
+        if(!Context.cityImplementation.isHunger) { // If there is no
             Context.cityImplementation.population += 25;
             System.out.println("Population is growing, city now has " + Context.cityImplementation.population + " inhabitants");
-            System.out.println("You now have "+Context.playerImplementation.money+ " money");
+
             if(Context.playerImplementation.money <= 0) {
                 System.out.println("Game Over");
                 main.Game.context.makeDone();
-
-
             }
-
-
         }else {
             Context.cityImplementation.population /= 2;
             printOnScreen("Hunger has hit the city, the population has fallen to "+Context.cityImplementation.population);
-            System.out.println(Context.playerImplementation.money);
+            if(Context.playerImplementation.money <= 0) {
+                System.out.println("Game Over");
+                main.Game.context.makeDone();
+            }
 
         }
 

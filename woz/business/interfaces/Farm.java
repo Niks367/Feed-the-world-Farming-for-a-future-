@@ -12,4 +12,6 @@ public interface Farm {
     public void setIsInFarm(boolean z);
     public boolean getIsInFarm();
     void dayCount(String input);
+    public void reduceFieldsForPurchase();
+    public int getFieldsForPurchase();
 }

@@ -18,7 +18,10 @@ public class Context {
     public boolean getIsInShop() {
         return cityImplementation.getIsInShop();
     }
-    public boolean getIsInFarm() { return farmImplementation.getIsInFarm(); }
+
+    public boolean getIsInFarm() {
+        return farmImplementation.getIsInFarm();
+    }
 
     public void initPlayer() {
         playerImplementation.spawn();
@@ -76,7 +79,7 @@ public class Context {
                 System.out.println(cityImplementation.getPopulation());
                 break;
             case "money":
-                System.out.println("Your current cash situation is: "+playerImplementation.money+" money");
+                System.out.println("Your current cash situation is: " + playerImplementation.money + " money");
 
         }
     }
@@ -125,9 +128,33 @@ public class Context {
         switch (command) {
             case "land":
                 if (cityImplementation.getIsInShop()) {
-                    System.out.println("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
-                    //TODO Farm array increase by one field, Fields_for_purchase array decrease by one
-                    break;
+                    if (!farmImplementation.getIsPhosphorized()){
+                        if (playerImplementation.money > farmImplementation.getPriceOfLand()) {
+                            System.out.println("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
+                            farmImplementation.land += 1;
+                            playerImplementation.useMoney(100);
+                            farmImplementation.reduceFieldsForPurchase();
+                            break;
+                        } else {
+                            System.out.println("Unfortunately, you don't seem to have the required amount of cash!");
+                            break;
+                        }
+                    }else {
+                        if (playerImplementation.money > farmImplementation.getPriceOfLand()+farmImplementation.phosphorPrice) {
+                            System.out.println("Since you recently have phosphorized your fields you will be charged " +
+                                    (farmImplementation.getPriceOfLand()+farmImplementation.phosphorPrice) + " money!");
+                            System.out.println("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
+                            farmImplementation.land += 1;
+                            playerImplementation.useMoney(100);
+                            farmImplementation.reduceFieldsForPurchase();
+                            break;
+                        } else {
+                            System.out.println("Unfortunately, you don't seem to have the required amount of cash!");
+                            break;
+                        }
+                    }
+
+
                 } else {
                     System.out.println("You have to be in the shop to buy land");
                     break;
@@ -142,13 +169,26 @@ public class Context {
                     System.out.println("You have to be in the shop to buy seeds");
                     break;
                 }
+            case "freemoney":
+                playerImplementation.addMoney(100);
+                System.out.println("ka-chiiiing!!!");
+                break; //TODO Remove this cheatcode at some point
             case "phosphor":
                 if (cityImplementation.getIsInShop()) {
-                    System.out.println("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
-                    farmImplementation.phosphor += 1;
-                    farmImplementation.scalePhosphor -= 1;
-                    // Phosphor increase by one, Phosphor_Scale decrease by one
-                    break;
+                    if ((playerImplementation.money > farmImplementation.land * farmImplementation.phosphorPrice)&& !farmImplementation.getIsPhosphorized()) {
+                        System.out.printf("You currently own %d pieces of land, so you will be charged %d money to buy phosphor.",
+                                farmImplementation.land, farmImplementation.land * farmImplementation.phosphorPrice);
+                        playerImplementation.useMoney(farmImplementation.land * farmImplementation.phosphorPrice);
+                        System.out.println("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
+                        farmImplementation.phosphor += 1;
+                        farmImplementation.scalePhosphor -= 1;
+                        farmImplementation.setIsPhosphorized(true);
+                        // Phosphor increase by one, Phosphor_Scale decrease by one
+                        break;
+                    } else {
+                        System.out.println("Unfortunately, you don't seem to have the required amount of cash or you have already phosphorized your fields this week!");
+                        break;
+                    }
                 } else {
                     System.out.println("You have to be in the shop to buy Phosphor");
                     break;
@@ -187,7 +227,7 @@ public class Context {
                         break;
                     case "to_city":
                         cityImplementation.setIsInCity(true);
-                        System.out.println("hunger: " + cityImplementation.getHunger() + " population: " + cityImplementation.getPopulation());
+                        System.out.println("hunger: " + cityImplementation.isHunger + " population: " + cityImplementation.getPopulation());
                         break;
                     case "to_madman":
                         System.out.println("BOOOOH!!!");
