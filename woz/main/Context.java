@@ -18,6 +18,7 @@ public class Context {
     public boolean getIsInShop() {
         return cityImplementation.getIsInShop();
     }
+    public boolean getIsInFarm() { return farmImplementation.getIsInFarm(); }
 
     public void initPlayer() {
         playerImplementation.spawn();
@@ -54,10 +55,11 @@ public class Context {
                 farmImplementation.dayCount(command);
                 break;
             case "phosphor":
-                System.out.println("The amount of phosphor you have is " + farmImplementation.phosphor + " and the phosphor there is in the world is " + Context.farmImplementation.scalePhosphor);
+                System.out.println("The amount of phosphor you have is " + farmImplementation.phosphor +
+                        " and the phosphor there is in the world is " + Context.farmImplementation.scalePhosphor);
                 break;
             case "seeds":
-                if (farmImplementation.isFarm) {
+                if (farmImplementation.getIsInFarm()) {
                     System.out.println("There is " + String.valueOf(seedImplementation.seedAmount + " seed your inventory."));
                 } else {
                     System.out.println("You need to be in farm to check the seeds");
@@ -85,7 +87,8 @@ public class Context {
             case "PP", "pp":
                 if (cityImplementation.getIsInUni()) {
                     if (playerImplementation.money > 100) {
-                        System.out.println("You have helped the project of building a purification plant, the project is at {pp_scale}.\nYou can leave by typing go east or support more projects by typing SF or PP");
+                        System.out.println("You have helped the project of building a purification plant, the project is at {pp_scale}." +
+                                "\nYou can leave by typing go east or support more projects by typing SF or PP");
                         playerImplementation.useMoney(100);
                         break;
                         // TODO purification_scale is increased by one
@@ -101,7 +104,8 @@ public class Context {
             case "SF", "sf":
                 if (cityImplementation.getIsInUni()) {
                     if (playerImplementation.money > 100) {
-                        System.out.println("You have helped the project of building a super farm, the project is at {sf_scale}.\nYou can leave by typing go east or support more projects by typing SF or PP");
+                        System.out.println("You have helped the project of building a super farm, the project is at {sf_scale}." +
+                                "\nYou can leave by typing go east or support more projects by typing SF or PP");
                         playerImplementation.useMoney(100);
                         break;
                         // TODO superfarm_scale is increased by one
@@ -165,7 +169,8 @@ public class Context {
         initInterfaces();
         checkEndday();
         if (next == null) { // changed to print help
-            System.out.println("You are confused, and walk in a circle looking for '" + direction + "'. Type 'help' to view list of commands");
+            System.out.println("You are confused, and walk in a circle looking for '" + direction +
+                    "'. Type 'help' to view list of commands");
         } else {
             current.goodbye();
             current = next;
@@ -175,7 +180,7 @@ public class Context {
             {
                 switch (direction) {
                     case "to_farm", "river_to_farm", "fields_to_farm":
-                        farmImplementation.isFarm = true;
+                        farmImplementation.setIsInFarm(true);
                         break;
                     case "to_river", "city_to_river":
                         riverImplementation.visitRiver();

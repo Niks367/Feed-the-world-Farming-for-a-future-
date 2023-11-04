@@ -9,5 +9,7 @@ public interface Farm {
     int getScale();
     void runDay(String input);
     void endDay();
+    public void setIsInFarm(boolean z);
+    public boolean getIsInFarm();
     void dayCount(String input);
 }

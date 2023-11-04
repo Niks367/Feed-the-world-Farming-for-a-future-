@@ -6,10 +6,19 @@ import main.*;
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 1000;
     FieldImplementation fieldImplementation;
-    public boolean isFarm;
+    public boolean isInFarm;
     @Override
     public int getScale() {
         return this.scalePhosphor;
+    }
+    @Override
+    public void setIsInFarm(boolean z) {
+        isInFarm = z;
+    }
+
+    @Override
+    public boolean getIsInFarm() {
+        return isInFarm;
     }
     public void printOnScreen(String text) {
         System.out.println(text);
