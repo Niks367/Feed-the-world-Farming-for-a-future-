@@ -97,13 +97,22 @@ public class Context {
         switch (command) {
             case "PP", "pp":
                 if (cityImplementation.getIsInUni()) {
+                    if (cityImplementation.pp_Progress == 5) {
+                        System.out.println("The project already has sufficient funds, it will soon be ready!");
+                        break;
+                    }
                     if (playerImplementation.money > 100) {
                         System.out.println("You have helped the project of building a purification plant, the project is at {pp_scale}." +
                                 "\nYou can leave by typing go east or support more projects by typing SF or PP");
                         playerImplementation.useMoney(100);
+                        cityImplementation.pp_Progress +=1;
+                        if (cityImplementation.pp_Progress == 5) {
+
+                        }
                         break;
                         // TODO purification_scale is increased by one
-                    } else {
+                    }
+                    else {
                         System.out.println("Unfortunately, you don't seem to have the required amount of cash!");
                         break;
                     }
@@ -167,18 +176,18 @@ public class Context {
                     System.out.println("You have to be in the shop to buy land");
                     break;
                 }
-            case "seeds":
-                if (cityImplementation.getIsInShop()) {
-                    System.out.println("The boy in the shop hands you a bag of Seeds: 'Here you go...'");
-
-                    //Seed increase by one
-                    break;
-                } else {
-                    System.out.println("You have to be in the shop to buy seeds");
-                    break;
-                }
+//            case "seeds":
+//                if (cityImplementation.getIsInShop()) {
+//                    System.out.println("The boy in the shop hands you a bag of Seeds: 'Here you go...'");
+//
+//                    //Seed increase by one
+//                    break;
+//                } else {
+//                    System.out.println("You have to be in the shop to buy seeds");
+//                    break;
+//                }
             case "freemoney":
-                playerImplementation.addMoney(100);
+                playerImplementation.addMoney(1000);
                 System.out.println("ka-chiiiing!!!");
                 break; //TODO Remove this cheatcode at some point
             case "phosphor":
@@ -188,8 +197,8 @@ public class Context {
                                 farmImplementation.land, farmImplementation.land * farmImplementation.phosphorPrice);
                         playerImplementation.useMoney(farmImplementation.land * farmImplementation.phosphorPrice);
                         System.out.println("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
-                        farmImplementation.phosphor += 1;
-                        farmImplementation.scalePhosphor -= 1;
+                        //farmImplementation.phosphor += 1;
+                        farmImplementation.scalePhosphor -= farmImplementation.phosphorConsumationSpeed;
                         farmImplementation.setIsPhosphorized(true);
                         // Phosphor increase by one, Phosphor_Scale decrease by one
                         break;

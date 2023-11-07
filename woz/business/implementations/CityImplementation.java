@@ -104,6 +104,11 @@ public class CityImplementation implements City {
         return isInUni;
     }
 
+    public int sf_Progress = 0;
+    public int pp_Progress = 0;
+    public boolean isPpDone = false;
+    public boolean isSfDone = false;
+
 
     @Override
     public void visitShop() {

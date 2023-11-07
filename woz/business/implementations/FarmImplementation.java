@@ -5,6 +5,7 @@ import main.*;
 
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 100;
+    public int phosphorConsumationSpeed = 1; // This is for the SF project.
     private double phosphorEffect = 5;
     FieldImplementation fieldImplementation;
     public boolean isInFarm;
@@ -117,6 +118,13 @@ public class FarmImplementation implements Farm {
     }
     public void endWeek() {
         System.out.println("Ending Week ");
+        if (Context.cityImplementation.isPpDone) {
+            Context.farmImplementation.scalePhosphor += 50;
+        }
+        if (Context.cityImplementation.isSfDone) {
+            Context.farmImplementation.phosphorEffect += 5;
+            Context.farmImplementation.phosphorConsumationSpeed *=3;
+        }
         for (int i = 5; i > 0; i--) {
             try {
                 Thread.sleep(400);
