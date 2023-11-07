@@ -212,13 +212,13 @@ public class Context {
             case 1:
                 System.out.println("It's noon.");
                 break;
-            case 2:
-                System.out.println("it's afternoon.");
-                break;
-            case 3:
-                System.out.println("it's evening.");
-                farmImplementation.endDay();
-                break;
+//            case 2:
+//                System.out.println("it's afternoon.");
+//                break;
+//            case 3:
+//                System.out.println("it's evening.");
+//                farmImplementation.endDay();
+//                break;
 
         }
     }
@@ -226,6 +226,7 @@ public class Context {
     public void transition(String direction) {
         Space next = current.followEdge(direction);
         initInterfaces();
+        farmImplementation.checkDayprogress();
         checkEndDay();
         if (next == null) { // changed to print help
             System.out.println("You are confused, and walk in a circle looking for '" + direction +
@@ -235,8 +236,6 @@ public class Context {
             current = next;
             current.welcome();
             farmImplementation.dayProgress += 1;
-
-            {
                 switch (direction) {
                     case "to_farm", "river_to_farm", "fields_to_farm":
                         farmImplementation.setIsInFarm(true);
@@ -277,7 +276,7 @@ public class Context {
 //        case "to_uni":
 //          cityImplementation.visitUni();
 //          break;
-                }
+
             }
         }
     }

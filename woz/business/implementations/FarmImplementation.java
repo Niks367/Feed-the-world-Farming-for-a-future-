@@ -80,6 +80,11 @@ public class FarmImplementation implements Farm {
             System.out.println("You are currently on Day " + dayCount);
         }
     }
+    public void checkDayprogress () {
+        if (dayProgress > 2) {
+            endDay();
+        }
+    }
 
     @Override
     public void endDay() {
