@@ -1,6 +1,7 @@
 package business.implementations;
 
 import business.interfaces.City;
+import business.utils.PrintingUtilities;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,10 +43,6 @@ public class CityImplementation implements City {
         return allProjectsList.size(); //TODO to be changed to availableProjectsList!
         //return availableProjectsList.size();
     }
-    public void printOnScreen(String text) {
-        System.out.println(text);
-    }
-
     public ArrayList<String> returnCurrentProjects(ArrayList<Integer> index) {
         ArrayList<String> result = new ArrayList<>();
         for (int i = 0; i < calculateAvailableProjects(); i++) {
@@ -114,53 +111,21 @@ public class CityImplementation implements City {
     public void visitShop() {
         setIsInShop(true);
         //System.out.println("isInShop is now: '" + isInShop + "' printed from visitShop() in cityImplementation after setting it true here.");
-        System.out.println("Boy in the shop: 'What can I do for you today??'");
-        System.out.println("Following items are available for purchase...");
-        System.out.println("Seeds, Phosphor and Land.");
-        System.out.println("For Seeds, write buy_seeds, for Phosphor, write buy_phosphor and for Land, write buy_land, to leave shop write leave_shop!");
+        PrintingUtilities.printOnScreen("Boy in the shop: 'What can I do for you today??'");
+        PrintingUtilities.printOnScreen("Following items are available for purchase...");
+        PrintingUtilities.printOnScreen("Seeds, Phosphor and Land.");
+        PrintingUtilities.printOnScreen("For Seeds, write buy_seeds, for Phosphor, write buy_phosphor and for Land, write buy_land, to leave shop write leave_shop!");
     }
 
     @Override
     public void visitUni() {
         setIsInUni(true);
-        System.out.println("Dean : 'Good to see you, we have some very promising projects, but we are in lack of sufficient funds'");
-        System.out.println("Would you like to support any of our projects??");
+        PrintingUtilities.printOnScreen("Dean : 'Good to see you, we have some very promising projects, but we are in lack of sufficient funds'");
+        PrintingUtilities.printOnScreen("Would you like to support any of our projects??");
         System.out.printf("We currently have %d projects)", calculateAvailableProjects());
         printAllProjectsList();
-        System.out.println("To support with 100 gold type support plus SF or PP, if not well....just type 'go east' and you will be back in the city in a jiffy.");
+        PrintingUtilities.printOnScreen("To support with 100 gold type support plus SF or PP, if not well....just type 'go east' and you will be back in the city in a jiffy.");
     }
-//
-//        while (!leaveUni) {
-//            try {
-//                String uniInput = uniScanner.nextLine();
-//                switch (uniInput) {
-//                    case "SF":
-//                        System.out.println("You have helped the project of building a super farm, the project is at {sf_scale}. \nYou can leave by typing leave_uni or support more projects by typing SF or PP");
-//                        // superfarm_scale increase by one
-//                        break;
-//                    case "PP":
-//                        System.out.println("You have helped the project of building a purification plant, the project is at {pp_scale}.\nYou can leave by typing leave_uni or support more projects by typing SF or PP");
-//                        // purification_scale is increase by one
-//                        break;
-//                    case "leave_uni":
-//                        leaveUni = true; // Set the leaveUni flag to true to exit the university
-//                        break;
-//                    default:
-//                        System.out.println("Dean: 'We count on you!!, what do you say??'");
-//                }
-//
-//            } catch (Exception e) {
-//                System.out.println("There has been a problem with the input");
-//                e.printStackTrace();
-//            } finally
-//            {
-//                //uniScanner.close();
-//            }
-//
-//        }
-//        System.out.println("Dean: 'Hope to see you again soon!'");
-//    }
-
 
     @Override
     public String visitMadman() {

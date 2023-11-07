@@ -58,11 +58,16 @@ public class Context {
             case "phosphor" ->
                     PrintingUtilities.printOnScreen("The amount of phosphor you have is " + farmImplementation.phosphor +
                             " and the phosphor there is in the world is " + Context.farmImplementation.scalePhosphor);
-            case "seeds" -> {
+            case "land" -> {
                 if (farmImplementation.getIsInFarm()) {
-                    PrintingUtilities.printOnScreen("There is " + seedImplementation.seedAmount + " seed your inventory.");
+                    if (farmImplementation.land > 1) {
+                        PrintingUtilities.printOnScreen("You own " + farmImplementation.land + " fields.");
+                    } else {
+                        PrintingUtilities.printOnScreen("You own " + farmImplementation.land + " field.");
+                    }
+
                 } else {
-                    PrintingUtilities.printOnScreen("You need to be in farm to check the seeds");
+                    PrintingUtilities.printOnScreen("You need to be in farm to see your fields");
                 }
             }
             case "hunger" -> {
@@ -83,10 +88,18 @@ public class Context {
         switch (command) {
             case "PP", "pp" -> {
                 if (cityImplementation.getIsInUni()) {
+                    if (cityImplementation.pp_Progress == 5) {
+                        PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
+                        break;
+                    }
                     if (playerImplementation.money > 100) {
-                        PrintingUtilities.printOnScreen("You have helped the project of building a purification plant, the project is at {pp_scale}." +
+                        PrintingUtilities.printOnScreen("You have helped the project of building a purification plant, the project is at level " + cityImplementation.pp_Progress +
                                 "\nYou can leave by typing go east or support more projects by typing SF or PP");
                         playerImplementation.useMoney(100);
+                        cityImplementation.pp_Progress += 1;
+                        if (cityImplementation.pp_Progress == 5) {
+                            cityImplementation.isPpDone = true;
+                        }
                         // TODO purification_scale is increased by one
                     } else {
                         PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
@@ -98,8 +111,16 @@ public class Context {
             }
             case "SF", "sf" -> {
                 if (cityImplementation.getIsInUni()) {
+                    if (cityImplementation.sf_Progress == 5) {
+                        PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
+                        break;
+                    }
                     if (playerImplementation.money > 100) {
-                        PrintingUtilities.printOnScreen("You have helped the project of building a super farm, the project is at {sf_scale}." +
+                        cityImplementation.sf_Progress += 1;
+                        if (cityImplementation.sf_Progress == 5) {
+                            cityImplementation.isSfDone = true;
+                        }
+                        PrintingUtilities.printOnScreen("You have helped the project of building a super farm, the project is at level " + cityImplementation.sf_Progress +
                                 "\nYou can leave by typing go east or support more projects by typing SF or PP");
                         playerImplementation.useMoney(100);
                         // TODO superfarm_scale is increased by one
@@ -118,14 +139,12 @@ public class Context {
         switch (command) {
             case "land" -> {
                 if (cityImplementation.getIsInShop()) {
-                    PrintingUtilities.printOnScreen("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
-                    //TODO Farm array increase by one field, Fields_for_purchase array decrease by one
                     if (!farmImplementation.getIsPhosphorized()) {
                         if (playerImplementation.money > farmImplementation.getPriceOfLand() && farmImplementation.land <= farmImplementation.getFieldsForPurchase()) {
-                            PrintingUtilities.printOnScreen("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
                             farmImplementation.land += 1;
                             playerImplementation.useMoney(100);
                             farmImplementation.reduceFieldsForPurchase();
+                            PrintingUtilities.printOnScreen("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
                         } else {
                             PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash or there is not any more land to purchase!");
                         }
@@ -147,22 +166,23 @@ public class Context {
                     PrintingUtilities.printOnScreen("You have to be in the shop to buy land");
                 }
             }
-            case "seeds" -> {
-                if (cityImplementation.getIsInShop()) {
-                    PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Seeds: 'Here you go...'");
-                    //Seed increase by one
-                } else {
-                    PrintingUtilities.printOnScreen("You have to be in the shop to buy seeds");
-                }
-            }
+//            case "seeds" -> {
+//                if (cityImplementation.getIsInShop()) {
+//                    PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Seeds: 'Here you go...'");
+//                    //Seed increase by one
+//                } else {
+//                    PrintingUtilities.printOnScreen("You have to be in the shop to buy seeds");
+//                }
+//            }
             case "freemoney" -> {
-                playerImplementation.addMoney(100);
-                PrintingUtilities.printOnScreen("ka-chiiiing!!!");//TODO Remove this cheatcode at some point
+                playerImplementation.addMoney(1000);
+                PrintingUtilities.printOnScreen("ka-chiiiing!!!");//TODO Remove this cheat code at some point
             }
             case "phosphor" -> {
                 if (cityImplementation.getIsInShop()) {
                     PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
                     // Phosphor increase by one, Phosphor_Scale decrease by one
+                    farmImplementation.scalePhosphor -= farmImplementation.phosphorConsumationSpeed;
                     if ((playerImplementation.money > farmImplementation.land * farmImplementation.phosphorPrice) && !farmImplementation.getIsPhosphorized()) {
                         System.out.printf("You currently own %d pieces of land, so you will be charged %d money to buy phosphor.",
                                 farmImplementation.land, farmImplementation.land * farmImplementation.phosphorPrice);
@@ -205,10 +225,12 @@ public class Context {
 
         }
     }
-    private void dayChecking(){
+
+    private void dayChecking() {
         checkEndDay();
         farmImplementation.checkDayProgress();
     }
+
     public void transition(String direction) {
         Space next = current.followEdge(direction);
         initInterfaces();
@@ -228,17 +250,19 @@ public class Context {
                     }
                     case "to_river", "city_to_river" -> {
                         dayChecking();
+                        farmImplementation.setIsInFarm(false);
+                        cityImplementation.setIsInCity(false);
                         riverImplementation.visitRiver();
                     }
                     case "to_city" -> {
                         dayChecking();
                         cityImplementation.setIsInCity(true);
-                        PrintingUtilities.printOnScreen("You are entering the Capital City...");
+                        PrintingUtilities.printOnScreen("You are entering the Capitol City...");
                         PrintingUtilities.printOnScreen(" population is : " + cityImplementation.getPopulation());
                         if (cityImplementation.isHunger) {
                             PrintingUtilities.printOnScreen("The people in the city are starving! Hurry up and give them something to eat.");
                         } else {
-                            PrintingUtilities.printOnScreen("The people in the city are happy and not hungry.");
+                            PrintingUtilities.printOnScreen("The people in the city are happy and not very hungry.");
                         }
                     }
                     case "to_madman" -> {
@@ -258,6 +282,7 @@ public class Context {
                     }
                     case "to_uni" -> {
                         dayChecking();
+                        cityImplementation.setIsInUni(true);
                         cityImplementation.visitUni();
                     }
 

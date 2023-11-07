@@ -7,6 +7,7 @@ import main.*;
 
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 100;
+    public int phosphorConsumationSpeed = 1; // This is for the SF project, to speed up use of phosphor!
     private double phosphorEffect = 5;
     Field field;
     public boolean isInFarm;
@@ -65,9 +66,6 @@ public class FarmImplementation implements Farm {
         return isInFarm;
     }
 
-    public void printOnScreen(String text) {
-        PrintingUtilities.printOnScreen(text);
-    }
 
     //TODO do some changes to this later, so it works with the day count.
     @Override
@@ -129,7 +127,7 @@ public class FarmImplementation implements Farm {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            System.out.print(".");
+            System.out.print("* ");
         }
         PrintingUtilities.printOnScreen("Harvesting the corn on you fields amounts to: ");
         PrintingUtilities.printOnScreen(String.valueOf(calculateProfit()));
@@ -137,8 +135,8 @@ public class FarmImplementation implements Farm {
         PrintingUtilities.printOnScreen("Ending Week ");
         Context.cityImplementation.isHunger = calculateIsHunger();
         PrintingUtilities.printOnScreen("You now have: " + Context.playerImplementation.money + " money.");
-        PrintingUtilities.printOnScreen("The city needs food, and the population is: " + Context.cityImplementation.population);
-        PrintingUtilities.printOnScreen("After paying for food you have: ");
+        PrintingUtilities.printOnScreen("The people in Capitol City is hungry, and the population is: " + Context.cityImplementation.population);
+        PrintingUtilities.printOnScreen("After delivering food to Capitol City you have: ");
         Context.playerImplementation.useMoney(Context.cityImplementation.population);
         System.out.print(Context.playerImplementation.money + " money.");
         PrintingUtilities.printOnScreen("The phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more...");
@@ -147,18 +145,19 @@ public class FarmImplementation implements Farm {
             Context.cityImplementation.population += 25;
             PrintingUtilities.printOnScreen("Population is growing, city now has " + Context.cityImplementation.population + " inhabitants");
             if (Context.playerImplementation.money <= 0) {
-                PrintingUtilities.printOnScreen("Game Over");
+                PrintingUtilities.printOnScreen("You ran out of cash, too bad...");
                 main.Game.context.makeDone();
-            } else {
-                Context.cityImplementation.population /= 2;
-                printOnScreen("Hunger has hit the city, the population has fallen to " + Context.cityImplementation.population);
-                if (Context.playerImplementation.money <= 0) {
-                    PrintingUtilities.printOnScreen("Game Over");
-                    main.Game.context.makeDone();
-                }
-
+            }
+        } else {
+            Context.cityImplementation.population /= 2;
+            PrintingUtilities.printOnScreen("Hunger has hit the city, the population has fallen to " + Context.cityImplementation.population);
+            if (Context.playerImplementation.money <= 0) {
+                PrintingUtilities.printOnScreen("You ran out of cash, too bad...");
+                main.Game.context.makeDone();
             }
 
         }
+
     }
 }
+
