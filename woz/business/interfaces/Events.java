@@ -5,5 +5,5 @@ public interface Events {
 
     void makeEvent();
 
-    
+
 }

@@ -1,14 +1,13 @@
-package main;
+package main.commands;
+
+
+import main.Context;
 
 public class AllCommands extends BaseCommand implements Command {
 
 
     AllCommands() {
         description = "Other commands";
-    }
-
-    public void printOnScreen(String text) {
-        System.out.println(text);
     }
 
     @Override

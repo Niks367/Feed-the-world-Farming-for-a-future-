@@ -2,17 +2,19 @@ package business.implementations;
 
 import business.interfaces.Field;
 import business.interfaces.Player;
+import business.utils.PrintingUtilities;
 
 public class FieldImplementation implements Field {
     FarmImplementation farmImplementation;
     SeedImplementation seedsInField; //oprettes for at kunne bruge Seed klassen.
-    private double phosphorEffekt = 20; //jeg har gjort fertilizer effekt til en ratio af 1:20, for at gøre den meget ekstrem.
     public int land = 1; // antal marker
 
     // fertilizer tager antallet frø i marken, og * med 20, som er gødningseffekten lige nu.
     @Override
     public void fertilize(int amount, int phosphor, int land) {
         if (phosphor >=land) {
+            //jeg har gjort fertilizer effekt til en ratio af 1:20, for at gøre den meget ekstrem.
+            double phosphorEffekt = 20;
             seedsInField.seedAmount += (int) (2*(land * phosphorEffekt));
             farmImplementation.phosphor -= land; // hver mark bruger en phosphor
         } else {
@@ -47,7 +49,7 @@ public class FieldImplementation implements Field {
         if (seedsToHarvest <= seedsInField.seedAmount) {
             seedsInField.seedAmount += seedsToHarvest;
         } else {
-            System.out.println("Not enough seeds to harvest. Should've used more fertilizer...");
+            PrintingUtilities.printOnScreen("Not enough seeds to harvest. Should've used more fertilizer...");
         }
     }
 }

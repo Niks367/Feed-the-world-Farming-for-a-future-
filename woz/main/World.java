@@ -1,8 +1,7 @@
 package main;
 
 class World {
-  Space entry;
-  
+    Space entry;
   World () {
     Space entry    = new Space("Entry");
     Space farm = new Space("Farm");
@@ -12,7 +11,7 @@ class World {
     Space madman  = new Space("MadMan");
     Space fields  = new Space("Fields");
     Space river  = new Space("River");
-    
+
     entry.addEdge("to_farm", farm);
     farm.addEdge("to_river", river);
     river.addEdge("river_to_farm", farm);
@@ -27,10 +26,10 @@ class World {
     city.addEdge("to_madman", madman);
     madman.addEdge("north", city);
 
-    
+
     this.entry = entry;
   }
-  
+
   Space getEntry () {
     return entry;
   }

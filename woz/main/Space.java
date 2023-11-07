@@ -1,5 +1,7 @@
 package main;
 
+import business.utils.PrintingUtilities;
+
 import java.util.Set;
 
 class Space extends Node {
@@ -8,10 +10,7 @@ class Space extends Node {
     }
 
     public void welcome() {
-
-        System.out.println("You are now walking to " + name);
-
-
+        PrintingUtilities.printOnScreen("You are now walking to " + name);
         for (int i = 5; i > 0; i--) {
             try {
                 Thread.sleep(200);
@@ -20,19 +19,19 @@ class Space extends Node {
             }
             System.out.print(".");
         }
-        System.out.println("\nYou are now at " + name);
+        PrintingUtilities.printOnScreen("\nYou are now at " + name);
 
         Set<String> exits = edges.keySet();
-        System.out.println("Current exits are:");
+        PrintingUtilities.printOnScreen("Current exits are:");
         for (String exit : exits) {
-            System.out.println(" - " + exit);
+            PrintingUtilities.printOnScreen(" - " + exit);
         }
     }
 
 
 
     public void goodbye() {
-        System.out.println("You are leaving " + name);
+        PrintingUtilities.printOnScreen("You are leaving " + name);
     }
 
     @Override

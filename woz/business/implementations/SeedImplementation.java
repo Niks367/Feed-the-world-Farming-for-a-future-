@@ -5,7 +5,7 @@ import business.interfaces.Seed;
 import business.interfaces.Time;
 
 public class SeedImplementation implements Seed {
-    PlayerImplementation playerImplementation;
+    Player player;
     int profit = 0;
     public int seedAmount = 1; //Har kun sat den til én, da vi skal have fundet ud af hvor mange frø der skal involveres.
     int valueSeed = 100; //Ved ikke hvad værdien af vores frø skal være.
@@ -13,14 +13,13 @@ public class SeedImplementation implements Seed {
     private Time time;// Kalder på player for at få adgang til money.
 
     public void initPlayerInterface(PlayerImplementation playerImplementation) {
-    this.playerImplementation = playerImplementation;
+        this.player = playerImplementation;
     }
     // Metoden til at udregne vores spillers profit, tænker at udregningen giver lidt sig selv.
 
     @Override
     public int calculateProfit() {
         profit = valueSeed * seedAmount;
-
         return profit;
     }
 
@@ -32,7 +31,7 @@ public class SeedImplementation implements Seed {
     public void sendMoney() {
         if (isSeedRipe()) {
             int profit = calculateProfit();
-            playerImplementation.addMoney(profit);
+            player.addMoney(profit);
         }
     }
 

@@ -2,6 +2,9 @@ package main;
 /* Main class for launching the game
  */
 
+import business.utils.PrintingUtilities;
+import main.commands.*;
+
 import java.util.Scanner;
 
 public class Game {
@@ -24,22 +27,20 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        System.out.println("Welcome to the farm!");
-
+        PrintingUtilities.printOnScreen("Welcome to the farm!");
         initRegistry();
         context.getCurrent().welcome();
         context.initPlayer();
-
         while (!context.isDone()) {
             try {
                 System.out.print("> ");
                 String line = scanner.nextLine();
                 registry.dispatch(line);
             } catch (Exception e) {
-                System.out.println("Something went wrong");
+                PrintingUtilities.printOnScreen("Something went wrong");
                 e.printStackTrace();
             }
         }
-        System.out.println("Game Over 😥");
+        PrintingUtilities.printOnScreen("Game Over 😥");
     }
 }

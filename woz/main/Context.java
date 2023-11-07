@@ -1,8 +1,7 @@
 package main;
 
 import business.implementations.*;
-
-import java.util.Set;
+import business.utils.PrintingUtilities;
 
 
 public class Context {
@@ -33,7 +32,7 @@ public class Context {
         current = node;
     }
 
-    public Space getCurrent() {
+    Space getCurrent() {
         return current;
     }
 
@@ -54,228 +53,230 @@ public class Context {
 
 
     public void show(String command) {
-
         switch (command) {
-            case "exits":
-                System.out.println(Game.context.current.edges.keySet());
-                // TODO make this nicer, without brackets
-
-            case "days":
-                farmImplementation.dayCount(command);
-                break;
-            case "land":
-                System.out.println("You currently own " + farmImplementation.land + " fields.");
-                break;
-            case "phosphor":
-                System.out.println("The phosphor reserves in the world is " + Context.farmImplementation.scalePhosphor);
-                break;
-            case "seeds":
+            case "days" -> farmImplementation.dayCount(command);
+            case "phosphor" ->
+                    PrintingUtilities.printOnScreen("The amount of phosphor you have is " + farmImplementation.phosphor +
+                            " and the phosphor there is in the world is " + Context.farmImplementation.scalePhosphor);
+            case "seeds" -> {
                 if (farmImplementation.getIsInFarm()) {
-                    System.out.println("There is " + String.valueOf(seedImplementation.seedAmount + " seed your inventory."));
+                    PrintingUtilities.printOnScreen("There is " + seedImplementation.seedAmount + " seed your inventory.");
                 } else {
-                    System.out.println("You need to be in farm to check the seeds");
+                    PrintingUtilities.printOnScreen("You need to be in farm to check the seeds");
                 }
-                break;
-            case "hunger":
+            }
+            case "hunger" -> {
                 if (cityImplementation.isHunger) {
-                    System.out.println("The people in the city are starving! Hurry up and give them something to eat.");
+                    PrintingUtilities.printOnScreen("The people in the city are starving! Hurry up and give them something to eat.");
                 } else {
-                    System.out.println("The people in the city are happy and not hungry.");
+                    PrintingUtilities.printOnScreen("The people in the city are happy and not hungry.");
                 }
-                break;
-            case "population":
-                System.out.println(cityImplementation.getPopulation());
-                break;
-            case "money":
-                System.out.println("Your current cash situation is: " + playerImplementation.money + " money");
-
+            }
+            case "population" -> PrintingUtilities.printOnScreen(String.valueOf(cityImplementation.getPopulation()));
+            case "money" ->
+                    PrintingUtilities.printOnScreen("Your current cash situation is: " + playerImplementation.money + " money");
         }
     }
 
     public void support(String command) {
         //context.initInterfaces();
         switch (command) {
-            case "PP", "pp":
+            case "PP", "pp" -> {
                 if (cityImplementation.getIsInUni()) {
                     if (playerImplementation.money > 100) {
-                        System.out.println("You have helped the project of building a purification plant, the project is at {pp_scale}." +
+                        PrintingUtilities.printOnScreen("You have helped the project of building a purification plant, the project is at {pp_scale}." +
                                 "\nYou can leave by typing go east or support more projects by typing SF or PP");
                         playerImplementation.useMoney(100);
-                        break;
                         // TODO purification_scale is increased by one
                     } else {
-                        System.out.println("Unfortunately, you don't seem to have the required amount of cash!");
-                        break;
+                        PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
                     }
 
                 } else {
-                    System.out.println("You have to be in the university to support our projects");
-                    break;
+                    PrintingUtilities.printOnScreen("You have to be in the university to support our projects");
                 }
-            case "SF", "sf":
+            }
+            case "SF", "sf" -> {
                 if (cityImplementation.getIsInUni()) {
                     if (playerImplementation.money > 100) {
-                        System.out.println("You have helped the project of building a super farm, the project is at {sf_scale}." +
+                        PrintingUtilities.printOnScreen("You have helped the project of building a super farm, the project is at {sf_scale}." +
                                 "\nYou can leave by typing go east or support more projects by typing SF or PP");
                         playerImplementation.useMoney(100);
-                        break;
                         // TODO superfarm_scale is increased by one
                     } else {
-                        System.out.println("Unfortunately, you don't seem to have the required amount of cash!");
-                        break;
+                        PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
                     }
                 } else {
-                    System.out.println("You have to be in the university to support our projects");
-                    break;
+                    PrintingUtilities.printOnScreen("You have to be in the university to support our projects");
                 }
+            }
         }
     }
 
     public void buy(String command) {
         //context.initInterfaces();
         switch (command) {
-            case "land":
+            case "land" -> {
                 if (cityImplementation.getIsInShop()) {
-                    if (!farmImplementation.getIsPhosphorized()){
+                    PrintingUtilities.printOnScreen("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
+                    //TODO Farm array increase by one field, Fields_for_purchase array decrease by one
+                    if (!farmImplementation.getIsPhosphorized()) {
                         if (playerImplementation.money > farmImplementation.getPriceOfLand() && farmImplementation.land <= farmImplementation.getFieldsForPurchase()) {
-                            System.out.println("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
+                            PrintingUtilities.printOnScreen("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
                             farmImplementation.land += 1;
                             playerImplementation.useMoney(100);
                             farmImplementation.reduceFieldsForPurchase();
-                            break;
                         } else {
-                            System.out.println("Unfortunately, you don't seem to have the required amount of cash or there is not any more land to purchase!");
-                            break;
+                            PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash or there is not any more land to purchase!");
                         }
-                    }else {
-                        if (playerImplementation.money > farmImplementation.getPriceOfLand()+farmImplementation.phosphorPrice) {
-                            System.out.println("Since you recently have phosphorized your fields you will be charged " +
-                                    (farmImplementation.getPriceOfLand()+farmImplementation.phosphorPrice) + " money!");
-                            System.out.println("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
+                    } else {
+                        if (playerImplementation.money > farmImplementation.getPriceOfLand() + farmImplementation.phosphorPrice) {
+                            PrintingUtilities.printOnScreen("Since you recently have phosphorized your fields you will be charged " +
+                                    (farmImplementation.getPriceOfLand() + farmImplementation.phosphorPrice) + " money!");
+                            PrintingUtilities.printOnScreen("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
                             farmImplementation.land += 1;
                             playerImplementation.useMoney(100);
                             farmImplementation.reduceFieldsForPurchase();
-                            break;
                         } else {
-                            System.out.println("Unfortunately, you don't seem to have the required amount of cash!");
-                            break;
+                            PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
                         }
                     }
 
 
                 } else {
-                    System.out.println("You have to be in the shop to buy land");
-                    break;
+                    PrintingUtilities.printOnScreen("You have to be in the shop to buy land");
                 }
-            case "seeds":
+            }
+            case "seeds" -> {
                 if (cityImplementation.getIsInShop()) {
-                    System.out.println("The boy in the shop hands you a bag of Seeds: 'Here you go...'");
-
+                    PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Seeds: 'Here you go...'");
                     //Seed increase by one
-                    break;
                 } else {
-                    System.out.println("You have to be in the shop to buy seeds");
-                    break;
+                    PrintingUtilities.printOnScreen("You have to be in the shop to buy seeds");
                 }
-            case "freemoney":
+            }
+            case "freemoney" -> {
                 playerImplementation.addMoney(100);
-                System.out.println("ka-chiiiing!!!");
-                break; //TODO Remove this cheatcode at some point
-            case "phosphor":
+                PrintingUtilities.printOnScreen("ka-chiiiing!!!");//TODO Remove this cheatcode at some point
+            }
+            case "phosphor" -> {
                 if (cityImplementation.getIsInShop()) {
-                    if ((playerImplementation.money > farmImplementation.land * farmImplementation.phosphorPrice)&& !farmImplementation.getIsPhosphorized()) {
+                    PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
+                    // Phosphor increase by one, Phosphor_Scale decrease by one
+                    if ((playerImplementation.money > farmImplementation.land * farmImplementation.phosphorPrice) && !farmImplementation.getIsPhosphorized()) {
                         System.out.printf("You currently own %d pieces of land, so you will be charged %d money to buy phosphor.",
                                 farmImplementation.land, farmImplementation.land * farmImplementation.phosphorPrice);
                         playerImplementation.useMoney(farmImplementation.land * farmImplementation.phosphorPrice);
-                        System.out.println("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
+                        PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
                         farmImplementation.phosphor += 1;
                         farmImplementation.scalePhosphor -= 1;
                         farmImplementation.setIsPhosphorized(true);
                         // Phosphor increase by one, Phosphor_Scale decrease by one
-                        break;
                     } else {
-                        System.out.println("Unfortunately, you don't seem to have the required amount of cash or you have already phosphorized your fields this week!");
-                        break;
+                        PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash or you have already phosphorized your fields this week!");
                     }
                 } else {
-                    System.out.println("You have to be in the shop to buy Phosphor");
-                    break;
+                    PrintingUtilities.printOnScreen("You have to be in the shop to buy Phosphor");
                 }
+            }
+
         }
     }
 
+    //    void checkEndDay() {
+//        PrintingUtilities.printOnScreen("It's currently " + farmImplementation.dayProgress + " o'clock");
+//        if (farmImplementation.dayProgress == 4) {//TODO ADDED by Lars: Check it it works by using this function
+//            //TODO earlier is stop some functionality, does not do switch if day ends.
+//            farmImplementation.endDay();
+//        }
+//    }
     void checkEndDay() {
-        switch((int)farmImplementation.dayProgress) {
-            case 0:
-                System.out.println("It's morning.");
-                break;
-            case 1:
-                System.out.println("It's noon.");
-                break;
+        switch (farmImplementation.dayProgress) {
+            case 0 -> PrintingUtilities.printOnScreen("It's morning.");
+            case 1 -> PrintingUtilities.printOnScreen("It's noon.");
+
 //            case 2:
-//                System.out.println("it's afternoon.");
+//                PrintingUtilities.printOnScreen("it's afternoon.");
 //                break;
 //            case 3:
-//                System.out.println("it's evening.");
+//                PrintingUtilities.printOnScreen("it's evening.");
 //                farmImplementation.endDay();
 //                break;
 
         }
     }
-
+    private void dayChecking(){
+        checkEndDay();
+        farmImplementation.checkDayProgress();
+    }
     public void transition(String direction) {
         Space next = current.followEdge(direction);
         initInterfaces();
-        farmImplementation.checkDayprogress();
-        checkEndDay();
         if (next == null) { // changed to print help
-            System.out.println("You are confused, and walk in a circle looking for '" + direction +
+            PrintingUtilities.printOnScreen("You are confused, and walk in a circle looking for '" + direction +
                     "'. Type 'help' to view list of commands");
         } else {
-            current.goodbye();
-            current = next;
-            current.welcome();
-            farmImplementation.dayProgress += 1;
+            try {
+                current.goodbye();
+                current = next;
+                current.welcome();
+                farmImplementation.dayProgress += 1;
                 switch (direction) {
-                    case "to_farm", "river_to_farm", "fields_to_farm":
+                    case "to_farm", "river_to_farm", "fields_to_farm" -> {
                         farmImplementation.setIsInFarm(true);
-                        break;
-                    case "to_river", "city_to_river":
+                        dayChecking();
+                    }
+                    case "to_river", "city_to_river" -> {
+                        dayChecking();
                         riverImplementation.visitRiver();
-                        break;
-                    case "to_city":
+                    }
+                    case "to_city" -> {
+                        dayChecking();
                         cityImplementation.setIsInCity(true);
-                        System.out.println("You are entering the Capital City...");
-                        System.out.println(" population is : " + cityImplementation.getPopulation());
+                        PrintingUtilities.printOnScreen("You are entering the Capital City...");
+                        PrintingUtilities.printOnScreen(" population is : " + cityImplementation.getPopulation());
                         if (cityImplementation.isHunger) {
-                            System.out.println("The people in the city are starving! Hurry up and give them something to eat.");
+                            PrintingUtilities.printOnScreen("The people in the city are starving! Hurry up and give them something to eat.");
+                        } else {
+                            PrintingUtilities.printOnScreen("The people in the city are happy and not hungry.");
                         }
-                        else {
-                            System.out.println("The people in the city are happy and not hungry.");
-                        }
-                        break;
-                    case "to_madman":
-                        System.out.println("BOOOOH!!!");
-                        System.out.println("The madman is the hut: '" + cityImplementation.visitMadman() + "'");
-                        break;
-                    case "to_shop":
+                    }
+                    case "to_madman" -> {
+                        dayChecking();
+                        PrintingUtilities.printOnScreen("BOOOOH!!!");
+                        PrintingUtilities.printOnScreen("The madman is the hut: '" + cityImplementation.visitMadman() + "'");
+                    }
+                    case "to_shop" -> {
+                        dayChecking();
                         cityImplementation.setIsInShop(true);
                         cityImplementation.visitShop();
-                        //System.out.println("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
-                        break;
-                    case "west":
+                    }
+                    //PrintingUtilities.printOnScreen("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
+                    case "west" -> {
+                        dayChecking();
                         cityImplementation.setIsInShop(false);
-                        break;
-                    case "to_uni":
+                    }
+                    case "to_uni" -> {
+                        dayChecking();
                         cityImplementation.visitUni();
-                        //System.out.println("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
-                        break;
-                    case "east":
+                    }
+
+                    //PrintingUtilities.printOnScreen("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
+                    case "east" -> {
+                        dayChecking();
                         cityImplementation.setIsInUni(false);
-                        break;
+                    }
+                    default -> {
+                        PrintingUtilities.printOnScreen("Cannot find the location entered");
+                    }
+
 //        case "to_uni":
 //          cityImplementation.visitUni();
 //          break;
+                }
+            } catch (Exception e) {
+                PrintingUtilities.printOnScreen("Bad input");
+                e.printStackTrace();
 
             }
         }
