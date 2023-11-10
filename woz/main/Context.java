@@ -187,7 +187,7 @@ public class Context {
                                 farmImplementation.land, farmImplementation.land * farmImplementation.phosphorPrice);
                         playerImplementation.useMoney(farmImplementation.land * farmImplementation.phosphorPrice);
                         PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
-                        farmImplementation.phosphor += 1;
+                        //farmImplementation.phosphor += 1;
                         farmImplementation.scalePhosphor -= 1;
                         farmImplementation.setIsPhosphorized(true);
                         // Phosphor increase by one, Phosphor_Scale decrease by one
