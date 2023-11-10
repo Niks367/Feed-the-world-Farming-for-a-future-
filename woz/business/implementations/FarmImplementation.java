@@ -18,9 +18,9 @@ public class FarmImplementation implements Farm {
         isPhophorized = z;
     }
 
-    private int priceOfLand = 100;
-    private int yieldOfLand = 25;
-    private int fieldsForPurchase = 4;
+    private final int priceOfLand = 100;
+    private final int yieldOfLand = 25;
+    private int fieldsForPurchase = 5;
 
     @Override
     public void reduceFieldsForPurchase() {
@@ -140,6 +140,7 @@ public class FarmImplementation implements Farm {
         System.out.print(String.valueOf(calculateProfit()));
         System.out.print(" gold!");
         Context.playerImplementation.addMoney(calculateProfit());
+        PrintingUtilities.printOnScreen("Ending Week ");
         Context.cityImplementation.isHunger = calculateIsHunger();
         PrintingUtilities.printOnScreen("\nSo after harvesting you have: " + Context.playerImplementation.money + " gold.");
         PrintingUtilities.printOnScreen("But the people in Capitol City is hungry, and the population is: " + Context.cityImplementation.population);

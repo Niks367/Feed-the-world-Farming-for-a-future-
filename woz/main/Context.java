@@ -139,10 +139,10 @@ public class Context {
             case "land" -> {
                 if (cityImplementation.getIsInShop()) {
                     if (!farmImplementation.getIsPhosphorized()) {
-                        if ((playerImplementation.money > farmImplementation.getPriceOfLand()) && (farmImplementation.getFieldsForPurchase())>0) {
-                            farmImplementation.land += 1; // buys a piece of land
-                            playerImplementation.useMoney(farmImplementation.getPriceOfLand()); // pay the price set in farmImplementation
-                            farmImplementation.reduceFieldsForPurchase(); // reduce land available for purchase
+                        if (playerImplementation.money > farmImplementation.getPriceOfLand() && farmImplementation.land <= farmImplementation.getFieldsForPurchase()) {
+                            farmImplementation.land += 1;
+                            playerImplementation.useMoney(100);
+                            farmImplementation.reduceFieldsForPurchase();
                             PrintingUtilities.printOnScreen("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
                         } else {
                             PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash or there is not any more land to purchase!");
@@ -179,20 +179,19 @@ public class Context {
             }
             case "phosphor" -> {
                 if (cityImplementation.getIsInShop()) {
-                    //PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
+                    PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
                     // Phosphor increase by one, Phosphor_Scale decrease by one
-                    //farmImplementation.scalePhosphor -= farmImplementation.phosphorConsumationSpeed*farmImplementation.land;
+                    farmImplementation.scalePhosphor -= farmImplementation.phosphorConsumationSpeed;
                     if ((playerImplementation.money > farmImplementation.land * farmImplementation.phosphorPrice) && !farmImplementation.getIsPhosphorized()) {
                         System.out.printf("You currently own %d pieces of land, so you will be charged %d money to buy phosphor.",
                                 farmImplementation.land, farmImplementation.land * farmImplementation.phosphorPrice);
                         playerImplementation.useMoney(farmImplementation.land * farmImplementation.phosphorPrice);
                         PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
-                        //farmImplementation.phosphor += 1; // putting the players phosphor out on the field directly instead. This might be deleted.
-                        farmImplementation.scalePhosphor -= farmImplementation.land*farmImplementation.phosphorConsumationSpeed;
+                        farmImplementation.phosphor += 1;
+                        farmImplementation.scalePhosphor -= 1;
                         farmImplementation.setIsPhosphorized(true);
-                        // Phosphor_Scale decrease by one for each piece of land times extra speed if SF is owned.
+                        // Phosphor increase by one, Phosphor_Scale decrease by one
                     } else {
-
                         PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash or you have already phosphorized your fields this week!");
                     }
                 } else {
@@ -215,7 +214,8 @@ public class Context {
             case 0 -> PrintingUtilities.printOnScreen("It's morning.");
             case 1 -> PrintingUtilities.printOnScreen("It's noon.");
 
-            case 2 -> PrintingUtilities.printOnScreen("it's evening.");
+//            case 2:
+//                PrintingUtilities.printOnScreen("it's afternoon.");
 //                break;
 //            case 3:
 //                PrintingUtilities.printOnScreen("it's evening.");
