@@ -7,8 +7,8 @@ import main.*;
 
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 100;
-    public int phosphorConsumationSpeed = 1; // This is for the SF project, to speed up use of phosphor!
-    private double phosphorEffect = 5;
+    public int phosphorConsumptionSpeed = 1; // This is for the SF project, to speed up use of phosphor!
+    private final double phosphorEffect = 5;
     Field field;
     public boolean isInFarm;
     public boolean isPhophorized;
@@ -18,8 +18,8 @@ public class FarmImplementation implements Farm {
         isPhophorized = z;
     }
 
-    private int priceOfLand = 100;
-    private int yieldOfLand = 25;
+    private final int priceOfLand = 100;
+    private final int yieldOfLand = 25;
     private int fieldsForPurchase = 5;
 
     @Override
@@ -106,7 +106,7 @@ public class FarmImplementation implements Farm {
     }
 
     public double calculateProfit() {
-        double profit = 0;
+        double profit;
         if (isPhophorized) {
             profit = land * phosphorEffect * yieldOfLand;
         } else {
@@ -138,7 +138,7 @@ public class FarmImplementation implements Farm {
         PrintingUtilities.printOnScreen("The people in Capitol City is hungry, and the population is: " + Context.cityImplementation.population);
         PrintingUtilities.printOnScreen("After delivering food to Capitol City you have: ");
         Context.playerImplementation.useMoney(Context.cityImplementation.population);
-        System.out.print(Context.playerImplementation.money + " money.");
+        PrintingUtilities.printOnScreen(Context.playerImplementation.money + " money.");
         PrintingUtilities.printOnScreen("The phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more...");
         Context.farmImplementation.isPhophorized = false;
         if (!Context.cityImplementation.isHunger) { // If there is no

@@ -182,7 +182,7 @@ public class Context {
                 if (cityImplementation.getIsInShop()) {
                     PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
                     // Phosphor increase by one, Phosphor_Scale decrease by one
-                    farmImplementation.scalePhosphor -= farmImplementation.phosphorConsumationSpeed;
+                    farmImplementation.scalePhosphor -= farmImplementation.phosphorConsumptionSpeed;
                     if ((playerImplementation.money > farmImplementation.land * farmImplementation.phosphorPrice) && !farmImplementation.getIsPhosphorized()) {
                         System.out.printf("You currently own %d pieces of land, so you will be charged %d money to buy phosphor.",
                                 farmImplementation.land, farmImplementation.land * farmImplementation.phosphorPrice);

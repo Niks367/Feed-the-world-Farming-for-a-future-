@@ -19,7 +19,7 @@ public class CityImplementation implements City {
     /* allProjectsList is a list of all projects that can be available during different phases of the game:
     It is hardcoded.
     For now the Dean uses this list.*/
-    private ArrayList<String> allProjectsList = new ArrayList(Arrays.asList("SuperFarm (SF)", "PurificationPlant (PP)"));
+    private final ArrayList<String> allProjectsList = new ArrayList(Arrays.asList("SuperFarm (SF)", "PurificationPlant (PP)"));
 
     private void printAllProjectsList() {
         System.out.println(allProjectsList);
@@ -33,9 +33,7 @@ public class CityImplementation implements City {
         /*TODO logic that takes time, already build projects and possibly other factors into considerations and returns a list of available projects.
         For now it returns the complete list.
          */
-        ArrayList<String> result = new ArrayList<>();
-        result = projects;
-        availableProjectsList = result;
+        availableProjectsList = projects;
     }
     // this method calculates the number of available projects and will be used by Dean at the University
     // in his intro.
