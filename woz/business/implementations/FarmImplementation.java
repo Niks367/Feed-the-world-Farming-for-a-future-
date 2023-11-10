@@ -26,7 +26,12 @@ public class FarmImplementation implements Farm {
     public void reduceFieldsForPurchase() {
         fieldsForPurchase -= 1;
     }
-
+    public void checkVictoryConditions() {
+        if (Context.cityImplementation.isPpDone && Context.farmImplementation.scalePhosphor >= 100) {
+            PrintingUtilities.printOnScreen("Congrats, YOU HAVE WON!!!");
+            main.Game.context.makeDone();
+        }
+    }
     @Override
     public int getFieldsForPurchase() {
         return fieldsForPurchase;
@@ -150,6 +155,7 @@ public class FarmImplementation implements Farm {
         PrintingUtilities.printOnScreen("\nThe phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more...");
         Context.farmImplementation.isPhophorized = false;
         calculateProjects();
+        checkVictoryConditions();
 
         if (!Context.cityImplementation.isHunger) { // If there is no hunger hte population increments with 25 every week
             Context.cityImplementation.population += 25;

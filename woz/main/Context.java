@@ -213,14 +213,7 @@ public class Context {
         switch (farmImplementation.dayProgress) {
             case 0 -> PrintingUtilities.printOnScreen("It's morning.");
             case 1 -> PrintingUtilities.printOnScreen("It's noon.");
-
-//            case 2:
-//                PrintingUtilities.printOnScreen("it's afternoon.");
-//                break;
-//            case 3:
-//                PrintingUtilities.printOnScreen("it's evening.");
-//                farmImplementation.endDay();
-//                break;
+            case 3 -> PrintingUtilities.printOnScreen("It's evening.");
 
         }
     }
