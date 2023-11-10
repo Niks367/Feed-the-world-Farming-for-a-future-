@@ -16,7 +16,7 @@ public class FieldImplementation implements Field {
             //jeg har gjort fertilizer effekt til en ratio af 1:20, for at gøre den meget ekstrem.
             double phosphorEffekt = 20;
             seedsInField.seedAmount += (int) (2*(land * phosphorEffekt));
-            farmImplementation.phosphor -= land; // hver mark bruger en phosphor
+            //farmImplementation.phosphor -= land; // hver mark bruger en phosphor
         } else {
             seedsInField.seedAmount *= 2*land;
         }

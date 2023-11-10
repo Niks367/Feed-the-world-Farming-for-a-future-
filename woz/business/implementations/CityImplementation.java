@@ -113,8 +113,8 @@ public class CityImplementation implements City {
         //System.out.println("isInShop is now: '" + isInShop + "' printed from visitShop() in cityImplementation after setting it true here.");
         PrintingUtilities.printOnScreen("Boy in the shop: 'What can I do for you today??'");
         PrintingUtilities.printOnScreen("Following items are available for purchase...");
-        PrintingUtilities.printOnScreen("Seeds, Phosphor and Land.");
-        PrintingUtilities.printOnScreen("For Seeds, write buy_seeds, for Phosphor, write buy_phosphor and for Land, write buy_land, to leave shop write leave_shop!");
+        PrintingUtilities.printOnScreen("Phosphor and Land.");
+        PrintingUtilities.printOnScreen("For Phosphor, just write buy phosphor and for Land, write buy land. You hit downtown by going west.");
     }
 
     @Override
