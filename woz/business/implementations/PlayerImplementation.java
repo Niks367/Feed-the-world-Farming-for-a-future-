@@ -1,6 +1,7 @@
 package business.implementations;
 
 import business.interfaces.Player;
+import business.utils.PrintingUtilities;
 
 import java.sql.SQLOutput;
 
@@ -21,6 +22,6 @@ public class PlayerImplementation implements Player {
     public void useMoney(double money) { this.money -= money; }
 
     public void playerBalance(){
-        System.out.println("Your balance is: $" + money);
+        PrintingUtilities.printOnScreen("Your balance is: $" + money);
     }
 }

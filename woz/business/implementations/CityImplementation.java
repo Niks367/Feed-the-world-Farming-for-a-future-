@@ -8,14 +8,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import static main.Game.context;
-
 public class CityImplementation implements City {
     int hunger = 0;
     private boolean isInCity;
     private boolean isInUni;
     private boolean isInShop = false;
     int population = 100;
+    public int sf_Progress = 0;
+    public int pp_Progress = 0;
+    public boolean isPpDone = false;
+    public boolean isSfDone = false;
     public boolean isHunger = false;
     Scanner scanner = new Scanner(System.in);
     /* allProjectsList is a list of all projects that can be available during different phases of the game:
@@ -24,7 +26,7 @@ public class CityImplementation implements City {
     private final ArrayList<String> allProjectsList = new ArrayList(Arrays.asList("SuperFarm (SF)", "PurificationPlant (PP)"));
 
     private void printAllProjectsList() {
-        System.out.println(allProjectsList);
+        PrintingUtilities.printOnScreen(String.valueOf(allProjectsList));
     }
 
     // availableProjectsList is  a list of the projects that player can currently support:
@@ -46,7 +48,7 @@ public class CityImplementation implements City {
     }
 
     public void printOnScreen(String text) {
-        System.out.println(text);
+        PrintingUtilities.printOnScreen(text);
     }
 
     public ArrayList<String> returnCurrentProjects(ArrayList<Integer> index) {
@@ -107,16 +109,10 @@ public class CityImplementation implements City {
         return isInUni;
     }
 
-    public int sf_Progress = 0;
-    public int pp_Progress = 0;
-    public boolean isPpDone = false;
-    public boolean isSfDone = false;
-
-
     @Override
     public void visitShop() {
         setIsInShop(true);
-        //System.out.println("isInShop is now: '" + isInShop + "' printed from visitShop() in cityImplementation after setting it true here.");
+        //PrintingUtilities.printOnScreen("isInShop is now: '" + isInShop + "' printed from visitShop() in cityImplementation after setting it true here.");
         PrintingUtilities.printOnScreen("Boy in the shop: 'What can I do for you today??'");
         PrintingUtilities.printOnScreen("Following items are available for purchase...");
         PrintingUtilities.printOnScreen("Phosphor and Land.");
@@ -130,85 +126,77 @@ public class CityImplementation implements City {
         PrintingUtilities.printOnScreen("Would you like to support any of our projects??");
         System.out.printf("We currently have %d projects)", calculateAvailableProjects());
         printAllProjectsList();
-        System.out.println("To support with 100 gold type support plus SF or PP, if not well....just type 'go east' and you will be back in the city in a jiffy.");
-        System.out.println("Would you like to answer some questions about the phoshphor problematic and earn some money?");
-        System.out.println("Press 1 if you would like to answer some questions\nPress 2 if you dont want to answer");
-
+        PrintingUtilities.printOnScreen("To support with 100 gold type support plus SF or PP, if not well....just type 'go east' and you will be back in the city in a jiffy.");
+        PrintingUtilities.printOnScreen("Would you like to answer some questions about the phoshphor problematic and earn some money?");
+        PrintingUtilities.printOnScreen("Press 1 if you would like to answer some questions\nPress 2 if you dont want to answer");
         boolean answerQuestion = true;
         int answer = scanner.nextInt();
         if(answer == 1){
             while (answerQuestion){
                 if (phoshporQuiz()) {
                     Context.playerImplementation.addMoney(100.0);
-                    System.out.println("You just got $100");
+                    PrintingUtilities.printOnScreen("You just got $100");
                     Context.playerImplementation.playerBalance();
-                    System.out.println("Yes! The correct answer was 1 Agricultural runoff");
-                    System.out.println("Agricultural runoff, caused by excess fertilizer from farming, often leads to phosphorus pollution in water," +
+                    PrintingUtilities.printOnScreen("Yes! The correct answer was 1 Agricultural runoff");
+                    PrintingUtilities.printOnScreen("Agricultural runoff, caused by excess fertilizer from farming, often leads to phosphorus pollution in water," +
                             "causing algal blooms and ecosystem issues.");
-                    System.out.println("Would you like to answer some more questions about the phoshphor problematic and earn some money?");
-                    System.out.println("Press 1 if you would like to continue\nPress 2 if you dont want to continue the quiz");
+                    PrintingUtilities.printOnScreen("Would you like to answer some more questions about the phoshphor problematic and earn some money?");
+                    PrintingUtilities.printOnScreen("Press 1 if you would like to continue\nPress 2 if you dont want to continue the quiz");
                     int quizContinue = scanner.nextInt();
                     if (quizContinue == 1) {
                        var result =  moreQuiz();
                        if (result) {
-                           System.out.println("The correct answer was indeed 3! Excess phosphorus can lead to algae overgrowth, and when the algae decompose, it depletes oxygen, harming aquatic life.");
-                           System.out.println("Excellent! You just answered all the questions correctly.");
+                           PrintingUtilities.printOnScreen("The correct answer was indeed 3! Excess phosphorus can lead to algae overgrowth, and when the algae decompose, it depletes oxygen, harming aquatic life.");
+                           PrintingUtilities.printOnScreen("Excellent! You just answered all the questions correctly.");
                            Context.playerImplementation.addMoney(100.0);
-                           System.out.println("You just got another $100 congratulations!");
+                           PrintingUtilities.printOnScreen("You just got another $100 congratulations!");
                            Context.playerImplementation.playerBalance();
-                           System.out.println("You have just answered all the questions well done!");
+                           PrintingUtilities.printOnScreen("You have just answered all the questions well done!");
                        }else{
-                           System.out.println("Too bad! Wrong answer. No money for you");
+                           PrintingUtilities.printOnScreen("Too bad! Wrong answer. No money for you");
                        }
                     }
                     answerQuestion = false;
                 }else{
-                    System.out.println("You answer is incorrectly, would you like to try again?");
-                    System.out.println("Press 1 if you would like to continue\nPress 2 if you dont want to continue");
+                    PrintingUtilities.printOnScreen("You answer is incorrectly, would you like to try again?");
+                    PrintingUtilities.printOnScreen("Press 1 if you would like to continue\nPress 2 if you dont want to continue");
                     int answerContinue = scanner.nextInt();
                     if (answerContinue == 1) {
-                        System.out.println("Nice! Lets try again");
+                        PrintingUtilities.printOnScreen("Nice! Lets try again");
                     }else{
-                        System.out.println("Okay have a nice day!");
+                        PrintingUtilities.printOnScreen("Okay have a nice day!");
                         answerQuestion = false;
                     }
                 }
             }
         }else{
-            System.out.println("That was unfortunate...");
+            PrintingUtilities.printOnScreen("That was unfortunate...");
         }
     }
 
 
 
     public boolean phoshporQuiz() {
-        System.out.println("What is the primary cause of phosphorus pollution in the water environment?");
-        System.out.println("Answer with the numbers between 1-3");
-        System.out.println("1: Agricultural runoff\n2: Industrial discharge\n3: Household waste");
-
+        PrintingUtilities.printOnScreen("What is the primary cause of phosphorus pollution in the water environment?");
+        PrintingUtilities.printOnScreen("Answer with the numbers between 1-3");
+        PrintingUtilities.printOnScreen("1: Agricultural runoff\n2: Industrial discharge\n3: Household waste");
         int phosphorProblematic = scanner.nextInt();
-        if (phosphorProblematic == 1) {
-            return true;
-        }
-        return false;
+        return phosphorProblematic == 1;
     }
     public boolean moreQuiz() {
-        System.out.println("You have to answer 2 questions in a row, to earn some money!");
-        System.out.println("Which form of phosphorus is typically the most bioavailable and easily taken up by plants?");
-        System.out.println("Answer with the numbers between 1-3");
-        System.out.println("1: Organic phosphorus\n2: Phosphorus gas\n3: Phosphate rock");
+        PrintingUtilities.printOnScreen("You have to answer 2 questions in a row, to earn some money!");
+        PrintingUtilities.printOnScreen("Which form of phosphorus is typically the most bioavailable and easily taken up by plants?");
+        PrintingUtilities.printOnScreen("Answer with the numbers between 1-3");
+        PrintingUtilities.printOnScreen("1: Organic phosphorus\n2: Phosphorus gas\n3: Phosphate rock");
         int answer = scanner.nextInt();
         if (answer == 3) {
-            System.out.println("Yes! Phosphate rock is the right answer because it contains a form of phosphorus that plants can easily absorb for growth.");
-            System.out.println("Now for the last question");
-            System.out.println("In what ways does excess phosphorus in water bodies contribute to environmental problems?");
-            System.out.println("Answer with the numbers between 1-3");
-            System.out.println("1: It causes oxygen depletion\n2: It enhances biodiversity\n3: It promotes coral reef growth");
+            PrintingUtilities.printOnScreen("Yes! Phosphate rock is the right answer because it contains a form of phosphorus that plants can easily absorb for growth.");
+            PrintingUtilities.printOnScreen("Now for the last question");
+            PrintingUtilities.printOnScreen("In what ways does excess phosphorus in water bodies contribute to environmental problems?");
+            PrintingUtilities.printOnScreen("Answer with the numbers between 1-3");
+            PrintingUtilities.printOnScreen("1: It causes oxygen depletion\n2: It enhances biodiversity\n3: It promotes coral reef growth");
             int newAnswer = scanner.nextInt();
-            if (newAnswer == 1 ) {
-             return true;
-
-            }
+            return newAnswer == 1;
         }
             return false;
 
@@ -220,22 +208,22 @@ public class CityImplementation implements City {
 //                String uniInput = uniScanner.nextLine();
 //                switch (uniInput) {
 //                    case "SF":
-//                        System.out.println("You have helped the project of building a super farm, the project is at {sf_scale}. \nYou can leave by typing leave_uni or support more projects by typing SF or PP");
+//                        PrintingUtilities.printOnScreen("You have helped the project of building a super farm, the project is at {sf_scale}. \nYou can leave by typing leave_uni or support more projects by typing SF or PP");
 //                        // superfarm_scale increase by one
 //                        break;
 //                    case "PP":
-//                        System.out.println("You have helped the project of building a purification plant, the project is at {pp_scale}.\nYou can leave by typing leave_uni or support more projects by typing SF or PP");
+//                        PrintingUtilities.printOnScreen("You have helped the project of building a purification plant, the project is at {pp_scale}.\nYou can leave by typing leave_uni or support more projects by typing SF or PP");
 //                        // purification_scale is increase by one
 //                        break;
 //                    case "leave_uni":
 //                        leaveUni = true; // Set the leaveUni flag to true to exit the university
 //                        break;
 //                    default:
-//                        System.out.println("Dean: 'We count on you!!, what do you say??'");
+//                        PrintingUtilities.printOnScreen("Dean: 'We count on you!!, what do you say??'");
 //                }
 //
 //            } catch (Exception e) {
-//                System.out.println("There has been a problem with the input");
+//                PrintingUtilities.printOnScreen("There has been a problem with the input");
 //                e.printStackTrace();
 //            } finally
 //            {
@@ -243,7 +231,7 @@ public class CityImplementation implements City {
 //            }
 //
 //        }
-//        System.out.println("Dean: 'Hope to see you again soon!'");
+//        PrintingUtilities.printOnScreen("Dean: 'Hope to see you again soon!'");
 //    }
 
     @Override
