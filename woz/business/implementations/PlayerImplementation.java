@@ -2,6 +2,8 @@ package business.implementations;
 
 import business.interfaces.Player;
 
+import java.sql.SQLOutput;
+
 public class PlayerImplementation implements Player {
     public double money;
 
@@ -18,4 +20,7 @@ public class PlayerImplementation implements Player {
     @Override
     public void useMoney(double money) { this.money -= money; }
 
+    public void playerBalance(){
+        System.out.println("Your balance is: $" + money);
+    }
 }
