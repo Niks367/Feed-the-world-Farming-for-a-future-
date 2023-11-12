@@ -275,13 +275,21 @@ public class Context {
                     case "to_uni" -> {
                         dayChecking();
                         cityImplementation.setIsInUni(true);
-                        cityImplementation.visitUni();
+                        try {
+                            cityImplementation.visitUni();
+                        }catch (Exception e){
+                            PrintingUtilities.printOnScreen("There was a problem with visiting uni");
+                            e.printStackTrace();
+                        }
                     }
 
                     //PrintingUtilities.printOnScreen("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
                     case "east" -> {
                         dayChecking();
                         cityImplementation.setIsInUni(false);
+                    }
+                    case "to_fields"->{
+                        dayChecking();
                     }
                     default -> {
                         PrintingUtilities.printOnScreen("Cannot find the location entered");

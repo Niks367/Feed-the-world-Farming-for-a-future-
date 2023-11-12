@@ -126,13 +126,16 @@ public class CityImplementation implements City {
         PrintingUtilities.printOnScreen("Would you like to support any of our projects??");
         System.out.printf("We currently have %d projects)", calculateAvailableProjects());
         printAllProjectsList();
+        scanner.nextLine();
         PrintingUtilities.printOnScreen("To support with 100 gold type support plus SF or PP, if not well....just type 'go east' and you will be back in the city in a jiffy.");
-        PrintingUtilities.printOnScreen("Would you like to answer some questions about the phoshphor problematic and earn some money?");
-        PrintingUtilities.printOnScreen("Press 1 if you would like to answer some questions\nPress 2 if you dont want to answer");
-        boolean answerQuestion = true;
-        int answer = scanner.nextInt();
-        if(answer == 1){
-            while (answerQuestion){
+        PrintingUtilities.printOnScreen("Would you like to answer some questions about the phoshphor problematic and earn some money? \nYes or no?");
+        if (scanner.hasNext("yes")) {
+            scanner.nextLine();
+            // PrintingUtilities.printOnScreen("Press 1 if you would like to answer some questions\nPress 2 if you dont want to answer");
+            boolean answerQuestion = true;
+            // int answer = scanner.nextInt();
+            // if (answer == 1) {
+            while (answerQuestion) {
                 if (phoshporQuiz()) {
                     Context.playerImplementation.addMoney(100.0);
                     PrintingUtilities.printOnScreen("You just got $100");
@@ -144,36 +147,36 @@ public class CityImplementation implements City {
                     PrintingUtilities.printOnScreen("Press 1 if you would like to continue\nPress 2 if you dont want to continue the quiz");
                     int quizContinue = scanner.nextInt();
                     if (quizContinue == 1) {
-                       var result =  moreQuiz();
-                       if (result) {
-                           PrintingUtilities.printOnScreen("The correct answer was indeed 3! Excess phosphorus can lead to algae overgrowth, and when the algae decompose, it depletes oxygen, harming aquatic life.");
-                           PrintingUtilities.printOnScreen("Excellent! You just answered all the questions correctly.");
-                           Context.playerImplementation.addMoney(100.0);
-                           PrintingUtilities.printOnScreen("You just got another $100 congratulations!");
-                           Context.playerImplementation.playerBalance();
-                           PrintingUtilities.printOnScreen("You have just answered all the questions well done!");
-                       }else{
-                           PrintingUtilities.printOnScreen("Too bad! Wrong answer. No money for you");
-                       }
+                        var result = moreQuiz();
+                        if (result) {
+                            PrintingUtilities.printOnScreen("The correct answer was indeed 3! Excess phosphorus can lead to algae overgrowth, and when the algae decompose, it depletes oxygen, harming aquatic life.");
+                            PrintingUtilities.printOnScreen("Excellent! You just answered all the questions correctly.");
+                            Context.playerImplementation.addMoney(100.0);
+                            PrintingUtilities.printOnScreen("You just got another $100 congratulations!");
+                            Context.playerImplementation.playerBalance();
+                            PrintingUtilities.printOnScreen("You have just answered all the questions well done!");
+                        } else {
+                            PrintingUtilities.printOnScreen("Too bad! Wrong answer. No money for you");
+                        }
                     }
                     answerQuestion = false;
-                }else{
+                } else {
                     PrintingUtilities.printOnScreen("You answer is incorrectly, would you like to try again?");
                     PrintingUtilities.printOnScreen("Press 1 if you would like to continue\nPress 2 if you dont want to continue");
                     int answerContinue = scanner.nextInt();
                     if (answerContinue == 1) {
                         PrintingUtilities.printOnScreen("Nice! Lets try again");
-                    }else{
+                    } else {
                         PrintingUtilities.printOnScreen("Okay have a nice day!");
                         answerQuestion = false;
                     }
                 }
             }
-        }else{
+        } else {
             PrintingUtilities.printOnScreen("That was unfortunate...");
         }
     }
-
+    // }
 
 
     public boolean phoshporQuiz() {
@@ -183,6 +186,7 @@ public class CityImplementation implements City {
         int phosphorProblematic = scanner.nextInt();
         return phosphorProblematic == 1;
     }
+
     public boolean moreQuiz() {
         PrintingUtilities.printOnScreen("You have to answer 2 questions in a row, to earn some money!");
         PrintingUtilities.printOnScreen("Which form of phosphorus is typically the most bioavailable and easily taken up by plants?");
@@ -198,7 +202,7 @@ public class CityImplementation implements City {
             int newAnswer = scanner.nextInt();
             return newAnswer == 1;
         }
-            return false;
+        return false;
 
     }
 

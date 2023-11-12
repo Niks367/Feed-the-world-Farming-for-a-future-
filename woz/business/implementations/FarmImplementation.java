@@ -2,6 +2,7 @@ package business.implementations;
 
 import business.interfaces.Farm;
 import business.interfaces.Field;
+import business.utils.MadManUtils;
 import business.utils.PrintingUtilities;
 import main.*;
 
@@ -106,6 +107,7 @@ public class FarmImplementation implements Farm {
             endWeek();
         dayProgress = 0;
         dayCount += 1;
+        PrintingUtilities.printOnScreen(MadManUtils.madEvent());
     }
 
     public double calculateProfit() {
