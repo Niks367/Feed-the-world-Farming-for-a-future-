@@ -16,29 +16,32 @@ public class CityImplementation implements City {
     int population = 100;
     public int sf_Progress = 0;
     public int pp_Progress = 0;
-    public boolean isPpDone = false;
-    public boolean isSfDone = false;
+    public boolean isPpDone = false; //Boolean for PP
+    public boolean isSfDone = false; //Boolean for Sf
+    boolean isSuperPpDone = false; //Boolean for Super PP
+    boolean isBfDone = false; //Boolean for Bio Farm
     public boolean isHunger = false;
     Scanner scanner = new Scanner(System.in);
     /* allProjectsList is a list of all projects that can be available during different phases of the game:
     It is hardcoded.
     For now the Dean uses this list.*/
-    private final ArrayList<String> allProjectsList = new ArrayList(Arrays.asList("SuperFarm (SF)", "PurificationPlant (PP)"));
+    private final ArrayList<String> allProjectsList = new ArrayList(Arrays.asList("SuperFarm (SF)", "PurificationPlant (PP)","BioFarm (BF)","Super Purification Plant(SuperPP)"));
 
     private void printAllProjectsList() {
         PrintingUtilities.printOnScreen(String.valueOf(allProjectsList));
     }
 
+    public ArrayList<String> availableProjectsList = new ArrayList(Arrays.asList("SuperFarm(SF)","PurificationPlant (PP)","BioFarm (BF)","Super Purification Plant(SuperPP)"));
     // availableProjectsList is  a list of the projects that player can currently support:
-    private ArrayList<String> availableProjectsList;
-
-    // availableProjects is a method that will calculate and update the list 'availableProjects at end of day:
-    private void availableProjects(ArrayList<String> projects) {
-        /*TODO logic that takes time, already build projects and possibly other factors into considerations and returns a list of available projects.
-        For now it returns the complete list.
-         */
-        availableProjectsList = projects;
-    }
+//    private ArrayList<String> availableProjectsList;
+//
+//    // availableProjects is a method that will calculate and update the list 'availableProjects at end of day:
+//    private void availableProjects(ArrayList<String> projects) {
+//        /*TODO logic that takes time, already build projects and possibly other factors into considerations and returns a list of available projects.
+//        For now it returns the complete list.
+//         */
+//        availableProjectsList = projects;
+//    }
 
     // this method calculates the number of available projects and will be used by Dean at the University
     // in his intro.
@@ -50,14 +53,14 @@ public class CityImplementation implements City {
     public void printOnScreen(String text) {
         PrintingUtilities.printOnScreen(text);
     }
-
-    public ArrayList<String> returnCurrentProjects(ArrayList<Integer> index) {
-        ArrayList<String> result = new ArrayList<>();
-        for (int i = 0; i < calculateAvailableProjects(); i++) {
-            result.add(availableProjectsList.get(index.get(i)));
-        }
-        return result;
-    }
+//
+//    public ArrayList<String> returnCurrentProjects(ArrayList<Integer> index) {
+//        ArrayList<String> result = new ArrayList<>();
+//        for (int i = 0; i < calculateAvailableProjects(); i++) {
+//            result.add(availableProjectsList.get(index.get(i)));
+//        }
+//        return result;
+//    }
 
     private final String[] madArray = new String[]{
             "Go not forth hastily to strive, lest thou know not what to do in the end thereof, when thy neighbour hath put thee to shame.",

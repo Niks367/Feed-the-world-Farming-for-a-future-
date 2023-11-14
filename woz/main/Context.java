@@ -7,7 +7,7 @@ import business.utils.PrintingUtilities;
 public class Context {
     public static FarmImplementation farmImplementation = new FarmImplementation();
     public static CityImplementation cityImplementation = new CityImplementation();
-    public static RiverImplementation riverImplementation = new RiverImplementation();
+    public static LakeImplementation LakeImplementation = new LakeImplementation();
     public static FieldImplementation fieldImplementation = new FieldImplementation();
     public static PlayerImplementation playerImplementation = new PlayerImplementation();
     public static SeedImplementation seedImplementation = new SeedImplementation();
@@ -236,15 +236,15 @@ public class Context {
                 current.welcome();
                 farmImplementation.dayProgress += 1;
                 switch (direction) {
-                    case "to_farm", "river_to_farm", "fields_to_farm" -> {
+                    case "to_farm", "lake_to_farm", "fields_to_farm" -> {
                         farmImplementation.setIsInFarm(true);
                         dayChecking();
                     }
-                    case "to_river", "city_to_river" -> {
+                    case "to_lake", "city_to_lake" -> {
                         dayChecking();
                         farmImplementation.setIsInFarm(false);
                         cityImplementation.setIsInCity(false);
-                        riverImplementation.visitRiver();
+                        LakeImplementation.visitlake();
                     }
                     case "to_city" -> {
                         dayChecking();
