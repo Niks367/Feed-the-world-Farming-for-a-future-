@@ -149,7 +149,7 @@ public class CityImplementation implements City {
                     if (quizContinue == 1) {
                         var result = moreQuiz();
                         if (result) {
-                            PrintingUtilities.printOnScreen("The correct answer was indeed 3! Excess phosphorus can lead to algae overgrowth, and when the algae decompose, it depletes oxygen, harming aquatic life.");
+                            PrintingUtilities.printOnScreen("The correct answer was indeed 1! Excess phosphorus can lead to algae overgrowth, and when the algae decompose, it depletes oxygen, harming aquatic life.");
                             PrintingUtilities.printOnScreen("Excellent! You just answered all the questions correctly.");
                             Context.playerImplementation.addMoney(100.0);
                             PrintingUtilities.printOnScreen("You just got another $100 congratulations!");
