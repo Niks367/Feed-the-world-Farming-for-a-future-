@@ -1883,7 +1883,7 @@ Source/WebCore/Modules/webaudio
 Source/WebCore/Modules/webauthn
 Source/WebCore/Modules/webauthn/fido
 Source/WebCore/Modules/webcodecs
-Source/WebCore/Modules/webdriver
+Source/WebCore/Modules/webdlake
 Source/WebCore/Modules/webgpu
 Source/WebCore/Modules/websockets
 Source/WebCore/Modules/webxr

@@ -8,7 +8,7 @@ import main.*;
 
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 100;
-    public int phosphorConsumationSpeed = 1; // This is for the SF project, to speed up use of phosphor!
+    public double phosphorConsumationSpeed = 1.0; // This is for the SF project, to speed up use of phosphor!
     private double phosphorEffect = 5;
     Field field;
     public boolean isInFarm;
@@ -32,7 +32,7 @@ public class FarmImplementation implements Farm {
     }
 
     public void checkVictoryConditions() {
-        if (Context.cityImplementation.isPpDone && Context.farmImplementation.scalePhosphor >= 100) {
+        if (Context.cityImplementation.isPpDone && Context.farmImplementation.scalePhosphor > 100) {
             PrintingUtilities.printOnScreen("Congrats, YOU HAVE WON!!!");
             main.Game.context.makeDone();
         }
@@ -121,10 +121,30 @@ public class FarmImplementation implements Farm {
     }
 
     public void calculateProjects() {
-        if (Context.cityImplementation.isSfDone) {// This part doubles the phosphor effect but tripples the usage when SF is developed.
+        if (Context.cityImplementation.isSfDone) {
             Context.farmImplementation.phosphorEffect = Context.farmImplementation.phosphorEffect * 2;
             Context.farmImplementation.phosphorConsumationSpeed = 3;
-            PrintingUtilities.printOnScreen("Congrats, you now own a SuperFarm!!!");
+            PrintingUtilities.printOnScreen("Congrats, you now own a Super Farm!!!");
+            Context.cityImplementation.availableProjectsList.remove("SuperFarm (SF)");
+        }
+        if (Context.cityImplementation.isBfDone) {
+            Context.cityImplementation.isSfDone = false;
+            Context.farmImplementation.phosphorEffect = Context.farmImplementation.phosphorEffect * 3;
+            Context.farmImplementation.phosphorConsumationSpeed = 2;
+            PrintingUtilities.printOnScreen("Congrats, you now own a Bio Farm!!!");
+            Context.cityImplementation.availableProjectsList.remove("BioFarm (BF)");
+        }
+        if (Context.cityImplementation.isPpDone) {
+            Context.farmImplementation.scalePhosphor = Context.farmImplementation.scalePhosphor + 1;
+            PrintingUtilities.printOnScreen("Congrats, you now own a Purification Plant!!!");
+            Context.cityImplementation.availableProjectsList.remove("PurificationPlant (PP)");
+        }
+        if (Context.cityImplementation.isSuperPpDone) {
+            Context.cityImplementation.isPpDone = false;
+            Context.farmImplementation.scalePhosphor = Context.farmImplementation.scalePhosphor + 5;
+            Context.farmImplementation.phosphorConsumationSpeed = 0.5;
+            PrintingUtilities.printOnScreen("Congrats, you now own a Super Purification Plant!!!");
+            Context.cityImplementation.availableProjectsList.remove("Super Purification Plant(SuperPP)");
         }
     }
 

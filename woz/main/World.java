@@ -10,15 +10,15 @@ class World {
     Space shop  = new Space("Shop");
     Space madman  = new Space("MadMan");
     Space fields  = new Space("Fields");
-    Space river  = new Space("River");
+    Space lake  = new Space("Lake");
 
     entry.addEdge("to_farm", farm);
-    farm.addEdge("to_river", river);
-    river.addEdge("river_to_farm", farm);
+    farm.addEdge("to_lake", lake);
+    lake.addEdge("lake_to_farm", farm);
     farm.addEdge("to_fields", fields);
     fields.addEdge("fields_to_farm", farm);
-    river.addEdge("to_city", city);
-    city.addEdge("city_to_river", river);
+    lake.addEdge("to_city", city);
+    city.addEdge("city_to_lake", lake);
     city.addEdge("to_uni", uni);
     uni.addEdge("east", city);
     city.addEdge("to_shop", shop);

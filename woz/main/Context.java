@@ -7,7 +7,7 @@ import business.utils.PrintingUtilities;
 public class Context {
     public static FarmImplementation farmImplementation = new FarmImplementation();
     public static CityImplementation cityImplementation = new CityImplementation();
-    public static RiverImplementation riverImplementation = new RiverImplementation();
+    public static LakeImplementation LakeImplementation = new LakeImplementation();
     public static FieldImplementation fieldImplementation = new FieldImplementation();
     public static PlayerImplementation playerImplementation = new PlayerImplementation();
     public static SeedImplementation seedImplementation = new SeedImplementation();
@@ -27,6 +27,8 @@ public class Context {
     public void initPlayer() {
         playerImplementation.spawn();
     }
+    public int projectLimit = 3;
+    public double projectCost = 100;
 
     Context(Space node) {
         current = node;
@@ -87,21 +89,25 @@ public class Context {
         switch (command) {
             case "PP", "pp" -> {
                 if (cityImplementation.getIsInUni()) {
-                    if (cityImplementation.pp_Progress == 5) {
-                        PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
-                        break;
-                    }
-                    if (playerImplementation.money > 100) {
-                        PrintingUtilities.printOnScreen("You have helped the project of building a purification plant, the project is at level " + cityImplementation.pp_Progress +
-                                "\nYou can leave by typing go east or support more projects by typing SF or PP");
-                        playerImplementation.useMoney(100);
-                        cityImplementation.pp_Progress += 1;
-                        if (cityImplementation.pp_Progress == 5) {
-                            cityImplementation.isPpDone = true;
+                    if (!cityImplementation.isPpDone) {
+                        if (cityImplementation.pp_Progress == projectLimit) {
+                            PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
+                            break;
                         }
-                        // TODO purification_scale is increased by one
+                        if (playerImplementation.money > projectCost) {
+                            PrintingUtilities.printOnScreen("You have helped the project of building a purification plant, the project is at level " + cityImplementation.pp_Progress +
+                                    "\nYou can leave by typing go east or support more projects by typing SF or PP");
+                            playerImplementation.useMoney(projectCost);
+                            cityImplementation.pp_Progress += 1;
+                            if (cityImplementation.pp_Progress == projectLimit) {
+                                cityImplementation.isPpDone = true;
+                            }
+                            // TODO purification_scale is increased by one
+                        } else {
+                            PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
+                        }
                     } else {
-                        PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
+                        PrintingUtilities.printOnScreen("You have already completed that project.");
                     }
 
                 } else {
@@ -110,21 +116,25 @@ public class Context {
             }
             case "SF", "sf" -> {
                 if (cityImplementation.getIsInUni()) {
-                    if (cityImplementation.sf_Progress == 5) {
-                        PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
-                        break;
-                    }
-                    if (playerImplementation.money > 100) {
-                        cityImplementation.sf_Progress += 1;
-                        if (cityImplementation.sf_Progress == 5) {
-                            cityImplementation.isSfDone = true;
+                    if (!cityImplementation.isSfDone) {
+                        if (cityImplementation.sf_Progress == projectLimit) {
+                            PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
+                            break;
                         }
-                        PrintingUtilities.printOnScreen("You have helped the project of building a super farm, the project is at level " + cityImplementation.sf_Progress +
-                                "\nYou can leave by typing go east or support more projects by typing SF or PP");
-                        playerImplementation.useMoney(100);
-                        // TODO superfarm_scale is increased by one
+                        if (playerImplementation.money > projectCost) {
+                            cityImplementation.sf_Progress += 1;
+                            if (cityImplementation.sf_Progress == projectLimit) {
+                                cityImplementation.isSfDone = true;
+                            }
+                            PrintingUtilities.printOnScreen("You have helped the project of building a super farm, the project is at level " + cityImplementation.sf_Progress +
+                                    "\nYou can leave by typing go east or support more projects by typing SF or PP");
+                            playerImplementation.useMoney(projectCost);
+                            // TODO superfarm_scale is increased by one
+                        } else {
+                            PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
+                        }
                     } else {
-                        PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
+                        PrintingUtilities.printOnScreen("You have already completed that project.");
                     }
                 } else {
                     PrintingUtilities.printOnScreen("You have to be in the university to support our projects");
@@ -139,7 +149,7 @@ public class Context {
             case "land" -> {
                 if (cityImplementation.getIsInShop()) {
                     if (!farmImplementation.getIsPhosphorized()) {
-                        if ((playerImplementation.money >= farmImplementation.getPriceOfLand()) && (farmImplementation.getFieldsForPurchase())>0) {
+                        if ((playerImplementation.money >= farmImplementation.getPriceOfLand()) && (farmImplementation.getFieldsForPurchase()) > 0) {
                             farmImplementation.land += 1; // buys a piece of land
                             playerImplementation.useMoney(farmImplementation.getPriceOfLand()); // pay the price set in farmImplementation
                             farmImplementation.reduceFieldsForPurchase(); // reduce land available for purchase
@@ -188,10 +198,10 @@ public class Context {
                         playerImplementation.useMoney(farmImplementation.land * farmImplementation.phosphorPrice);
                         PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
                         //farmImplementation.phosphor += 1;
-                        farmImplementation.scalePhosphor -= farmImplementation.land*farmImplementation.phosphorConsumationSpeed;
+                        farmImplementation.scalePhosphor -= farmImplementation.land * farmImplementation.phosphorConsumationSpeed;
                         farmImplementation.setIsPhosphorized(true);
                         // Phosphor_Scale decrease by one for each piece of land times extra speed if SF is owned.
-                        } else {
+                    } else {
                         PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash or you have already phosphorized your fields this week!");
                     }
                 } else {
@@ -236,15 +246,15 @@ public class Context {
                 current.welcome();
                 farmImplementation.dayProgress += 1;
                 switch (direction) {
-                    case "to_farm", "river_to_farm", "fields_to_farm" -> {
+                    case "to_farm", "lake_to_farm", "fields_to_farm" -> {
                         farmImplementation.setIsInFarm(true);
                         dayChecking();
                     }
-                    case "to_river", "city_to_river" -> {
+                    case "to_lake", "city_to_lake" -> {
                         dayChecking();
                         farmImplementation.setIsInFarm(false);
                         cityImplementation.setIsInCity(false);
-                        riverImplementation.visitRiver();
+                        LakeImplementation.visitlake();
                     }
                     case "to_city" -> {
                         dayChecking();
@@ -277,7 +287,7 @@ public class Context {
                         cityImplementation.setIsInUni(true);
                         try {
                             cityImplementation.visitUni();
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             PrintingUtilities.printOnScreen("There was a problem with visiting uni");
                             e.printStackTrace();
                         }
@@ -288,7 +298,7 @@ public class Context {
                         dayChecking();
                         cityImplementation.setIsInUni(false);
                     }
-                    case "to_fields"->{
+                    case "to_fields" -> {
                         dayChecking();
                     }
                     default -> {
