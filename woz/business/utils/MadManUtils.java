@@ -2,7 +2,6 @@ package business.utils;
 
 import main.Context;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class MadManUtils {
