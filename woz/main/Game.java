@@ -3,11 +3,17 @@ package main;
  */
 
 import business.utils.PrintingUtilities;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import main.commands.*;
+import presentation.RoomController;
 
 import java.util.Scanner;
 
-public class Game {
+public class Game extends Application {
     static World world = new World();
     public static Context context = new Context(world.getEntry());
     static Command fallback = new CommandUnknown();
@@ -27,6 +33,7 @@ public class Game {
     }
 
     public static void main(String[] args) {
+        launch(args);
         PrintingUtilities.printOnScreen("Welcome to the farm!");
         initRegistry();
         context.getCurrent().welcome();
@@ -42,5 +49,16 @@ public class Game {
             }
         }
         PrintingUtilities.printOnScreen("Game Over 😥");
+    }
+
+    @Override
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/room.fxml"));
+        Parent root = loader.load();
+        RoomController roomController = loader.getController();
+        roomController.init("Entry", "This is the starting room");
+        stage.setTitle("Farmland");
+        stage.setScene(new Scene(root,400,300));
+        stage.show();
     }
 }

@@ -13,6 +13,7 @@
     </properties>
 
     <dependencies>
+
         <!-- Add other JavaFX dependencies as needed -->
     </dependencies>
     <build>

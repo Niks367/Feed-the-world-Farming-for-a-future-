@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="presentation.RoomController">
+
+    <Label fx:id="roomName" text="Room Name" />
+    <Label fx:id="descriptionLabel" text="Room Description" />
+    <Button text="Go to Another Room" onAction="#goAnotherRoom" />
+
+</VBox>
