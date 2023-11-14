@@ -129,7 +129,7 @@ public class CityImplementation implements City {
         scanner.nextLine();
         PrintingUtilities.printOnScreen("To support with 100 gold type support plus SF or PP, if not well....just type 'go east' and you will be back in the city in a jiffy.");
         PrintingUtilities.printOnScreen("Would you like to answer some questions about the phoshphor problematic and earn some money? \nYes or no?");
-        if (scanner.hasNext("yes")) {
+        if (scanner.hasNext("yes") || scanner.hasNext("Yes")) {
             scanner.nextLine();
             // PrintingUtilities.printOnScreen("Press 1 if you would like to answer some questions\nPress 2 if you dont want to answer");
             boolean answerQuestion = true;
