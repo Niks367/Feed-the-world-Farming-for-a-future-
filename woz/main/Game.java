@@ -33,9 +33,9 @@ public class Game extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
         PrintingUtilities.printOnScreen("Welcome to the farm!");
         initRegistry();
+        launch(args);
         context.getCurrent().welcome();
         context.initPlayer();
         while (!context.isDone()) {
@@ -50,10 +50,12 @@ public class Game extends Application {
         }
         PrintingUtilities.printOnScreen("Game Over 😥");
     }
-
+    public static void dispatchCommand(String command){
+        registry.dispatch(command);
+    }
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("resources/room.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/room.fxml"));
         Parent root = loader.load();
         RoomController roomController = loader.getController();
         roomController.init("Entry", "This is the starting room");

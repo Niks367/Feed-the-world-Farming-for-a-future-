@@ -2,8 +2,8 @@ package presentation;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
-import java.awt.*;
+import javafx.scene.control.Label;
+import main.Game;
 
 public class RoomController {
     @FXML
@@ -19,5 +19,6 @@ public class RoomController {
     @FXML
     private void goAnotherRoom(ActionEvent event) {
         //TODO implementation when to switch the room
+        Game.dispatchCommand("go to_farm");
     }
 }
