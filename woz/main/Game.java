@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.commands.*;
-import presentation.RoomController;
+import presentation.controllers.RoomController;
 
 import java.util.Scanner;
 
@@ -19,7 +19,10 @@ public class Game extends Application {
     static Command fallback = new CommandUnknown();
     static Registry registry = new Registry(context, fallback);
     static Scanner scanner = new Scanner(System.in);
-
+    public static Stage roomStage;
+    public static void setRoomStage(Stage roomStage) {
+        Game.roomStage = roomStage;
+    }
     private static void initRegistry() {
         Command cmdExit = new CommandExit();
         registry.register("quit", cmdExit);
@@ -62,5 +65,6 @@ public class Game extends Application {
         stage.setTitle("Farmland");
         stage.setScene(new Scene(root,400,300));
         stage.show();
+        setRoomStage(stage);
     }
 }

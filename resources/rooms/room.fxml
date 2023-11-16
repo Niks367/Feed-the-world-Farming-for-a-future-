@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Button?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="presentation.RoomController">
+      fx:controller="presentation.controllers.RoomController">
 
     <Label fx:id="roomName" text="Room Name" />
     <Label fx:id="descriptionLabel" text="Room Description" />
