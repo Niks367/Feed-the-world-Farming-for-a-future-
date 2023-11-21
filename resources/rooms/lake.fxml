@@ -38,13 +38,11 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.TextFlow?>
 
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.control.TextArea?>
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
@@ -93,8 +91,8 @@
             <Font size="18.0" />
           </font>
         </Label>
-            <Button layoutX="26.0" layoutY="175.0" mnemonicParsing="false" text="Lake to farm" onAction="#goToLakeFarm" />
-            <Button layoutX="554.0" layoutY="178.0" mnemonicParsing="false" text="To city" onAction="#goToCIty"/>
+            <Button layoutX="536.0" layoutY="165.0" mnemonicParsing="false" onAction="#goToLakeFarm" text="Go back to Farm" />
+            <Button layoutX="14.0" layoutY="165.0" mnemonicParsing="false" onAction="#goToCIty" text="Go to City" />
             <TextArea fx:id="lakeText" layoutX="204.0" layoutY="65.0" prefHeight="200.0" prefWidth="200.0" />
       </children>
     </AnchorPane>
