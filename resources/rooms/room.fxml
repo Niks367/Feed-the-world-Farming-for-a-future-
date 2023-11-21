@@ -6,6 +6,8 @@
 
 <VBox prefHeight="594.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
 
+
+
     <Label fx:id="roomName" text="Room Name" />
     <Label fx:id="descriptionLabel" text="Room Description" />
     <Button onAction="#init" text="Play Game" />

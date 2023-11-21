@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import main.commands.*;
 import presentation.controllers.RoomController;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Game extends Application {
@@ -64,6 +65,8 @@ public class Game extends Application {
         RoomController roomController = loader.getController();
         roomController.setEntry("Entry", "");
         roomController.setRoomStage(stage);
+        String css = Objects.requireNonNull(getClass().getResource("/rooms/styles.css")).toExternalForm();
+        root.getStylesheets().add(css);
         stage.setTitle("Farmland");
         stage.setScene(new Scene(root,400,300));
         stage.show();
