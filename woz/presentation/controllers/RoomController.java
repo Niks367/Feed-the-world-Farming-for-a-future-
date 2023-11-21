@@ -12,11 +12,13 @@ import javafx.stage.Stage;
 import main.Context;
 import main.Game;
 
+import java.awt.*;
 import java.util.Objects;
 import java.util.Stack;
 
 
 public class RoomController {
+
     @FXML
     public static TextArea lakeText;
     public static Stage roomStage;
@@ -78,7 +80,6 @@ public class RoomController {
             Parent parent = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
-            System.out.println(getClass().getResource("/rooms/styles.css"));
             String css = Objects.requireNonNull(getClass().getResource("/rooms/styles.css")).toExternalForm();
             parent.getStylesheets().add(css);
             roomStage.close();
@@ -103,4 +104,21 @@ public class RoomController {
             previousRoomStage.show();
         }
     }
+
+    public void goToCity(ActionEvent actionEvent) {
+        Game.dispatchCommand("go to_city");
+        goAnotherRoom("/rooms/city.fxml");
+    }
+    public void goToMadman(ActionEvent actionEvent) {
+        Game.dispatchCommand("go to_madman");
+        goAnotherRoom("/rooms/madman.fxml");
+    }
+public void goToUni(ActionEvent actionEvent) {
+        Game.dispatchCommand("go to_uni");
+        goAnotherRoom("/rooms/uni.fxml");
+}
+public void goToShop(ActionEvent actionEvent) {
+        Game.dispatchCommand("go to_shop");
+        goAnotherRoom("/rooms/shop.fxml");
+}
 }
