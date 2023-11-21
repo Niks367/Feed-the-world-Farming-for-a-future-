@@ -1,5 +1,5 @@
 package business.interfaces;
 
 public interface Lake {
-    void visitlake();
+    String visitlake();
 }

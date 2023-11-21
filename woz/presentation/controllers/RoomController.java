@@ -7,43 +7,86 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import main.Context;
 import main.Game;
 
+import java.util.Stack;
+
+
 public class RoomController {
+    @FXML
+    public static TextArea lakeText;
+    public static Stage roomStage;
+    public static Stack<Stage> roomStack = new Stack<>();
     @FXML
     private Label roomName;
     @FXML
     private Label descriptionLabel;
-    public void init(String room, String description) {
+    @FXML
+    public void init(ActionEvent actionEvent) {
+        Game.dispatchCommand("go to_farm");
+        goAnotherRoom("/rooms/farm.fxml");
+    }
+    public void setEntry(String room, String description){
         roomName.setText(room);
         descriptionLabel.setText(description);
     }
-
+    public void setRoomStage(Stage roomStage) {
+        RoomController.roomStage = roomStage;
+    }
+    public void setLakeText(String text){
+        lakeText.setText(text);
+    }
     @FXML
-    private void goAnotherRoom(ActionEvent event) {
+    private void goToLake(ActionEvent actionEvent) {
+        Game.dispatchCommand("go to_lake");
+        goAnotherRoom("/rooms/lake.fxml");
+        lakeText = (TextArea)roomStage.getScene().lookup("#lakeText");
+        setLakeText(Context.lakeImplementation.visitlake());
+    }
+    @FXML
+    private void goToLakeFarm(ActionEvent actionEvent){
+        Game.dispatchCommand("go lake_to_farm");
+        goAnotherRoom("/rooms/farm.fxml");
+    }
+    @FXML
+    private void goToCIty(){
+        Game.dispatchCommand("go to_city");
+    }
+    @FXML
+    private void goToField(){
+        Game.dispatchCommand("go to_field");
+        //TODO needs fxml file
+    }
+    public void goAnotherRoom(String roomFXM) {
         //TODO implementation when to switch the room
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/farm.fxml"));
-            Parent farmRoot = loader.load();
-
-            // Get the controller instance
-            FarmHandler farmHandler = loader.getController();
-
-            // Initialize the farm view
-            farmHandler.initFarm();
-
-            // Set up a new stage for the farm view
-            Stage farmStage = new Stage();
-            farmStage.setTitle("Farm");
-            farmStage.setScene(new Scene(farmRoot, 400, 300));
-            // Show the farm stage
-            farmStage.show();
-            Game.roomStage.close();
-            Game.setRoomStage(farmStage);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(roomFXM));
+            Parent parent = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            roomStage.close();
+            stage.show();
+            setRoomStage(stage);
+            roomStack.push(stage);
         }catch (Exception e){
             PrintingUtilities.printOnScreen("Error with switching views");
             e.printStackTrace();
+        }
+    }
+    private void checkNavigation(){
+        // Check if there's a previous room on the stack
+        if (!roomStack.isEmpty()) {
+            Stage previousRoomStage = roomStack.pop();
+
+            // Close the current room's stage
+            Stage currentRoomStage = roomStage;
+            currentRoomStage.close();
+
+            // Show the previous room again
+            previousRoomStage.show();
         }
     }
 }

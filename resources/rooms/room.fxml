@@ -9,6 +9,6 @@
 
     <Label fx:id="roomName" text="Room Name" />
     <Label fx:id="descriptionLabel" text="Room Description" />
-    <Button text="Go to Another Room" onAction="#goAnotherRoom" />
+    <Button text="Go to Another Room" onAction="#init" />
 
 </VBox>

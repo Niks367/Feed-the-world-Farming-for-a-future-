@@ -7,7 +7,7 @@ import business.utils.PrintingUtilities;
 public class Context {
     public static FarmImplementation farmImplementation = new FarmImplementation();
     public static CityImplementation cityImplementation = new CityImplementation();
-    public static LakeImplementation LakeImplementation = new LakeImplementation();
+    public static LakeImplementation lakeImplementation = new LakeImplementation();
     public static FieldImplementation fieldImplementation = new FieldImplementation();
     public static PlayerImplementation playerImplementation = new PlayerImplementation();
     public static SeedImplementation seedImplementation = new SeedImplementation();
@@ -254,7 +254,7 @@ public class Context {
                         dayChecking();
                         farmImplementation.setIsInFarm(false);
                         cityImplementation.setIsInCity(false);
-                        LakeImplementation.visitlake();
+                        lakeImplementation.visitlake();
                     }
                     case "to_city" -> {
                         dayChecking();

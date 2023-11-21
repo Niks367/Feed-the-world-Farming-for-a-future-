@@ -19,10 +19,11 @@ public class Game extends Application {
     static Command fallback = new CommandUnknown();
     static Registry registry = new Registry(context, fallback);
     static Scanner scanner = new Scanner(System.in);
-    public static Stage roomStage;
-    public static void setRoomStage(Stage roomStage) {
-        Game.roomStage = roomStage;
-    }
+//    public static Stage roomStage;
+//    public static Stack<Stage> roomStack = new Stack<>();
+//    public static void setRoomStage(Stage roomStage) {
+//        Game.roomStage = roomStage;
+//    }
     private static void initRegistry() {
         Command cmdExit = new CommandExit();
         registry.register("quit", cmdExit);
@@ -61,10 +62,11 @@ public class Game extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/room.fxml"));
         Parent root = loader.load();
         RoomController roomController = loader.getController();
-        roomController.init("Entry", "This is the starting room");
+        roomController.setEntry("Entry", "This is the starting room");
+        roomController.setRoomStage(stage);
         stage.setTitle("Farmland");
         stage.setScene(new Scene(root,400,300));
         stage.show();
-        setRoomStage(stage);
+//        setRoomStage(stage);
     }
 }

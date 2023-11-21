@@ -14,4 +14,7 @@ public class PrintingUtilities {
             e.printStackTrace();
         }
     }
+    public static void printError(){
+        System.out.println("Something went wrong");
+    }
 }

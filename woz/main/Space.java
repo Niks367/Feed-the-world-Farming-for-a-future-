@@ -12,11 +12,7 @@ class Space extends Node {
     public void welcome() {
         PrintingUtilities.printOnScreen("You are now walking to " + name);
         for (int i = 5; i > 0; i--) {
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+            // Thread.sleep(200);
             System.out.print(".");
         }
         PrintingUtilities.printOnScreen("\nYou are now at " + name);
