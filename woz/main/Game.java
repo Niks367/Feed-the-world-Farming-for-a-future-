@@ -62,7 +62,7 @@ public class Game extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/room.fxml"));
         Parent root = loader.load();
         RoomController roomController = loader.getController();
-        roomController.setEntry("Entry", "This is the starting room");
+        roomController.setEntry("Entry", "");
         roomController.setRoomStage(stage);
         stage.setTitle("Farmland");
         stage.setScene(new Scene(root,400,300));

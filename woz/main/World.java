@@ -3,7 +3,7 @@ package main;
 class World {
     Space entry;
   World () {
-    Space entry    = new Space("Entry");
+    Space entry    = new Space("Lounge");
     Space farm = new Space("Farm");
     Space city     = new Space("DowntownCity");
     Space uni      = new Space("Uni");

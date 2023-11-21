@@ -93,7 +93,7 @@
         </Label>
             <Button layoutX="252.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToLakeFarm" text="Go back to Farm" />
             <Button layoutX="276.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToCity" text="Go to City" />
-            <TextArea fx:id="lakeText" layoutX="204.0" layoutY="65.0" prefHeight="200.0" prefWidth="200.0" />
+            <TextArea fx:id="lakeText" layoutX="204.0" wrapText="true" layoutY="65.0" prefHeight="200.0" prefWidth="200.0" />
       </children>
     </AnchorPane>
   </children>
