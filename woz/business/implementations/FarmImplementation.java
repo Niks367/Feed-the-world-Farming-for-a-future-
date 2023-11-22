@@ -154,14 +154,14 @@ public class FarmImplementation implements Farm {
 
     public void endWeek() {
         PrintingUtilities.printOnScreen("Ending Week ");
-        for (int i = 5; i > 0; i--) {
-            try {
-                Thread.sleep(400);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            PrintingUtilities.printOnScreen("* ");
-        }
+//        for (int i = 5; i > 0; i--) {
+//            try {
+//              //  Thread.sleep(400);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+//            PrintingUtilities.printOnScreen("* ");
+//        }
         PrintingUtilities.printOnScreen("\nHarvesting the corn on you fields amounts to: ");
         PrintingUtilities.printOnScreen(String.valueOf(calculateProfit()));
         PrintingUtilities.printOnScreen(" gold!");

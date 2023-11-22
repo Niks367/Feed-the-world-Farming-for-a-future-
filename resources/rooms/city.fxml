@@ -42,43 +42,44 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController" style="-fx-background-image: url('/rooms/City.png')">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="presentation.controllers.RoomController" style="-fx-background-image: url('/rooms/City.png')">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="New" />
-                        <MenuItem mnemonicParsing="false" text="Open…" />
-                        <Menu mnemonicParsing="false" text="Open Recent" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Save As…" />
-                        <MenuItem mnemonicParsing="false" text="Revert" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Preferences…" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Quit" />
+                        <MenuItem mnemonicParsing="false" text="New"/>
+                        <MenuItem mnemonicParsing="false" text="Open…"/>
+                        <Menu mnemonicParsing="false" text="Open Recent"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Close"/>
+                        <MenuItem mnemonicParsing="false" text="Save"/>
+                        <MenuItem mnemonicParsing="false" text="Save As…"/>
+                        <MenuItem mnemonicParsing="false" text="Revert"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Preferences…"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Quit"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Undo" />
-                        <MenuItem mnemonicParsing="false" text="Redo" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Cut" />
-                        <MenuItem mnemonicParsing="false" text="Copy" />
-                        <MenuItem mnemonicParsing="false" text="Paste" />
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Select All" />
-                        <MenuItem mnemonicParsing="false" text="Unselect All" />
+                        <MenuItem mnemonicParsing="false" text="Undo"/>
+                        <MenuItem mnemonicParsing="false" text="Redo"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Cut"/>
+                        <MenuItem mnemonicParsing="false" text="Copy"/>
+                        <MenuItem mnemonicParsing="false" text="Paste"/>
+                        <MenuItem mnemonicParsing="false" text="Delete"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" text="Select All"/>
+                        <MenuItem mnemonicParsing="false" text="Unselect All"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+                        <MenuItem mnemonicParsing="false" text="About MyHelloApp"/>
                     </items>
                 </Menu>
             </menus>
@@ -86,19 +87,21 @@
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
                 <ButtonBar layoutY="157.0" prefHeight="40.0" prefWidth="200.0">
-               <buttons>
-                      <Button mnemonicParsing="false" onAction="#goToUni" text="University" />
-               </buttons>
+                    <buttons>
+                        <Button mnemonicParsing="false" onAction="#goToUni" text="University"/>
+                    </buttons>
                 </ButtonBar>
-                <TextArea editable="false" layoutX="200.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" text="You are now in the city" />
-            <ButtonBar layoutX="187.0" layoutY="249.0" prefHeight="40.0" prefWidth="200.0" />
-                  <Button layoutX="264.0" layoutY="17.0" mnemonicParsing="false" onAction="#goToLake" text="Lake" />
-            <Button layoutX="261.0" layoutY="294.0" mnemonicParsing="false" onAction="#goToMadman" text="MadMan" />
-            <ButtonBar layoutX="409.0" layoutY="157.0" prefHeight="40.0" prefWidth="200.0">
-               <buttons>
-                  <Button mnemonicParsing="false" onAction="#goToShop" text="Shop" />
-               </buttons>
-            </ButtonBar>
+                <TextArea editable="false" layoutX="200.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0"
+                          text="You are now in the city"/>
+                <ButtonBar layoutX="187.0" layoutY="249.0" prefHeight="40.0" prefWidth="200.0"/>
+                <Button layoutX="264.0" layoutY="17.0" mnemonicParsing="false" onAction="#goToLakeFromCity"
+                        text="Lake"/>
+                <Button layoutX="261.0" layoutY="294.0" mnemonicParsing="false" onAction="#goToMadman" text="MadMan"/>
+                <ButtonBar layoutX="409.0" layoutY="157.0" prefHeight="40.0" prefWidth="200.0">
+                    <buttons>
+                        <Button mnemonicParsing="false" onAction="#goToShop" text="Shop"/>
+                    </buttons>
+                </ButtonBar>
             </children>
         </AnchorPane>
     </children>

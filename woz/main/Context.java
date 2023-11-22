@@ -27,6 +27,7 @@ public class Context {
     public void initPlayer() {
         playerImplementation.spawn();
     }
+
     public int projectLimit = 3;
     public double projectCost = 100;
 

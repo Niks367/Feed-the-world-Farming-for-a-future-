@@ -84,7 +84,7 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Button layoutX="54.0" layoutY="165.0" mnemonicParsing="false" onAction="#goToCity" text="Go to City" />
+                <Button layoutX="54.0" layoutY="165.0" mnemonicParsing="false" onAction="#goToCityFromShop" text="Go to City" />
                 <TextArea layoutX="204.0" layoutY="65.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
             </children>
         </AnchorPane>

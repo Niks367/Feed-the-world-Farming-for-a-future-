@@ -25,13 +25,13 @@ public class CityImplementation implements City {
     /* allProjectsList is a list of all projects that can be available during different phases of the game:
     It is hardcoded.
     For now the Dean uses this list.*/
-    private final ArrayList<String> allProjectsList = new ArrayList(Arrays.asList("SuperFarm (SF)", "PurificationPlant (PP)","BioFarm (BF)","Super Purification Plant(SuperPP)"));
+    private final ArrayList<String> allProjectsList = new ArrayList(Arrays.asList("SuperFarm (SF)", "PurificationPlant (PP)", "BioFarm (BF)", "Super Purification Plant(SuperPP)"));
 
     private void printAllProjectsList() {
         PrintingUtilities.printOnScreen(String.valueOf(allProjectsList));
     }
 
-    public ArrayList<String> availableProjectsList = new ArrayList(Arrays.asList("SuperFarm(SF)","PurificationPlant (PP)","BioFarm (BF)","Super Purification Plant(SuperPP)"));
+    public ArrayList<String> availableProjectsList = new ArrayList(Arrays.asList("SuperFarm(SF)", "PurificationPlant (PP)", "BioFarm (BF)", "Super Purification Plant(SuperPP)"));
     // availableProjectsList is  a list of the projects that player can currently support:
 //    private ArrayList<String> availableProjectsList;
 //
@@ -127,7 +127,7 @@ public class CityImplementation implements City {
         setIsInUni(true);
         PrintingUtilities.printOnScreen("Dean : 'Good to see you, we have some very promising projects, but we are in lack of sufficient funds'");
         PrintingUtilities.printOnScreen("Would you like to support any of our projects??");
-        System.out.printf("We currently have %d projects)", calculateAvailableProjects());
+        //System.out.printf("We currently have %d projects)", calculateAvailableProjects());
         printAllProjectsList();
         scanner.nextLine();
         PrintingUtilities.printOnScreen("To support with 100 gold type support plus SF or PP, if not well....just type 'go east' and you will be back in the city in a jiffy.");
