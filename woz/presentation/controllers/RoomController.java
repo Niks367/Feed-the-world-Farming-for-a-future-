@@ -6,11 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import main.Context;
 import main.Game;
+import main.commands.Command;
 
 import java.awt.*;
 import java.util.Objects;
@@ -24,6 +26,8 @@ public class RoomController {
     public static Stage roomStage;
 
     public static Stack<Stage> roomStack = new Stack<>();
+    @FXML
+    public Button playGameButton;
     @FXML
     private Label roomName;
     @FXML
@@ -143,5 +147,11 @@ public class RoomController {
     public void goToShop(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_shop");
         goAnotherRoom("/rooms/shop.fxml");
+    }
+    public void buyLand(ActionEvent actionEvent) {
+        Game.dispatchCommand("buy land");
+    }
+    public  void buyPhosphor(ActionEvent actionEvent) {
+        Game.dispatchCommand("buy phosphor");
     }
 }
