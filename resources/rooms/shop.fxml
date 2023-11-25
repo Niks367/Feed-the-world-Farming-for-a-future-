@@ -84,7 +84,7 @@
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Button layoutY="52.0" mnemonicParsing="false" onAction="#goToCityFromShop" text="Go to City" />
+                <Button fx:id="goToCityFromShopButton" layoutX="14.0" layoutY="102.0" mnemonicParsing="false" onAction="#goToCityFromShop" text="Go to City" />
                 <TextArea layoutX="103.0" layoutY="14.0" prefHeight="200.0" prefWidth="475.0" wrapText="true" />
                 <Button fx:id="buyLandButton" layoutX="103.0" layoutY="259.0" mnemonicParsing="false" onAction="#buyLand" text="Buy some land" />
 <!--                <Button layoutX="281.0" layoutY="259.0" mnemonicParsing="false" text="Button"/>-->

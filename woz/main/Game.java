@@ -40,9 +40,10 @@ public class Game extends Application {
     public static void main(String[] args) {
         PrintingUtilities.printOnScreen("Welcome to the farm!");
         initRegistry();
-        launch(args);
+
         context.getCurrent().welcome();
         context.initPlayer();
+        launch(args);
         while (!context.isDone()) {
             try {
                 System.out.print("> ");

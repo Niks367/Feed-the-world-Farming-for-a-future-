@@ -29,6 +29,12 @@ public class RoomController {
     @FXML
     public Button playGameButton;
     @FXML
+    public Button buyPhosphorButton;
+    @FXML
+    public Button buyLandButton;
+    @FXML
+    public Button goToCityFromShopButton;
+    @FXML
     private Label roomName;
     @FXML
     private Label descriptionLabel;
@@ -125,6 +131,10 @@ public class RoomController {
 
     public void goToCity(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_city");
+        goAnotherRoom("/rooms/city.fxml");
+    }
+    public void goToCityFromUni(ActionEvent actionEvent) {
+        Game.dispatchCommand("go east");
         goAnotherRoom("/rooms/city.fxml");
     }
 
