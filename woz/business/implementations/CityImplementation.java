@@ -136,68 +136,51 @@ public class CityImplementation implements City {
     public void visitShop() {
         setIsInShop(true);
         //PrintingUtilities.printOnScreen("isInShop is now: '" + isInShop + "' printed from visitShop() in cityImplementation after setting it true here.");
-        PrintingUtilities.printOnScreen("Boy in the shop: 'What can I do for you today??'");
-        PrintingUtilities.printOnScreen("Following items are available for purchase...");
-        PrintingUtilities.printOnScreen("Phosphor and Land.");
-        PrintingUtilities.printOnScreen("For Phosphor, just write buy phosphor and for Land, write buy land. You hit downtown by going west.");
+    }
+
+    private void quizTime() {
+        //System.out.printf("We currently have %d projects)", calculateAvailableProjects());
+        printAllProjectsList();
+        if (phoshporQuiz()) {
+            Context.playerImplementation.addMoney(100.0);
+            PrintingUtilities.printOnScreen("You just got $100");
+            Context.playerImplementation.playerBalance();
+            PrintingUtilities.printOnScreen("Yes! The correct answer was 1 Agricultural runoff");
+            PrintingUtilities.printOnScreen("Agricultural runoff, caused by excess fertilizer from farming, often leads to phosphorus pollution in water," +
+                    "causing algal blooms and ecosystem issues.");
+            PrintingUtilities.printOnScreen("Would you like to answer some more questions about the phoshphor problematic and earn some money?");
+            PrintingUtilities.printOnScreen("Press 1 if you would like to continue\nPress 2 if you dont want to continue the quiz");
+            int quizContinue = scanner.nextInt();
+            if (quizContinue == 1) {
+                var result = moreQuiz();
+                if (result) {
+                    PrintingUtilities.printOnScreen("The correct answer was indeed 1! Excess phosphorus can lead to algae overgrowth, and when the algae decompose, it depletes oxygen, harming aquatic life.");
+                    PrintingUtilities.printOnScreen("Excellent! You just answered all the questions correctly.");
+                    Context.playerImplementation.addMoney(100.0);
+                    PrintingUtilities.printOnScreen("You just got another $100 congratulations!");
+                    Context.playerImplementation.playerBalance();
+                    PrintingUtilities.printOnScreen("You have just answered all the questions well done!");
+                } else {
+                    PrintingUtilities.printOnScreen("Too bad! Wrong answer. No money for you");
+                }
+            }
+        } else {
+            PrintingUtilities.printOnScreen("You answer is incorrectly, would you like to try again?");
+            PrintingUtilities.printOnScreen("Press 1 if you would like to continue\nPress 2 if you dont want to continue");
+            int answerContinue = scanner.nextInt();
+            if (answerContinue == 1) {
+                PrintingUtilities.printOnScreen("Nice! Lets try again");
+            } else {
+                PrintingUtilities.printOnScreen("Okay have a nice day!");
+            }
+        }
     }
 
     @Override
     public void visitUni() {
         setIsInUni(true);
-        PrintingUtilities.printOnScreen("Dean : 'Good to see you, we have some very promising projects, but we are in lack of sufficient funds'");
-        PrintingUtilities.printOnScreen("Would you like to support any of our projects??");
-        //System.out.printf("We currently have %d projects)", calculateAvailableProjects());
-        printAllProjectsList();
-        scanner.nextLine();
-        PrintingUtilities.printOnScreen("To support with 100 gold type support plus SF or PP, if not well....just type 'go east' and you will be back in the city in a jiffy.");
-        PrintingUtilities.printOnScreen("Would you like to answer some questions about the phoshphor problematic and earn some money? \nYes or no?");
-        if (scanner.hasNext("yes") || scanner.hasNext("Yes")) {
-            scanner.nextLine();
-            // PrintingUtilities.printOnScreen("Press 1 if you would like to answer some questions\nPress 2 if you dont want to answer");
-            boolean answerQuestion = true;
-            // int answer = scanner.nextInt();
-            // if (answer == 1) {
-            while (answerQuestion) {
-                if (phoshporQuiz()) {
-                    Context.playerImplementation.addMoney(100.0);
-                    PrintingUtilities.printOnScreen("You just got $100");
-                    Context.playerImplementation.playerBalance();
-                    PrintingUtilities.printOnScreen("Yes! The correct answer was 1 Agricultural runoff");
-                    PrintingUtilities.printOnScreen("Agricultural runoff, caused by excess fertilizer from farming, often leads to phosphorus pollution in water," +
-                            "causing algal blooms and ecosystem issues.");
-                    PrintingUtilities.printOnScreen("Would you like to answer some more questions about the phoshphor problematic and earn some money?");
-                    PrintingUtilities.printOnScreen("Press 1 if you would like to continue\nPress 2 if you dont want to continue the quiz");
-                    int quizContinue = scanner.nextInt();
-                    if (quizContinue == 1) {
-                        var result = moreQuiz();
-                        if (result) {
-                            PrintingUtilities.printOnScreen("The correct answer was indeed 1! Excess phosphorus can lead to algae overgrowth, and when the algae decompose, it depletes oxygen, harming aquatic life.");
-                            PrintingUtilities.printOnScreen("Excellent! You just answered all the questions correctly.");
-                            Context.playerImplementation.addMoney(100.0);
-                            PrintingUtilities.printOnScreen("You just got another $100 congratulations!");
-                            Context.playerImplementation.playerBalance();
-                            PrintingUtilities.printOnScreen("You have just answered all the questions well done!");
-                        } else {
-                            PrintingUtilities.printOnScreen("Too bad! Wrong answer. No money for you");
-                        }
-                    }
-                    answerQuestion = false;
-                } else {
-                    PrintingUtilities.printOnScreen("You answer is incorrectly, would you like to try again?");
-                    PrintingUtilities.printOnScreen("Press 1 if you would like to continue\nPress 2 if you dont want to continue");
-                    int answerContinue = scanner.nextInt();
-                    if (answerContinue == 1) {
-                        PrintingUtilities.printOnScreen("Nice! Lets try again");
-                    } else {
-                        PrintingUtilities.printOnScreen("Okay have a nice day!");
-                        answerQuestion = false;
-                    }
-                }
-            }
-        } else {
-            PrintingUtilities.printOnScreen("That was unfortunate...");
-        }
+        //TODO implement the quiz with its own button.
+        // quizTime();
     }
     // }
 

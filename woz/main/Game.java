@@ -20,7 +20,8 @@ public class Game extends Application {
     static Command fallback = new CommandUnknown();
     static Registry registry = new Registry(context, fallback);
     static Scanner scanner = new Scanner(System.in);
-//    public static Stage roomStage;
+
+    //    public static Stage roomStage;
 //    public static Stack<Stage> roomStack = new Stack<>();
 //    public static void setRoomStage(Stage roomStage) {
 //        Game.roomStage = roomStage;
@@ -40,7 +41,6 @@ public class Game extends Application {
     public static void main(String[] args) {
         PrintingUtilities.printOnScreen("Welcome to the farm!");
         initRegistry();
-
         context.getCurrent().welcome();
         context.initPlayer();
         launch(args);
@@ -56,9 +56,11 @@ public class Game extends Application {
         }
         PrintingUtilities.printOnScreen("Game Over 😥");
     }
-    public static void dispatchCommand(String command){
+
+    public static void dispatchCommand(String command) {
         registry.dispatch(command);
     }
+
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/room.fxml"));
@@ -67,7 +69,7 @@ public class Game extends Application {
         roomController.setEntry("Entry", "");
         roomController.setRoomStage(stage);
         stage.setTitle("Farmland");
-        stage.setScene(new Scene(root,400,300));
+        stage.setScene(new Scene(root, 400, 300));
         stage.show();
 //        setRoomStage(stage);
     }

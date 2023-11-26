@@ -199,7 +199,7 @@ public class Context {
                         playerImplementation.useMoney(farmImplementation.land * farmImplementation.phosphorPrice);
                         PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
                         //farmImplementation.phosphor += 1;
-                        farmImplementation.scalePhosphor -= farmImplementation.land * farmImplementation.phosphorConsumationSpeed;
+                        farmImplementation.scalePhosphor -= (int) (farmImplementation.land * farmImplementation.phosphorConsumationSpeed);
                         farmImplementation.setIsPhosphorized(true);
                         // Phosphor_Scale decrease by one for each piece of land times extra speed if SF is owned.
                     } else {

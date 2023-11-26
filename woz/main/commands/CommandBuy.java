@@ -13,6 +13,7 @@ public class CommandBuy extends BaseCommand implements Command {
 
     @Override
     public void execute(Context context, String command, String[] parameters) {
+        context.initInterfaces();
         if (guardEq(parameters, 1)) {
             PrintingUtilities.printOnScreen("I don't seem to know where that is 🤔");
             return;

@@ -24,8 +24,14 @@ public class RoomController {
     @FXML
     public static TextArea lakeText;
     public static Stage roomStage;
+    @FXML
+    public static TextArea quiz;
+    @FXML
+    public static TextArea uniText;
 
     public static Stack<Stage> roomStack = new Stack<>();
+    @FXML
+    public static TextArea shopText;
     @FXML
     public Button playGameButton;
     @FXML
@@ -44,14 +50,17 @@ public class RoomController {
         Game.dispatchCommand("go to_farm");
         goAnotherRoom("/rooms/farm.fxml");
     }
-    public void setEntry(String room, String description){
+
+    public void setEntry(String room, String description) {
         roomName.setText(room);
         descriptionLabel.setText(description);
     }
+
     public void setRoomStage(Stage roomStage) {
         RoomController.roomStage = roomStage;
     }
-    public void setLakeText(String text){
+
+    public void setLakeText(String text) {
         lakeText.setText(text);
     }
 
@@ -67,7 +76,7 @@ public class RoomController {
     private void goToLakeFromCity() {
         Game.dispatchCommand("go city_to_lake");
         goAnotherRoom("/rooms/lake.fxml");
-        lakeText = (TextArea)roomStage.getScene().lookup("#lakeText");
+        lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
         setLakeText(Context.lakeImplementation.visitlake());
     }
 
@@ -82,15 +91,16 @@ public class RoomController {
         Game.dispatchCommand("go fields_to_farm");
         goAnotherRoom("/rooms/farm.fxml");
     }
+
     @FXML
-    private void goToLakeFarm(ActionEvent actionEvent){
+    private void goToLakeFarm(ActionEvent actionEvent) {
         Game.dispatchCommand("go lake_to_farm");
         goAnotherRoom("/rooms/farm.fxml");
     }
 
 
     @FXML
-    private void goToField(){
+    private void goToField() {
         Game.dispatchCommand("go to_fields");
         goAnotherRoom("/rooms/field.fxml");
 
@@ -110,12 +120,13 @@ public class RoomController {
             stage.show();
             setRoomStage(stage);
             roomStack.push(stage);
-        }catch (Exception e){
+        } catch (Exception e) {
             PrintingUtilities.printOnScreen("Error with switching views");
             e.printStackTrace();
         }
     }
-    private void checkNavigation(){
+
+    private void checkNavigation() {
         // Check if there's a previous room on the stack
         if (!roomStack.isEmpty()) {
             Stage previousRoomStage = roomStack.pop();
@@ -133,6 +144,7 @@ public class RoomController {
         Game.dispatchCommand("go to_city");
         goAnotherRoom("/rooms/city.fxml");
     }
+
     public void goToCityFromUni(ActionEvent actionEvent) {
         Game.dispatchCommand("go east");
         goAnotherRoom("/rooms/city.fxml");
@@ -149,19 +161,46 @@ public class RoomController {
         goAnotherRoom("/rooms/madman.fxml");
     }
 
+    @FXML
+    private void supportProjectPP() {
+        //TODO implement supporting uni.
+        Game.dispatchCommand("support pp");
+    }
+
+    @FXML
+    private void supportProjectSF() {
+        //TODO implement supporting uni.
+        Game.dispatchCommand("support sf");
+    }
+
+    @FXML
+    private void quizStart() {
+        //TODO implement the quiz
+    }
+
     public void goToUni(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_uni");
         goAnotherRoom("/rooms/uni.fxml");
+        quiz = (TextArea) roomStage.getScene().lookup("#quiz");
+        quiz.setText("Would you like to answer some questions about the phoshphor problematic and earn some money?");
+        uniText = (TextArea) roomStage.getScene().lookup("#uniText");
+        uniText.setText("Dean : 'Good to see you, we have some very promising projects, but we are in lack of sufficient funds, would you like to support any of our projects? Price 100 gold");
     }
 
     public void goToShop(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_shop");
         goAnotherRoom("/rooms/shop.fxml");
+        shopText = (TextArea) roomStage.getScene().lookup("#shopText");
+        shopText.setText("Boy in the shop: 'What can I do for you today? " +
+                "Following items are available for purchase..." +
+                "Phosphor and Land.");
     }
+
     public void buyLand(ActionEvent actionEvent) {
         Game.dispatchCommand("buy land");
     }
-    public  void buyPhosphor(ActionEvent actionEvent) {
+
+    public void buyPhosphor(ActionEvent actionEvent) {
         Game.dispatchCommand("buy phosphor");
     }
 }
