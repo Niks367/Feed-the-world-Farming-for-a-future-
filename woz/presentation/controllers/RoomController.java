@@ -76,11 +76,9 @@ public class RoomController {
     public void setMoney(String text) {
         goldLabel.setText(text);
     }
-
     public void getMoney() {
         goldLabel = (Label) roomStage.getScene().lookup("#goldLabel");
         setMoney(String.valueOf(Context.playerImplementation.money));
-
     }
     public void setPhosphor(String text) {
         phosphorLabel.setText(text);
@@ -205,12 +203,14 @@ public class RoomController {
     private void supportProjectPP() {
         //TODO implement supporting uni.
         Game.dispatchCommand("support pp");
+        setLabels();
     }
 
     @FXML
     private void supportProjectSF() {
         //TODO implement supporting uni.
         Game.dispatchCommand("support sf");
+        setLabels();
     }
 
     @FXML
