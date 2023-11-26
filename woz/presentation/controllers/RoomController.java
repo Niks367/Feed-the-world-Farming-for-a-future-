@@ -79,7 +79,7 @@ public class RoomController {
 
     @FXML
     private void goFieldToFarm(ActionEvent actionEvent) {
-        Game.dispatchCommand("go field_to_farm");
+        Game.dispatchCommand("go fields_to_farm");
         goAnotherRoom("/rooms/farm.fxml");
     }
     @FXML
@@ -91,9 +91,9 @@ public class RoomController {
 
     @FXML
     private void goToField(){
-        Game.dispatchCommand("go to_field");
+        Game.dispatchCommand("go to_fields");
         goAnotherRoom("/rooms/field.fxml");
-        //TODO needs fxml file
+
     }
 
     public void goAnotherRoom(String roomFXM) {

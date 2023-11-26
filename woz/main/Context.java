@@ -283,6 +283,9 @@ public class Context {
                         dayChecking();
                         cityImplementation.setIsInShop(false);
                     }
+                    case "north" -> {
+                        dayChecking();
+                    }
                     case "to_uni" -> {
                         dayChecking();
                         cityImplementation.setIsInUni(true);
