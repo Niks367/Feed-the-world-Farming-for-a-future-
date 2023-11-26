@@ -94,7 +94,7 @@
                 </Label>
                 <Button layoutX="275.0" layoutY="53.0" mnemonicParsing="false" onAction="#goToCityFromMadman" text="Go to City" />
                 <TextArea layoutX="210.0" layoutY="112.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-            <HBox fx:id="infoBox" stylesheets="/rooms/infoBarStyles.css" layoutX="3.0" layoutY="2.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0">
+            <HBox fx:id="infoBox" stylesheets="/rooms/infoBarMadmanStyles.css" layoutX="3.0" layoutY="2.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0">
                <children>
                   <Label fx:id="populationLabel" prefHeight="25.0" prefWidth="40.0" alignment="CENTER" />
                   <Label fx:id="populationText" prefHeight="25.0" prefWidth="90.0" text="Population: " />
