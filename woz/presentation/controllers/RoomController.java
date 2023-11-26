@@ -9,13 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import main.Context;
 import main.Game;
-import main.commands.Command;
 
-import java.awt.*;
-import java.util.Objects;
 import java.util.Stack;
 
 
@@ -40,6 +38,17 @@ public class RoomController {
     public Button buyLandButton;
     @FXML
     public Button goToCityFromShopButton;
+    public TextArea populationBox;
+    public Label goldLabel;
+    public TextArea goldBox;
+    public Label phosphorLabel;
+
+    public TextArea phosphorBox;
+    public HBox infoBox;
+    public Label phosphorText;
+    public Label populationText;
+    public Label goldText;
+    public Label populationLabel;
     @FXML
     private Label roomName;
     @FXML
@@ -64,12 +73,42 @@ public class RoomController {
         lakeText.setText(text);
     }
 
+    public void setMoney(String text) {
+        goldLabel.setText(text);
+    }
+
+    public void getMoney() {
+        goldLabel = (Label) roomStage.getScene().lookup("#goldLabel");
+        setMoney(String.valueOf(Context.playerImplementation.money));
+
+    }
+    public void setPhosphor(String text) {
+        phosphorLabel.setText(text);
+    }
+    public void getPhosphor() {
+        phosphorLabel = (Label) roomStage.getScene().lookup("#phosphorLabel");
+        setPhosphor(String.valueOf(Context.farmImplementation.scalePhosphor));
+    }
+    public void setPopulation(String text) {
+        populationLabel.setText(text);
+    }
+    public void getPopulation() {
+        populationLabel = (Label) roomStage.getScene().lookup("#populationLabel");
+        setPopulation(String.valueOf(Context.cityImplementation.getPopulation()));
+    }
+
     @FXML
     private void goToLake(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_lake");
         goAnotherRoom("/rooms/lake.fxml");
         lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
         setLakeText(Context.lakeImplementation.visitlake());
+    }
+
+    public void setLabels() {
+        getMoney();
+        getPhosphor();
+        getPopulation();
     }
 
     @FXML
@@ -120,6 +159,7 @@ public class RoomController {
             stage.show();
             setRoomStage(stage);
             roomStack.push(stage);
+            setLabels();
         } catch (Exception e) {
             PrintingUtilities.printOnScreen("Error with switching views");
             e.printStackTrace();
@@ -198,9 +238,11 @@ public class RoomController {
 
     public void buyLand(ActionEvent actionEvent) {
         Game.dispatchCommand("buy land");
+        setLabels();
     }
 
     public void buyPhosphor(ActionEvent actionEvent) {
         Game.dispatchCommand("buy phosphor");
+        setLabels();
     }
 }

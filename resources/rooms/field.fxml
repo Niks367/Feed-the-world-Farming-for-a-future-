@@ -85,6 +85,16 @@
                           text="You are now at the farm"/>
                 <Button layoutX="433.0" layoutY="139.0" mnemonicParsing="false" onAction="#goFieldToFarm"
                         text="Go back to Farm"/>
+                <HBox fx:id="infoBox" stylesheets="/rooms/infoBarStyles.css" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0">
+                    <children>
+                        <Label fx:id="populationLabel" prefHeight="25.0" prefWidth="40.0" alignment="CENTER"/>
+                        <Label fx:id="populationText" prefHeight="25.0" prefWidth="90.0" text="Population: " />
+                        <Label fx:id="phosphorLabel" prefHeight="25.0" prefWidth="40.0" alignment="CENTER"/>
+                        <Label fx:id="phosphorText" prefHeight="25.0" prefWidth="90.0" text="Phosphor: " />
+                        <Label fx:id="goldLabel" prefHeight="25.0" prefWidth="35.0" alignment="CENTER" />
+                        <Label fx:id="goldText" prefHeight="25.0" prefWidth="60.0" text="Gold: " />
+                    </children>
+                </HBox>
             </children>
         </AnchorPane>
     </children>

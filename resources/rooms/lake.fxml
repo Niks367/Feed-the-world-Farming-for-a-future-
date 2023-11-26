@@ -40,66 +40,74 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/Lake.png')"
-      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="presentation.controllers.RoomController">
+<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/Lake.png')" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="New"/>
-                        <MenuItem mnemonicParsing="false" text="Open…"/>
-                        <Menu mnemonicParsing="false" text="Open Recent"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Close"/>
-                        <MenuItem mnemonicParsing="false" text="Save"/>
-                        <MenuItem mnemonicParsing="false" text="Save As…"/>
-                        <MenuItem mnemonicParsing="false" text="Revert"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Preferences…"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Quit"/>
+                        <MenuItem mnemonicParsing="false" text="New" />
+                        <MenuItem mnemonicParsing="false" text="Open…" />
+                        <Menu mnemonicParsing="false" text="Open Recent" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save As…" />
+                        <MenuItem mnemonicParsing="false" text="Revert" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Preferences…" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Quit" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Undo"/>
-                        <MenuItem mnemonicParsing="false" text="Redo"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Cut"/>
-                        <MenuItem mnemonicParsing="false" text="Copy"/>
-                        <MenuItem mnemonicParsing="false" text="Paste"/>
-                        <MenuItem mnemonicParsing="false" text="Delete"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Select All"/>
-                        <MenuItem mnemonicParsing="false" text="Unselect All"/>
+                        <MenuItem mnemonicParsing="false" text="Undo" />
+                        <MenuItem mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Cut" />
+                        <MenuItem mnemonicParsing="false" text="Copy" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Select All" />
+                        <MenuItem mnemonicParsing="false" text="Unselect All" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About MyHelloApp"/>
+                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="" textAlignment="CENTER"
-                       textFill="#9f9f9f" wrapText="false">
+
+                <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
                     <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                     </font>
                 </Label>
-                <Button layoutX="252.0" layoutY="20.0" mnemonicParsing="false" onAction="#goToLakeFarm"
-                        text="Go back to Farm"/>
-                <Button layoutX="276.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToCity" text="Go to City"/>
-                <TextArea fx:id="lakeText" layoutX="204.0" wrapText="true" layoutY="65.0" prefHeight="200.0"
-                          prefWidth="200.0"/>
+                <Button layoutX="252.0" layoutY="40.0" mnemonicParsing="false" onAction="#goToLakeFarm" text="Go back to Farm" />
+                <Button layoutX="269.0" layoutY="265.0" mnemonicParsing="false" onAction="#goToCity" text="Go to City" />
+                <TextArea fx:id="lakeText" layoutX="204.0" layoutY="65.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
+            <HBox fx:id="infoBox" stylesheets="/rooms/infoBarStyles.css" layoutY="2.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0">
+               <children>
+                  <Label fx:id="populationLabel" prefHeight="25.0" prefWidth="40.0" alignment="CENTER"/>
+                  <Label fx:id="populationText" prefHeight="25.0" prefWidth="90.0" text="Population: " />
+                  <Label fx:id="phosphorLabel" prefHeight="25.0" prefWidth="40.0" alignment="CENTER" />
+                  <Label fx:id="phosphorText" prefHeight="25.0" prefWidth="90.0" text="Phosphor: " />
+                  <Label fx:id="goldLabel" prefHeight="25.0" prefWidth="35.0" alignment="CENTER" />
+                  <Label fx:id="goldText" prefHeight="25.0" prefWidth="60.0" text="Gold: " />
+               </children>
+            </HBox>
             </children>
         </AnchorPane>
+
     </children>
 </VBox>
