@@ -16,8 +16,12 @@ import main.Game;
 
 import java.util.Stack;
 
+import static main.Context.cityImplementation;
+
 
 public class RoomController {
+    @FXML
+    public static TextArea cityText;
     @FXML
     public static TextArea madmanText;
     @FXML
@@ -58,7 +62,7 @@ public class RoomController {
     @FXML
     public void init(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_farm");
-        goAnotherRoom("/rooms/farm.fxml");
+        goAnotherRoom("/rooms/fxml/farm.fxml");
     }
 
     public void setEntry(String room, String description) {
@@ -104,7 +108,7 @@ public class RoomController {
     @FXML
     private void goToLake(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_lake");
-        goAnotherRoom("/rooms/lake.fxml");
+        goAnotherRoom("/rooms/fxml/lake.fxml");
         lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
         setLakeText(Context.lakeImplementation.visitlake());
     }
@@ -118,7 +122,7 @@ public class RoomController {
     @FXML
     private void goToLakeFromCity() {
         Game.dispatchCommand("go city_to_lake");
-        goAnotherRoom("/rooms/lake.fxml");
+        goAnotherRoom("/rooms/fxml/lake.fxml");
         lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
         setLakeText(Context.lakeImplementation.visitlake());
     }
@@ -126,26 +130,34 @@ public class RoomController {
     @FXML
     private void goToCityFromShop() {
         Game.dispatchCommand("go west");
-        goAnotherRoom("/rooms/city.fxml");
+        goAnotherRoom("/rooms/fxml/city.fxml");
+        cityTextUpdate();
     }
-
+    private void cityTextUpdate(){
+        cityText = (TextArea) roomStage.getScene().lookup("#cityText");
+        if (cityImplementation.isHunger) {
+            cityText.setText("The people in the city are starving! Hurry up and give them something to eat.");
+        } else {
+            cityText.setText("The people in the city are happy and not very hungry.");
+        }
+    }
     @FXML
     private void goFieldToFarm(ActionEvent actionEvent) {
         Game.dispatchCommand("go fields_to_farm");
-        goAnotherRoom("/rooms/farm.fxml");
+        goAnotherRoom("/rooms/fxml/farm.fxml");
     }
 
     @FXML
     private void goToLakeFarm(ActionEvent actionEvent) {
         Game.dispatchCommand("go lake_to_farm");
-        goAnotherRoom("/rooms/farm.fxml");
+        goAnotherRoom("/rooms/fxml/farm.fxml");
     }
 
 
     @FXML
     private void goToField() {
         Game.dispatchCommand("go to_fields");
-        goAnotherRoom("/rooms/field.fxml");
+        goAnotherRoom("/rooms/fxml/field.fxml");
 
     }
 
@@ -186,23 +198,26 @@ public class RoomController {
 
     public void goToCity(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_city");
-        goAnotherRoom("/rooms/city.fxml");
+        goAnotherRoom("/rooms/fxml/city.fxml");
+        cityTextUpdate();
     }
 
     public void goToCityFromUni(ActionEvent actionEvent) {
         Game.dispatchCommand("go east");
-        goAnotherRoom("/rooms/city.fxml");
+        goAnotherRoom("/rooms/fxml/city.fxml");
+        cityTextUpdate();
     }
 
     @FXML
     private void goToCityFromMadman() {
         Game.dispatchCommand("go north");
-        goAnotherRoom("/rooms/city.fxml");
+        goAnotherRoom("/rooms/fxml/city.fxml");
+        cityTextUpdate();
     }
 
     public void goToMadman(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_madman");
-        goAnotherRoom("/rooms/madman.fxml");
+        goAnotherRoom("/rooms/fxml/madman.fxml");
         madmanText = (TextArea) roomStage.getScene().lookup("#madmanText");
         madmanText.setText(Context.cityImplementation.visitMadman());
     }
@@ -228,7 +243,7 @@ public class RoomController {
 
     public void goToUni(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_uni");
-        goAnotherRoom("/rooms/uni.fxml");
+        goAnotherRoom("/rooms/fxml/uni.fxml");
         quiz = (TextArea) roomStage.getScene().lookup("#quiz");
         quiz.setText("Would you like to answer some questions about the phoshphor problematic and earn some money?");
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
@@ -237,7 +252,7 @@ public class RoomController {
 
     public void goToShop(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_shop");
-        goAnotherRoom("/rooms/shop.fxml");
+        goAnotherRoom("/rooms/fxml/shop.fxml");
         shopText = (TextArea) roomStage.getScene().lookup("#shopText");
         shopText.setText("Boy in the shop: 'What can I do for you today? " +
                 "Following items are available for purchase..." +

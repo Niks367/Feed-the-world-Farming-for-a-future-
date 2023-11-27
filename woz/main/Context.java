@@ -262,11 +262,6 @@ public class Context {
                         cityImplementation.setIsInCity(true);
                         PrintingUtilities.printOnScreen("You are entering the Capitol City...");
                         PrintingUtilities.printOnScreen(" population is : " + cityImplementation.getPopulation());
-                        if (cityImplementation.isHunger) {
-                            PrintingUtilities.printOnScreen("The people in the city are starving! Hurry up and give them something to eat.");
-                        } else {
-                            PrintingUtilities.printOnScreen("The people in the city are happy and not very hungry.");
-                        }
                     }
                     case "to_madman" -> {
                         dayChecking();

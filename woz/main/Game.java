@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import main.commands.*;
 import presentation.controllers.RoomController;
 
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Game extends Application {
@@ -63,7 +62,7 @@ public class Game extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/room.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/fxml/room.fxml"));
         Parent root = loader.load();
         RoomController roomController = loader.getController();
         roomController.setEntry("Entry", "");
