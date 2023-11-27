@@ -18,7 +18,8 @@ import java.util.Stack;
 
 
 public class RoomController {
-
+    @FXML
+    public static TextArea madmanText;
     @FXML
     public static TextArea lakeText;
     public static Stage roomStage;
@@ -76,20 +77,25 @@ public class RoomController {
     public void setMoney(String text) {
         goldLabel.setText(text);
     }
+
     public void getMoney() {
         goldLabel = (Label) roomStage.getScene().lookup("#goldLabel");
         setMoney(String.valueOf(Context.playerImplementation.money));
     }
+
     public void setPhosphor(String text) {
         phosphorLabel.setText(text);
     }
+
     public void getPhosphor() {
         phosphorLabel = (Label) roomStage.getScene().lookup("#phosphorLabel");
         setPhosphor(String.valueOf(Context.farmImplementation.scalePhosphor));
     }
+
     public void setPopulation(String text) {
         populationLabel.setText(text);
     }
+
     public void getPopulation() {
         populationLabel = (Label) roomStage.getScene().lookup("#populationLabel");
         setPopulation(String.valueOf(Context.cityImplementation.getPopulation()));
@@ -197,6 +203,8 @@ public class RoomController {
     public void goToMadman(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_madman");
         goAnotherRoom("/rooms/madman.fxml");
+        madmanText = (TextArea) roomStage.getScene().lookup("#madmanText");
+        madmanText.setText(Context.cityImplementation.visitMadman());
     }
 
     @FXML
