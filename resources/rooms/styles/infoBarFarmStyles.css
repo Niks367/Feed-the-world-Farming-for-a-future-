@@ -1,0 +1,17 @@
+#infoBox {
+    -fx-: 222222;
+}
+.label {
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+    -fx-font-weight: bold;
+    -fx-font-family: Playbill;
+    -fx-text-fill: #ffe4c4;
+    -fx-background-color: #222222;
+
+}
+#seasonsProgress {
+    -fx-progress-color:  #ffe4c4;
+    -fx-background-color: #222222;
+}
+

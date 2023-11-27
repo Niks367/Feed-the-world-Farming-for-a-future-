@@ -103,7 +103,7 @@ public class FarmImplementation implements Farm {
         //TODO All the events that happen after the day need to be implemented, eks: seed growth or events, university research projects.
         // This is so that the endDay command doesnt just contiously end the day, but we actually reset it, so we can type it again the next day.
         //field.sowSeed(1, phosphor, land);
-        if ((dayCount + 1) % 3 == 0) // making a week 3 days
+        if ((dayCount + 1) % 4 == 0) // making a week 4 days
             endWeek();
         dayProgress = 0;
         dayCount += 1;

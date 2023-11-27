@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -17,6 +18,7 @@ import main.Game;
 import java.util.Stack;
 
 import static main.Context.cityImplementation;
+import static main.Context.farmImplementation;
 
 
 public class RoomController {
@@ -54,6 +56,10 @@ public class RoomController {
     public Label populationText;
     public Label goldText;
     public Label populationLabel;
+    public Label knowledgeLabel;
+    public Label seasonsLabel;
+    public ProgressBar seasonsProgress;
+    public Label knowledgeText;
     @FXML
     private Label roomName;
     @FXML
@@ -63,6 +69,7 @@ public class RoomController {
     public void init(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_farm");
         goAnotherRoom("/rooms/fxml/farm.fxml");
+        dayProgress();
     }
 
     public void setEntry(String room, String description) {
@@ -133,6 +140,24 @@ public class RoomController {
         goAnotherRoom("/rooms/fxml/city.fxml");
         cityTextUpdate();
     }
+    private void dayProgress() {
+        seasonsLabel = (Label) roomStage.getScene().lookup("#seasonsLabel");
+        if(farmImplementation.dayCount%4==0) {
+            seasonsLabel.setText("Winter");
+        }
+        else if(farmImplementation.dayCount%4==1) {
+            seasonsLabel.setText("Spring");
+        }
+        else if(farmImplementation.dayCount%4==2) {
+            seasonsLabel.setText("Summer");
+        }
+        else if(farmImplementation.dayCount%4==3) {
+            seasonsLabel.setText("Autumn");
+        }
+        else {
+            seasonsLabel.setText("Out of season");
+        }
+    }
     private void cityTextUpdate(){
         cityText = (TextArea) roomStage.getScene().lookup("#cityText");
         if (cityImplementation.isHunger) {
@@ -176,6 +201,7 @@ public class RoomController {
             setRoomStage(stage);
             roomStack.push(stage);
             setLabels();
+            dayProgress();
         } catch (Exception e) {
             PrintingUtilities.printOnScreen("Error with switching views");
             e.printStackTrace();

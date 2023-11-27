@@ -44,6 +44,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.ProgressBar?>
 <VBox prefHeight="400.0" prefWidth="640.0"
       style="-fx-background-image: url('/rooms/images/Uni.png');-fx-background-size:
       cover;-fx-background-repeat: no-repeat;-fx-background-position: center;" xmlns="http://javafx.com/javafx/21"
@@ -107,16 +110,39 @@
                         text="Support project Purification plant"/>
                 <Button layoutX="537.0" layoutY="266.0" mnemonicParsing="false" onAction="#supportProjectSF"
                         text="Support project Supper farm"/>
-                <HBox fx:id="infoBox" stylesheets="/rooms/styles/infoBarUniStyles.css" layoutX="8.0" layoutY="2.0"
-                      nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0">
-                    <children>
-                        <Label fx:id="populationLabel" prefHeight="25.0" prefWidth="40.0" alignment="CENTER"/>
-                        <Label fx:id="populationText" prefHeight="25.0" prefWidth="90.0" text="Population: "/>
-                        <Label fx:id="phosphorLabel" prefHeight="25.0" prefWidth="40.0" alignment="CENTER"/>
-                        <Label fx:id="phosphorText" prefHeight="25.0" prefWidth="90.0" text="Phosphor: "/>
-                        <Label fx:id="goldLabel" prefHeight="25.0" prefWidth="35.0" alignment="CENTER"/>
-                        <Label fx:id="goldText" prefHeight="25.0" prefWidth="60.0" text="Gold: "/>
-                    </children>
+                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0"
+                      stylesheets="/rooms/styles/infoBarFarmStyles.css">
+                    <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
+                    <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="65.0"
+                           text="Population: "/>
+                    <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../images/PopIcon.png"/>
+                    </ImageView>
+                    <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
+                    <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0"
+                           text="Phosphor: "/>
+                    <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../images/PhosphorIcon.png"/>
+                    </ImageView>
+                    <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="35.0"/>
+                    <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Gold: "/>
+                    <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../images/GoldIcon.png"/>
+                    </ImageView>
+                    <ProgressBar fx:id="seasonsProgress" prefHeight="25.0" prefWidth="50.0" progress="0.5"/>
+                    <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season"/>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/SeasonsIcon.png"/>
+                    </ImageView>
+                    <Label fx:id="knowledgeLabel" prefHeight="25.0" alignment="CENTER" prefWidth="30.0" text="0"/>
+                    <Label fx:id="knowledgeText" prefHeight="25.0" alignment="CENTER" prefWidth="60.0"
+                           text="Knowledge"/>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/KnowledgeIcon.png"/>
+                    </ImageView>
                 </HBox>
             </children>
         </AnchorPane>
