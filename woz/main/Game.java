@@ -4,9 +4,16 @@ package main;
 
 import business.utils.PrintingUtilities;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import main.commands.*;
 import presentation.controllers.RoomController;
@@ -62,6 +69,11 @@ public class Game extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        Platform.setImplicitExit(true);
+        stage.setOnCloseRequest((ae) -> {
+            Platform.exit();
+            System.exit(0);
+        });
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/fxml/room.fxml"));
         Parent root = loader.load();
         RoomController roomController = loader.getController();

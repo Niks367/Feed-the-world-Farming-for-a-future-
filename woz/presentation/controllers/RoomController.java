@@ -1,6 +1,7 @@
 package presentation.controllers;
 
 import business.utils.PrintingUtilities;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 import main.Context;
 import main.Game;
 
+import java.util.Objects;
 import java.util.Stack;
 
 import static main.Context.cityImplementation;
@@ -210,6 +212,11 @@ public class RoomController {
 //            parent.getStylesheets().add(css);
             roomStage.close();
             stage.show();
+            Platform.setImplicitExit(true);
+            stage.setOnCloseRequest((ae) -> {
+                Platform.exit();
+                System.exit(0);
+            });
             setRoomStage(stage);
             roomStack.push(stage);
             setLabels();
@@ -277,7 +284,7 @@ public class RoomController {
     private void initialize() {
         if(cityImplementation.getIsInUni()) {
         // Initialize the MediaPlayer with your video file
-        String uri = getClass().getResource("/rooms/media/Question1.mp4").toExternalForm();
+        String uri = Objects.requireNonNull(getClass().getResource("/rooms/media/Question1.mp4")).toExternalForm();
         Media media = new Media(uri);
         mediaPlayer = new MediaPlayer(media);
         quizMediaView.setMediaPlayer(mediaPlayer);}
