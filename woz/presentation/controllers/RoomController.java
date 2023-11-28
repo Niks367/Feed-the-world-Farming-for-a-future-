@@ -11,6 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import main.Context;
 import main.Game;
@@ -45,12 +49,20 @@ public class RoomController {
     public Button buyLandButton;
     @FXML
     public Button goToCityFromShopButton;
+    @FXML
+    public Button quizButton;
+    @FXML
+    public StackPane quizStackPane;
+    @FXML
+    public MediaView quizMediaView;
+    private MediaPlayer mediaPlayer;
+
     public TextArea populationBox;
     public Label goldLabel;
-    public TextArea goldBox;
+
     public Label phosphorLabel;
 
-    public TextArea phosphorBox;
+
     public HBox infoBox;
     public Label phosphorText;
     public Label populationText;
@@ -261,9 +273,21 @@ public class RoomController {
         Game.dispatchCommand("support sf");
         setLabels();
     }
+    @FXML
+    private void initialize() {
+        if(cityImplementation.getIsInUni()) {
+        // Initialize the MediaPlayer with your video file
+        String uri = getClass().getResource("/rooms/media/Question1.mp4").toExternalForm();
+        Media media = new Media(uri);
+        mediaPlayer = new MediaPlayer(media);
+        quizMediaView.setMediaPlayer(mediaPlayer);}
+    }
+
+
 
     @FXML
     private void quizStart() {
+        mediaPlayer.play();
         //TODO implement the quiz
     }
 
