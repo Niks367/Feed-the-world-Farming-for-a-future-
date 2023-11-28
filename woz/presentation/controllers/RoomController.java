@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import main.Context;
 import main.Game;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Stack;
 
@@ -57,6 +58,7 @@ public class RoomController {
     public StackPane quizStackPane;
     @FXML
     public MediaView quizMediaView;
+
     private MediaPlayer mediaPlayer;
 
     public TextArea populationBox;
@@ -78,6 +80,11 @@ public class RoomController {
     private Label roomName;
     @FXML
     private Label descriptionLabel;
+    public int quizCount = 0;
+
+    public void resetQuizCount() {
+        quizCount = 0;
+    }
 
     @FXML
     public void init(ActionEvent actionEvent) {
@@ -154,25 +161,28 @@ public class RoomController {
         goAnotherRoom("/rooms/fxml/city.fxml");
         cityTextUpdate();
     }
+
     private void dayProgress() {
         seasonsLabel = (Label) roomStage.getScene().lookup("#seasonsLabel");
-        if(farmImplementation.dayCount%4==0) {
+        if (farmImplementation.dayCount % 4 == 0) {
             seasonsLabel.setText("Winter");
-        }
-        else if(farmImplementation.dayCount%4==1) {
+            resetQuizCount();
+            if(quizButton != null) {
+                quizButton.setDisable(false);
+            }
+
+        } else if (farmImplementation.dayCount % 4 == 1) {
             seasonsLabel.setText("Spring");
-        }
-        else if(farmImplementation.dayCount%4==2) {
+        } else if (farmImplementation.dayCount % 4 == 2) {
             seasonsLabel.setText("Summer");
-        }
-        else if(farmImplementation.dayCount%4==3) {
+        } else if (farmImplementation.dayCount % 4 == 3) {
             seasonsLabel.setText("Autumn");
-        }
-        else {
+        } else {
             seasonsLabel.setText("Out of season");
         }
     }
-    private void cityTextUpdate(){
+
+    private void cityTextUpdate() {
         cityText = (TextArea) roomStage.getScene().lookup("#cityText");
         if (cityImplementation.isHunger) {
             cityText.setText("The people in the city are starving! Hurry up and give them something to eat.");
@@ -180,6 +190,7 @@ public class RoomController {
             cityText.setText("The people in the city are happy and not very hungry.");
         }
     }
+
     @FXML
     private void goFieldToFarm(ActionEvent actionEvent) {
         Game.dispatchCommand("go fields_to_farm");
@@ -280,23 +291,40 @@ public class RoomController {
         Game.dispatchCommand("support sf");
         setLabels();
     }
+//    @FXML
+//    private void initialize() {
+//        if(cityImplementation.getIsInUni()) {
+//            // Initialize the MediaPlayer with your video file
+//            String uri = Objects.requireNonNull(getClass().getResource("/rooms/media/Question1.mp4")).toExternalForm();
+//            Media media = new Media(uri);
+//            mediaPlayer = new MediaPlayer(media);
+//            quizMediaView.setMediaPlayer(mediaPlayer);
+//
+//        }
+//
+//    }
+
+
     @FXML
-    private void initialize() {
-        if(cityImplementation.getIsInUni()) {
-        // Initialize the MediaPlayer with your video file
-        String uri = Objects.requireNonNull(getClass().getResource("/rooms/media/Question1.mp4")).toExternalForm();
-        Media media = new Media(uri);
-        mediaPlayer = new MediaPlayer(media);
-        quizMediaView.setMediaPlayer(mediaPlayer);}
+    private void quizStart() throws IOException {
+        if (quizCount < 3) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/rooms/fxml/mediaPlayer.fxml"));
+            Parent parent = loader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+            quizCount++;
+        }
+        else {
+            quiz = (TextArea) roomStage.getScene().lookup("#quiz");
+            quiz.setText("I can only give you 3 questions per season, but do come back next season!");
+            quizButton.setDisable(true);
+        }
+
+
     }
 
-
-
-    @FXML
-    private void quizStart() {
-        mediaPlayer.play();
-        //TODO implement the quiz
-    }
 
     public void goToUni(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_uni");

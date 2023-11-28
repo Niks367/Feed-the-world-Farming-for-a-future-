@@ -5,6 +5,7 @@ import business.interfaces.Field;
 import business.utils.MadManUtils;
 import business.utils.PrintingUtilities;
 import main.*;
+import presentation.controllers.RoomController;
 
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 100;
