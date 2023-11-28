@@ -27,9 +27,9 @@
                </children>
             </VBox>
          </bottom>
-         <top>
-            <MediaView fx:id="mediaMediaView" fitHeight="300.0" fitWidth="300.0" BorderPane.alignment="CENTER" />
-         </top>
+         <center>
+            <MediaView fx:id="mediaMediaView" fitHeight="600.0" fitWidth="600.0" BorderPane.alignment="CENTER" />
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>
