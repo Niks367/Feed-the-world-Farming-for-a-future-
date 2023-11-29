@@ -96,6 +96,7 @@ public class MediaController {
 
     @FXML
     private void handleAnswer(ActionEvent event) {
+        MediaPlayer player = mediaMediaView.getMediaPlayer();
         Button clickedButton = (Button) event.getSource();
         String answerText = clickedButton.getText();
         int answerIndex = 0;
@@ -115,6 +116,15 @@ public class MediaController {
             currentScore++;
             questions.remove(currentQuestion); // remove question from list
             replyLabel.setText("Correct!");
+            player.stop();
+            //TODO IF(QuizCounter < 3)
+            option1.setDisable(false);
+            option2.setDisable(false);
+            option3.setDisable(false);
+            option4.setDisable(false);
+            loadVideoQuestion(questions.get(0));
+
+
             // remove video
             // Correct answer
             // Increment score
@@ -166,6 +176,9 @@ public class MediaController {
     private void initialize() {
         questions.add(new VideoQuestions("/rooms/media/Question1.mp4",1));
         questions.add(new VideoQuestions("/rooms/media/Question2.mp4",2));
+        questions.add(new VideoQuestions("/rooms/media/Question3.mp4",1));
+        questions.add(new VideoQuestions("/rooms/media/Question4.mp4",3));
+        questions.add(new VideoQuestions("/rooms/media/Question5.mp4",1));
         //TODO add more videos
         loadNextQuestion();
 
