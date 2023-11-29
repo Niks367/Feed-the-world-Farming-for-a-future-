@@ -37,15 +37,15 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.image.Image?>
 <VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/City.png')" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
@@ -89,11 +89,7 @@
         </MenuBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <Button layoutX="131.0" layoutY="137.0" mnemonicParsing="false" onAction="#goToUni" text="University" />
-                <TextArea fx:id="cityText" editable="false" layoutX="200.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" wrapText="true" />
-            <Button layoutX="275.0" layoutY="249.0" mnemonicParsing="false" onAction="#goToMadman" text="MadMan" />
-                  <Button layoutX="267.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToLakeFromCity" text="Lake" />
-            <Button layoutX="400.0" layoutY="137.0" mnemonicParsing="false" onAction="#goToShop" text="Shop" />
+                <TextArea fx:id="cityText" editable="false" layoutX="220.0" layoutY="144.0" prefHeight="107.0" prefWidth="200.0" wrapText="true" />
                 <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarFarmStyles.css">
                     <children>
 
@@ -125,8 +121,8 @@
                                 <Image url="@../images/SeasonsIcon.png" />
                             </image>
                         </ImageView>
-                        <Label fx:id="knowledgeLabel" prefHeight="25.0" alignment="CENTER" prefWidth="30.0" text="0" />
-                        <Label fx:id="knowledgeText" prefHeight="25.0" alignment="CENTER" prefWidth="60.0" text="Knowledge" />
+                        <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0" />
+                        <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Knowledge" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/KnowledgeIcon.png" />
@@ -134,6 +130,14 @@
                         </ImageView>
                     </children>
                 </HBox>
+            <HBox alignment="TOP_CENTER" layoutY="347.0" prefHeight="22.0" prefWidth="643.0" spacing="120.0">
+               <children>
+                        <Button mnemonicParsing="false" onAction="#goToLakeFromCity" text="Lake" />
+                      <Button mnemonicParsing="false" onAction="#goToUni" text="University" />
+                  <Button mnemonicParsing="false" onAction="#goToMadman" text="MadMan" />
+                  <Button mnemonicParsing="false" onAction="#goToShop" text="Shop" />
+               </children>
+            </HBox>
             </children>
         </AnchorPane>
     </children>

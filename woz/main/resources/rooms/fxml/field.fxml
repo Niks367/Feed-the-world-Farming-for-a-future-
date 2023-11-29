@@ -32,94 +32,98 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
-<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/Fields.png'); -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-position: center;" xmlns="http://javafx.com/javafx/17.0.2-ea"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/Fields.png'); -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-position: center;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="New"/>
-                        <MenuItem mnemonicParsing="false" text="Open…"/>
-                        <Menu mnemonicParsing="false" text="Open Recent"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Close"/>
-                        <MenuItem mnemonicParsing="false" text="Save"/>
-                        <MenuItem mnemonicParsing="false" text="Save As…"/>
-                        <MenuItem mnemonicParsing="false" text="Revert"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Preferences…"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Quit"/>
+                        <MenuItem mnemonicParsing="false" text="New" />
+                        <MenuItem mnemonicParsing="false" text="Open…" />
+                        <Menu mnemonicParsing="false" text="Open Recent" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save As…" />
+                        <MenuItem mnemonicParsing="false" text="Revert" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Preferences…" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Quit" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Undo"/>
-                        <MenuItem mnemonicParsing="false" text="Redo"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Cut"/>
-                        <MenuItem mnemonicParsing="false" text="Copy"/>
-                        <MenuItem mnemonicParsing="false" text="Paste"/>
-                        <MenuItem mnemonicParsing="false" text="Delete"/>
-                        <SeparatorMenuItem mnemonicParsing="false"/>
-                        <MenuItem mnemonicParsing="false" text="Select All"/>
-                        <MenuItem mnemonicParsing="false" text="Unselect All"/>
+                        <MenuItem mnemonicParsing="false" text="Undo" />
+                        <MenuItem mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Cut" />
+                        <MenuItem mnemonicParsing="false" text="Copy" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Select All" />
+                        <MenuItem mnemonicParsing="false" text="Unselect All" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About MyHelloApp"/>
+                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
                     </items>
                 </Menu>
             </menus>
         </MenuBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-            <ButtonBar layoutY="157.0" prefHeight="40.0" prefWidth="200.0"/>
-            <ButtonBar layoutX="440.0" layoutY="157.0" prefHeight="40.0" prefWidth="200.0"/>
-            <TextArea editable="false" layoutX="200.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0"
-                      text="You are now at the farm"/>
-            <Button layoutX="433.0" layoutY="139.0" mnemonicParsing="false" onAction="#goFieldToFarm"
-                    text="Go back to Farm"/>
-            <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0"
-                  stylesheets="/rooms/styles/infoBarFarmStyles.css">
-                <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
-                <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="65.0"
-                       text="Population: "/>
-                <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true"
-                           preserveRatio="true">
-                    <Image url="@../images/PopIcon.png"/>
+            <ButtonBar layoutY="157.0" prefHeight="40.0" prefWidth="200.0" />
+            <ButtonBar layoutX="440.0" layoutY="157.0" prefHeight="40.0" prefWidth="200.0" />
+            <TextArea fx:id="fieldText" editable="false" layoutX="200.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" stylesheets="/rooms/styles/textAreaFieldStyles.css" wrapText="true" />
+            <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarFarmStyles.css">
+                <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0" />
+                <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="65.0" text="Population: " />
+                <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/PopIcon.png" />
                 </ImageView>
-                <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
-                <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0"
-                       text="Phosphor: "/>
-                <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true"
-                           preserveRatio="true">
-                    <Image url="@../images/PhosphorIcon.png"/>
+                <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0" />
+                <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0" text="Phosphor: " />
+                <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/PhosphorIcon.png" />
                 </ImageView>
-                <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="35.0"/>
-                <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Gold: "/>
-                <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true"
-                           preserveRatio="true">
-                    <Image url="@../images/GoldIcon.png"/>
+                <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" />
+                <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Gold: " />
+                <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/GoldIcon.png" />
                 </ImageView>
-                <ProgressBar fx:id="seasonsProgress" prefHeight="25.0" prefWidth="50.0" progress="0.5"/>
-                <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season"/>
+                <ProgressBar fx:id="seasonsProgress" prefHeight="25.0" prefWidth="50.0" progress="0.5" />
+                <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season" />
                 <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/SeasonsIcon.png"/>
+                    <Image url="@../images/SeasonsIcon.png" />
                 </ImageView>
-                <Label fx:id="knowledgeLabel" prefHeight="25.0" alignment="CENTER" prefWidth="30.0" text="0"/>
-                <Label fx:id="knowledgeText" prefHeight="25.0" alignment="CENTER" prefWidth="60.0"
-                       text="Knowledge"/>
+                <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0" />
+                <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Knowledge" />
                 <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/KnowledgeIcon.png"/>
+                    <Image url="@../images/KnowledgeIcon.png" />
                 </ImageView>
             </HBox>
         </AnchorPane>
+      <HBox alignment="TOP_CENTER" prefHeight="22.0" prefWidth="643.0" spacing="120.0">
+         <children>
+               <Button mnemonicParsing="false" onAction="#goFieldToFarm" text="Go back to Farm" />
+         </children>
+      </HBox>
     </children>
 </VBox>

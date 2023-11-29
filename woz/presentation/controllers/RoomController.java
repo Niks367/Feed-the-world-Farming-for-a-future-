@@ -24,8 +24,7 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Stack;
 
-import static main.Context.cityImplementation;
-import static main.Context.farmImplementation;
+import static main.Context.*;
 
 
 public class RoomController {
@@ -33,6 +32,8 @@ public class RoomController {
     public static TextArea cityText;
     @FXML
     public static TextArea madmanText;
+    @FXML
+    public static TextArea fieldText;
     @FXML
     public static TextArea lakeText;
     public static Stage roomStage;
@@ -109,7 +110,7 @@ public class RoomController {
 
     public void getMoney() {
         goldLabel = (Label) roomStage.getScene().lookup("#goldLabel");
-        setMoney(String.valueOf(Context.playerImplementation.money));
+        setMoney(String.valueOf(playerImplementation.money));
     }
 
     public void setPhosphor(String text) {
@@ -120,11 +121,16 @@ public class RoomController {
         phosphorLabel = (Label) roomStage.getScene().lookup("#phosphorLabel");
         setPhosphor(String.valueOf(Context.farmImplementation.scalePhosphor));
     }
-    public void setKnowledge(String text) { knowledgeLabel.setText(text);}
+
+    public void setKnowledge(String text) {
+        knowledgeLabel.setText(text);
+    }
+
     public void getKnowledge() {
         knowledgeLabel = (Label) roomStage.getScene().lookup("#knowledgeLabel");
         setKnowledge(String.valueOf(cityImplementation.knowledge));
     }
+
     public void setPopulation(String text) {
         populationLabel.setText(text);
     }
@@ -210,6 +216,8 @@ public class RoomController {
     private void goToField() {
         Game.dispatchCommand("go to_fields");
         goAnotherRoom("/rooms/fxml/field.fxml");
+        fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
+        fieldText.setText(Context.fieldImplementation.visitFields());
 
     }
 
@@ -349,11 +357,17 @@ public class RoomController {
 
     public void buyLand(ActionEvent actionEvent) {
         Game.dispatchCommand("buy land");
-        setLabels();
-    }
+        shopText = (TextArea) roomStage.getScene().lookup("#shopText");
+        shopText.setText("Here you go, that will be " + cityImplementation.spentGold + " gold, anything else I can do you for?");
+            setLabels();
+        }
+
 
     public void buyPhosphor(ActionEvent actionEvent) {
         Game.dispatchCommand("buy phosphor");
+        shopText = (TextArea) roomStage.getScene().lookup("#shopText");
+        shopText.setText("Here you go, that will be " + cityImplementation.spentGold + " gold, anything else I can do you for?");
         setLabels();
     }
 }
+

@@ -90,14 +90,9 @@
         </MenuBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
             <children>
-                <ButtonBar layoutY="157.0" prefHeight="40.0" prefWidth="200.0">
-                    <buttons>
-                        <Button mnemonicParsing="false" onAction="#goToField" text="Fields" />
-                    </buttons>
-                </ButtonBar>
+                <ButtonBar layoutY="157.0" prefHeight="40.0" prefWidth="200.0" />
                 <ButtonBar layoutX="209.0" layoutY="275.0" prefHeight="40.0" prefWidth="200.0" />
-                <TextArea editable="false" layoutX="200.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" text="You are now at the farm" />
-                <Button layoutX="289.0" layoutY="282.0" mnemonicParsing="false" onAction="#goToLake" text="Lake" />
+                <TextArea editable="false" layoutX="209.0" layoutY="155.0" prefHeight="40.0" prefWidth="200.0" text="You are now at the farm" />
                 <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarFarmStyles.css">
                     <children>
 
@@ -129,8 +124,8 @@
                                 <Image url="@../images/SeasonsIcon.png" />
                             </image>
                         </ImageView>
-                        <Label fx:id="knowledgeLabel" prefHeight="25.0" alignment="CENTER" prefWidth="30.0" text="0" />
-                        <Label fx:id="knowledgeText" prefHeight="25.0" alignment="CENTER" prefWidth="60.0" text="Knowledge" />
+                        <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0" />
+                        <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Knowledge" />
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/KnowledgeIcon.png" />
@@ -140,5 +135,11 @@
                 </HBox>
             </children>
         </AnchorPane>
+      <HBox alignment="TOP_CENTER" prefHeight="22.0" prefWidth="643.0" spacing="120.0">
+         <children>
+                  <Button mnemonicParsing="false" onAction="#goToField" text="Fields" />
+                <Button mnemonicParsing="false" onAction="#goToLake" text="Lake" />
+         </children>
+      </HBox>
     </children>
 </VBox>

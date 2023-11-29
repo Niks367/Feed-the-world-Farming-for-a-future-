@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class CityImplementation implements City {
+    public int spentGold = 0;
     int hunger = 0;
     private boolean isInCity;
     private boolean isInUni;
@@ -76,7 +77,6 @@ public class CityImplementation implements City {
             "If you see the dragon fly, best you drink the flagon dry",
             "A wizard is never late. Nor is he early, he arrives precisely when he means to",
             "I amar prestar aen, han mathon ne nen han mathon ne chae a han noston ned 'willith",
-
             "There is a dual challenge with phosphorus. The environmental pollution due to excess phosphorus, and the limitation of mineable phosphorus resources. This means that there is a problem with having to much phosphorus in some areas leading to pollution and having too little in other areas affecting the agriculture.",
             "Since the mid-20th century, human activity has significantly increased the environmental flow of phosphorus, primarily through the use of phosphate reserves for fertilizer production. This has led to a one-way flow of phosphorus from rocks to farms and then to water bodies, causing ecological harm.",
             "There's growing concern about the long-term availability of cheap phosphorus for fertilizers, as mineable phosphate rock deposits are limited. Unlike nitrogen, phosphorus cannot be synthesized, and there’s no known substitute.",
@@ -247,7 +247,7 @@ public class CityImplementation implements City {
 
     @Override
     public String visitMadman() {
-        return (this.madArray[(int) (Math.random() * 25)]);
+        return (this.madArray[(int) (Math.random() * 20)]);
     }
 
     @Override
