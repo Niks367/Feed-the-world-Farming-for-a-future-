@@ -16,10 +16,10 @@
                <children>
                   <HBox fx:id="buttonBox" alignment="CENTER" prefHeight="47.0" prefWidth="600.0" spacing="20.0">
                      <children>
-                        <Button fx:id="option1" mnemonicParsing="false" onAction="#handleAnswer" text="1" />
-                        <Button fx:id="option2" mnemonicParsing="false" onAction="#handleAnswer" text="2" />
-                        <Button fx:id="option3" mnemonicParsing="false" onAction="#handleAnswer" text="3" />
-                        <Button fx:id="option4" mnemonicParsing="false" onAction="#handleAnswer" text="4" />
+                        <Button fx:id="option1" mnemonicParsing="false" onAction="#handleAnswer" text="A" />
+                        <Button fx:id="option2" mnemonicParsing="false" onAction="#handleAnswer" text="B" />
+                        <Button fx:id="option3" mnemonicParsing="false" onAction="#handleAnswer" text="C" />
+                        <Button fx:id="option4" mnemonicParsing="false" onAction="#handleAnswer" text="D" />
                         <Label fx:id="replyLabel" prefHeight="32.0" prefWidth="108.0" text="Choose an answer" />
                         <Button fx:id="replayButton" mnemonicParsing="false" onAction="#handleReplay" text="Replay" />
                      </children>
