@@ -61,14 +61,19 @@ public class MediaController {
     private Button replayButton;
     private MediaPlayer mediaPlayer;
 
-    private List<VideoQuestions> questions = new ArrayList<>();
+    private RoomController roomController = new RoomController();
+
+    private static List<VideoQuestions> questions = new ArrayList<>();
     private int currentScore = 0;
-//    public VideoQuestions[] questions = new VideoQuestions[]{
+    //    public VideoQuestions[] questions = new VideoQuestions[]{
 //            new VideoQuestions("/rooms/media/Question1.mp4", 1),
 //            new VideoQuestions("/rooms/media/Question2.mp4", 2),
 //            // Add more questions as needed
 //    };
     private int currentQuestionIndex = 0;
+    public void initController(RoomController roomController){
+        this.roomController = roomController;
+    }
 
     private void loadVideoQuestion(VideoQuestions question) {
         Platform.runLater(() -> {
@@ -86,6 +91,8 @@ public class MediaController {
 
     @FXML
     private void handleReplay(ActionEvent event) {
+        //TODO just a test code
+       // roomController.resetQuizCount();
         MediaPlayer player = mediaMediaView.getMediaPlayer();
         if (player != null) {
             player.stop();
@@ -106,7 +113,7 @@ public class MediaController {
             case "C" -> answerIndex = 3;
             case "D" -> answerIndex = 4;
         }
-            // Disable all answer buttons to prevent multiple attempts
+        // Disable all answer buttons to prevent multiple attempts
         option1.setDisable(true);
         option2.setDisable(true);
         option3.setDisable(true);
@@ -139,7 +146,7 @@ public class MediaController {
 
     private void loadNextQuestion() {
 
-        if(!questions.isEmpty()) {
+        if (!questions.isEmpty()) {
             loadVideoQuestion(questions.get(0));
 //            // Re-enable answer buttons
 //            option1.setDisable(false);
@@ -148,8 +155,7 @@ public class MediaController {
 //            option4.setDisable(false);
 //            // Reset the reply label
 //            replyLabel.setText("");
-        }
-        else{
+        } else {
             System.out.println("No more questions");
             //TODO implement this right
         }
@@ -167,15 +173,15 @@ public class MediaController {
 //            // Reset the reply label
 //            replyLabel.setText("");
 //        } else {
-            // Handle the end of the quiz
-            // e.g., display final score, show a completion message, etc.
+        // Handle the end of the quiz
+        // e.g., display final score, show a completion message, etc.
 //        }
     }
 
     @FXML
     private void initialize() {
-        questions.add(new VideoQuestions("/rooms/media/Question1.mp4",1));
-        questions.add(new VideoQuestions("/rooms/media/Question2.mp4",2));
+        questions.add(new VideoQuestions("/rooms/media/Question1.mp4", 1));
+        questions.add(new VideoQuestions("/rooms/media/Question2.mp4", 2));
         questions.add(new VideoQuestions("/rooms/media/Question3.mp4",1));
         questions.add(new VideoQuestions("/rooms/media/Question4.mp4",3));
         questions.add(new VideoQuestions("/rooms/media/Question5.mp4",1));

@@ -63,10 +63,7 @@ public class RoomController {
 
     public TextArea populationBox;
     public Label goldLabel;
-
     public Label phosphorLabel;
-
-
     public HBox infoBox;
     public Label phosphorText;
     public Label populationText;
@@ -80,7 +77,7 @@ public class RoomController {
     private Label roomName;
     @FXML
     private Label descriptionLabel;
-    public int quizCount = 0;
+    public static int quizCount = 0;
 
     public void resetQuizCount() {
         quizCount = 0;
@@ -167,7 +164,7 @@ public class RoomController {
         if (farmImplementation.dayCount % 4 == 0) {
             seasonsLabel.setText("Winter");
             resetQuizCount();
-            if(quizButton != null) {
+            if (quizButton != null) {
                 quizButton.setDisable(false);
             }
 
@@ -307,6 +304,8 @@ public class RoomController {
 
     @FXML
     private void quizStart() throws IOException {
+        MediaController mediaController = new MediaController();
+        mediaController.initController(this);
         if (quizCount < 3) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/rooms/fxml/mediaPlayer.fxml"));
@@ -315,8 +314,7 @@ public class RoomController {
             stage.setScene(new Scene(parent));
             stage.show();
             quizCount++;
-        }
-        else {
+        } else {
             quiz = (TextArea) roomStage.getScene().lookup("#quiz");
             quiz.setText("I can only give you 3 questions per season, but do come back next season!");
             quizButton.setDisable(true);

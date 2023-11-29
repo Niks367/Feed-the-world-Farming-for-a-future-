@@ -8,28 +8,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
 
-<AnchorPane fx:id="mediaAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.MediaController">
-   <children>
-      <BorderPane fx:id="mediaBorderPane" layoutX="1.0" layoutY="-1.0" prefHeight="800.0" prefWidth="800.0">
-         <bottom>
-            <VBox fx:id="buttonVBox" prefHeight="44.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox fx:id="buttonBox" alignment="CENTER" prefHeight="47.0" prefWidth="600.0" spacing="20.0">
-                     <children>
-                        <Button fx:id="option1" mnemonicParsing="false" onAction="#handleAnswer" text="A" />
-                        <Button fx:id="option2" mnemonicParsing="false" onAction="#handleAnswer" text="B" />
-                        <Button fx:id="option3" mnemonicParsing="false" onAction="#handleAnswer" text="C" />
-                        <Button fx:id="option4" mnemonicParsing="false" onAction="#handleAnswer" text="D" />
-                        <Label fx:id="replyLabel" prefHeight="32.0" prefWidth="108.0" text="Choose an answer" />
-                        <Button fx:id="replayButton" mnemonicParsing="false" onAction="#handleReplay" text="Replay" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-         </bottom>
-         <center>
-            <MediaView fx:id="mediaMediaView" fitHeight="600.0" fitWidth="600.0" BorderPane.alignment="CENTER" />
-         </center>
-      </BorderPane>
-   </children>
+<AnchorPane fx:id="mediaAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.MediaController">
+    <children>
+        <BorderPane fx:id="mediaBorderPane" layoutX="1.0" layoutY="-1.0" prefHeight="800.0" prefWidth="800.0">
+            <bottom>
+                <VBox fx:id="buttonVBox" prefHeight="44.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox fx:id="buttonBox" alignment="CENTER" prefHeight="47.0" prefWidth="600.0" spacing="20.0">
+                            <children>
+                                <Button fx:id="option1" mnemonicParsing="false" onAction="#handleAnswer" text="A"/>
+                                <Button fx:id="option2" mnemonicParsing="false" onAction="#handleAnswer" text="B"/>
+                                <Button fx:id="option3" mnemonicParsing="false" onAction="#handleAnswer" text="C"/>
+                                <Button fx:id="option4" mnemonicParsing="false" onAction="#handleAnswer" text="D"/>
+                                <Label fx:id="replyLabel" prefHeight="32.0" prefWidth="108.0" text="Choose an answer"/>
+                                <Button fx:id="replayButton" mnemonicParsing="false" onAction="#handleReplay"
+                                        text="Replay"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </bottom>
+            <center>
+                <MediaView fx:id="mediaMediaView" fitHeight="600.0" fitWidth="600.0" BorderPane.alignment="CENTER"/>
+            </center>
+        </BorderPane>
+    </children>
 </AnchorPane>
