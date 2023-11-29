@@ -66,32 +66,30 @@ public class CityImplementation implements City {
 //    }
 
     private final String[] madArray = new String[]{
-            "Go not forth hastily to strive, lest thou know not what to do in the end thereof, when thy neighbour hath put thee to shame.",
             "Hast thou found honey? eat so much as is sufficient for thee, lest thou be filled therewith, and vomit it.",
             "It is not good to eat much honey: so for men to search their own glory is not glory.",
             "As snow in summer, and as rain in harvest, so honour is not seemly for a fool.",
             "Seest thou a man wise in his own conceit? there is more hope of a fool than of him.",
-            "Be thou diligent to know the state of thy flocks, and look well to thy herds. For riches are not for ever: and doth the crown endure to every generation?",
-            "Phosphorus is crucial for food production, commonly used in fertilizers to sustain crop yields. Modern agriculture heavily depends on phosphorus derived from phosphate rock, a non-renewable resource.",
-            "Current global reserves of phosphate rock could be depleted in 50–100 years. The demand for phosphorus is increasing, but the quality of remaining phosphate rock is declining, leading to higher production costs.",
-            "Predicted around 2030, the peak of phosphorus production is a significant concern, as it signals a decrease in availability and quality of phosphate rock.",
-            "Earlier sources included manure, human excreta, guano, and later, phosphate rock. The transition from organic to mineral sources marked a significant shift in agricultural practices.",
-            "The production and transportation of phosphate fertilizers are energy-intensive and contribute to environmental pollution.",
-            "The article advocates for recognizing long-term phosphorus scarcity as a critical issue for global food security. It emphasizes the need for efficient phosphorus use and exploring recovery and recycling methods.",
-            "The paper discusses the challenges in managing the phosphorus cycle effectively and the need for integrated approaches to ensure sustainable use and recycling of phosphorus",
-            "Since the mid-20th century, human activity has significantly increased the environmental flow of phosphorus, primarily through the use of phosphate reserves for fertilizer production. This has led to a one-way flow of P from rocks to farms and then to water bodies, causing ecological harm.",
+            "The world is changed. I feel it in the water. I feel it in the earth. I smell it in the air",
+            "It all began with the forging of the Great Rings. Three were given to the Elves; immortal, wisest and fairest of all beings. Seven, to the Dwarf Lords great miners and craftsmen of the mountain halls. And Nine, nine rings were gifted to race of Men, who above all else disire power",
+            "My mama always said life was like a box of chocolates, you never know what you are going to get.",
+            "If you see the dragon fly, best you drink the flagon dry",
+            "A wizard is never late. Nor is he early, he arrives precisely when he means to",
+            "I amar prestar aen, han mathon ne nen han mathon ne chae a han noston ned 'willith",
+
+            "There is a dual challenge with phosphorus. The environmental pollution due to excess phosphorus, and the limitation of mineable phosphorus resources. This means that there is a problem with having to much phosphorus in some areas leading to pollution and having too little in other areas affecting the agriculture.",
+            "Since the mid-20th century, human activity has significantly increased the environmental flow of phosphorus, primarily through the use of phosphate reserves for fertilizer production. This has led to a one-way flow of phosphorus from rocks to farms and then to water bodies, causing ecological harm.",
             "There's growing concern about the long-term availability of cheap phosphorus for fertilizers, as mineable phosphate rock deposits are limited. Unlike nitrogen, phosphorus cannot be synthesized, and there’s no known substitute.",
             "The control of phosphorus reserves is concentrated in a few countries, with Morocco holding a significant share. This concentration poses geopolitical risks and affordability issues for farmers, especially in the developing world.",
-            "Solutions proposed include recycling phosphorus (e.g., from human waste and animal manure) and developing more efficient usage methods in agriculture. This would help mitigate both the environmental impacts of excess phosphorus and the scarcity of mineable resources.",
-            "Phosphorus is crucial for all life on Earth, it's irreplaceable in food production, and its raw material reserves are unevenly distributed globally.",
-            "Phosphorus access is a matter of survival for humans and nations. Most countries, including Denmark and Europe, rely heavily on phosphorus imports. The geopolitical aspects of phosphorus distribution affect global food chains.",
-            "The Russian invasion of Ukraine has exacerbated phosphorus-related issues, leading to record-high raw phosphate prices and impacting global food prices.",
+            "Solutions for the soon gone phosphorus, includes recycling. For example, from human and animal waste and developing more efficient usage methods of use in agriculture. This would mitigate both the environmental impacts of excess phosphorus, and what is left of the limited mineable resources. ",
+            "To help the control of phosphorus, it would be useful with better governance, reliable estimates of the phosphorus reserves, and the establishment of national and international research centers for nutrient sustainability. A solution could also be market based, with phosphorus-emission trading.",
+            "The Russian invasion of Ukraine has made the phosphorus-related issues even worse, leading to record-high raw phosphate prices and impacting global food prices.",
             "Major phosphorus-producing countries like the USA, Russia, and China have restricted their phosphorus exports. The EU recognized phosphorus as a critical raw material in 2014 due to its significance for security and prosperity.",
-            "The concept of 'peak phosphorus' highlights when global phosphorus production will reach its maximum, after which supply adjustment becomes challenging. The depletion of reserves in major countries within 40 years could significantly impact future political dynamics and potentially lead to resource conflicts.",
             "Morocco holds about 70% of the world's phosphorus reserves, positioning it as a key player in global stability or a potential target in resource conflicts.",
-            "Phosphorus also plays a significant role in freshwater quality, with losses from agriculture leading to pollution. The EU's focus on circular economy and initiatives like phosphorus recycling from wastewater are steps towards addressing these challenges.",
-            "There is need for a paradigm shift in phosphorus management, for sustainable solutions that integrate environmental restoration with resource recovery.",
+            "A sustainable solution for the phosphorus problems, would be a paradigm shift in phosphorus management, that advocates for an integrated environment restoration with resource recovery.",
+
     };
+
 
 
     @Override

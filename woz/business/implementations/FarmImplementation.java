@@ -19,7 +19,7 @@ public class FarmImplementation implements Farm {
     private final int yieldOfLand = 25;
     private int fieldsForPurchase = 5;
     // TODO make checker for scalePhosphor for events
-    public int dayCount = 0; //Integer that tells us the day we are currently at.
+    public int dayCount = 1; //Integer that tells us the day we are currently at.
     // TODO When dayCount hits certain values: Events
     //public int phosphor = 1; //Integer that tells us the amount of phosphor we have.
     public int dayProgress = 0;
@@ -92,7 +92,7 @@ public class FarmImplementation implements Farm {
     }
 
     public void checkDayProgress() {
-        if (dayProgress == 2) {
+        if (dayProgress == 7) {
             endDay();
         }
     }
