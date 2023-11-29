@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -21,13 +22,16 @@ import main.Game;
 import main.VideoQuestions;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static main.Context.cityImplementation;
+import static main.Context.playerImplementation;
 
 
 public class MediaController {
+    public HBox textBoxReplies;
     @FXML
     private HBox buttonBox;
 
@@ -65,16 +69,21 @@ public class MediaController {
 
     private static List<VideoQuestions> questions = new ArrayList<>();
     private int currentScore = 0;
-    //    public VideoQuestions[] questions = new VideoQuestions[]{
-//            new VideoQuestions("/rooms/media/Question1.mp4", 1),
-//            new VideoQuestions("/rooms/media/Question2.mp4", 2),
-//            // Add more questions as needed
-//    };
     private int currentQuestionIndex = 0;
     public void initController(RoomController roomController){
         this.roomController = roomController;
     }
+    public void quitQuiz(ActionEvent event) {
+        MediaPlayer player = mediaMediaView.getMediaPlayer();
+        player.stop();
+        player.dispose();
+        Node source = (Node) event.getSource(); // Cast to a node
+        Stage stage = (Stage) source.getScene().getWindow(); // Get the stage
+        stage.close();
+        roomController.setLabels();
 
+
+    }
     private void loadVideoQuestion(VideoQuestions question) {
         Platform.runLater(() -> {
             if (mediaPlayer != null) {
@@ -91,8 +100,6 @@ public class MediaController {
 
     @FXML
     private void handleReplay(ActionEvent event) {
-        //TODO just a test code
-       // roomController.resetQuizCount();
         MediaPlayer player = mediaMediaView.getMediaPlayer();
         if (player != null) {
             player.stop();
@@ -113,7 +120,7 @@ public class MediaController {
             case "C" -> answerIndex = 3;
             case "D" -> answerIndex = 4;
         }
-        // Disable all answer buttons to prevent multiple attempts
+            // Disable all answer buttons to prevent multiple attempts
         option1.setDisable(true);
         option2.setDisable(true);
         option3.setDisable(true);
@@ -122,21 +129,28 @@ public class MediaController {
         if (answerIndex == currentQuestion.getCorrectAnswer()) {
             currentScore++;
             questions.remove(currentQuestion); // remove question from list
-            replyLabel.setText("Correct!");
+            replyLabel.setText("Correct, you have been rewarded!");
+            cityImplementation.knowledge += 1;
+            playerImplementation.addMoney(25);
             player.stop();
-            //TODO IF(QuizCounter < 3)
-            option1.setDisable(false);
-            option2.setDisable(false);
-            option3.setDisable(false);
-            option4.setDisable(false);
-            loadVideoQuestion(questions.get(0));
-
-
+            cityImplementation.quizzCount++;
+            if(cityImplementation.quizzCount < 3) {
+                //TODO IF(QuizCounter < 3)
+                option1.setDisable(false);
+                option2.setDisable(false);
+                option3.setDisable(false);
+                option4.setDisable(false);
+                loadVideoQuestion(questions.get(0));
+            }
+            else {
+                replyLabel.setText("No more Questions!");
+                System.out.println("Too many questions for now");
+            }
             // remove video
             // Correct answer
             // Increment score
         } else {
-            replyLabel.setText("Wrong!");
+            replyLabel.setText("No, I'm sorry, that's wrong!");
             loadNextQuestion();//TODO maybe not!
             // Wrong answer
 
@@ -146,7 +160,8 @@ public class MediaController {
 
     private void loadNextQuestion() {
 
-        if (!questions.isEmpty()) {
+        if(!questions.isEmpty()) {
+            Collections.shuffle(questions);
             loadVideoQuestion(questions.get(0));
 //            // Re-enable answer buttons
 //            option1.setDisable(false);
@@ -155,55 +170,22 @@ public class MediaController {
 //            option4.setDisable(false);
 //            // Reset the reply label
 //            replyLabel.setText("");
-        } else {
+        }
+        else{
             System.out.println("No more questions");
             //TODO implement this right
         }
-        // Check if there are more questions
-//        if (currentQuestionIndex < questions.length - 1) {
-//            currentQuestionIndex++;
-//            loadVideoQuestion(questions[currentQuestionIndex]);
-//
-//            // Re-enable answer buttons
-//            option1.setDisable(false);
-//            option2.setDisable(false);
-//            option3.setDisable(false);
-//            option4.setDisable(false);
-//
-//            // Reset the reply label
-//            replyLabel.setText("");
-//        } else {
-        // Handle the end of the quiz
-        // e.g., display final score, show a completion message, etc.
-//        }
     }
 
     @FXML
     private void initialize() {
-        questions.add(new VideoQuestions("/rooms/media/Question1.mp4", 1));
-        questions.add(new VideoQuestions("/rooms/media/Question2.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Question1.mp4",3));
+        questions.add(new VideoQuestions("/rooms/media/Question2.mp4",2));
         questions.add(new VideoQuestions("/rooms/media/Question3.mp4",1));
         questions.add(new VideoQuestions("/rooms/media/Question4.mp4",3));
         questions.add(new VideoQuestions("/rooms/media/Question5.mp4",1));
         //TODO add more videos
         loadNextQuestion();
 
-
-        //loadVideoQuestion(questions[currentQuestionIndex]);
-        // Initialize the MediaPlayer with your video file
-//        String uri = Objects.requireNonNull(getClass().getResource("/rooms/media/Question1.mp4")).toExternalForm();
-//        Media media = new Media(uri);
-//        mediaPlayer = new MediaPlayer(media);
-//        mediaMediaView.setMediaPlayer(mediaPlayer);
-//        mediaMediaView.setStyle("-fx-border-color: red;");
-//        mediaPlayer.statusProperty().addListener((observable, oldValue, newValue) -> {
-//            System.out.println("MediaPlayer Status: " + newValue);
-//        });
-//        mediaPlayer.setOnError(() -> System.out.println("Error with MediaPlayer: " + mediaPlayer.getError()));
-//        media.errorProperty().addListener((observable, oldValue, newValue) ->
-//                System.out.println("Error with Media: " + newValue)
-//        );
-//
-//        mediaPlayer.play();
     }
 }

@@ -5,6 +5,7 @@ import business.interfaces.Field;
 import business.utils.MadManUtils;
 import business.utils.PrintingUtilities;
 import main.*;
+import main.Context;
 import presentation.controllers.RoomController;
 
 public class FarmImplementation implements Farm {
@@ -155,6 +156,7 @@ public class FarmImplementation implements Farm {
 
     public void endWeek() {
         PrintingUtilities.printOnScreen("Ending Week ");
+        Context.cityImplementation.quizzCount=0;
 //        for (int i = 5; i > 0; i--) {
 //            try {
 //              //  Thread.sleep(400);

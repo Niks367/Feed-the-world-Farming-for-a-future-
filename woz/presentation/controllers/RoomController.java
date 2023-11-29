@@ -120,7 +120,11 @@ public class RoomController {
         phosphorLabel = (Label) roomStage.getScene().lookup("#phosphorLabel");
         setPhosphor(String.valueOf(Context.farmImplementation.scalePhosphor));
     }
-
+    public void setKnowledge(String text) { knowledgeLabel.setText(text);}
+    public void getKnowledge() {
+        knowledgeLabel = (Label) roomStage.getScene().lookup("#knowledgeLabel");
+        setKnowledge(String.valueOf(cityImplementation.knowledge));
+    }
     public void setPopulation(String text) {
         populationLabel.setText(text);
     }
@@ -142,6 +146,7 @@ public class RoomController {
         getMoney();
         getPhosphor();
         getPopulation();
+        getKnowledge();
     }
 
     @FXML

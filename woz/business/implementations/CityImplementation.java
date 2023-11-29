@@ -21,6 +21,9 @@ public class CityImplementation implements City {
     boolean isSuperPpDone = false; //Boolean for Super PP
     boolean isBfDone = false; //Boolean for Bio Farm
     public boolean isHunger = false;
+    public int quizzCount = 0;
+
+    public int knowledge = 0;
     Scanner scanner = new Scanner(System.in);
     /* allProjectsList is a list of all projects that can be available during different phases of the game:
     It is hardcoded.
