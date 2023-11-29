@@ -157,7 +157,7 @@ public class Context {
                             PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash or there is not any more land to purchase!");
                         }
                     } else {
-                        if (playerImplementation.money >= farmImplementation.getPriceOfLand() + farmImplementation.phosphorPrice) {
+                        if (playerImplementation.money >= (farmImplementation.getPriceOfLand() + farmImplementation.phosphorPrice) && (farmImplementation.getFieldsForPurchase()) > 0) {
                             cityImplementation.spentGold = farmImplementation.getPriceOfLand() + farmImplementation.phosphorPrice;
                             PrintingUtilities.printOnScreen("Since you recently have phosphorized your fields you will be charged " +
                                     (farmImplementation.getPriceOfLand() + farmImplementation.phosphorPrice) + " gold!");

@@ -356,18 +356,37 @@ public class RoomController {
     }
 
     public void buyLand(ActionEvent actionEvent) {
-        Game.dispatchCommand("buy land");
-        shopText = (TextArea) roomStage.getScene().lookup("#shopText");
-        shopText.setText("Here you go, that will be " + cityImplementation.spentGold + " gold, anything else I can do you for?");
-            setLabels();
+        if (playerImplementation.money >= farmImplementation.getPriceOfLand()) {
+            if (farmImplementation.getFieldsForPurchase() > 0) {
+                Game.dispatchCommand("buy land");
+                shopText = (TextArea) roomStage.getScene().lookup("#shopText");
+                shopText.setText("Here you go, that will be " + cityImplementation.spentGold + " gold, anything else I can do you for?");
+                setLabels();
+            } else {
+                shopText.setText("There is no more land to purchase...");
+            }
+        } else {
+            shopText.setText("It seems you are out of cash...");
         }
+
+    }
 
 
     public void buyPhosphor(ActionEvent actionEvent) {
-        Game.dispatchCommand("buy phosphor");
-        shopText = (TextArea) roomStage.getScene().lookup("#shopText");
-        shopText.setText("Here you go, that will be " + cityImplementation.spentGold + " gold, anything else I can do you for?");
-        setLabels();
+        if (playerImplementation.money >= farmImplementation.land * farmImplementation.phosphorPrice) {
+            if (!farmImplementation.isPhophorized) {
+                Game.dispatchCommand("buy phosphor");
+                shopText = (TextArea) roomStage.getScene().lookup("#shopText");
+                shopText.setText("Here you go, that will be " + cityImplementation.spentGold + " gold, anything else I can do you for?");
+                setLabels();
+            } else {
+                shopText.setText("It seems your fields are already fertilized this season.");
+            }
+        } else {
+            shopText.setText("It seems you are out of cash...");
+
+
+        }
     }
 }
 

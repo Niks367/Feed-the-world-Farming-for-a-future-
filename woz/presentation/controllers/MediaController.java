@@ -184,6 +184,11 @@ public class MediaController {
         questions.add(new VideoQuestions("/rooms/media/Question3.mp4",1));
         questions.add(new VideoQuestions("/rooms/media/Question4.mp4",3));
         questions.add(new VideoQuestions("/rooms/media/Question5.mp4",1));
+        questions.add(new VideoQuestions("/rooms/media/Question6.mp4",2));
+        questions.add(new VideoQuestions("/rooms/media/Question7.mp4",2));
+        questions.add(new VideoQuestions("/rooms/media/Question8.mp4",3));
+        questions.add(new VideoQuestions("/rooms/media/Question9.mp4",4));
+        questions.add(new VideoQuestions("/rooms/media/Question10.mp4",3));
         //TODO add more videos
         loadNextQuestion();
 

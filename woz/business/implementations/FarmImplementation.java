@@ -15,7 +15,7 @@ public class FarmImplementation implements Farm {
     public boolean isInFarm;
     public boolean isPhophorized;
     public int phosphorPrice = 10;
-    private final int priceOfLand = 100;
+    private final int priceOfLand = 200;
     private final int yieldOfLand = 25;
     private int fieldsForPurchase = 5;
     // TODO make checker for scalePhosphor for events
@@ -92,7 +92,7 @@ public class FarmImplementation implements Farm {
     }
 
     public void checkDayProgress() {
-        if (dayProgress == 7) {
+        if (dayProgress == 3) {
             endDay();
         }
     }
