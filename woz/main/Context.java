@@ -10,8 +10,6 @@ public class Context {
     public static LakeImplementation lakeImplementation = new LakeImplementation();
     public static FieldImplementation fieldImplementation = new FieldImplementation();
     public static PlayerImplementation playerImplementation = new PlayerImplementation();
-    public static SeedImplementation seedImplementation = new SeedImplementation();
-    public static TimeImplementation timeImplementation = new TimeImplementation();
 
     Space current;
     boolean done = false;
@@ -41,9 +39,6 @@ public class Context {
 
     public void initInterfaces() {
         farmImplementation.fieldInterface(fieldImplementation);
-        fieldImplementation.seedInterface(seedImplementation);
-        seedImplementation.initPlayerInterface(playerImplementation);
-        fieldImplementation.farmInterface(farmImplementation);
     }
 
     public void end(String command) {

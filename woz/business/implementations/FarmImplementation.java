@@ -4,7 +4,6 @@ import business.interfaces.Farm;
 import business.interfaces.Field;
 import business.utils.MadManUtils;
 import business.utils.PrintingUtilities;
-import main.*;
 import main.Context;
 import presentation.controllers.RoomController;
 
@@ -190,7 +189,7 @@ public class FarmImplementation implements Farm {
         }
         if (Context.playerImplementation.money <= 0) {
             PrintingUtilities.printOnScreen("You ran out of cash, too bad...");
-            Game.context.makeDone();
+            main.Game.context.makeDone();
         }
 
     }
