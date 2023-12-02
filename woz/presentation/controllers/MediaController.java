@@ -139,50 +139,52 @@ public class MediaController {
         option3.setDisable(true);
         option4.setDisable(true);
         VideoQuestions currentQuestion = questions.get(0); // currently loaded question
-        if (answerIndex == currentQuestion.getCorrectAnswer()) {
+        if (answerIndex == currentQuestion.getCorrectAnswer()) { // when answer is correct
             currentScore++;
             questions.remove(currentQuestion); // remove question from list
-            int choice = (int) (Math.random() * 3);
+            cityImplementation.knowledge += 1; // increase knowledge attribute
+            playerImplementation.addMoney(25); // give player gold
+            cityImplementation.quizzCount++; // increase quizzcount attribute
+            int choice = (int) (Math.random() * 3); // pick one out of three replies
             switch (choice) {
                 case 0 -> replyLabel.setText("Correct, you have been rewarded!");
                 case 1 -> replyLabel.setText("Excellent, here is a little something!");
                 case 2 -> replyLabel.setText("You never cease to amaze me, take this little token of appreciation!");
             }
-            cityImplementation.knowledge += 1;
-            playerImplementation.addMoney(25);
+
             if (mediaPlayer != null) {
                 mediaPlayer.stop();
             }
-            cityImplementation.quizzCount++;
-            if (cityImplementation.quizzCount < 3) {
-                //TODO IF(QuizCounter < 3)
-                option1.setDisable(false);
+
+            if (cityImplementation.quizzCount < 3) { // if player has not yet seen 3 videos
+                option1.setDisable(false); // re-activate buttons
                 option2.setDisable(false);
                 option3.setDisable(false);
                 option4.setDisable(false);
-                loadVideoQuestion(questions.get(0));
+                loadVideoQuestion(questions.get(0)); // see another video
             } else {
-                replyLabel.setText("Correct, come again soon!");
+                replyLabel.setText("Correct, come again soon!"); // player has seen 3 videos
             }
         } else { // wrong answer
             replyLabel.setText("No, I'm sorry, that's wrong!");
-            cityImplementation.quizzCount++;
-            if (cityImplementation.quizzCount < 3) { //less than 3 tries
+            cityImplementation.quizzCount++; // increase quizzcount attribute
+            if (cityImplementation.quizzCount < 3) { // if player has not yet seen 3 videos
+                option1.setDisable(false); // re-activate buttons
                 option1.setDisable(false);
                 option2.setDisable(false);
                 option3.setDisable(false);
                 option4.setDisable(false);
-                Collections.shuffle(questions);//shuffle list in order not to repeat question
-                loadVideoQuestion(questions.get(0));
-            } else {
+                Collections.shuffle(questions);//shuffle list in order to decrease chance of repeated question
+                loadVideoQuestion(questions.get(0)); // see another video
+            } else { // player has seen 3 videos
                 replyLabel.setText("I'm sorry, but that's just not true, come again soon!");
                 if (mediaPlayer != null) {
                     player.stop();
                     player.dispose();
                 }
-                Node source = (Node) event.getSource(); // Cast to a node
+                Node source = (Node) event.getSource(); // Cast event to a node
                 Stage stage = (Stage) source.getScene().getWindow(); // Get the stage
-                roomController.setLabels();
+                roomController.setLabels(); // update infobar
                 PauseTransition delay = new PauseTransition(Duration.seconds(2)); // wait 2 sec
                 delay.setOnFinished(delayEvent -> stage.close());
             }
@@ -209,26 +211,37 @@ public class MediaController {
 
     @FXML
     private void initialize() {
-        questions.add(new VideoQuestions("/rooms/media/Question1.mp4", 3));
-        questions.add(new VideoQuestions("/rooms/media/Question2.mp4", 2));
-        questions.add(new VideoQuestions("/rooms/media/Question3.mp4", 1));
-        questions.add(new VideoQuestions("/rooms/media/Question4.mp4", 3));
-        questions.add(new VideoQuestions("/rooms/media/Question5.mp4", 1));
-        questions.add(new VideoQuestions("/rooms/media/Question6.mp4", 2));
-        questions.add(new VideoQuestions("/rooms/media/Question7.mp4", 2));
-        questions.add(new VideoQuestions("/rooms/media/Question8.mp4", 3));
-        questions.add(new VideoQuestions("/rooms/media/Question9.mp4", 4));
-        questions.add(new VideoQuestions("/rooms/media/Question10.mp4", 3));
-        questions.add(new VideoQuestions("/rooms/media/Question11.mp4", 2));
-        questions.add(new VideoQuestions("/rooms/media/Question12.mp4", 3));
-        questions.add(new VideoQuestions("/rooms/media/Question13.mp4", 3));
-        questions.add(new VideoQuestions("/rooms/media/Question14.mp4", 2));
-        questions.add(new VideoQuestions("/rooms/media/Question15.mp4", 3));
-        questions.add(new VideoQuestions("/rooms/media/Question16.mp4", 2));
-        questions.add(new VideoQuestions("/rooms/media/Question17.mp4", 3));
-        questions.add(new VideoQuestions("/rooms/media/Question18.mp4", 2));
-        questions.add(new VideoQuestions("/rooms/media/Question19.mp4", 3));
-        questions.add(new VideoQuestions("/rooms/media/Question20.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video1.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video2.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Video3.mp4", 1));
+        questions.add(new VideoQuestions("/rooms/media/Video4.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video5.mp4", 1));
+        questions.add(new VideoQuestions("/rooms/media/Video6.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Video7.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Video8.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video9.mp4", 4));
+        questions.add(new VideoQuestions("/rooms/media/Video10.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video11.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Video12.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video13.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video14.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Video15.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video16.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Video17.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video18.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Video19.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video20.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video21.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Video22.mp4", 1));
+        questions.add(new VideoQuestions("/rooms/media/Video23.mp4", 4));
+        questions.add(new VideoQuestions("/rooms/media/Video24.mp4", 4));
+        questions.add(new VideoQuestions("/rooms/media/Video25.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Video26.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Video27.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Video28.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Video29.mp4", 1));
+        questions.add(new VideoQuestions("/rooms/media/Video30.mp4", 1));
+        questions.add(new VideoQuestions("/rooms/media/Video31.mp4", 2));
 
 
         //TODO add more videos

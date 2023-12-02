@@ -27,7 +27,7 @@ public class Context {
     }
 
     public int projectLimit = 3;
-    public double projectCost = 100;
+    public double projectCost = 50;
 
     Context(Space node) {
         current = node;

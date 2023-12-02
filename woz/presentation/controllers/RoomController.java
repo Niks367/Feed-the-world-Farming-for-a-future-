@@ -229,8 +229,6 @@ public class RoomController {
             Parent parent = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
-//            String css = Objects.requireNonNull(getClass().getResource("/rooms/styles.css")).toExternalForm();
-//            parent.getStylesheets().add(css);
             roomStage.close();
             stage.show();
             Platform.setImplicitExit(true);
@@ -301,19 +299,6 @@ public class RoomController {
         Game.dispatchCommand("support sf");
         setLabels();
     }
-//    @FXML
-//    private void initialize() {
-//        if(cityImplementation.getIsInUni()) {
-//            // Initialize the MediaPlayer with your video file
-//            String uri = Objects.requireNonNull(getClass().getResource("/rooms/media/Question1.mp4")).toExternalForm();
-//            Media media = new Media(uri);
-//            mediaPlayer = new MediaPlayer(media);
-//            quizMediaView.setMediaPlayer(mediaPlayer);
-//
-//        }
-//
-//    }
-
 
     @FXML
     private void quizStart() throws IOException {
@@ -383,7 +368,7 @@ public class RoomController {
                 shopText.setText("It seems your fields are already fertilized this season.");
             }
         } else {
-            shopText.setText("It seems you are out of cash...");
+            shopText.setText("It seems you lack the sufficient funds...");
 
 
         }

@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
 
-<AnchorPane fx:id="mediaAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.MediaController">
+<AnchorPane fx:id="mediaAnchorPane" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.MediaController">
     <children>
-        <BorderPane fx:id="mediaBorderPane" layoutX="1.0" layoutY="-1.0" prefHeight="800.0" prefWidth="800.0">
+        <BorderPane fx:id="mediaBorderPane" prefHeight="800.0" prefWidth="1200.0">
             <bottom>
                 <VBox fx:id="buttonVBox" prefHeight="81.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                     <children>
@@ -33,7 +33,7 @@
                 </VBox>
             </bottom>
             <center>
-                <MediaView fx:id="mediaMediaView" fitHeight="600.0" fitWidth="600.0" BorderPane.alignment="CENTER" />
+                <MediaView fx:id="mediaMediaView" fitHeight="700.0" fitWidth="1000.0" BorderPane.alignment="CENTER" />
             </center>
         </BorderPane>
     </children>

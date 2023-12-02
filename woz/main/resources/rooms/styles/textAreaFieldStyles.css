@@ -1,11 +1,10 @@
 .text-area {
-    -fx-font-size: 20px;
+    -fx-font-size: 22px;
     -fx-font-style: italic;
     -fx-font-weight: bold;
     -fx-font-family: Playbill;
-    -fx-text-fill: #4F9EFF;
+    -fx-text-fill: #4064f7;
 
-    -fx-background-color: #222222;
 }
 .text-area .content {
     -fx-background-color: #fee4c4;
