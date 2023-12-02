@@ -1,6 +1,7 @@
 package presentation.controllers;
 
 import business.utils.PrintingUtilities;
+import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +18,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import main.Context;
 import main.Game;
 import main.VideoQuestions;
@@ -70,20 +72,32 @@ public class MediaController {
     private static List<VideoQuestions> questions = new ArrayList<>();
     private int currentScore = 0;
     private int currentQuestionIndex = 0;
-    public void initController(RoomController roomController){
+
+    public void initController(RoomController roomController) {
         this.roomController = roomController;
     }
+
+
     public void quitQuiz(ActionEvent event) {
-        MediaPlayer player = mediaMediaView.getMediaPlayer();
-        player.stop();
-        player.dispose();
-        Node source = (Node) event.getSource(); // Cast to a node
-        Stage stage = (Stage) source.getScene().getWindow(); // Get the stage
-        stage.close();
-        roomController.setLabels();
-
-
+        if (cityImplementation.quizzCount >= 3) {
+            Node source = (Node) event.getSource(); // Cast to a node
+            Stage stage = (Stage) source.getScene().getWindow(); // Get the stage
+            stage.close();
+            roomController.setLabels();
+        } else {
+            MediaPlayer player = mediaMediaView.getMediaPlayer();
+            if (mediaPlayer != null) {
+                player.stop();
+                player.dispose();
+            }
+            Node source = (Node) event.getSource(); // Cast to a node
+            Stage stage = (Stage) source.getScene().getWindow(); // Get the stage
+            stage.close();
+            roomController.setLabels();
+        }
     }
+
+
     private void loadVideoQuestion(VideoQuestions question) {
         Platform.runLater(() -> {
             if (mediaPlayer != null) {
@@ -97,7 +111,6 @@ public class MediaController {
             mediaPlayer.play();
         });
     }
-
     @FXML
     private void handleReplay(ActionEvent event) {
         MediaPlayer player = mediaMediaView.getMediaPlayer();
@@ -120,7 +133,7 @@ public class MediaController {
             case "C" -> answerIndex = 3;
             case "D" -> answerIndex = 4;
         }
-            // Disable all answer buttons to prevent multiple attempts
+        // Disable all answer buttons to prevent multiple attempts
         option1.setDisable(true);
         option2.setDisable(true);
         option3.setDisable(true);
@@ -129,38 +142,56 @@ public class MediaController {
         if (answerIndex == currentQuestion.getCorrectAnswer()) {
             currentScore++;
             questions.remove(currentQuestion); // remove question from list
-            replyLabel.setText("Correct, you have been rewarded!");
+            int choice = (int) (Math.random() * 3);
+            switch (choice) {
+                case 0 -> replyLabel.setText("Correct, you have been rewarded!");
+                case 1 -> replyLabel.setText("Excellent, here is a little something!");
+                case 2 -> replyLabel.setText("You never cease to amaze me, take this little token of appreciation!");
+            }
             cityImplementation.knowledge += 1;
             playerImplementation.addMoney(25);
-            player.stop();
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+            }
             cityImplementation.quizzCount++;
-            if(cityImplementation.quizzCount < 3) {
+            if (cityImplementation.quizzCount < 3) {
                 //TODO IF(QuizCounter < 3)
                 option1.setDisable(false);
                 option2.setDisable(false);
                 option3.setDisable(false);
                 option4.setDisable(false);
                 loadVideoQuestion(questions.get(0));
+            } else {
+                replyLabel.setText("Correct, come again soon!");
             }
-            else {
-                replyLabel.setText("No more Questions!");
-                System.out.println("Too many questions for now");
-            }
-            // remove video
-            // Correct answer
-            // Increment score
-        } else {
+        } else { // wrong answer
             replyLabel.setText("No, I'm sorry, that's wrong!");
-            loadNextQuestion();//TODO maybe not!
-            // Wrong answer
-
+            cityImplementation.quizzCount++;
+            if (cityImplementation.quizzCount < 3) { //less than 3 tries
+                option1.setDisable(false);
+                option2.setDisable(false);
+                option3.setDisable(false);
+                option4.setDisable(false);
+                Collections.shuffle(questions);//shuffle list in order not to repeat question
+                loadVideoQuestion(questions.get(0));
+            } else {
+                replyLabel.setText("I'm sorry, but that's just not true, come again soon!");
+                if (mediaPlayer != null) {
+                    player.stop();
+                    player.dispose();
+                }
+                Node source = (Node) event.getSource(); // Cast to a node
+                Stage stage = (Stage) source.getScene().getWindow(); // Get the stage
+                roomController.setLabels();
+                PauseTransition delay = new PauseTransition(Duration.seconds(2)); // wait 2 sec
+                delay.setOnFinished(delayEvent -> stage.close());
+            }
         }
-        // Proceed to next question or do something else
     }
 
     private void loadNextQuestion() {
 
-        if(!questions.isEmpty()) {
+        if (!questions.isEmpty()) {
             Collections.shuffle(questions);
             loadVideoQuestion(questions.get(0));
 //            // Re-enable answer buttons
@@ -170,8 +201,7 @@ public class MediaController {
 //            option4.setDisable(false);
 //            // Reset the reply label
 //            replyLabel.setText("");
-        }
-        else{
+        } else {
             System.out.println("No more questions");
             //TODO implement this right
         }
@@ -179,16 +209,28 @@ public class MediaController {
 
     @FXML
     private void initialize() {
-        questions.add(new VideoQuestions("/rooms/media/Question1.mp4",3));
-        questions.add(new VideoQuestions("/rooms/media/Question2.mp4",2));
-        questions.add(new VideoQuestions("/rooms/media/Question3.mp4",1));
-        questions.add(new VideoQuestions("/rooms/media/Question4.mp4",3));
-        questions.add(new VideoQuestions("/rooms/media/Question5.mp4",1));
-        questions.add(new VideoQuestions("/rooms/media/Question6.mp4",2));
-        questions.add(new VideoQuestions("/rooms/media/Question7.mp4",2));
-        questions.add(new VideoQuestions("/rooms/media/Question8.mp4",3));
-        questions.add(new VideoQuestions("/rooms/media/Question9.mp4",4));
-        questions.add(new VideoQuestions("/rooms/media/Question10.mp4",3));
+        questions.add(new VideoQuestions("/rooms/media/Question1.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Question2.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Question3.mp4", 1));
+        questions.add(new VideoQuestions("/rooms/media/Question4.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Question5.mp4", 1));
+        questions.add(new VideoQuestions("/rooms/media/Question6.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Question7.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Question8.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Question9.mp4", 4));
+        questions.add(new VideoQuestions("/rooms/media/Question10.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Question11.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Question12.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Question13.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Question14.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Question15.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Question16.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Question17.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Question18.mp4", 2));
+        questions.add(new VideoQuestions("/rooms/media/Question19.mp4", 3));
+        questions.add(new VideoQuestions("/rooms/media/Question20.mp4", 3));
+
+
         //TODO add more videos
         loadNextQuestion();
 

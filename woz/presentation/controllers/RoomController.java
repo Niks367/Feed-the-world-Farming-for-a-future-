@@ -319,7 +319,7 @@ public class RoomController {
     private void quizStart() throws IOException {
         MediaController mediaController = new MediaController();
         mediaController.initController(this);
-        if (quizCount < 3) {
+        if (cityImplementation.quizzCount < 3) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/rooms/fxml/mediaPlayer.fxml"));
             Parent parent = loader.load();
