@@ -89,18 +89,13 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <AnchorPane fx:id="myAnchor" maxHeight="-1.0" maxWidth="-1.0" VBox.vgrow="ALWAYS">
+        <AnchorPane fx:id="myAnchor" maxHeight="-1.0" maxWidth="-1.0" prefHeight="284.0" prefWidth="640.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" VBox.vgrow="ALWAYS">
             <children>
-                <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Label>
-                <TextArea fx:id="uniText" layoutX="399.0" layoutY="43.0" prefHeight="100.0" prefWidth="200.0" wrapText="true" />
+                <TextArea fx:id="uniText" layoutX="399.0" layoutY="43.0" prefHeight="100.0" prefWidth="200.0" stylesheets="/rooms/styles/textAreaUniStyles.css" wrapText="true" />
                 <Button fx:id="quizButton" layoutX="118.0" layoutY="254.0" mnemonicParsing="false" onAction="#quizStart" text="Start quiz" />
                 <Button layoutX="399.0" layoutY="229.0" mnemonicParsing="false" onAction="#supportProjectPP" prefHeight="25.0" prefWidth="200.0" text="Support project Purification plant" />
                 <Button layoutX="399.0" layoutY="267.0" mnemonicParsing="false" onAction="#supportProjectSF" prefHeight="25.0" prefWidth="200.0" text="Support project Supper farm" />
-                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarFarmStyles.css">
+                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarStyles.css">
                     <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0" />
                     <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="65.0" text="Population: " />
                     <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -111,12 +106,12 @@
                     <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../images/PhosphorIcon.png" />
                     </ImageView>
-                    <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" />
+                    <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="45.0" />
                     <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Gold: " />
                     <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../images/GoldIcon.png" />
                     </ImageView>
-                    <ProgressBar fx:id="seasonsProgress" prefHeight="25.0" prefWidth="50.0" progress="0.5" />
+                    <ProgressBar fx:id="seasonsProgress" prefHeight="25.0" prefWidth="50.0" />
                     <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season" />
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../images/SeasonsIcon.png" />
@@ -127,13 +122,19 @@
                         <Image url="@../images/KnowledgeIcon.png" />
                     </ImageView>
                 </HBox>
-                <StackPane fx:id="quizStackPane" layoutX="66.0" layoutY="93.0" prefHeight="100.0" prefWidth="170.0" />
-                  <TextArea fx:id="quiz" layoutX="66.0" layoutY="43.0" prefHeight="100.0" prefWidth="170.0" wrapText="true" />
+                <StackPane fx:id="quizStackPane" layoutX="70.0" layoutY="43.0" prefHeight="100.0" prefWidth="170.0">
+               <children>
+                        <TextArea fx:id="quiz" prefHeight="100.0" prefWidth="170.0" stylesheets="/rooms/styles/textAreaUniStyles.css" wrapText="true" />
+               </children></StackPane>
             </children>
         </AnchorPane>
-      <HBox alignment="TOP_CENTER" prefHeight="22.0" prefWidth="643.0" spacing="120.0">
+      <HBox alignment="TOP_CENTER" stylesheets="/rooms/styles/textAreaMadmanStyles.css" prefHeight="50.0" prefWidth="640.0" spacing="120.0">
          <children>
-                <Button fx:id="goToCityFromShopButton" mnemonicParsing="false" onAction="#goToCityFromUni" text="Go to City" />
+                <Button fx:id="goToCityFromShopButton" mnemonicParsing="false" onAction="#goToCityFromUni" text="Go to City">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
          </children>
       </HBox>
     </children>

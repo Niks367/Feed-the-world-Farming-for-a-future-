@@ -88,18 +88,21 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="319.0" prefWidth="640.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" VBox.vgrow="ALWAYS">
             <children>
-                <Label alignment="CENTER" layoutX="155.0" layoutY="177.0" style="&#10;" text="" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+                <TextArea fx:id="shopText" layoutX="103.0" layoutY="66.0" prefHeight="153.0" prefWidth="475.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" wrapText="true" />
+                <Button fx:id="buyLandButton" layoutX="103.0" layoutY="259.0" mnemonicParsing="false" onAction="#buyLand" text="Buy some land">
                     <font>
-                        <Font size="18.0" />
+                        <Font size="14.0" />
                     </font>
-                </Label>
-                <TextArea fx:id="shopText" layoutX="103.0" layoutY="66.0" prefHeight="138.0" prefWidth="475.0" wrapText="true" />
-                <Button fx:id="buyLandButton" layoutX="103.0" layoutY="259.0" mnemonicParsing="false" onAction="#buyLand" text="Buy some land" />
+                </Button>
                 <!--                <Button layoutX="281.0" layoutY="259.0" mnemonicParsing="false" text="Button"/>-->
-                <Button fx:id="buyPhosphorButton" layoutX="442.0" layoutY="259.0" mnemonicParsing="false" onAction="#buyPhosphor" text="Buy some phosphor" />
-                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarFarmStyles.css">
+                <Button fx:id="buyPhosphorButton" layoutX="442.0" layoutY="259.0" mnemonicParsing="false" onAction="#buyPhosphor" text="Buy some phosphor">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarStyles.css">
                     <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0" />
                     <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="65.0" text="Population: " />
                     <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -110,12 +113,12 @@
                     <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../images/PhosphorIcon.png" />
                     </ImageView>
-                    <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" />
+                    <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="45.0" />
                     <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Gold: " />
                     <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../images/GoldIcon.png" />
                     </ImageView>
-                    <ProgressBar fx:id="seasonsProgress" prefHeight="25.0" prefWidth="50.0" progress="0.5" />
+                    <ProgressBar fx:id="seasonsProgress" prefHeight="25.0" prefWidth="50.0" />
                     <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season" />
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                         <Image url="@../images/SeasonsIcon.png" />
@@ -128,9 +131,13 @@
                 </HBox>
             </children>
         </AnchorPane>
-      <HBox alignment="TOP_CENTER" prefHeight="22.0" prefWidth="643.0" spacing="120.0">
+      <HBox stylesheets="/rooms/styles/textAreaMadmanStyles.css" alignment="TOP_CENTER" prefHeight="50.0" prefWidth="640.0" spacing="120.0">
          <children>
-                <Button fx:id="goToCityFromShopButton" mnemonicParsing="false" onAction="#goToCityFromShop" text="Go to City" />
+                <Button fx:id="goToCityFromShopButton" mnemonicParsing="false" onAction="#goToCityFromShop" text="Go to City">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
          </children>
       </HBox>
     </children>

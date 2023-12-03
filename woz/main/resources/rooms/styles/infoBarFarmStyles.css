@@ -11,7 +11,6 @@
 
 }
 #seasonsProgress {
-    -fx-progress-color:  #ffe4c4;
-    -fx-background-color: #222222;
+    -fx-accent: #ffe4c4;
 }
 

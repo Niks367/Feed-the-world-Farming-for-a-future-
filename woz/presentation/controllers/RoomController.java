@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import main.Context;
 import main.Game;
@@ -172,19 +173,23 @@ public class RoomController {
 
     private void dayProgress() {
         seasonsLabel = (Label) roomStage.getScene().lookup("#seasonsLabel");
+        seasonsProgress = (ProgressBar) roomStage.getScene().lookup("#seasonsProgress");
         if (farmImplementation.dayCount % 4 == 0) {
             seasonsLabel.setText("Winter");
+            seasonsProgress.setProgress(0);
             resetQuizCount();
             if (quizButton != null) {
                 quizButton.setDisable(false);
             }
-
         } else if (farmImplementation.dayCount % 4 == 1) {
             seasonsLabel.setText("Spring");
+            seasonsProgress.setProgress(0.33);
         } else if (farmImplementation.dayCount % 4 == 2) {
             seasonsLabel.setText("Summer");
+            seasonsProgress.setProgress(0.66);
         } else if (farmImplementation.dayCount % 4 == 3) {
             seasonsLabel.setText("Autumn");
+            seasonsProgress.setProgress(1);
         } else {
             seasonsLabel.setText("Out of season");
         }
@@ -229,6 +234,7 @@ public class RoomController {
             Parent parent = loader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(parent));
+            stage.setResizable(false); // Prevent resizing of the window
             roomStage.close();
             stage.show();
             Platform.setImplicitExit(true);
@@ -309,6 +315,7 @@ public class RoomController {
             loader.setLocation(getClass().getResource("/rooms/fxml/mediaPlayer.fxml"));
             Parent parent = loader.load();
             Stage stage = new Stage();
+            stage.setResizable(false); // Prevent resizing of the window
             stage.setScene(new Scene(parent));
             stage.show();
             quizCount++;

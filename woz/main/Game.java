@@ -69,7 +69,7 @@ public class Game extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Platform.setImplicitExit(true);
+        Platform.setImplicitExit(true); // closes the game properly on exit
         stage.setOnCloseRequest((ae) -> {
             Platform.exit();
             System.exit(0);
@@ -80,7 +80,9 @@ public class Game extends Application {
         roomController.setEntry("Entry", "");
         roomController.setRoomStage(stage);
         stage.setTitle("Farmland");
-        stage.setScene(new Scene(root, 400, 300));
+        stage.setScene(new Scene(root, 640, 400));
+        stage.setResizable(false); // Prevent resizing of the window
+        //// (also set in Roomcontroller.goAnotherRoom() and Roomcontroller.quizStart())
         stage.show();
 //        setRoomStage(stage);
     }

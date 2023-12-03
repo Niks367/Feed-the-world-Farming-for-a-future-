@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="594.0" alignment="CENTER" prefWidth="869.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
+<VBox alignment="CENTER" prefHeight="400.0" prefWidth="640.0" stylesheets="/rooms/styles/textAreaMediaplayerStyle.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
 
 
     <Label fx:id="roomName" text="Room Name" />
     <Label fx:id="descriptionLabel" text="Room Description" />
-    <Button fx:id="playGameButton" alignment="CENTER" contentDisplay="CENTER" onAction="#init" text="Play Game" />
+    <Button fx:id="playGameButton" alignment="CENTER" contentDisplay="CENTER" onAction="#init" text="Play Game">
+        <font>
+            <Font size="14.0" />
+        </font>
+    </Button>
 
 </VBox>

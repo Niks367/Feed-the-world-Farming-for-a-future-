@@ -34,6 +34,8 @@ import static main.Context.playerImplementation;
 
 public class MediaController {
     public HBox textBoxReplies;
+    public Button quitButton;
+    public TextArea replyText;
     @FXML
     private HBox buttonBox;
 
@@ -71,7 +73,7 @@ public class MediaController {
 
     private static List<VideoQuestions> questions = new ArrayList<>();
     private int currentScore = 0;
-    private int currentQuestionIndex = 0;
+
 
     public void initController(RoomController roomController) {
         this.roomController = roomController;
@@ -147,9 +149,9 @@ public class MediaController {
             cityImplementation.quizzCount++; // increase quizzcount attribute
             int choice = (int) (Math.random() * 3); // pick one out of three replies
             switch (choice) {
-                case 0 -> replyLabel.setText("Correct, you have been rewarded!");
-                case 1 -> replyLabel.setText("Excellent, here is a little something!");
-                case 2 -> replyLabel.setText("You never cease to amaze me, take this little token of appreciation!");
+                case 0 -> replyText.setText("Correct, you have been rewarded!");
+                case 1 -> replyText.setText("Excellent, here is a little something!");
+                case 2 -> replyText.setText("You never cease to amaze me, take this little token of appreciation!");
             }
 
             if (mediaPlayer != null) {
@@ -166,7 +168,7 @@ public class MediaController {
                 replyLabel.setText("Correct, come again soon!"); // player has seen 3 videos
             }
         } else { // wrong answer
-            replyLabel.setText("No, I'm sorry, that's wrong!");
+            replyText.setText("No, I'm sorry, that's wrong!");
             cityImplementation.quizzCount++; // increase quizzcount attribute
             if (cityImplementation.quizzCount < 3) { // if player has not yet seen 3 videos
                 option1.setDisable(false); // re-activate buttons
@@ -177,7 +179,7 @@ public class MediaController {
                 Collections.shuffle(questions);//shuffle list in order to decrease chance of repeated question
                 loadVideoQuestion(questions.get(0)); // see another video
             } else { // player has seen 3 videos
-                replyLabel.setText("I'm sorry, but that's just not true, come again soon!");
+                replyText.setText("I'm sorry, but that's just not true, come again soon!");
                 if (mediaPlayer != null) {
                     player.stop();
                     player.dispose();
@@ -185,8 +187,6 @@ public class MediaController {
                 Node source = (Node) event.getSource(); // Cast event to a node
                 Stage stage = (Stage) source.getScene().getWindow(); // Get the stage
                 roomController.setLabels(); // update infobar
-                PauseTransition delay = new PauseTransition(Duration.seconds(2)); // wait 2 sec
-                delay.setOnFinished(delayEvent -> stage.close());
             }
         }
     }
