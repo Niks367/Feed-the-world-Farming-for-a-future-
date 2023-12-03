@@ -7,7 +7,9 @@
     -fx-text-fill: #fee4c4;
     -fx-background-color: #222222;
 }
-
+#replyText{
+    -fx-font-size: 26px;
+}
 .label {
     -fx-font-size: 22px;
     -fx-font-style: italic;
