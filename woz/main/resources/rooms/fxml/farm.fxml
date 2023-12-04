@@ -48,7 +48,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/Farmhouse.png');             -fx-background-size: cover;             -fx-background-repeat: no-repeat;             -fx-background-position: center;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
+<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/IdyllicFarm1.png');             -fx-background-size: cover;             -fx-background-repeat: no-repeat;             -fx-background-position: center;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -91,7 +91,7 @@
         </MenuBar>
         <BorderPane stylesheets="/rooms/styles/textAreaMadmanStyles.css">
             <top>
-                <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="RIGHT_TO_LEFT" stylesheets="/rooms/styles/infoBarStyles.css" BorderPane.alignment="CENTER">
+                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarStyles.css">
                     <children>
                         <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0" />
                         <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="65.0" text="Population: " />
@@ -107,7 +107,7 @@
                                 <Image url="@../images/PhosphorIcon.png" />
                             </image>
                         </ImageView>
-                        <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="35.0" />
+                        <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="45.0" />
                         <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Gold: " />
                         <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
                             <image>

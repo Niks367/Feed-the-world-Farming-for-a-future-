@@ -77,7 +77,6 @@ public class Context {
                     PrintingUtilities.printOnScreen("Your current cash situation is: " + playerImplementation.money + " money");
         }
     }
-
     public void support(String command) {
         //context.initInterfaces();
         switch (command) {
@@ -88,7 +87,7 @@ public class Context {
                             PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
                             break;
                         }
-                        if (playerImplementation.money > cityImplementation.projectCost) {
+                        if (playerImplementation.money >= cityImplementation.projectCost) {
                             PrintingUtilities.printOnScreen("You have helped the project of building a purification plant, the project is at level " + cityImplementation.pp_Progress +
                                     "\nYou can leave by typing go east or support more projects by typing SF or PP");
                             playerImplementation.useMoney(cityImplementation.projectCost);
@@ -115,7 +114,8 @@ public class Context {
                             PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
                             break;
                         }
-                        if (playerImplementation.money > cityImplementation.projectCost) {
+                        if (playerImplementation.money >= cityImplementation.projectCost) {
+                            playerImplementation.useMoney(cityImplementation.projectCost);
                             cityImplementation.sf_Progress += 1;
                             if (cityImplementation.sf_Progress == cityImplementation.projectLimit) {
                                 cityImplementation.isSfDone = true;

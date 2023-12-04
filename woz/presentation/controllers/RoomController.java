@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -90,7 +91,6 @@ public class RoomController {
 
     String originalUniText = "Dean : 'Good to see you, we have some very promising projects, but we are in lack of sufficient funds, would you like to support any of our projects? It will take 3 levels each costing " + cityImplementation.projectCost + " gold per to finish. There is a upgrade available after finish!";
 
-
     @FXML
     public void init(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_farm");
@@ -151,6 +151,20 @@ public class RoomController {
     public void getPopulation() {
         populationLabel = (Label) roomStage.getScene().lookup("#populationLabel");
         setPopulation(String.valueOf(Context.cityImplementation.getPopulation()));
+    }
+    public void getPpProgress() {
+        uniText.setText("Your PurificationPlant is now at level: " + String.valueOf(cityImplementation.pp_Progress));
+        setLabels();
+        if(cityImplementation.isPpDone) {
+            uniText.setText("The PurificationPlant is now done, congratulations!");
+        }
+    }
+    public void getSfProgress() {
+        uniText.setText("Your SuperFarm is now at level: " + String.valueOf(cityImplementation.sf_Progress));
+        setLabels();
+        if(cityImplementation.isSfDone) {
+            uniText.setText("The SuperFarm is now finished, congratulations!");
+        }
     }
 
     @FXML
@@ -313,6 +327,11 @@ public class RoomController {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
         uniText.setText(ppHoverText);
     }
+    public void changePpButton(MouseEvent mouseEvent) {
+        Game.dispatchCommand("support pp");
+        getPpProgress();
+    }
+
     @FXML
     private void supportProjectSF() {
         //TODO implement supporting uni.
@@ -322,6 +341,15 @@ public class RoomController {
     public void changeSfText() {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
         uniText.setText(sfHoverText);
+    }
+    public void changeSfButton(MouseEvent mouseEvent) {
+        Game.dispatchCommand("support sf");
+        getSfProgress();
+
+
+        setLabels();
+
+
     }
     public void changeToOriginalText() {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
@@ -344,7 +372,7 @@ public class RoomController {
             cityImplementation.quizzCount++;
         } else {
             quiz = (TextArea) roomStage.getScene().lookup("#quiz");
-            quiz.setText("I can only give you 3 questions per season, but do come back next season!");
+            quiz.setText("I can only give you 3 questions per season, but do come back next season. There is a man in the city that knows about things, go see him or simply study nature!");
             quizButton.setDisable(true);
         }
 
@@ -402,5 +430,7 @@ public class RoomController {
 
         }
     }
+
+
 }
 
