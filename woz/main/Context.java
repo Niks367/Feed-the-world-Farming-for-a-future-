@@ -122,7 +122,6 @@ public class Context {
                             }
                             PrintingUtilities.printOnScreen("You have helped the project of building a super farm, the project is at level " + cityImplementation.sf_Progress +
                                     "\nYou can leave by typing go east or support more projects by typing SF or PP");
-                            playerImplementation.useMoney(cityImplementation.projectCost);
                             // TODO superfarm_scale is increased by one
                         } else {
                             PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
