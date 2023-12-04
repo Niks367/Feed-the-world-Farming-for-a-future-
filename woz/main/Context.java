@@ -26,8 +26,6 @@ public class Context {
         playerImplementation.spawn();
     }
 
-    public int projectLimit = 3;
-    public double projectCost = 50;
 
     Context(Space node) {
         current = node;
@@ -86,16 +84,16 @@ public class Context {
             case "PP", "pp" -> {
                 if (cityImplementation.getIsInUni()) {
                     if (!cityImplementation.isPpDone) {
-                        if (cityImplementation.pp_Progress == projectLimit) {
+                        if (cityImplementation.pp_Progress == cityImplementation.projectLimit) {
                             PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
                             break;
                         }
-                        if (playerImplementation.money > projectCost) {
+                        if (playerImplementation.money > cityImplementation.projectCost) {
                             PrintingUtilities.printOnScreen("You have helped the project of building a purification plant, the project is at level " + cityImplementation.pp_Progress +
                                     "\nYou can leave by typing go east or support more projects by typing SF or PP");
-                            playerImplementation.useMoney(projectCost);
+                            playerImplementation.useMoney(cityImplementation.projectCost);
                             cityImplementation.pp_Progress += 1;
-                            if (cityImplementation.pp_Progress == projectLimit) {
+                            if (cityImplementation.pp_Progress == cityImplementation.projectLimit) {
                                 cityImplementation.isPpDone = true;
                             }
                             // TODO purification_scale is increased by one
@@ -113,18 +111,18 @@ public class Context {
             case "SF", "sf" -> {
                 if (cityImplementation.getIsInUni()) {
                     if (!cityImplementation.isSfDone) {
-                        if (cityImplementation.sf_Progress == projectLimit) {
+                        if (cityImplementation.sf_Progress == cityImplementation.projectLimit) {
                             PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
                             break;
                         }
-                        if (playerImplementation.money > projectCost) {
+                        if (playerImplementation.money > cityImplementation.projectCost) {
                             cityImplementation.sf_Progress += 1;
-                            if (cityImplementation.sf_Progress == projectLimit) {
+                            if (cityImplementation.sf_Progress == cityImplementation.projectLimit) {
                                 cityImplementation.isSfDone = true;
                             }
                             PrintingUtilities.printOnScreen("You have helped the project of building a super farm, the project is at level " + cityImplementation.sf_Progress +
                                     "\nYou can leave by typing go east or support more projects by typing SF or PP");
-                            playerImplementation.useMoney(projectCost);
+                            playerImplementation.useMoney(cityImplementation.projectCost);
                             // TODO superfarm_scale is increased by one
                         } else {
                             PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
