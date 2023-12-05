@@ -158,17 +158,19 @@ public class RoomController {
         populationLabel = (Label) roomStage.getScene().lookup("#populationLabel");
         setPopulation(String.valueOf(Context.cityImplementation.getPopulation()));
     }
+
     public void getPpProgress() {
         uniText.setText("Your PurificationPlant is now at level: " + String.valueOf(cityImplementation.pp_Progress));
         setLabels();
-        if(cityImplementation.isPpDone) {
+        if (cityImplementation.isPpDone) {
             uniText.setText("The PurificationPlant is now done, congratulations!");
         }
     }
+
     public void getSfProgress() {
         uniText.setText("Your SuperFarm is now at level: " + String.valueOf(cityImplementation.sf_Progress));
         setLabels();
-        if(cityImplementation.isSfDone) {
+        if (cityImplementation.isSfDone) {
             uniText.setText("The SuperFarm is now finished, congratulations!");
         }
     }
@@ -180,6 +182,7 @@ public class RoomController {
         lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
         setLakeText(Context.lakeImplementation.visitlake());
     }
+
 
     public void setLabels() {
         getMoney();
@@ -296,7 +299,6 @@ public class RoomController {
             previousRoomStage.show();
         }
     }
-
     public void goToCity(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_city");
         goAnotherRoom("/rooms/fxml/city.fxml");
@@ -316,6 +318,9 @@ public class RoomController {
         cityTextUpdate();
     }
 
+
+
+
     public void goToMadman(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_madman");
         goAnotherRoom("/rooms/fxml/madman.fxml");
@@ -325,11 +330,10 @@ public class RoomController {
 
     @FXML
     private void supportProjectPP() {
-        if(!cityImplementation.isPpDone){
+        if (!cityImplementation.isPpDone) {
             Game.dispatchCommand("support pp");
             setLabels();
-        }
-        else{
+        } else {
             Game.dispatchCommand("support spp");
             setLabels();
         }
@@ -339,21 +343,22 @@ public class RoomController {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
         uniText.setText(ppHoverText);
     }
+
     public void changePpButton(MouseEvent mouseEvent) {
-        if(!cityImplementation.isPpDone){
+        if (!cityImplementation.isPpDone) {
             Game.dispatchCommand("support pp");
             setLabels();
             getPpProgress();
-            if(!cityImplementation.isSppReady && cityImplementation.isPpDone){
+            if (!cityImplementation.isSppReady && cityImplementation.isPpDone) {
                 ppText.setDisable(true);
                 ppText.setText("Project done!!!");
             }
         }
-        if(cityImplementation.isSppReady){
+        if (cityImplementation.isSppReady) {
             ppText.setText("Support project Super purification plant");
             Game.dispatchCommand("support spp");
             setLabels();
-            if (cityImplementation.isSppDone){
+            if (cityImplementation.isSppDone) {
                 ppText.setDisable(true);
                 ppText.setText("Project done!!!");
             }
@@ -364,26 +369,28 @@ public class RoomController {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
         uniText.setText(sfHoverText);
     }
+
     public void changeSfButton(MouseEvent mouseEvent) {
-        if(!cityImplementation.isSfDone){
+        if (!cityImplementation.isSfDone) {
             Game.dispatchCommand("support sf");
             setLabels();
             getSfProgress();
-            if(!cityImplementation.isBfReady && cityImplementation.isSfDone){
+            if (!cityImplementation.isBfReady && cityImplementation.isSfDone) {
                 sfText.setDisable(true);
                 sfText.setText("Project done!!!");
             }
         }
-        if(cityImplementation.isBfReady){
+        if (cityImplementation.isBfReady) {
             sfText.setText("Support project Bio-Farm");
             Game.dispatchCommand("support bf");
             setLabels();
-            if (cityImplementation.isBfDone){
+            if (cityImplementation.isBfDone) {
                 sfText.setDisable(true);
                 sfText.setText("Project done!!!");
             }
         }
     }
+
     public void changeToOriginalText() {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
         uniText.setText(originalUniText);
@@ -392,7 +399,6 @@ public class RoomController {
 
     @FXML
     private void quizStart() throws IOException {
-        Platform.exit();
         MediaController mediaController = new MediaController();
         mediaController.initController(this);
         if (cityImplementation.quizzCount < 3) {
@@ -409,8 +415,6 @@ public class RoomController {
             quiz.setText("I can only give you 3 questions per season, but do come back next season. There is a man in the city that knows about things, go see him or simply study nature!");
             quizButton.setDisable(true);
         }
-
-
     }
 
 
@@ -421,39 +425,40 @@ public class RoomController {
         quiz.setText("Would you like to answer some questions about the phoshphor problematic and earn some money?");
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
         uniText.setText(originalUniText);
-        if(!cityImplementation.isBfReady && cityImplementation.isSfDone){
+        if (!cityImplementation.isBfReady && cityImplementation.isSfDone) {
             sfText = (Button) roomStage.getScene().lookup("#sfText");
             sfText.setDisable(true);
             sfText.setText("Project done!!!");
         }
-        if (cityImplementation.isBfReady){
+        if (cityImplementation.isBfReady) {
             sfText = (Button) roomStage.getScene().lookup("#sfText");
             sfText.setText("Support project Bio-Farm");
         }
-        if(!cityImplementation.isSppReady && cityImplementation.isPpDone){
+        if (!cityImplementation.isSppReady && cityImplementation.isPpDone) {
             ppText = (Button) roomStage.getScene().lookup("#ppText");
             ppText.setDisable(true);
             ppText.setText("Project done!!!");
         }
-        if (cityImplementation.isSppReady){
+        if (cityImplementation.isSppReady) {
             ppText = (Button) roomStage.getScene().lookup("#ppText");
             ppText.setText("Support project Super purification plant");
         }
-        if (cityImplementation.isBfDone){
+        if (cityImplementation.isBfDone) {
             sfText = (Button) roomStage.getScene().lookup("#sfText");
             sfText.setDisable(true);
             sfText.setText("Project done!!!");
         }
-        if (cityImplementation.isSppDone){
+        if (cityImplementation.isSppDone) {
             ppText = (Button) roomStage.getScene().lookup("#ppText");
             ppText.setDisable(true);
             ppText.setText("Project done!!!");
         }
-        if (cityImplementation.isSppDone && cityImplementation.isBfDone){
+        if (cityImplementation.isSppDone && cityImplementation.isBfDone) {
             uniText = (TextArea) roomStage.getScene().lookup("#uniText");
             uniText.setText("Well done, you have finished all our projects!");
         }
     }
+
     public void goToShop(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_shop");
         goAnotherRoom("/rooms/fxml/shop.fxml");
@@ -496,59 +501,5 @@ public class RoomController {
 
         }
     }
-//    public void goAnotherRoom(String roomFXM) {
-//
-//        Stage transitionStage = new Stage();
-//        transitionStage.initStyle(StageStyle.UNDECORATED);
-//
-//        //TODO implementation when to switch the room
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource(roomFXM));
-//            Parent newRoot = loader.load();
-//
-//            FadeTransition fadeOutTransition = new FadeTransition(Duration.seconds(1), roomStage.getScene().getRoot());
-//            fadeOutTransition.setByValue(1.0);
-//            fadeOutTransition.setToValue(0.0);
-//
-//            FadeTransition fadeInTransition = new FadeTransition(Duration.seconds(1), roomStage.getScene().getRoot());
-//            fadeInTransition.setByValue(0.0);
-//            fadeInTransition.setToValue(1.0);
-//
-//            ParallelTransition parallelTransition = new ParallelTransition(fadeOutTransition, fadeInTransition);
-//
-//            SequentialTransition sequentialTransition = new SequentialTransition(parallelTransition);
-//            sequentialTransition.setOnFinished(event -> {
-//                roomStage.close();
-//
-//                setRoomStage(transitionStage);
-//                transitionStage.show();
-//            });
-//            transitionStage.setScene(new Scene(newRoot));
-//            sequentialTransition.play();
-//
-//
-//
-//
-////            Stage stage = new Stage();
-////            stage.setScene(new Scene(parent));
-//            transitionStage.setResizable(true); // Prevent resizing of the window
-//            roomStage.close();
-//            transitionStage.show();
-//            Platform.setImplicitExit(true);
-//            transitionStage.setOnCloseRequest((ae) -> {
-//                Platform.exit();
-//                System.exit(0);
-//            });
-//            setRoomStage(transitionStage);
-//            roomStack.push(transitionStage);
-//            setLabels();
-//            dayProgress();
-//        } catch (Exception e) {
-//            PrintingUtilities.printOnScreen("Error with switching views");
-//            e.printStackTrace();
-//        }
-//    }
-
-
 }
 
