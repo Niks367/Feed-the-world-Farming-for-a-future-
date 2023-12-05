@@ -13,7 +13,7 @@
       -fx-background-repeat: no-repeat; -fx-background-position: center;">
    <BorderPane prefHeight="374.0" prefWidth="640.0">
       <center>
-         <TextArea fx:id="introText" opacity="0.8" prefHeight="200.0" prefWidth="393.0" BorderPane.alignment="CENTER" wrapText="true" editable="false">
+         <TextArea fx:id="introText" opacity="0.9" prefHeight="200.0" prefWidth="393.0" BorderPane.alignment="CENTER" wrapText="true" editable="false">
             <BorderPane.margin>
                <Insets bottom="40.0" left="60.0" right="60.0" top="40.0" />
             </BorderPane.margin>

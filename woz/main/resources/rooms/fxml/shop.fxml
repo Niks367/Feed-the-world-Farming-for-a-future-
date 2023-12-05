@@ -90,7 +90,7 @@
         </MenuBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="319.0" prefWidth="640.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" VBox.vgrow="ALWAYS">
             <children>
-                <TextArea fx:id="shopText" layoutX="103.0" layoutY="66.0" prefHeight="153.0" prefWidth="475.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" wrapText="true" />
+                <TextArea fx:id="shopText" layoutX="103.0" layoutY="66.0" prefHeight="153.0" prefWidth="475.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" wrapText="true" editable="false" />
                 <Button fx:id="buyLandButton" layoutX="103.0" layoutY="259.0" mnemonicParsing="false" onAction="#buyLand" text="Buy some land">
                     <font>
                         <Font size="14.0" />
@@ -102,36 +102,44 @@
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="25.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarStyles.css">
-                    <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0" />
-                    <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="65.0" text="Population: " />
-                    <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/PopIcon.png" />
+                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0"
+                      stylesheets="/rooms/styles/infoBarStyles.css">
+                    <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
+                    <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="70.0"
+                           text="Population: "/>
+                    <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../images/PopIcon.png"/>
                     </ImageView>
-                    <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0" />
-                    <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0" text="Phosphor: " />
-                    <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/PhosphorIcon.png" />
+                    <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
+                    <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0"
+                           text="Phosphor: "/>
+                    <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../images/PhosphorIcon.png"/>
                     </ImageView>
-                    <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="45.0" />
-                    <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Gold: " />
-                    <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/GoldIcon.png" />
+                    <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
+                    <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="50.0" text="Gold: "/>
+                    <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../images/GoldIcon.png"/>
                     </ImageView>
-                    <ProgressBar fx:id="seasonsProgress" prefHeight="25.0" prefWidth="50.0" />
-                    <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season" />
+                    <ProgressBar fx:id="seasonsProgress" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0"
+                                 prefWidth="50.0" progress="1.0"/>
+                    <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season"/>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/SeasonsIcon.png" />
+                        <Image url="@../images/SeasonsIcon.png"/>
                     </ImageView>
-                    <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0" />
-                    <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Knowledge" />
+                    <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0"/>
+                    <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0"
+                           text="Knowledge"/>
                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/KnowledgeIcon.png" />
+                        <Image url="@../images/KnowledgeIcon.png"/>
                     </ImageView>
                 </HBox>
             </children>
         </AnchorPane>
-      <HBox stylesheets="/rooms/styles/textAreaMadmanStyles.css" alignment="TOP_CENTER" prefHeight="50.0" prefWidth="640.0" spacing="120.0">
+      <HBox stylesheets="/rooms/styles/textAreaMadmanStyles.css" alignment="TOP_CENTER" prefHeight="50.0" prefWidth="640.0" spacing="120.0" >
          <children>
                 <Button fx:id="goToCityFromShopButton" mnemonicParsing="false" onAction="#goToCityFromShop" text="Go to City">
                     <font>

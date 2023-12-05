@@ -90,50 +90,46 @@
         </MenuBar>
         <BorderPane prefHeight="356.0" prefWidth="640.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css">
             <top>
-                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarStyles.css">
-                    <children>
-                        <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0" />
-                        <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="65.0" text="Population: " />
-                        <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/PopIcon.png" />
-                            </image>
-                        </ImageView>
-                        <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0" />
-                        <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0" text="Phosphor: " />
-                        <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/PhosphorIcon.png" />
-                            </image>
-                        </ImageView>
-                        <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="45.0" />
-                        <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Gold: " />
-                        <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/GoldIcon.png" />
-                            </image>
-                        </ImageView>
-                        <ProgressBar fx:id="seasonsProgress" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="50.0" progress="1.0" />
-                        <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season" />
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/SeasonsIcon.png" />
-                            </image>
-                        </ImageView>
-                        <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0" />
-                        <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Knowledge" />
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/KnowledgeIcon.png" />
-                            </image>
-                        </ImageView>
-                    </children>
+                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0"
+                      stylesheets="/rooms/styles/infoBarStyles.css">
+                    <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
+                    <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="70.0"
+                           text="Population: "/>
+                    <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../images/PopIcon.png"/>
+                    </ImageView>
+                    <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
+                    <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0"
+                           text="Phosphor: "/>
+                    <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../images/PhosphorIcon.png"/>
+                    </ImageView>
+                    <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
+                    <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="50.0" text="Gold: "/>
+                    <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true"
+                               preserveRatio="true">
+                        <Image url="@../images/GoldIcon.png"/>
+                    </ImageView>
+                    <ProgressBar fx:id="seasonsProgress" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0"
+                                 prefWidth="50.0" progress="1.0"/>
+                    <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season"/>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/SeasonsIcon.png"/>
+                    </ImageView>
+                    <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0"/>
+                    <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0"
+                           text="Knowledge"/>
+                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <Image url="@../images/KnowledgeIcon.png"/>
+                    </ImageView>
                 </HBox>
             </top>
             <center>
                 <HBox alignment="TOP_CENTER" prefHeight="324.0" prefWidth="640.0" spacing="120.0" BorderPane.alignment="CENTER">
                     <children>
-                        <TextArea fx:id="lakeText" layoutX="204.0" layoutY="65.0" opacity="0.7" prefHeight="200.0" prefWidth="200.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" wrapText="true">
+                        <TextArea fx:id="lakeText" layoutX="204.0" layoutY="65.0" opacity="0.7" prefHeight="200.0" prefWidth="200.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" wrapText="true" editable="false">
                      <HBox.margin>
                         <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
                      </HBox.margin>

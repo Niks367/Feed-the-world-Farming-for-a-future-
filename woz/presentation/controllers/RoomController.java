@@ -1,6 +1,9 @@
 package presentation.controllers;
 
 import business.utils.PrintingUtilities;
+import javafx.animation.FadeTransition;
+import javafx.animation.ParallelTransition;
+import javafx.animation.SequentialTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +23,8 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Duration;
 import main.Context;
 import main.Game;
 
@@ -66,6 +71,7 @@ public class RoomController {
     public Button ppText;
     public TextArea introText;
     public Button sfText;
+    public TextArea victoryText;
 
     private MediaPlayer mediaPlayer;
 
@@ -386,6 +392,7 @@ public class RoomController {
 
     @FXML
     private void quizStart() throws IOException {
+        Platform.exit();
         MediaController mediaController = new MediaController();
         mediaController.initController(this);
         if (cityImplementation.quizzCount < 3) {
@@ -442,6 +449,10 @@ public class RoomController {
             ppText.setDisable(true);
             ppText.setText("Project done!!!");
         }
+        if (cityImplementation.isSppDone && cityImplementation.isBfDone){
+            uniText = (TextArea) roomStage.getScene().lookup("#uniText");
+            uniText.setText("Well done, you have finished all our projects!");
+        }
     }
     public void goToShop(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_shop");
@@ -485,6 +496,58 @@ public class RoomController {
 
         }
     }
+//    public void goAnotherRoom(String roomFXM) {
+//
+//        Stage transitionStage = new Stage();
+//        transitionStage.initStyle(StageStyle.UNDECORATED);
+//
+//        //TODO implementation when to switch the room
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource(roomFXM));
+//            Parent newRoot = loader.load();
+//
+//            FadeTransition fadeOutTransition = new FadeTransition(Duration.seconds(1), roomStage.getScene().getRoot());
+//            fadeOutTransition.setByValue(1.0);
+//            fadeOutTransition.setToValue(0.0);
+//
+//            FadeTransition fadeInTransition = new FadeTransition(Duration.seconds(1), roomStage.getScene().getRoot());
+//            fadeInTransition.setByValue(0.0);
+//            fadeInTransition.setToValue(1.0);
+//
+//            ParallelTransition parallelTransition = new ParallelTransition(fadeOutTransition, fadeInTransition);
+//
+//            SequentialTransition sequentialTransition = new SequentialTransition(parallelTransition);
+//            sequentialTransition.setOnFinished(event -> {
+//                roomStage.close();
+//
+//                setRoomStage(transitionStage);
+//                transitionStage.show();
+//            });
+//            transitionStage.setScene(new Scene(newRoot));
+//            sequentialTransition.play();
+//
+//
+//
+//
+////            Stage stage = new Stage();
+////            stage.setScene(new Scene(parent));
+//            transitionStage.setResizable(true); // Prevent resizing of the window
+//            roomStage.close();
+//            transitionStage.show();
+//            Platform.setImplicitExit(true);
+//            transitionStage.setOnCloseRequest((ae) -> {
+//                Platform.exit();
+//                System.exit(0);
+//            });
+//            setRoomStage(transitionStage);
+//            roomStack.push(transitionStage);
+//            setLabels();
+//            dayProgress();
+//        } catch (Exception e) {
+//            PrintingUtilities.printOnScreen("Error with switching views");
+//            e.printStackTrace();
+//        }
+//    }
 
 
 }

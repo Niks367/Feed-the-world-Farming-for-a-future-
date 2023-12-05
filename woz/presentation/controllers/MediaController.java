@@ -76,6 +76,7 @@ public class MediaController {
 
 
     public void initController(RoomController roomController) {
+        //mainly used to call setLabels() to update the infobar from mediaPlaer
         this.roomController = roomController;
     }
 
