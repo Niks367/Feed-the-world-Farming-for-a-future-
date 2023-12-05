@@ -139,6 +139,7 @@ public class FarmImplementation implements Farm {
             Context.farmImplementation.scalePhosphor = Context.farmImplementation.scalePhosphor + 1;
             PrintingUtilities.printOnScreen("Congrats, you now own a Purification Plant!!!");
             Context.cityImplementation.availableProjectsList.remove("PurificationPlant (PP)");
+            Context.cityImplementation.isSppReady = true;
         }
         if (Context.cityImplementation.isSppDone) {
             Context.cityImplementation.isPpDone = false;

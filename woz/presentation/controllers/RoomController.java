@@ -338,10 +338,19 @@ public class RoomController {
             Game.dispatchCommand("support pp");
             setLabels();
             getPpProgress();
+            if(!cityImplementation.isSppReady && cityImplementation.isPpDone){
+                ppText.setDisable(true);
+                ppText.setText("Project done!!!");
+            }
         }
-        else{
+        if(cityImplementation.isSppReady){
+            ppText.setText("Support project Super purification plant");
             Game.dispatchCommand("support spp");
             setLabels();
+            if (cityImplementation.isSppDone){
+                ppText.setDisable(true);
+                ppText.setText("Project done!!!");
+            }
         }
     }
 
@@ -363,6 +372,10 @@ public class RoomController {
             sfText.setText("Support project Bio-Farm");
             Game.dispatchCommand("support bf");
             setLabels();
+            if (cityImplementation.isBfDone){
+                sfText.setDisable(true);
+                sfText.setText("Project done!!!");
+            }
         }
     }
     public void changeToOriginalText() {
@@ -409,6 +422,25 @@ public class RoomController {
         if (cityImplementation.isBfReady){
             sfText = (Button) roomStage.getScene().lookup("#sfText");
             sfText.setText("Support project Bio-Farm");
+        }
+        if(!cityImplementation.isSppReady && cityImplementation.isPpDone){
+            ppText = (Button) roomStage.getScene().lookup("#ppText");
+            ppText.setDisable(true);
+            ppText.setText("Project done!!!");
+        }
+        if (cityImplementation.isSppReady){
+            ppText = (Button) roomStage.getScene().lookup("#ppText");
+            ppText.setText("Support project Super purification plant");
+        }
+        if (cityImplementation.isBfDone){
+            sfText = (Button) roomStage.getScene().lookup("#sfText");
+            sfText.setDisable(true);
+            sfText.setText("Project done!!!");
+        }
+        if (cityImplementation.isSppDone){
+            ppText = (Button) roomStage.getScene().lookup("#ppText");
+            ppText.setDisable(true);
+            ppText.setText("Project done!!!");
         }
     }
     public void goToShop(ActionEvent actionEvent) {
