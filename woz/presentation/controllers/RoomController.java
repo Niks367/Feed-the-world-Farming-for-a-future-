@@ -319,37 +319,51 @@ public class RoomController {
 
     @FXML
     private void supportProjectPP() {
-        //TODO implement supporting uni.
-        Game.dispatchCommand("support pp");
-        setLabels();
+        if(!cityImplementation.isPpDone){
+            Game.dispatchCommand("support pp");
+            setLabels();
+        }
+        else{
+            Game.dispatchCommand("support spp");
+            setLabels();
+        }
     }
+
     public void changePpText() {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
         uniText.setText(ppHoverText);
     }
     public void changePpButton(MouseEvent mouseEvent) {
-        Game.dispatchCommand("support pp");
-        getPpProgress();
+        if(!cityImplementation.isPpDone){
+            Game.dispatchCommand("support pp");
+            setLabels();
+            getPpProgress();
+        }
+        else{
+            Game.dispatchCommand("support spp");
+            setLabels();
+        }
     }
 
-    @FXML
-    private void supportProjectSF() {
-        //TODO implement supporting uni.
-        Game.dispatchCommand("support sf");
-        setLabels();
-    }
     public void changeSfText() {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
         uniText.setText(sfHoverText);
     }
     public void changeSfButton(MouseEvent mouseEvent) {
-        Game.dispatchCommand("support sf");
-        getSfProgress();
-
-
-        setLabels();
-
-
+        if(!cityImplementation.isSfDone){
+            Game.dispatchCommand("support sf");
+            setLabels();
+            getSfProgress();
+            if(!cityImplementation.isBfReady && cityImplementation.isSfDone){
+                sfText.setDisable(true);
+                sfText.setText("Project done!!!");
+            }
+        }
+        if(cityImplementation.isBfReady){
+            sfText.setText("Support project Bio-Farm");
+            Game.dispatchCommand("support bf");
+            setLabels();
+        }
     }
     public void changeToOriginalText() {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
@@ -387,6 +401,15 @@ public class RoomController {
         quiz.setText("Would you like to answer some questions about the phoshphor problematic and earn some money?");
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
         uniText.setText(originalUniText);
+        if(!cityImplementation.isBfReady && cityImplementation.isSfDone){
+            sfText = (Button) roomStage.getScene().lookup("#sfText");
+            sfText.setDisable(true);
+            sfText.setText("Project done!!!");
+        }
+        if (cityImplementation.isBfReady){
+            sfText = (Button) roomStage.getScene().lookup("#sfText");
+            sfText.setText("Support project Bio-Farm");
+        }
     }
     public void goToShop(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_shop");

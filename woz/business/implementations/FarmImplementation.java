@@ -5,7 +5,6 @@ import business.interfaces.Field;
 import business.utils.MadManUtils;
 import business.utils.PrintingUtilities;
 import main.Context;
-import presentation.controllers.RoomController;
 
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 100;
@@ -105,7 +104,7 @@ public class FarmImplementation implements Farm {
         // This is so that the endDay command doesnt just contiously end the day, but we actually reset it, so we can type it again the next day.
         //field.sowSeed(1, phosphor, land);
         if ((dayCount + 1) % 4 == 0) // making a week 4 days
-            endWeek();
+            endSeason();
         dayProgress = 0;
         dayCount += 1;
         PrintingUtilities.printOnScreen(MadManUtils.madEvent());
@@ -127,6 +126,7 @@ public class FarmImplementation implements Farm {
             Context.farmImplementation.phosphorConsumationSpeed = 3;
             PrintingUtilities.printOnScreen("Congrats, you now own a Super Farm!!!");
             Context.cityImplementation.availableProjectsList.remove("SuperFarm (SF)");
+            Context.cityImplementation.isBfReady = true;
         }
         if (Context.cityImplementation.isBfDone) {
             Context.cityImplementation.isSfDone = false;
@@ -140,12 +140,12 @@ public class FarmImplementation implements Farm {
             PrintingUtilities.printOnScreen("Congrats, you now own a Purification Plant!!!");
             Context.cityImplementation.availableProjectsList.remove("PurificationPlant (PP)");
         }
-        if (Context.cityImplementation.isSuperPpDone) {
+        if (Context.cityImplementation.isSppDone) {
             Context.cityImplementation.isPpDone = false;
             Context.farmImplementation.scalePhosphor = Context.farmImplementation.scalePhosphor + 5;
             Context.farmImplementation.phosphorConsumationSpeed = 0.5;
             PrintingUtilities.printOnScreen("Congrats, you now own a Super Purification Plant!!!");
-            Context.cityImplementation.availableProjectsList.remove("Super Purification Plant(SuperPP)");
+            Context.cityImplementation.availableProjectsList.remove("Super Purification Plant(SPP)");
         }
     }
 
@@ -153,8 +153,8 @@ public class FarmImplementation implements Farm {
         return Context.playerImplementation.money < Context.cityImplementation.population;
     }
 
-    public void endWeek() {
-        PrintingUtilities.printOnScreen("Ending Week ");
+    public void endSeason() {
+        PrintingUtilities.printOnScreen("Ending Season ");
         Context.cityImplementation.quizzCount=0;
 //        for (int i = 5; i > 0; i--) {
 //            try {
@@ -168,7 +168,7 @@ public class FarmImplementation implements Farm {
         PrintingUtilities.printOnScreen(String.valueOf(calculateProfit()));
         PrintingUtilities.printOnScreen(" gold!");
         Context.playerImplementation.addMoney(calculateProfit());
-        PrintingUtilities.printOnScreen("Ending Week ");
+        PrintingUtilities.printOnScreen("Ending Season ");
         Context.cityImplementation.isHunger = calculateIsHunger();
         PrintingUtilities.printOnScreen("\nSo after harvesting you have: " + Context.playerImplementation.money + " gold.");
         PrintingUtilities.printOnScreen("But the people in Capitol City is hungry, and the population is: " + Context.cityImplementation.population);

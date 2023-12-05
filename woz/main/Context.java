@@ -133,8 +133,65 @@ public class Context {
                     PrintingUtilities.printOnScreen("You have to be in the university to support our projects");
                 }
             }
+            case "SPP", "spp" -> {
+                if (cityImplementation.getIsInUni()) {
+                    if (!cityImplementation.isSppDone) {
+                        if (cityImplementation.spp_Progress == cityImplementation.projectLimit) {
+                            PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
+                            break;
+                        }
+                        if (playerImplementation.money > cityImplementation.projectCost) {
+                            PrintingUtilities.printOnScreen("You have helped the project of building a super purification plant, the project is at level " + cityImplementation.spp_Progress +
+                                    "\nYou can leave by typing go east or support more projects by typing SF, PP, SPP or BF.");
+                            playerImplementation.useMoney(cityImplementation.projectCost);
+                            cityImplementation.spp_Progress += 1;
+                            if (cityImplementation.spp_Progress == cityImplementation.projectLimit) {
+                                cityImplementation.isSppDone = true;
+                            }
+                            // TODO purification_scale is increased by one
+                        } else {
+                            PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
+                        }
+                    } else {
+                        PrintingUtilities.printOnScreen("You have already completed that project.");
+                    }
+
+                } else {
+                    PrintingUtilities.printOnScreen("You have to be in the university to support our projects");
+                }
+            }
+
+            case "BF", "bf" -> {
+                if (cityImplementation.getIsInUni()) {
+                    if (!cityImplementation.isBfDone) {
+                        if (cityImplementation.bf_Progress == cityImplementation.projectLimit) {
+                            PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
+                            break;
+                        }
+                        if (playerImplementation.money > cityImplementation.projectCost) {
+                            PrintingUtilities.printOnScreen("You have helped the project of building a bio farm, the project is at level " + cityImplementation.bf_Progress +
+                                    "\nYou can leave by typing go east or support more projects by typing SF, PP, SPP or BF.");
+                            playerImplementation.useMoney(cityImplementation.projectCost);
+                            cityImplementation.bf_Progress += 1;
+                            if (cityImplementation.bf_Progress == cityImplementation.projectLimit) {
+                                cityImplementation.isBfDone = true;
+                            }
+                            // TODO purification_scale is increased by one
+                        } else {
+                            PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
+                        }
+                    } else {
+                        PrintingUtilities.printOnScreen("You have already completed that project.");
+                    }
+
+                } else {
+                    PrintingUtilities.printOnScreen("You have to be in the university to support our projects");
+                }
+            }
         }
     }
+
+
 
     public void buy(String command) {
         //context.initInterfaces();

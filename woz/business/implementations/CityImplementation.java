@@ -17,13 +17,17 @@ public class CityImplementation implements City {
     int population = 100;
     public int sf_Progress = 0;
     public int pp_Progress = 0;
+    public int spp_Progress = 0;
+    public int bf_Progress = 0;
     public int projectLimit = 3;
     public double projectCost = 50;
     public boolean isPpDone = false; //Boolean for PP
     public boolean isSfDone = false; //Boolean for Sf
-    boolean isSuperPpDone = false; //Boolean for Super PP
-    boolean isBfDone = false; //Boolean for Bio Farm
+    public boolean isSppDone = false; //Boolean for Super PP
+    public boolean isBfDone = false; //Boolean for Bio Farm
     public boolean isHunger = false;
+    public boolean isBfReady = false;
+    public boolean isSppReady = false;
     public int quizzCount = 0;
 
     public int knowledge = 0;
@@ -31,13 +35,13 @@ public class CityImplementation implements City {
     /* allProjectsList is a list of all projects that can be available during different phases of the game:
     It is hardcoded.
     For now the Dean uses this list.*/
-    private final ArrayList<String> allProjectsList = new ArrayList(Arrays.asList("SuperFarm (SF)", "PurificationPlant (PP)", "BioFarm (BF)", "Super Purification Plant(SuperPP)"));
+    private final ArrayList<String> allProjectsList = new ArrayList(Arrays.asList("SuperFarm (SF)", "PurificationPlant (PP)", "BioFarm (BF)", "Super Purification Plant(SPP)"));
 
     private void printAllProjectsList() {
         PrintingUtilities.printOnScreen(String.valueOf(allProjectsList));
     }
 
-    public ArrayList<String> availableProjectsList = new ArrayList(Arrays.asList("SuperFarm(SF)", "PurificationPlant (PP)", "BioFarm (BF)", "Super Purification Plant(SuperPP)"));
+    public ArrayList<String> availableProjectsList = new ArrayList(Arrays.asList("SuperFarm(SF)", "PurificationPlant (PP)", "BioFarm (BF)", "Super Purification Plant(SPP)"));
     // availableProjectsList is  a list of the projects that player can currently support:
 //    private ArrayList<String> availableProjectsList;
 //

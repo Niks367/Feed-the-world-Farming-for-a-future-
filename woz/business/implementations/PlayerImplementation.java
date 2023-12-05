@@ -10,7 +10,7 @@ public class PlayerImplementation implements Player {
 
     @Override
     public void spawn() {
-        this.money = 150.00;
+        this.money = 1000.00;
     }
 
     @Override
