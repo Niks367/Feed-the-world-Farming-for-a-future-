@@ -285,47 +285,19 @@ public class RoomController {
     private void seasonProgress() throws IOException {
         seasonsLabel = (Label) roomStage.getScene().lookup("#seasonsLabel");
         seasonsProgress = (ProgressBar) roomStage.getScene().lookup("#seasonsProgress");
-        if (farmImplementation.seasonCount % 4 == 0) {
+        if (Context.farmImplementation.seasonCount % 4 == 0) {
             seasonsLabel.setText("Winter");
             seasonsProgress.setProgress(0);
-            if (farmImplementation.scalePhosphor <= 0) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/rooms/fxml/gameOver.fxml"));
-                Parent parent = loader.load();
-                Stage stage = new Stage();
-                stage.setResizable(false); // Prevent resizing of the window
-                stage.setScene(new Scene(parent));
-                stage.show();
-                Platform.setImplicitExit(true); // when closing window game stops (system exit)
-                stage.setOnCloseRequest((ae) -> {
-                    Platform.exit();
-                    System.exit(0);
-                });
-            }
-            if (Context.cityImplementation.isSppDone && Context.cityImplementation.isBfDone && Context.farmImplementation.scalePhosphor > 100) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation(getClass().getResource("/rooms/fxml/victory.fxml"));
-                Parent parent = loader.load();
-                Stage stage = new Stage();
-                stage.setResizable(false); // Prevent resizing of the window
-                stage.setScene(new Scene(parent));
-                stage.show();
-                Platform.setImplicitExit(true); // when closing window game stops (System.exit)
-                stage.setOnCloseRequest((ae) -> {
-                    Platform.exit();
-                    System.exit(0);
-                });
-            }
             if (quizButton != null) {
                 quizButton.setDisable(false);
             }
-        } else if (farmImplementation.seasonCount % 4 == 1) {
+        } else if (Context.farmImplementation.seasonCount % 4 == 1) {
             seasonsLabel.setText("Spring");
             seasonsProgress.setProgress(0.33);
-        } else if (farmImplementation.seasonCount % 4 == 2) {
+        } else if (Context.farmImplementation.seasonCount % 4 == 2) {
             seasonsLabel.setText("Summer");
             seasonsProgress.setProgress(0.66);
-        } else if (farmImplementation.seasonCount % 4 == 3) {
+        } else if (Context.farmImplementation.seasonCount % 4 == 3) {
             seasonsLabel.setText("Autumn");
             seasonsProgress.setProgress(1);
         } else {
@@ -389,21 +361,6 @@ public class RoomController {
             e.printStackTrace();
         }
     }
-
-    private void checkNavigation() {
-        // Check if there's a previous room on the stack
-        if (!roomStack.isEmpty()) {
-            Stage previousRoomStage = roomStack.pop();
-
-            // Close the current room's stage
-            Stage currentRoomStage = roomStage;
-            currentRoomStage.close();
-
-            // Show the previous room again
-            previousRoomStage.show();
-        }
-    }
-
     public void goToCity(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_city");
         goAnotherRoom("/rooms/fxml/city.fxml");
@@ -429,17 +386,6 @@ public class RoomController {
         goAnotherRoom("/rooms/fxml/madman.fxml");
         madmanText = (TextArea) roomStage.getScene().lookup("#madmanText");
         madmanText.setText(Context.cityImplementation.visitMadman());
-    }
-
-    @FXML
-    private void supportProjectPP() {
-        if (!cityImplementation.isPpDone) {
-            Game.dispatchCommand("support pp");
-            setLabels();
-        } else {
-            Game.dispatchCommand("support spp");
-            setLabels();
-        }
     }
 
     public void changePpText(MouseEvent mouseEvent) {
