@@ -44,6 +44,8 @@ public class RoomController {
     public static TextArea quiz;
     @FXML
     public static TextArea uniText;
+    @FXML
+    public static TextArea endYearText;
 
     public static Stack<Stage> roomStack = new Stack<>();
     @FXML
@@ -67,6 +69,7 @@ public class RoomController {
     public TextArea introText;
     public Button sfText;
     public TextArea victoryText;
+    public HBox farmTextBox;
     private MediaPlayer mediaPlayer;
     public TextArea populationBox;
     public Label goldLabel;
@@ -143,12 +146,21 @@ public class RoomController {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.close();
     }
+    public void endYearFunction() {
+        endYearText = (TextArea) roomStage.getScene().lookup("#endYearText");
+        endYearText.setText("Ending Year... " + "\nHarvesting the corn on you fields amounts to: " + farmImplementation.calculateProfit() +
+                " gold!" + "\nAfter harvesting you have: " + (playerImplementation.money + cityImplementation.getPopulation()) + " gold." +
+                "\nThe people in Capitol City are hungry, and the population is: " + cityImplementation.getPopulation()
+                + "\nAfter delivering food you have: " + playerImplementation.money + " gold." +
+                "\nThe phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more..."
+                );
+    }
 
     public void endYearButton(ActionEvent event){
         if (Context.farmImplementation != null){
             Context.farmImplementation.endYear();
-        } else {
-            System.out.print("you done fucked up");
+            setLabels();
+            endYearFunction();
         }
     }
 

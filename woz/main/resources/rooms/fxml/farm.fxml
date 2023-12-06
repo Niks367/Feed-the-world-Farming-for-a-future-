@@ -32,13 +32,23 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/IdyllicFarm1.png');             -fx-background-size: cover;             -fx-background-repeat: no-repeat;             -fx-background-position: center;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
+<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/IdyllicFarm1.png');             -fx-background-size: cover;             -fx-background-repeat: no-repeat;             -fx-background-position: center;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
     <children>
         <MenuBar VBox.vgrow="NEVER">
             <menus>
@@ -81,7 +91,7 @@
         </MenuBar>
         <BorderPane stylesheets="/rooms/styles/textAreaMadmanStyles.css">
             <top>
-                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarStyles.css">
+                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0" stylesheets="/rooms/styles/infoBarStyles.css" BorderPane.alignment="CENTER">
                     <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0" />
                     <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="70.0" text="Population: " />
                     <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
@@ -110,13 +120,21 @@
                 </HBox>
             </top>
             <center>
-                <HBox fx:id="farmTextBox" alignment="CENTER" spacing="120.0" BorderPane.alignment="CENTER">
-               <Button mnemonicParsing="false" onAction="#endYearButton" text="End The Year" />
-                    <TextArea fx:id="endYearButton" editable="false" onDragDetected="#endYearButton" opacity="0.9" prefHeight="95.0" prefWidth="200.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" text="Welcome to the Farm" wrapText="true">
+                <HBox fx:id="farmTextBox" alignment="CENTER" prefHeight="281.0" prefWidth="640.0" spacing="120.0" BorderPane.alignment="CENTER">
+               <HBox prefHeight="281.0" prefWidth="555.0">
+                  <children>
+                     <Button alignment="CENTER" mnemonicParsing="false" onAction="#endYearButton" prefHeight="25.0" prefWidth="109.0" text="End Year" textAlignment="CENTER">
                         <HBox.margin>
-                            <Insets bottom="150.0" left="40.0" right="40.0" top="40.0" />
+                           <Insets left="10.0" right="10.0" top="120.0" />
                         </HBox.margin>
-                    </TextArea>
+                     </Button>
+                          <TextArea fx:id="endYearText" editable="false" opacity="0.9" prefHeight="281.0" prefWidth="422.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" text="Welcome to the Farm" wrapText="true">
+                        <HBox.margin>
+                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        </HBox.margin>
+                          </TextArea>
+                  </children>
+               </HBox>
                 </HBox>
             </center>
             <bottom>
