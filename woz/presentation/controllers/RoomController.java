@@ -18,7 +18,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.Context;
@@ -88,6 +87,7 @@ public class RoomController {
     private Label roomName;
     @FXML
     private Label descriptionLabel;
+    String hungerText = "";
 
     FarmImplementation farmImplementation = new FarmImplementation();
 
@@ -147,21 +147,32 @@ public class RoomController {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.close();
     }
-    public void endYearFunction() {
+    public void setHungerText() {
+        if (cityImplementation.isHunger) {
+            hungerText = "And beware! The city is starving and needs food!";
+        } else {
+            hungerText = "";
+        }
+    }
+    public void endYearTextPrint() { // when this is called, farmImplementation is already calculated, so taking that into mind
         endYearText = (TextArea) roomStage.getScene().lookup("#endYearText");
-        endYearText.setText("Ending Year... " + "\nHarvesting the corn on you fields amounts to: " + farmImplementation.calculateProfit() +
-                " gold!" + "\nAfter harvesting you have: " + (playerImplementation.money + cityImplementation.getPopulation()) + " gold." +
-                "\nThe people in Capitol City are hungry, and the population is: " + cityImplementation.getPopulation()
-                + "\nAfter delivering food you have: " + playerImplementation.money + " gold." +
-                "\nThe phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more..."
-                );
+        setHungerText();
+        endYearText.setText("Ending Year... " + "\nHarvesting the corn on you fields amounts to: " + Context.farmImplementation.calculatedProfit +
+                " gold!" + "\nAfter harvesting you had: " + (Context.farmImplementation.lastYearsMoney + Context.farmImplementation.calculatedProfit) + " gold." +
+                "\nBut the people are hungry, and to pay for food you spent : " + Context.farmImplementation.lastYearsTax + " inc taxes..."
+                + "\nAfter delivering food you have: " + Context.playerImplementation.money + " gold." + hungerText +
+                "\nThe phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more...");
     }
 
     public void endYearButton(ActionEvent event){
         if (Context.farmImplementation != null){
             Context.farmImplementation.endYear();
             setLabels();
-            endYearFunction();
+            endYearTextPrint();
+        }
+        else {
+            endYearText = (TextArea) roomStage.getScene().lookup("#endYearText");
+            endYearText.setText("Error");
         }
     }
 

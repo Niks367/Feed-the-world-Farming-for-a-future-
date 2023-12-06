@@ -15,6 +15,7 @@ import main.Context;
 import java.io.IOException;
 
 import static main.Context.cityImplementation;
+import static main.Context.playerImplementation;
 
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 100;
@@ -43,11 +44,37 @@ public class FarmImplementation implements Farm {
         fieldsForPurchase -= 1;
     }
 
+    // Next 3: Last year's numbers for endYearTextPrint() in RoomController, since endYear has already happened here when printing.
+    public double calculatedProfit;
+    public double lastYearsTax;
+    public double lastYearsMoney;
+
     public void checkVictoryConditions() {
         if (Context.cityImplementation.isSppDone && Context.cityImplementation.isBfDone && Context.farmImplementation.scalePhosphor > 100) {
             PrintingUtilities.printOnScreen("Congrats, YOU HAVE WON!!!");
 
             main.Game.context.makeDone();
+        }
+    }
+    public void checkLoosingConditions() {
+        if (Context.farmImplementation.scalePhosphor <= 0 || cityImplementation.getPopulation() <= 0) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/rooms/fxml/gameOver.fxml"));
+            Parent parent = null;
+            try {
+                parent = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Stage stage = new Stage();
+            stage.setResizable(false); // Prevent resizing of the window
+            stage.setScene(new Scene(parent));
+            stage.show();
+            Platform.setImplicitExit(true); // when closing window game stops (system exit)
+            stage.setOnCloseRequest((ae) -> {
+                Platform.exit();
+                System.exit(0);
+            });
         }
     }
 
@@ -104,15 +131,7 @@ public class FarmImplementation implements Farm {
         PrintingUtilities.printOnScreen(MadManUtils.madEvent());
     }
 
-    public double calculateProfit() {
-        double profit;
-        if (isPhophorized) {
-            profit = land * phosphorEffect * yieldOfLand;
-        } else {
-            profit = land * 2 * yieldOfLand;
-        }
-        return profit;
-    }
+
 
     public void calculateProjects() {
         if (Context.cityImplementation.isSfDone) {
@@ -143,69 +162,51 @@ public class FarmImplementation implements Farm {
             Context.cityImplementation.availableProjectsList.remove("Super Purification Plant(SPP)");
         }
     }
-
+    public double calculateProfit() {
+        double profit;
+        if (isPhophorized) {
+            profit = land * phosphorEffect * yieldOfLand;
+        } else {
+            profit = land * yieldOfLand;
+        }
+        return profit;
+    }
     public boolean calculateIsHunger() {
         return Context.playerImplementation.money < Context.cityImplementation.population;
     }
 
-    public void endYear() {
-        PrintingUtilities.printOnScreen("Ending Year");
-        Context.cityImplementation.quizzCount = 0;
-//        for (int i = 5; i > 0; i--) {
-//            try {
-//              //  Thread.sleep(400);
-//            } catch (InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//            PrintingUtilities.printOnScreen("* ");
-//        }
-        PrintingUtilities.printOnScreen("\nHarvesting the corn on you fields amounts to: ");
-        PrintingUtilities.printOnScreen(String.valueOf(calculateProfit()));
-        PrintingUtilities.printOnScreen(" gold!");
-        Context.playerImplementation.addMoney(calculateProfit());
-        PrintingUtilities.printOnScreen("Ending Year ");
-        Context.cityImplementation.isHunger = calculateIsHunger();
-        PrintingUtilities.printOnScreen("\nSo after harvesting you have: " + Context.playerImplementation.money + " gold.");
-        PrintingUtilities.printOnScreen("But the people in Capitol City is hungry, and the population is: " + Context.cityImplementation.population);
-        PrintingUtilities.printOnScreen("After delivering food to Capitol City you have: ");
-        Context.playerImplementation.useMoney(Context.cityImplementation.population + 40.0);
-        PrintingUtilities.printOnScreen(Context.playerImplementation.money + " gold.");
-        PrintingUtilities.printOnScreen("\nThe phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more...");
-        Context.farmImplementation.isPhophorized = false;
-        calculateProjects();
-        checkVictoryConditions();
-        if (!Context.cityImplementation.isHunger) { // If there is no hunger hte population increments with 25 every week
+    public void endYearPopulationCalculater() {
+        if (calculateIsHunger()) { // If hunger: population decrease!
+            cityImplementation.population = cityImplementation.population/2 -5;
+        }
+        if (!calculateIsHunger()) { // If there is no hunger the population increments with 25 every week
             Context.cityImplementation.population += 25;
             PrintingUtilities.printOnScreen("Population is growing, city now has " + Context.cityImplementation.population + " inhabitants");
-        } else {
-            Context.cityImplementation.population = Context.cityImplementation.population / 2 - 20; // If player can't feed the city, the population decrements to half the size!
-            PrintingUtilities.printOnScreen("Hunger has hit the city, the population has fallen to " + Context.cityImplementation.population);
-
         }
-        if (Context.playerImplementation.money <= 0) {
-            PrintingUtilities.printOnScreen("You ran out of cash, too bad...");
-            main.Game.context.makeDone();
-        }
-        if (Context.farmImplementation.scalePhosphor <= 0 || cityImplementation.getPopulation() < 0) {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/rooms/fxml/gameOver.fxml"));
-            Parent parent = null;
-            try {
-                parent = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Stage stage = new Stage();
-            stage.setResizable(false); // Prevent resizing of the window
-            stage.setScene(new Scene(parent));
-            stage.show();
-            Platform.setImplicitExit(true); // when closing window game stops (system exit)
-            stage.setOnCloseRequest((ae) -> {
-                Platform.exit();
-                System.exit(0);
-            });
-
-
-        }
+    }
+    public double endYearTaxCalculater() { // pay for food
+        return Context.cityImplementation.population + 40.0;
+    }
+    public void endYear() {
+        calculatedProfit = calculateProfit();
+        lastYearsTax = endYearTaxCalculater();
+        lastYearsMoney = playerImplementation.money;
+        calculateProjects(); // mainly about phosphor consumption and price
+        Context.cityImplementation.quizzCount = 0; // reset quiz
+        PrintingUtilities.printOnScreen("Ending Year...");
+        PrintingUtilities.printOnScreen("\nHarvesting the corn on you fields amounts to: ");
+        PrintingUtilities.printOnScreen(String.valueOf(calculateProfit())); // This is profit from fields
+        PrintingUtilities.printOnScreen(" gold!");
+        Context.playerImplementation.addMoney(calculateProfit()); // paying player
+        PrintingUtilities.printOnScreen("\nAfter harvesting you had: " + Context.playerImplementation.money + " gold.");
+        PrintingUtilities.printOnScreen("But the people are hungry, and to pay for food you spent: " + endYearTaxCalculater() + " inc taxes...");
+        PrintingUtilities.printOnScreen("After delivering food to Capitol City you have: ");
+        Context.playerImplementation.useMoney(endYearTaxCalculater()); // pay for food
+        PrintingUtilities.printOnScreen(playerImplementation.money + " gold.");
+        PrintingUtilities.printOnScreen("\nThe phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more...");
+        Context.farmImplementation.isPhophorized = false; // phosphor gone
+        checkVictoryConditions(); // have player won?
+        checkLoosingConditions(); // or lost?
+        endYearPopulationCalculater(); // population increase or decrease?
     }
 }
