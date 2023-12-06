@@ -23,5 +23,5 @@ public interface City {
 
     public String visitMadman();
 
-    void calculateHunger();
+    boolean calculateHunger();
 }

@@ -258,9 +258,10 @@ public class CityImplementation implements City {
     }
 
     @Override
-    public void calculateHunger() {
-
+    public boolean calculateHunger() {
+        return (Context.playerImplementation.money < Context.cityImplementation.population);
     }
+
 }
 
 

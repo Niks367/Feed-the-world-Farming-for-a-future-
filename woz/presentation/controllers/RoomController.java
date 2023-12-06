@@ -118,11 +118,12 @@ public class RoomController {
         seasonProgress();
     }
 
-    public void quitButton(ActionEvent event){
+    public void quitButton(ActionEvent event) {
         Platform.exit();
         System.out.println("You have successfully closed the game!");
         System.exit(0);
     }
+
     public void openPopup() {
         try {
             // Load the FXML file for the popup
@@ -147,30 +148,32 @@ public class RoomController {
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
         stage.close();
     }
-    public void setHungerText() {
-        if (cityImplementation.isHunger) {
-            hungerText = "And beware! The city is starving and needs food!";
+
+    public String setHungerText() {
+        if (cityImplementation.calculateHunger()) {
+            return "\nAnd beware! The city is starving and needs food!";
         } else {
-            hungerText = "";
+            return "";
         }
     }
+
     public void endYearTextPrint() { // when this is called, farmImplementation is already calculated, so taking that into mind
         endYearText = (TextArea) roomStage.getScene().lookup("#endYearText");
-        setHungerText();
+        hungerText = setHungerText();
         endYearText.setText("Ending Year... " + "\nHarvesting the corn on you fields amounts to: " + Context.farmImplementation.calculatedProfit +
                 " gold!" + "\nAfter harvesting you had: " + (Context.farmImplementation.lastYearsMoney + Context.farmImplementation.calculatedProfit) + " gold." +
                 "\nBut the people are hungry, and to pay for food you spent : " + Context.farmImplementation.lastYearsTax + " inc taxes..."
-                + "\nAfter delivering food you have: " + Context.playerImplementation.money + " gold." + hungerText +
-                "\nThe phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more...");
+                + "\nAfter delivering food you have: " + Context.playerImplementation.money + " gold." +
+                "\nThe phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more..."
+                + hungerText);
     }
 
-    public void endYearButton(ActionEvent event){
-        if (Context.farmImplementation != null){
+    public void endYearButton(ActionEvent event) {
+        if (Context.farmImplementation != null) {
             Context.farmImplementation.endYear();
             setLabels();
             endYearTextPrint();
-        }
-        else {
+        } else {
             endYearText = (TextArea) roomStage.getScene().lookup("#endYearText");
             endYearText.setText("Error");
         }
@@ -440,10 +443,10 @@ public class RoomController {
 
     public void changePpText(MouseEvent mouseEvent) {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
-        if (!cityImplementation.isPpDone){
+        if (!cityImplementation.isPpDone) {
             uniText.setText(ppHoverText);
         }
-        if (cityImplementation.isPpDone){
+        if (cityImplementation.isPpDone) {
             uniText.setText(sppHoverText);
         }
 
@@ -477,8 +480,9 @@ public class RoomController {
     public void changeSfText() {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
         if (!cityImplementation.isSfDone) {
-            uniText.setText(sfHoverText);}
-        if (cityImplementation.isSfDone){
+            uniText.setText(sfHoverText);
+        }
+        if (cityImplementation.isSfDone) {
             uniText.setText(bfHoverText);
         }
     }
@@ -510,7 +514,7 @@ public class RoomController {
 
     public void changeToOriginalText() {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
-        if (cityImplementation.isSfDone && cityImplementation.isPpDone && !cityImplementation.isBfReady && !cityImplementation.isSppReady){
+        if (cityImplementation.isSfDone && cityImplementation.isPpDone && !cityImplementation.isBfReady && !cityImplementation.isSppReady) {
             uniText.setText("Well done, all our projects are build. But we have some new ideas for improvements. Stay tuned!");
         }
         if (cityImplementation.isSppDone && cityImplementation.isBfDone) {

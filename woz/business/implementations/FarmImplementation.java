@@ -171,15 +171,13 @@ public class FarmImplementation implements Farm {
         }
         return profit;
     }
-    public boolean calculateIsHunger() {
-        return Context.playerImplementation.money < Context.cityImplementation.population;
-    }
+
 
     public void endYearPopulationCalculater() {
-        if (calculateIsHunger()) { // If hunger: population decrease!
+        if (cityImplementation.calculateHunger()) { // If hunger: population decrease!
             cityImplementation.population = cityImplementation.population/2 -5;
         }
-        if (!calculateIsHunger()) { // If there is no hunger the population increments with 25 every week
+        if (!cityImplementation.calculateHunger()) { // If there is no hunger the population increments with 25 every week
             Context.cityImplementation.population += 25;
             PrintingUtilities.printOnScreen("Population is growing, city now has " + Context.cityImplementation.population + " inhabitants");
         }
