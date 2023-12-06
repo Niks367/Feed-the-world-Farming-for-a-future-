@@ -4,6 +4,7 @@ import business.interfaces.Farm;
 import business.interfaces.Field;
 import business.utils.MadManUtils;
 import business.utils.PrintingUtilities;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,16 +12,20 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.Context;
 
+import java.io.IOException;
+
+import static main.Context.cityImplementation;
+
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 100;
     public double phosphorConsumationSpeed = 2.0; // This is for the SF project, to speed up use of phosphor!
-    private double phosphorEffect = 5;
+    private double phosphorEffect = 3;
     Field field;
     public boolean isInFarm;
     public boolean isPhophorized;
-    public int phosphorPrice = 10;
+    public int phosphorPrice = 15;
     private final int priceOfLand = 200;
-    private final int yieldOfLand = 25;
+    private final int yieldOfLand = 15;
     private int fieldsForPurchase = 5;
     // TODO make checker for scalePhosphor for events
     public int seasonCount = 1; //Integer that tells us the day we are currently at.
@@ -28,6 +33,7 @@ public class FarmImplementation implements Farm {
     //public int phosphor = 1; //Integer that tells us the amount of phosphor we have.
     public int seasonProgress = 0;
     public int land = 1;
+
     public void setIsPhosphorized(boolean z) {
         isPhophorized = z;
     }
@@ -144,7 +150,7 @@ public class FarmImplementation implements Farm {
 
     public void endYear() {
         PrintingUtilities.printOnScreen("Ending Year");
-        Context.cityImplementation.quizzCount=0;
+        Context.cityImplementation.quizzCount = 0;
 //        for (int i = 5; i > 0; i--) {
 //            try {
 //              //  Thread.sleep(400);
@@ -162,7 +168,7 @@ public class FarmImplementation implements Farm {
         PrintingUtilities.printOnScreen("\nSo after harvesting you have: " + Context.playerImplementation.money + " gold.");
         PrintingUtilities.printOnScreen("But the people in Capitol City is hungry, and the population is: " + Context.cityImplementation.population);
         PrintingUtilities.printOnScreen("After delivering food to Capitol City you have: ");
-        Context.playerImplementation.useMoney(Context.cityImplementation.population);
+        Context.playerImplementation.useMoney(Context.cityImplementation.population + 40.0);
         PrintingUtilities.printOnScreen(Context.playerImplementation.money + " gold.");
         PrintingUtilities.printOnScreen("\nThe phosphor on your fields has sunken into the ground and does not have any effect on your harvest, you may need to buy more...");
         Context.farmImplementation.isPhophorized = false;
@@ -172,7 +178,7 @@ public class FarmImplementation implements Farm {
             Context.cityImplementation.population += 25;
             PrintingUtilities.printOnScreen("Population is growing, city now has " + Context.cityImplementation.population + " inhabitants");
         } else {
-            Context.cityImplementation.population /= 2; // If player can't feed the city, the population decrements to half the size!
+            Context.cityImplementation.population = Context.cityImplementation.population / 2 - 20; // If player can't feed the city, the population decrements to half the size!
             PrintingUtilities.printOnScreen("Hunger has hit the city, the population has fallen to " + Context.cityImplementation.population);
 
         }
@@ -180,7 +186,26 @@ public class FarmImplementation implements Farm {
             PrintingUtilities.printOnScreen("You ran out of cash, too bad...");
             main.Game.context.makeDone();
         }
+        if (Context.farmImplementation.scalePhosphor <= 0 || cityImplementation.getPopulation() < 0) {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/rooms/fxml/gameOver.fxml"));
+            Parent parent = null;
+            try {
+                parent = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Stage stage = new Stage();
+            stage.setResizable(false); // Prevent resizing of the window
+            stage.setScene(new Scene(parent));
+            stage.show();
+            Platform.setImplicitExit(true); // when closing window game stops (system exit)
+            stage.setOnCloseRequest((ae) -> {
+                Platform.exit();
+                System.exit(0);
+            });
 
+
+        }
     }
 }
-
