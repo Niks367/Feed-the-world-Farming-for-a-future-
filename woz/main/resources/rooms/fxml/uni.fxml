@@ -94,8 +94,8 @@
             <children>
                 <TextArea fx:id="uniText" layoutX="317.0" layoutY="43.0" prefHeight="129.0" prefWidth="282.0" stylesheets="/rooms/styles/textAreaUniStyles.css" wrapText="true" editable="false" />
                 <Button fx:id="quizButton" layoutX="118.0" layoutY="254.0" mnemonicParsing="false" onAction="#quizStart" text="Start quiz" />
-                <Button fx:id="ppText" layoutX="358.0" layoutY="229.0" mnemonicParsing="false" onMouseClicked="#changePpButton" onMouseEntered="#changePpText" onMouseExited="#changeToOriginalText" prefHeight="25.0" prefWidth="200.0" text="Support project Purification plant"/>
-                <Button fx:id="sfText" layoutX="358.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#changeSfButton" onMouseEntered="#changeSfText" onMouseExited="#changeToOriginalText" prefHeight="25.0" prefWidth="200.0" text="Support project Super farm" />
+                <Button fx:id="ppText" layoutX="358.0" layoutY="229.0" mnemonicParsing="false" onMouseClicked="#changePpButton" onMouseEntered="#changePpText" onMouseExited="#changeToOriginalText" prefHeight="25.0" prefWidth="200.0" text="Support Purification Plant"/>
+                <Button fx:id="sfText" layoutX="358.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#changeSfButton" onMouseEntered="#changeSfText" onMouseExited="#changeToOriginalText" prefHeight="25.0" prefWidth="200.0" text="Support Super Farm" />
                 <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0"
                       stylesheets="/rooms/styles/infoBarStyles.css">
                     <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>

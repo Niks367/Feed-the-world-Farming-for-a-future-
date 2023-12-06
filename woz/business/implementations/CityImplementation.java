@@ -21,6 +21,7 @@ public class CityImplementation implements City {
     public int bf_Progress = 0;
     public int projectLimit = 3;
     public double projectCost = 50;
+    public double superProjectCost = 100;
     public boolean isPpDone = false; //Boolean for PP
     public boolean isSfDone = false; //Boolean for Sf
     public boolean isSppDone = false; //Boolean for Super PP

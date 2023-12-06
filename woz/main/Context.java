@@ -42,7 +42,7 @@ public class Context {
     public void end(String command) {
         switch (command) {
             case "day":
-                farmImplementation.endDay();
+                farmImplementation.endSeason();
                 break;
         }
     }
@@ -50,7 +50,6 @@ public class Context {
 
     public void show(String command) {
         switch (command) {
-            case "days" -> farmImplementation.dayCount(command);
             case "phosphor" ->
                     PrintingUtilities.printOnScreen("The phosphor left in the world is " + Context.farmImplementation.scalePhosphor);
             case "land" -> {
@@ -140,10 +139,10 @@ public class Context {
                             PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
                             break;
                         }
-                        if (playerImplementation.money > cityImplementation.projectCost) {
+                        if (playerImplementation.money > cityImplementation.superProjectCost) {
                             PrintingUtilities.printOnScreen("You have helped the project of building a super purification plant, the project is at level " + cityImplementation.spp_Progress +
                                     "\nYou can leave by typing go east or support more projects by typing SF, PP, SPP or BF.");
-                            playerImplementation.useMoney(cityImplementation.projectCost);
+                            playerImplementation.useMoney(cityImplementation.superProjectCost);
                             cityImplementation.spp_Progress += 1;
                             if (cityImplementation.spp_Progress == cityImplementation.projectLimit) {
                                 cityImplementation.isSppDone = true;
@@ -168,10 +167,10 @@ public class Context {
                             PrintingUtilities.printOnScreen("The projects already has sufficient funds. Well done! It will be ready next week, I will suspect...");
                             break;
                         }
-                        if (playerImplementation.money > cityImplementation.projectCost) {
+                        if (playerImplementation.money > cityImplementation.superProjectCost) {
                             PrintingUtilities.printOnScreen("You have helped the project of building a bio farm, the project is at level " + cityImplementation.bf_Progress +
                                     "\nYou can leave by typing go east or support more projects by typing SF, PP, SPP or BF.");
-                            playerImplementation.useMoney(cityImplementation.projectCost);
+                            playerImplementation.useMoney(cityImplementation.superProjectCost);
                             cityImplementation.bf_Progress += 1;
                             if (cityImplementation.bf_Progress == cityImplementation.projectLimit) {
                                 cityImplementation.isBfDone = true;
@@ -269,24 +268,25 @@ public class Context {
     }
 
     //    void checkEndDay() {
-//        PrintingUtilities.printOnScreen("It's currently " + farmImplementation.dayProgress + " o'clock");
-//        if (farmImplementation.dayProgress == 4) {//TODO ADDED by Lars: Check it it works by using this function
+//        PrintingUtilities.printOnScreen("It's currently " + farmImplementation.seasonProgress + " o'clock");
+//        if (farmImplementation.seasonProgress == 4) {//TODO ADDED by Lars: Check it it works by using this function
 //            //TODO earlier is stop some functionality, does not do switch if day ends.
 //            farmImplementation.endDay();
 //        }
 //    }
-    void checkEndDay() {
-        switch (farmImplementation.dayProgress) {
-            case 0 -> PrintingUtilities.printOnScreen("It's morning.");
-            case 1 -> PrintingUtilities.printOnScreen("It's noon.");
-            case 3 -> PrintingUtilities.printOnScreen("It's evening.");
+    void checkEndseason() {
+        switch (farmImplementation.seasonProgress) {
+            case 0 -> PrintingUtilities.printOnScreen("It's winter.");
+            case 1 -> PrintingUtilities.printOnScreen("It's spring.");
+            case 2 -> PrintingUtilities.printOnScreen("It's summer.");
+            case 3 -> PrintingUtilities.printOnScreen("It's autumn.");
 
         }
     }
 
-    private void dayChecking() {
-        checkEndDay();
-        farmImplementation.checkDayProgress();
+    private void seasonChecking() {
+        checkEndseason();
+        farmImplementation.checkSeasonProgress();
     }
 
     public void transition(String direction) {
@@ -300,44 +300,44 @@ public class Context {
                 current.goodbye();
                 current = next;
                 current.welcome();
-                farmImplementation.dayProgress += 1;
+                farmImplementation.seasonProgress += 1;
                 switch (direction) {
                     case "to_farm", "lake_to_farm", "fields_to_farm" -> {
                         farmImplementation.setIsInFarm(true);
-                        dayChecking();
+                        seasonChecking();
                     }
                     case "to_lake", "city_to_lake" -> {
-                        dayChecking();
+                        seasonChecking();
                         farmImplementation.setIsInFarm(false);
                         cityImplementation.setIsInCity(false);
                         lakeImplementation.visitlake();
                     }
                     case "to_city" -> {
-                        dayChecking();
+                        seasonChecking();
                         cityImplementation.setIsInCity(true);
                         PrintingUtilities.printOnScreen("You are entering the Capitol City...");
                         PrintingUtilities.printOnScreen(" population is : " + cityImplementation.getPopulation());
                     }
                     case "to_madman" -> {
-                        dayChecking();
+                        seasonChecking();
                         PrintingUtilities.printOnScreen("BOOOOH!!!");
                         PrintingUtilities.printOnScreen("The madman is the hut: '" + cityImplementation.visitMadman() + "'");
                     }
                     case "to_shop" -> {
-                        dayChecking();
+                        seasonChecking();
                         cityImplementation.setIsInShop(true);
                         cityImplementation.visitShop();
                     }
                     //PrintingUtilities.printOnScreen("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
                     case "west" -> {
-                        dayChecking();
+                        seasonChecking();
                         cityImplementation.setIsInShop(false);
                     }
                     case "north" -> {
-                        dayChecking();
+                        seasonChecking();
                     }
                     case "to_uni" -> {
-                        dayChecking();
+                        seasonChecking();
                         cityImplementation.setIsInUni(true);
                         try {
                             cityImplementation.visitUni();
@@ -349,11 +349,11 @@ public class Context {
 
                     //PrintingUtilities.printOnScreen("printer her fra context, getIsInShop is here: "+cityImplementation.getIsInShop());
                     case "east" -> {
-                        dayChecking();
+                        seasonChecking();
                         cityImplementation.setIsInUni(false);
                     }
                     case "to_fields" -> {
-                        dayChecking();
+                        seasonChecking();
                     }
                     default -> {
                         PrintingUtilities.printOnScreen("Cannot find the location entered");

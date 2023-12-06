@@ -82,7 +82,7 @@ public class MediaController {
 
 
     public void quitQuiz(ActionEvent event) {
-        if (cityImplementation.quizzCount >= 3) {
+        if (cityImplementation.quizzCount > 3) {
             Node source = (Node) event.getSource(); // Cast to a node
             Stage stage = (Stage) source.getScene().getWindow(); // Get the stage
             stage.close();
@@ -159,7 +159,7 @@ public class MediaController {
                 mediaPlayer.stop();
             }
 
-            if (cityImplementation.quizzCount < 3) { // if player has not yet seen 3 videos
+            if (cityImplementation.quizzCount <= 3) { // if player has not yet seen 3 videos
                 option1.setDisable(false); // re-activate buttons
                 option2.setDisable(false);
                 option3.setDisable(false);
@@ -171,7 +171,7 @@ public class MediaController {
         } else { // wrong answer
             replyText.setText("No, I'm sorry, that's wrong!");
             cityImplementation.quizzCount++; // increase quizzcount attribute
-            if (cityImplementation.quizzCount < 3) { // if player has not yet seen 3 videos
+            if (cityImplementation.quizzCount <= 3) { // if player has not yet seen 3 videos
                 option1.setDisable(false); // re-activate buttons
                 option1.setDisable(false);
                 option2.setDisable(false);

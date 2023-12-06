@@ -8,7 +8,7 @@ import main.Context;
 
 public class FarmImplementation implements Farm {
     public int scalePhosphor = 100;
-    public double phosphorConsumationSpeed = 1.0; // This is for the SF project, to speed up use of phosphor!
+    public double phosphorConsumationSpeed = 2.0; // This is for the SF project, to speed up use of phosphor!
     private double phosphorEffect = 5;
     Field field;
     public boolean isInFarm;
@@ -18,10 +18,10 @@ public class FarmImplementation implements Farm {
     private final int yieldOfLand = 25;
     private int fieldsForPurchase = 5;
     // TODO make checker for scalePhosphor for events
-    public int dayCount = 1; //Integer that tells us the day we are currently at.
-    // TODO When dayCount hits certain values: Events
+    public int seasonCount = 1; //Integer that tells us the day we are currently at.
+    // TODO When seasonCount hits certain values: Events
     //public int phosphor = 1; //Integer that tells us the amount of phosphor we have.
-    public int dayProgress = 0;
+    public int seasonProgress = 0;
     public int land = 1;
     public void setIsPhosphorized(boolean z) {
         isPhophorized = z;
@@ -32,8 +32,9 @@ public class FarmImplementation implements Farm {
     }
 
     public void checkVictoryConditions() {
-        if (Context.cityImplementation.isPpDone && Context.farmImplementation.scalePhosphor > 100) {
+        if (Context.cityImplementation.isSppDone && Context.cityImplementation.isBfDone && Context.farmImplementation.scalePhosphor > 100) {
             PrintingUtilities.printOnScreen("Congrats, YOU HAVE WON!!!");
+
             main.Game.context.makeDone();
         }
     }
@@ -71,42 +72,23 @@ public class FarmImplementation implements Farm {
     }
 
 
-    //TODO do some changes to this later, so it works with the day count.
-    @Override
-    public void runDay(String input) {
-        // This will be displayed when the game is launched and display this message, so people playing will know how to end the day.
-        if ("end_day".equalsIgnoreCase(input)) {
-            endDay(); //Space for the method to define how we end the day, I haven't filled it out yet cuz im not sure how to do it.
-            //dayCount += 1; //Adds days to the dayCount integer, so everytime we end the day, the dayCount integer goes up by one.
-        } else {
-            PrintingUtilities.printOnScreen("Type 'end_day' to end the day:");
+    public void checkSeasonProgress() {
+        if (seasonProgress == 3) {
+            endSeason();
         }
     }
 
     @Override
-    public void dayCount(String input) {
-        if ("days".equalsIgnoreCase(input)) {
-            PrintingUtilities.printOnScreen("You are currently on Day " + dayCount);
-        }
-    }
-
-    public void checkDayProgress() {
-        if (dayProgress == 3) {
-            endDay();
-        }
-    }
-
-    @Override
-    public void endDay() {
+    public void endSeason() {
         //This is where we will type the code to end the day, but im not quite sure how we are gonna do that yet. We need the day counter and the time im pretty sure, before we can write the code for this.
-        PrintingUtilities.printOnScreen("Ending Day " + dayCount);
+        PrintingUtilities.printOnScreen("Ending Day " + seasonCount);
         //TODO All the events that happen after the day need to be implemented, eks: seed growth or events, university research projects.
         // This is so that the endDay command doesnt just contiously end the day, but we actually reset it, so we can type it again the next day.
         //field.sowSeed(1, phosphor, land);
-        if ((dayCount + 1) % 4 == 0) // making a week 4 days
-            endSeason();
-        dayProgress = 0;
-        dayCount += 1;
+        if ((seasonCount + 1) % 4 == 0) // making a year 4 seasons
+            endYear();
+        seasonProgress = 0;
+        seasonCount += 1;
         PrintingUtilities.printOnScreen(MadManUtils.madEvent());
     }
 
@@ -154,8 +136,8 @@ public class FarmImplementation implements Farm {
         return Context.playerImplementation.money < Context.cityImplementation.population;
     }
 
-    public void endSeason() {
-        PrintingUtilities.printOnScreen("Ending Season ");
+    public void endYear() {
+        PrintingUtilities.printOnScreen("Ending Year");
         Context.cityImplementation.quizzCount=0;
 //        for (int i = 5; i > 0; i--) {
 //            try {
@@ -169,7 +151,7 @@ public class FarmImplementation implements Farm {
         PrintingUtilities.printOnScreen(String.valueOf(calculateProfit()));
         PrintingUtilities.printOnScreen(" gold!");
         Context.playerImplementation.addMoney(calculateProfit());
-        PrintingUtilities.printOnScreen("Ending Season ");
+        PrintingUtilities.printOnScreen("Ending Year ");
         Context.cityImplementation.isHunger = calculateIsHunger();
         PrintingUtilities.printOnScreen("\nSo after harvesting you have: " + Context.playerImplementation.money + " gold.");
         PrintingUtilities.printOnScreen("But the people in Capitol City is hungry, and the population is: " + Context.cityImplementation.population);

@@ -1,9 +1,6 @@
 package presentation.controllers;
 
 import business.utils.PrintingUtilities;
-import javafx.animation.FadeTransition;
-import javafx.animation.ParallelTransition;
-import javafx.animation.SequentialTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,18 +15,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Duration;
 import main.Context;
 import main.Game;
 
 import java.io.IOException;
-import java.util.Objects;
 import java.util.Stack;
 
 import static main.Context.*;
@@ -91,23 +83,36 @@ public class RoomController {
     private Label roomName;
     @FXML
     private Label descriptionLabel;
-    String sfHoverText = "The SuperFarm will double the production of your fields for the same cost. It will take 3 levels each costing" + cityImplementation.projectCost + " gold to finish. There is a upgrade available after finish!";
-
-    String ppHoverText = "The PurificationPlant will reduce the amount of phosphor used on your fields, by regaining 1 unit of phosphor for every 2 units used. It will take 3 levels each costing" + cityImplementation.projectCost + " gold to finish. There is a upgrade available after finish!";
-
-    String originalUniText = "Dean : 'Good to see you, we have some very promising projects, but we are in lack of sufficient funds, would you like to support any of our projects? It will take 3 levels each costing " + cityImplementation.projectCost + " gold per to finish. There is a upgrade available after finish!";
+    String sfHoverText = "The SuperFarm will double the production of your fields for the same cost. " +
+            "It will take " + cityImplementation.projectLimit + " levels each costing " + cityImplementation.projectCost +
+            " gold to finish. There is a upgrade available after finish!";
+    String bfHoverText = "The BioFarm will further increase the production, but for a lower phosphor cost. " +
+            "It will take " + cityImplementation.projectLimit + " levels each costing " + cityImplementation.superProjectCost
+            + " gold to finish.";
+    String ppHoverText = "The PurificationPlant will reduce the amount of phosphor used on your fields, " +
+            "by regaining 1 unit of phosphor for every 2 units used. It will take " + cityImplementation.projectLimit +
+            " levels each costing " + cityImplementation.projectCost + " gold to finish. " +
+            "There is a upgrade available after finish!";
+    String sppHoverText = "The Super PurificationPlant will further reduce the amount of phosphor used on your fields " +
+            "and regain a lot of phosphor from nature. It will take " + cityImplementation.projectLimit +
+            " levels each costing " + cityImplementation.superProjectCost + " gold to finish.";
+    String originalUniText = "Dean : 'Good to see you, we have some very promising projects, " +
+            "but we are in lack of sufficient funds, would you like to support any of our projects? " +
+            "It will take " + cityImplementation.projectLimit + " levels each costing " + cityImplementation.projectCost +
+            " gold per to finish. " +
+            "There is a upgrade available after finish!";
 
     @FXML
-    public void init(ActionEvent actionEvent) {
+    public void init(ActionEvent actionEvent) throws IOException {
         Game.dispatchCommand("go to_farm");
         goAnotherRoom("/rooms/fxml/farm.fxml");
-        dayProgress();
+        seasonProgress();
     }
 
     public void setEntry(String room, String description) {
         introText.setText("This game is an interactive learning experience! \n" +
-                "Throughout the game, you will learn about the phosphourus problems we have in our world. \n" +
-                "In the game there are various ways of reaching the ultimate goal of compleating the Super Farm and purifacation plant.\n" +
+                "Throughout the game, you will learn about the phosphorus problems we have in our world. \n" +
+                "In the game there are various ways of reaching the ultimate goal of completing the Super Farm and purification plant.\n" +
                 " While you are working towards saving the world, you will have to balance your hunger, money and population.\n" +
                 " So, be careful of how you choose to spend your time! The new season may be the start of a better world, or the end to your demise.\n" +
                 " Also, remember to listen to the right people some may spread misinformation... Others will help you understand the worlds problems further.\n" +
@@ -206,22 +211,50 @@ public class RoomController {
         cityTextUpdate();
     }
 
-    private void dayProgress() {
+    private void seasonProgress() throws IOException {
         seasonsLabel = (Label) roomStage.getScene().lookup("#seasonsLabel");
         seasonsProgress = (ProgressBar) roomStage.getScene().lookup("#seasonsProgress");
-        if (farmImplementation.dayCount % 4 == 0) {
+        if (farmImplementation.seasonCount % 4 == 0) {
             seasonsLabel.setText("Winter");
             seasonsProgress.setProgress(0);
+            if (farmImplementation.scalePhosphor <= 0) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/rooms/fxml/gameOver.fxml"));
+                Parent parent = loader.load();
+                Stage stage = new Stage();
+                stage.setResizable(false); // Prevent resizing of the window
+                stage.setScene(new Scene(parent));
+                stage.show();
+                Platform.setImplicitExit(true); // when closing window game stops (system exit)
+                stage.setOnCloseRequest((ae) -> {
+                    Platform.exit();
+                    System.exit(0);
+                });
+            }
+            if (Context.cityImplementation.isSppDone && Context.cityImplementation.isBfDone && Context.farmImplementation.scalePhosphor > 100) {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/rooms/fxml/victory.fxml"));
+                Parent parent = loader.load();
+                Stage stage = new Stage();
+                stage.setResizable(false); // Prevent resizing of the window
+                stage.setScene(new Scene(parent));
+                stage.show();
+                Platform.setImplicitExit(true); // when closing window game stops (System.exit)
+                stage.setOnCloseRequest((ae) -> {
+                    Platform.exit();
+                    System.exit(0);
+                });
+            }
             if (quizButton != null) {
                 quizButton.setDisable(false);
             }
-        } else if (farmImplementation.dayCount % 4 == 1) {
+        } else if (farmImplementation.seasonCount % 4 == 1) {
             seasonsLabel.setText("Spring");
             seasonsProgress.setProgress(0.33);
-        } else if (farmImplementation.dayCount % 4 == 2) {
+        } else if (farmImplementation.seasonCount % 4 == 2) {
             seasonsLabel.setText("Summer");
             seasonsProgress.setProgress(0.66);
-        } else if (farmImplementation.dayCount % 4 == 3) {
+        } else if (farmImplementation.seasonCount % 4 == 3) {
             seasonsLabel.setText("Autumn");
             seasonsProgress.setProgress(1);
         } else {
@@ -279,7 +312,7 @@ public class RoomController {
             setRoomStage(stage);
             roomStack.push(stage);
             setLabels();
-            dayProgress();
+            seasonProgress();
         } catch (Exception e) {
             PrintingUtilities.printOnScreen("Error with switching views");
             e.printStackTrace();
@@ -299,6 +332,7 @@ public class RoomController {
             previousRoomStage.show();
         }
     }
+
     public void goToCity(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_city");
         goAnotherRoom("/rooms/fxml/city.fxml");
@@ -319,8 +353,6 @@ public class RoomController {
     }
 
 
-
-
     public void goToMadman(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_madman");
         goAnotherRoom("/rooms/fxml/madman.fxml");
@@ -339,9 +371,15 @@ public class RoomController {
         }
     }
 
-    public void changePpText() {
+    public void changePpText(MouseEvent mouseEvent) {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
-        uniText.setText(ppHoverText);
+        if (!cityImplementation.isPpDone){
+            uniText.setText(ppHoverText);
+        }
+        if (cityImplementation.isPpDone){
+            uniText.setText(sppHoverText);
+        }
+
     }
 
     public void changePpButton(MouseEvent mouseEvent) {
@@ -355,7 +393,7 @@ public class RoomController {
             }
         }
         if (cityImplementation.isSppReady) {
-            ppText.setText("Support project Super purification plant");
+            ppText.setText("Support Super Purification Plant");
             Game.dispatchCommand("support spp");
             setLabels();
             if (cityImplementation.isSppDone) {
@@ -367,7 +405,11 @@ public class RoomController {
 
     public void changeSfText() {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
-        uniText.setText(sfHoverText);
+        if (!cityImplementation.isSfDone) {
+            uniText.setText(sfHoverText);}
+        if (cityImplementation.isSfDone){
+            uniText.setText(bfHoverText);
+        }
     }
 
     public void changeSfButton(MouseEvent mouseEvent) {
@@ -381,7 +423,7 @@ public class RoomController {
             }
         }
         if (cityImplementation.isBfReady) {
-            sfText.setText("Support project Bio-Farm");
+            sfText.setText("Support Bio-Farm");
             Game.dispatchCommand("support bf");
             setLabels();
             if (cityImplementation.isBfDone) {
@@ -401,7 +443,7 @@ public class RoomController {
     private void quizStart() throws IOException {
         MediaController mediaController = new MediaController();
         mediaController.initController(this);
-        if (cityImplementation.quizzCount < 3) {
+        if (cityImplementation.quizzCount <= 3) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/rooms/fxml/mediaPlayer.fxml"));
             Parent parent = loader.load();
@@ -422,7 +464,7 @@ public class RoomController {
         Game.dispatchCommand("go to_uni");
         goAnotherRoom("/rooms/fxml/uni.fxml");
         quiz = (TextArea) roomStage.getScene().lookup("#quiz");
-        quiz.setText("Would you like to answer some questions about the phoshphor problematic and earn some money?");
+        quiz.setText("Would you like to answer some questions about the phosphor problematic and earn some money?");
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
         uniText.setText(originalUniText);
         if (!cityImplementation.isBfReady && cityImplementation.isSfDone) {

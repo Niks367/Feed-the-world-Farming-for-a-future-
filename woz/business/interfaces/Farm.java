@@ -8,18 +8,15 @@ public interface Farm {
      */
     int getScale();
 
-    void runDay(String input);
-
     /**
      * Ends the day and adds the day counter.
      */
-    void endDay();
+    void endSeason();
 
     public void setIsInFarm(boolean z);
 
     public boolean getIsInFarm();
 
-    void dayCount(String input);
     public void reduceFieldsForPurchase();
     public int getFieldsForPurchase();
 }
