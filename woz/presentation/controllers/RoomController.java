@@ -70,6 +70,7 @@ public class RoomController {
     public TextArea victoryText;
     public HBox farmTextBox;
     public Button closePopup;
+    public Button quitButton;
     private MediaPlayer mediaPlayer;
     public TextArea populationBox;
     public Label goldLabel;
@@ -337,7 +338,7 @@ public class RoomController {
         if (cityImplementation.isHunger) {
             cityText.setText("The people in the city are starving! Hurry up and give them something to eat.");
         } else {
-            cityText.setText("The people in the city are happy and not very hungry.");
+            cityText.setText("The people in the city are happy.");
         }
     }
 
