@@ -48,105 +48,80 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/Fields.png');             -fx-background-size: cover;             -fx-background-repeat: no-repeat;             -fx-background-position: center;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
-    <children>
-        <MenuBar VBox.vgrow="NEVER">
-            <menus>
-                <Menu mnemonicParsing="false" text="File">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="New" />
-                        <MenuItem mnemonicParsing="false" text="Open…" />
-                        <Menu mnemonicParsing="false" text="Open Recent" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Save As…" />
-                        <MenuItem mnemonicParsing="false" text="Revert" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Preferences…" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Quit" onAction="#quitButton"/>
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Undo" />
-                        <MenuItem mnemonicParsing="false" text="Redo" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Cut" />
-                        <MenuItem mnemonicParsing="false" text="Copy" />
-                        <MenuItem mnemonicParsing="false" text="Paste" />
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Select All" />
-                        <MenuItem mnemonicParsing="false" text="Unselect All" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#openPopup" text="Tips" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-        <BorderPane maxWidth="-Infinity" prefHeight="357.0" prefWidth="640.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css">
-            <top>
-                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0"
-                      stylesheets="/rooms/styles/infoBarStyles.css">
-                    <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
-                    <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="70.0"
-                           text="Population: "/>
-                    <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true"
-                               preserveRatio="true">
-                        <Image url="@../images/PopIcon.png"/>
-                    </ImageView>
-                    <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
-                    <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0"
-                           text="Phosphor: "/>
-                    <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true"
-                               preserveRatio="true">
-                        <Image url="@../images/PhosphorIcon.png"/>
-                    </ImageView>
-                    <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
-                    <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="50.0" text="Gold: "/>
-                    <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true"
-                               preserveRatio="true">
-                        <Image url="@../images/GoldIcon.png"/>
-                    </ImageView>
-                    <ProgressBar fx:id="seasonsProgress" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0"
-                                 prefWidth="50.0" progress="1.0"/>
-                    <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season"/>
-                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/SeasonsIcon.png"/>
-                    </ImageView>
-                    <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0"/>
-                    <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0"
-                           text="Knowledge"/>
-                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/KnowledgeIcon.png"/>
-                    </ImageView>
-                </HBox>
-            </top>
-            <center>
-                <HBox alignment="TOP_CENTER" prefHeight="324.0" prefWidth="640.0" spacing="120.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <TextArea fx:id="fieldText" editable="false" layoutX="200.0" layoutY="49.0" opacity="0.7" prefHeight="200.0" prefWidth="200.0" stylesheets="/rooms/styles/textAreaFieldStyles.css" wrapText="true">
-                     <HBox.margin>
-                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-                     </HBox.margin></TextArea>
-                    </children>
-                </HBox>
-            </center>
-            <bottom>
-                <HBox alignment="TOP_CENTER" prefHeight="35.0" prefWidth="643.0" spacing="120.0">
-                    <children>
-                        <Button mnemonicParsing="false" onAction="#goFieldToFarm" text="Go back to Farm">
-                     <font>
-                        <Font size="14.0" />
-                     </font></Button>
-                    </children>
-                </HBox>
-            </bottom>
-        </BorderPane>
-    </children>
+<VBox prefHeight="400.0" prefWidth="640.0"
+      style="-fx-background-image: url('/rooms/images/Fields.png');             -fx-background-size: cover;             -fx-background-repeat: no-repeat;             -fx-background-position: center;"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="presentation.controllers.RoomController">
+    <MenuBar VBox.vgrow="NEVER">
+        <Menu mnemonicParsing="false" text="Menu">
+            <MenuItem mnemonicParsing="false" onAction="#quitButton" text="Quit"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="About">
+            <MenuItem mnemonicParsing="false" text="Feed the world"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+            <MenuItem mnemonicParsing="false" onAction="#openPopup" text="Tips"/>
+        </Menu>
+    </MenuBar>
+    <BorderPane maxWidth="-Infinity" prefHeight="357.0" prefWidth="640.0"
+                stylesheets="/rooms/styles/textAreaMadmanStyles.css">
+        <top>
+            <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0"
+                  stylesheets="/rooms/styles/infoBarStyles.css">
+                <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
+                <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="70.0"
+                       text="Population: "/>
+                <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@../images/PopIcon.png"/>
+                </ImageView>
+                <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
+                <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0"
+                       text="Phosphor: "/>
+                <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@../images/PhosphorIcon.png"/>
+                </ImageView>
+                <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
+                <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="50.0" text="Gold: "/>
+                <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@../images/GoldIcon.png"/>
+                </ImageView>
+                <ProgressBar fx:id="seasonsProgress" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0"
+                             prefWidth="50.0" progress="1.0"/>
+                <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season"/>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/SeasonsIcon.png"/>
+                </ImageView>
+                <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0"/>
+                <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0"
+                       text="Knowledge"/>
+                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../images/KnowledgeIcon.png"/>
+                </ImageView>
+            </HBox>
+        </top>
+        <center>
+            <HBox alignment="TOP_CENTER" prefHeight="324.0" prefWidth="640.0" spacing="120.0"
+                  BorderPane.alignment="CENTER">
+                <TextArea fx:id="fieldText" editable="false" layoutX="200.0" layoutY="49.0" opacity="0.7"
+                          prefHeight="200.0" prefWidth="200.0" stylesheets="/rooms/styles/textAreaFieldStyles.css"
+                          wrapText="true">
+                    <HBox.margin>
+                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0"/>
+                    </HBox.margin>
+                </TextArea>
+            </HBox>
+        </center>
+        <bottom>
+            <HBox alignment="TOP_CENTER" prefHeight="35.0" prefWidth="643.0" spacing="120.0">
+                <Button mnemonicParsing="false" onAction="#goFieldToFarm" text="Go back to Farm">
+                    <font>
+                        <Font size="14.0"/>
+                    </font>
+                </Button>
+            </HBox>
+        </bottom>
+    </BorderPane>
 </VBox>

@@ -49,102 +49,82 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/Uni.png');-fx-background-size:       cover;-fx-background-repeat: no-repeat;-fx-background-position: center;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
-    <children>
-        <MenuBar VBox.vgrow="NEVER">
-            <menus>
-                <Menu mnemonicParsing="false" text="File">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="New" />
-                        <MenuItem mnemonicParsing="false" text="Open…" />
-                        <Menu mnemonicParsing="false" text="Open Recent" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                        <MenuItem mnemonicParsing="false" text="Save" />
-                        <MenuItem mnemonicParsing="false" text="Save As…" />
-                        <MenuItem mnemonicParsing="false" text="Revert" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Preferences…" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Quit" onAction="#quitButton"/>
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Undo" />
-                        <MenuItem mnemonicParsing="false" text="Redo" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Cut" />
-                        <MenuItem mnemonicParsing="false" text="Copy" />
-                        <MenuItem mnemonicParsing="false" text="Paste" />
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem mnemonicParsing="false" text="Select All" />
-                        <MenuItem mnemonicParsing="false" text="Unselect All" />
-                    </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                    <items>
-                        <MenuItem mnemonicParsing="false" onAction="#openPopup" text="Tips" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-        <AnchorPane fx:id="myAnchor" maxHeight="-1.0" maxWidth="-1.0" prefHeight="284.0" prefWidth="640.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" VBox.vgrow="ALWAYS">
-            <children>
-                <TextArea fx:id="uniText" layoutX="317.0" layoutY="43.0" prefHeight="129.0" prefWidth="282.0" stylesheets="/rooms/styles/textAreaUniStyles.css" wrapText="true" editable="false" />
-                <Button fx:id="quizButton" layoutX="118.0" layoutY="254.0" mnemonicParsing="false" onAction="#quizStart" text="Start quiz" />
-                <Button fx:id="ppText" layoutX="358.0" layoutY="229.0" mnemonicParsing="false" onMouseClicked="#changePpButton" onMouseEntered="#changePpText" onMouseExited="#changeToOriginalText" prefHeight="25.0" prefWidth="200.0" text="Support Purification Plant"/>
-                <Button fx:id="sfText" layoutX="358.0" layoutY="273.0" mnemonicParsing="false" onMouseClicked="#changeSfButton" onMouseEntered="#changeSfText" onMouseExited="#changeToOriginalText" prefHeight="25.0" prefWidth="200.0" text="Support Super Farm" />
-                <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0"
-                      stylesheets="/rooms/styles/infoBarStyles.css">
-                    <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
-                    <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="70.0"
-                           text="Population: "/>
-                    <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true"
-                               preserveRatio="true">
-                        <Image url="@../images/PopIcon.png"/>
-                    </ImageView>
-                    <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
-                    <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0"
-                           text="Phosphor: "/>
-                    <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true"
-                               preserveRatio="true">
-                        <Image url="@../images/PhosphorIcon.png"/>
-                    </ImageView>
-                    <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
-                    <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="50.0" text="Gold: "/>
-                    <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true"
-                               preserveRatio="true">
-                        <Image url="@../images/GoldIcon.png"/>
-                    </ImageView>
-                    <ProgressBar fx:id="seasonsProgress" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0"
-                                 prefWidth="50.0" progress="1.0"/>
-                    <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season"/>
-                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/SeasonsIcon.png"/>
-                    </ImageView>
-                    <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0"/>
-                    <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0"
-                           text="Knowledge"/>
-                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                        <Image url="@../images/KnowledgeIcon.png"/>
-                    </ImageView>
-                </HBox>
-                <StackPane fx:id="quizStackPane" layoutX="60.0" layoutY="43.0" prefHeight="129.0" prefWidth="200.0">
-               <children>
-                        <TextArea fx:id="quiz" prefHeight="159.0" prefWidth="184.0" stylesheets="/rooms/styles/textAreaUniStyles.css" wrapText="true" editable="false" />
-               </children></StackPane>
-            </children>
-        </AnchorPane>
-      <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="640.0" spacing="120.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css">
-         <children>
-                <Button fx:id="goToCityFromShopButton" mnemonicParsing="false" onAction="#goToCityFromUni" text="Go to City">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Button>
-         </children>
-      </HBox>
-    </children>
+<VBox prefHeight="400.0" prefWidth="640.0"
+      style="-fx-background-image: url('/rooms/images/Uni.png');-fx-background-size:       cover;-fx-background-repeat: no-repeat;-fx-background-position: center;"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="presentation.controllers.RoomController">
+    <MenuBar VBox.vgrow="NEVER">
+        <Menu mnemonicParsing="false" text="Menu">
+            <MenuItem mnemonicParsing="false" onAction="#quitButton" text="Quit"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="About">
+            <MenuItem mnemonicParsing="false" text="Feed the world"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+            <MenuItem mnemonicParsing="false" onAction="#openPopup" text="Tips"/>
+        </Menu>
+    </MenuBar>
+    <AnchorPane fx:id="myAnchor" maxHeight="-1.0" maxWidth="-1.0" prefHeight="284.0" prefWidth="640.0"
+                stylesheets="/rooms/styles/textAreaMadmanStyles.css" VBox.vgrow="ALWAYS">
+        <TextArea fx:id="uniText" layoutX="317.0" layoutY="43.0" prefHeight="129.0" prefWidth="282.0"
+                  stylesheets="/rooms/styles/textAreaUniStyles.css" wrapText="true" editable="false"/>
+        <Button fx:id="quizButton" layoutX="118.0" layoutY="254.0" mnemonicParsing="false" onAction="#quizStart"
+                text="Start quiz"/>
+        <Button fx:id="ppText" layoutX="358.0" layoutY="229.0" mnemonicParsing="false"
+                onMouseClicked="#changePpButton" onMouseEntered="#changePpText"
+                onMouseExited="#changeToOriginalText" prefHeight="25.0" prefWidth="200.0"
+                text="Support Purification Plant"/>
+        <Button fx:id="sfText" layoutX="358.0" layoutY="273.0" mnemonicParsing="false"
+                onMouseClicked="#changeSfButton" onMouseEntered="#changeSfText"
+                onMouseExited="#changeToOriginalText" prefHeight="25.0" prefWidth="200.0"
+                text="Support Super Farm"/>
+        <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0"
+              stylesheets="/rooms/styles/infoBarStyles.css">
+            <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
+            <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="70.0"
+                   text="Population: "/>
+            <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <Image url="@../images/PopIcon.png"/>
+            </ImageView>
+            <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
+            <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0"
+                   text="Phosphor: "/>
+            <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <Image url="@../images/PhosphorIcon.png"/>
+            </ImageView>
+            <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
+            <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="50.0" text="Gold: "/>
+            <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true"
+                       preserveRatio="true">
+                <Image url="@../images/GoldIcon.png"/>
+            </ImageView>
+            <ProgressBar fx:id="seasonsProgress" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0"
+                         prefWidth="50.0" progress="1.0"/>
+            <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season"/>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/SeasonsIcon.png"/>
+            </ImageView>
+            <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0"/>
+            <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0"
+                   text="Knowledge"/>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/KnowledgeIcon.png"/>
+            </ImageView>
+        </HBox>
+        <StackPane fx:id="quizStackPane" layoutX="60.0" layoutY="43.0" prefHeight="129.0" prefWidth="200.0">
+            <TextArea fx:id="quiz" prefHeight="159.0" prefWidth="184.0"
+                      stylesheets="/rooms/styles/textAreaUniStyles.css" wrapText="true" editable="false"/>
+        </StackPane>
+    </AnchorPane>
+    <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="640.0" spacing="120.0"
+          stylesheets="/rooms/styles/textAreaMadmanStyles.css">
+        <Button fx:id="goToCityFromShopButton" mnemonicParsing="false" onAction="#goToCityFromUni"
+                text="Go to City">
+            <font>
+                <Font size="14.0"/>
+            </font>
+        </Button>
+    </HBox>
 </VBox>
