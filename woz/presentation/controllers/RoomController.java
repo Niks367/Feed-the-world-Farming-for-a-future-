@@ -70,6 +70,7 @@ public class RoomController {
     public Button sfText;
     public TextArea victoryText;
     public HBox farmTextBox;
+    public Button closePopup;
     private MediaPlayer mediaPlayer;
     public TextArea populationBox;
     public Label goldLabel;
