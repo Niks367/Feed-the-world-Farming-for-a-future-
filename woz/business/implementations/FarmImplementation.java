@@ -183,7 +183,7 @@ public class FarmImplementation implements Farm {
         }
     }
     public double endYearTaxCalculater() { // pay for food
-        return Context.cityImplementation.population + 40.0;
+        return Context.cityImplementation.population + ( (100 - scalePhosphor ) * 5.0 ) ;
     }
     public void endYear() {
         calculatedProfit = calculateProfit();

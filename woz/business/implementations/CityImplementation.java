@@ -9,7 +9,10 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class CityImplementation implements City {
-    public int spentGold = 0;
+    public int spentGold1 = 0; // buying land
+    public int spentGold2 = 0; // buying phosphor
+
+
     int hunger = 0;
     private boolean isInCity;
     private boolean isInUni;
@@ -20,8 +23,8 @@ public class CityImplementation implements City {
     public int spp_Progress = 0;
     public int bf_Progress = 0;
     public int projectLimit = 3;
-    public double projectCost = 50;
-    public double superProjectCost = 100;
+    public double projectCost = 100;
+    public double superProjectCost = 200;
     public boolean isPpDone = false; //Boolean for PP
     public boolean isSfDone = false; //Boolean for Sf
     public boolean isSppDone = false; //Boolean for Super PP

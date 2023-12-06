@@ -612,11 +612,11 @@ public class RoomController {
     }
 
     public void buyLand(ActionEvent actionEvent) {
-        if (playerImplementation.money >= farmImplementation.getPriceOfLand()) {
-            if (farmImplementation.getFieldsForPurchase() > 0) {
+        if (playerImplementation.money >= Context.farmImplementation.getPriceOfLand()) {
+            if (Context.farmImplementation.getFieldsForPurchase() > 0) {
                 Game.dispatchCommand("buy land");
                 shopText = (TextArea) roomStage.getScene().lookup("#shopText");
-                shopText.setText("Here you go, that will be " + cityImplementation.spentGold + " gold, anything else I can do you for?");
+                shopText.setText("Here you go, that will be " + Context.cityImplementation.spentGold1 + " gold, anything else I can do you for?");
                 setLabels();
             } else {
                 shopText.setText("There is no more land to purchase...");
@@ -629,11 +629,11 @@ public class RoomController {
 
 
     public void buyPhosphor(ActionEvent actionEvent) {
-        if (playerImplementation.money >= farmImplementation.land * farmImplementation.phosphorPrice) {
+        if (playerImplementation.money >= Context.farmImplementation.land * Context.farmImplementation.phosphorPrice) {
             if (!farmImplementation.isPhophorized) {
                 Game.dispatchCommand("buy phosphor");
                 shopText = (TextArea) roomStage.getScene().lookup("#shopText");
-                shopText.setText("Here you go, that will be " + cityImplementation.spentGold + " gold, anything else I can do you for?");
+                shopText.setText("Here you go, that will be " + Context.cityImplementation.spentGold2 + " gold, anything else I can do you for?");
                 setLabels();
             } else {
                 shopText.setText("It seems your fields are already fertilized this season.");
