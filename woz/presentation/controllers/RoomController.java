@@ -1,5 +1,6 @@
 package presentation.controllers;
 
+import business.implementations.FarmImplementation;
 import business.utils.PrintingUtilities;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -17,6 +18,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import main.Context;
 import main.Game;
@@ -64,9 +67,7 @@ public class RoomController {
     public TextArea introText;
     public Button sfText;
     public TextArea victoryText;
-
     private MediaPlayer mediaPlayer;
-
     public TextArea populationBox;
     public Label goldLabel;
     public Label phosphorLabel;
@@ -83,6 +84,9 @@ public class RoomController {
     private Label roomName;
     @FXML
     private Label descriptionLabel;
+
+    FarmImplementation farmImplementation = new FarmImplementation();
+
     String sfHoverText = "The SuperFarm will double the production of your fields for the same cost. " +
             "It will take " + cityImplementation.projectLimit + " levels each costing " + cityImplementation.projectCost +
             " gold to finish. There is a upgrade available after finish!";
@@ -108,6 +112,44 @@ public class RoomController {
         Game.dispatchCommand("go to_farm");
         goAnotherRoom("/rooms/fxml/farm.fxml");
         seasonProgress();
+    }
+
+    public void quitButton(ActionEvent event){
+        Platform.exit();
+        System.out.println("You have successfully closed the game!");
+        System.exit(0);
+    }
+    public void openPopup() {
+        try {
+            // Load the FXML file for the popup
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/fxml/Help.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the popup
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL); // Block interactions with other windows
+            popupStage.setTitle("Popup");
+            popupStage.setScene(new Scene(root));
+
+            // Show the popup window
+            popupStage.showAndWait(); // Show and wait for it to close
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void closePopup(ActionEvent event) {
+        // Get the reference to the button's stage and close it
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
+
+    public void endYearButton(ActionEvent event){
+        if (Context.farmImplementation != null){
+            Context.farmImplementation.endYear();
+        } else {
+            System.out.print("you done fucked up");
+        }
     }
 
     public void setEntry(String room, String description) {

@@ -4,6 +4,11 @@ import business.interfaces.Farm;
 import business.interfaces.Field;
 import business.utils.MadManUtils;
 import business.utils.PrintingUtilities;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import main.Context;
 
 public class FarmImplementation implements Farm {
@@ -26,6 +31,7 @@ public class FarmImplementation implements Farm {
     public void setIsPhosphorized(boolean z) {
         isPhophorized = z;
     }
+
     @Override
     public void reduceFieldsForPurchase() {
         fieldsForPurchase -= 1;
