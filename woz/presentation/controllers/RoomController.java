@@ -251,6 +251,7 @@ public class RoomController {
         }
     }
 
+    // Den originale goToLake
     @FXML
     private void goToLake(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_lake");
@@ -258,6 +259,39 @@ public class RoomController {
         lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
         setLakeText(Context.lakeImplementation.visitlake());
     }
+     /* Prøvet at ændre background til den passende season, virker for field men ikke for lake.
+
+   @FXML
+    private void goToLake(ActionEvent actionEvent) {
+        Game.dispatchCommand("go to_lake");
+        if (Context.farmImplementation.seasonCount % 4 == 3) {
+            goAnotherRoom("/rooms/fxml/autumnfield.fxml");
+            lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
+            setLakeText(Context.lakeImplementation.visitlake());
+        } else if (Context.farmImplementation.seasonCount % 4 == 0) {
+            goAnotherRoom("/rooms/fxml/winterfarm.fxml");
+            lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
+            setLakeText(Context.lakeImplementation.visitlake());
+
+        } else if (Context.farmImplementation.seasonCount % 4 == 1) {
+            goAnotherRoom("/rooms/fxml/springfarm.fxml");
+            lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
+            setLakeText(Context.lakeImplementation.visitlake());
+        } else if (Context.farmImplementation.seasonCount % 4 == 2) {
+            goAnotherRoom("/rooms/fxml/summerfarm.fxml");
+            lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
+            setLakeText(Context.lakeImplementation.visitlake());
+        }
+        else {
+            goAnotherRoom("/rooms/fxml/lake.fxml");
+            lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
+            setLakeText(Context.lakeImplementation.visitlake());
+
+        }
+
+
+    }
+*/
 
 
     public void setLabels() {
@@ -330,11 +364,36 @@ public class RoomController {
     @FXML
     private void goToField() {
         Game.dispatchCommand("go to_fields");
-        goAnotherRoom("/rooms/fxml/field.fxml");
-        fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
-        fieldText.setText(Context.fieldImplementation.visitFields());
+        if (Context.farmImplementation.seasonCount % 4 == 3) {
+            goAnotherRoom("/rooms/fxml/autumnfield.fxml");
+            fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
+            fieldText.setText(Context.fieldImplementation.visitFields());
+        }
+        else if (Context.farmImplementation.seasonCount % 4 == 0) {
+            goAnotherRoom("/rooms/fxml/winterfield.fxml");
+            fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
+            fieldText.setText(Context.fieldImplementation.visitFields());
+        }
+        else if (Context.farmImplementation.seasonCount % 4 == 1) {
+            goAnotherRoom("/rooms/fxml/springfield.fxml");
+            fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
+            fieldText.setText(Context.fieldImplementation.visitFields());
+        }
+        else if (Context.farmImplementation.seasonCount % 4 == 2) {
+            goAnotherRoom("/rooms/fxml/summerfield.fxml");
+            fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
+            fieldText.setText(Context.fieldImplementation.visitFields());
+        }
+        else {
+            goAnotherRoom("/rooms/fxml/field.fxml");
+            fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
+            fieldText.setText(Context.fieldImplementation.visitFields());
+        }
+
+
 
     }
+
 
     public void goAnotherRoom(String roomFXM) {
 
@@ -361,11 +420,38 @@ public class RoomController {
             e.printStackTrace();
         }
     }
+    // Den originale goToCity
     public void goToCity(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_city");
         goAnotherRoom("/rooms/fxml/city.fxml");
         cityTextUpdate();
     }
+
+    /* @FXML  Versionen som ændre background, dog kommer der fejl hvor teksten ikke kommer med.
+    public void goToCity(ActionEvent actionEvent) {
+        Game.dispatchCommand("go to_city");
+        if (Context.farmImplementation.seasonCount % 4 == 3) {
+            goAnotherRoom("/rooms/fxml/autumncity.fxml");
+            cityTextUpdate();
+        }
+        else if (Context.farmImplementation.seasonCount % 4 == 0) {
+            goAnotherRoom("/rooms/fxml/wintercity.fxml");
+            cityTextUpdate();
+        }
+        else if (Context.farmImplementation.seasonCount % 4 == 1) {
+            goAnotherRoom("/rooms/fxml/springcity.fxml");
+            cityTextUpdate();
+        }
+        else if (Context.farmImplementation.seasonCount % 4 == 2) {
+            goAnotherRoom("/rooms/fxml/summercity.fxml");
+            cityTextUpdate();
+        }
+        else {
+            goAnotherRoom("/rooms/fxml/city.fxml");
+            cityTextUpdate();
+        }
+    }
+*/
 
     public void goToCityFromUni(ActionEvent actionEvent) {
         Game.dispatchCommand("go east");
