@@ -96,11 +96,12 @@ public class RoomController {
     String sppHoverText = "The Super PurificationPlant will further reduce the amount of phosphor used on your fields " +
             "and regain a lot of phosphor from nature. It will take " + cityImplementation.projectLimit +
             " levels each costing " + cityImplementation.superProjectCost + " gold to finish.";
-    String originalUniText = "Dean : 'Good to see you, we have some very promising projects, " +
+    String originalUniText = "Dean: 'Good to see you, we have some very promising projects, " +
             "but we are in lack of sufficient funds, would you like to support any of our projects? " +
             "It will take " + cityImplementation.projectLimit + " levels each costing " + cityImplementation.projectCost +
             " gold per to finish. " +
             "There is a upgrade available after finish!";
+    String superProjectsText = "Dean: 'We have some new exciting projects for you, even better than the previous, but also a bit more pricy..., I think you will like them!'";
 
     @FXML
     public void init(ActionEvent actionEvent) throws IOException {
@@ -399,6 +400,10 @@ public class RoomController {
             if (cityImplementation.isSppDone) {
                 ppText.setDisable(true);
                 ppText.setText("Project done!!!");
+                if (cityImplementation.isBfDone) {
+                    uniText = (TextArea) roomStage.getScene().lookup("#uniText");
+                    uniText.setText("Well done, all our projects are build. It's a bright future!");
+                }
             }
         }
     }
@@ -429,13 +434,29 @@ public class RoomController {
             if (cityImplementation.isBfDone) {
                 sfText.setDisable(true);
                 sfText.setText("Project done!!!");
+                if (cityImplementation.isSppDone) {
+                    uniText = (TextArea) roomStage.getScene().lookup("#uniText");
+                    uniText.setText("Well done, all our projects are build. It's a bright future!");
+                }
             }
         }
     }
 
     public void changeToOriginalText() {
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
-        uniText.setText(originalUniText);
+        if (cityImplementation.isSfDone && cityImplementation.isPpDone && !cityImplementation.isBfReady && !cityImplementation.isSppReady){
+            uniText.setText("Well done, all our projects are build. But we have some new ideas for improvements. Stay tuned!");
+        }
+        if (cityImplementation.isSppDone && cityImplementation.isBfDone) {
+            uniText.setText("Well done, all our projects are build. It's a bright future!");
+        }
+        if (!cityImplementation.isPpDone || !cityImplementation.isSfDone) {
+            uniText.setText(originalUniText);
+        }
+        if ((cityImplementation.isSppReady || cityImplementation.isBfReady) && (!cityImplementation.isBfDone || !cityImplementation.isSppDone)) {
+            uniText.setText(superProjectsText);
+        }
+
     }
 
 
@@ -463,10 +484,16 @@ public class RoomController {
     public void goToUni(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_uni");
         goAnotherRoom("/rooms/fxml/uni.fxml");
+        // set the buttons and textAreas right when entering uni:
         quiz = (TextArea) roomStage.getScene().lookup("#quiz");
         quiz.setText("Would you like to answer some questions about the phosphor problematic and earn some money?");
         uniText = (TextArea) roomStage.getScene().lookup("#uniText");
-        uniText.setText(originalUniText);
+        if (!cityImplementation.isSfDone || !cityImplementation.isPpDone) {
+            uniText.setText(originalUniText);
+        }
+        if (cityImplementation.isBfReady || cityImplementation.isSppReady) {
+            uniText.setText(superProjectsText);
+        }
         if (!cityImplementation.isBfReady && cityImplementation.isSfDone) {
             sfText = (Button) roomStage.getScene().lookup("#sfText");
             sfText.setDisable(true);
@@ -474,7 +501,7 @@ public class RoomController {
         }
         if (cityImplementation.isBfReady) {
             sfText = (Button) roomStage.getScene().lookup("#sfText");
-            sfText.setText("Support project Bio-Farm");
+            sfText.setText("Support Bio-Farm");
         }
         if (!cityImplementation.isSppReady && cityImplementation.isPpDone) {
             ppText = (Button) roomStage.getScene().lookup("#ppText");
@@ -483,7 +510,7 @@ public class RoomController {
         }
         if (cityImplementation.isSppReady) {
             ppText = (Button) roomStage.getScene().lookup("#ppText");
-            ppText.setText("Support project Super purification plant");
+            ppText.setText("Support Super purification plant");
         }
         if (cityImplementation.isBfDone) {
             sfText = (Button) roomStage.getScene().lookup("#sfText");
@@ -494,6 +521,10 @@ public class RoomController {
             ppText = (Button) roomStage.getScene().lookup("#ppText");
             ppText.setDisable(true);
             ppText.setText("Project done!!!");
+        }
+        if (cityImplementation.isPpDone && cityImplementation.isSfDone && !cityImplementation.isBfReady && !cityImplementation.isSppReady) {
+            uniText = (TextArea) roomStage.getScene().lookup("#uniText");
+            uniText.setText("New super projects will soon be available soon!");
         }
         if (cityImplementation.isSppDone && cityImplementation.isBfDone) {
             uniText = (TextArea) roomStage.getScene().lookup("#uniText");
