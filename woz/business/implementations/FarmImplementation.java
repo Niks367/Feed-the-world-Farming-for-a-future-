@@ -25,10 +25,9 @@ public class FarmImplementation implements Farm {
     public boolean isInFarm;
     public boolean isPhophorized;
     public int phosphorPrice = 15;
-    public final int priceOfLand = 200;
+    private final int priceOfLand = 200;
     private final int yieldOfLand = 15;
-    public int fieldsForPurchase = 5;
-
+    private int fieldsForPurchase = 5;
     // TODO make checker for scalePhosphor for events
     public int seasonCount = 1; //Integer that tells us the day we are currently at.
     // TODO When seasonCount hits certain values: Events

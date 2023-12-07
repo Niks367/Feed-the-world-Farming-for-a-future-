@@ -47,33 +47,34 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.ToolBar?>
 <VBox prefHeight="400.0" prefWidth="640.0"
       style="-fx-background-image: url('/rooms/images/Shop.png'); -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-position: center;"
       xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="presentation.controllers.RoomController">
-    <ToolBar prefHeight="40.0" prefWidth="200.0">
-        <items>
-            <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButton" text="Quit" />
-            <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#openAboutPopup" text="About" />
-            <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpPopup" text="Help" />
-            <Button fx:id="lastHarvestButton" mnemonicParsing="false" onAction="#openLastHarvestPopup" text="Last harvest" />
-        </items>
-    </ToolBar>
+    <MenuBar VBox.vgrow="NEVER">
+        <Menu mnemonicParsing="false" text="Menu">
+            <MenuItem mnemonicParsing="false" onAction="#quitButton" text="Quit"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="About">
+            <MenuItem mnemonicParsing="false" text="Feed the world"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+            <MenuItem mnemonicParsing="false" onAction="#openPopup" text="Tips"/>
+        </Menu>
+    </MenuBar>
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="319.0" prefWidth="640.0"
                 stylesheets="/rooms/styles/textAreaMadmanStyles.css" VBox.vgrow="ALWAYS">
         <TextArea fx:id="shopText" layoutX="103.0" layoutY="66.0" prefHeight="153.0" prefWidth="475.0"
                   stylesheets="/rooms/styles/textAreaMadmanStyles.css" wrapText="true" editable="false"/>
         <Button fx:id="buyLandButton" layoutX="103.0" layoutY="259.0" mnemonicParsing="false" onAction="#buyLand"
-                text="Buy some land" onMouseEntered="#changeLandText" onMouseExited="#changeShopText">
+                text="Buy some land">
             <font>
                 <Font size="14.0"/>
             </font>
         </Button>
         <!--                <Button layoutX="281.0" layoutY="259.0" mnemonicParsing="false" text="Button"/>-->
         <Button fx:id="buyPhosphorButton" layoutX="442.0" layoutY="259.0" mnemonicParsing="false"
-                onAction="#buyPhosphor" text="Buy some phosphor" onMouseEntered="#changePhosphorText"
-                onMouseExited="#changeShopText">
+                onAction="#buyPhosphor" text="Buy some phosphor">
             <font>
                 <Font size="14.0"/>
             </font>
