@@ -92,13 +92,6 @@ public class RoomController {
 
     FarmImplementation farmImplementation = new FarmImplementation();
 
-    String landHoverText = "The price of a piece of land is " + Context.farmImplementation.priceOfLand + " gold. " +
-            "You can have " + Context.farmImplementation.fieldsForPurchase + " at Max.";
-    String phosphorHoverText = "It will cost " + Context.farmImplementation.phosphorPrice + " to apply phosphor to fa piece of land.";
-
-    String originalShopText = "Boy in the shop: 'What can I do for you today? " +
-            "Following items are available for purchase..." +
-            "Phosphor and Land.";
     String sfHoverText = "The SuperFarm will double the production of your fields for the same cost. " +
             "It will take " + cityImplementation.projectLimit + " levels each costing " + cityImplementation.projectCost +
             " gold to finish. There is a upgrade available after finish!";
@@ -132,54 +125,16 @@ public class RoomController {
         System.exit(0);
     }
 
-    public void openHelpPopup() {
+    public void openPopup() {
         try {
             // Load the FXML file for the popup
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/fxml/help.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/fxml/Help.fxml"));
             Parent root = loader.load();
 
             // Create a new stage for the popup
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL); // Block interactions with other windows
-            popupStage.setTitle("Help");
-            popupStage.setScene(new Scene(root));
-
-            // Show the popup window
-            popupStage.showAndWait(); // Show and wait for it to close
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openAboutPopup() {
-        try {
-            // Load the FXML file for the popup
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/fxml/about.fxml"));
-            Parent root = loader.load();
-
-            // Create a new stage for the popup
-            Stage popupStage = new Stage();
-            popupStage.initModality(Modality.APPLICATION_MODAL); // Block interactions with other windows
-            popupStage.setTitle("About");
-            popupStage.setScene(new Scene(root));
-
-            // Show the popup window
-            popupStage.showAndWait(); // Show and wait for it to close
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openLastHarvestPopup() {
-        try {
-            // Load the FXML file for the popup
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/rooms/fxml/lastHarvest.fxml"));
-            Parent root = loader.load();
-
-            // Create a new stage for the popup
-            Stage popupStage = new Stage();
-            popupStage.initModality(Modality.APPLICATION_MODAL); // Block interactions with other windows
-            popupStage.setTitle("LastHarvest");
+            popupStage.setTitle("Popup");
             popupStage.setScene(new Scene(root));
 
             // Show the popup window
@@ -306,7 +261,7 @@ public class RoomController {
 //    }
     //Prøvet at ændre background til den passende season, virker for field men ikke for lake.
 
-   @FXML
+    @FXML
     private void goToLake(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_lake");
         if (Context.farmImplementation.seasonCount % 4 == 3) {
@@ -317,33 +272,28 @@ public class RoomController {
             try {
                 lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
                 setLakeText(Context.lakeImplementation.visitlake());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
             }
         } else if (Context.farmImplementation.seasonCount % 4 == 1) {
             goAnotherRoom("/rooms/fxml/springlake.fxml");
             try {
                 lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
                 setLakeText(Context.lakeImplementation.visitlake());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
             }
         } else if (Context.farmImplementation.seasonCount % 4 == 2) {
             goAnotherRoom("/rooms/fxml/summerlake.fxml");
             try {
                 lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
                 setLakeText(Context.lakeImplementation.visitlake());
+            } catch (Exception e) {
             }
-            catch (Exception e) {
-            }
-        }
-        else {
+        } else {
             goAnotherRoom("/rooms/fxml/lake.fxml");
             try {
                 lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
                 setLakeText(Context.lakeImplementation.visitlake());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
             }
         }
     }
@@ -364,16 +314,16 @@ public class RoomController {
             setLakeText(Context.lakeImplementation.visitlake());
         } else if (Context.farmImplementation.seasonCount % 4 == 0) {
             goAnotherRoom("/rooms/fxml/winterlake.fxml");
-                lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
-                setLakeText(Context.lakeImplementation.visitlake());
+            lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
+            setLakeText(Context.lakeImplementation.visitlake());
         } else if (Context.farmImplementation.seasonCount % 4 == 1) {
             goAnotherRoom("/rooms/fxml/springlake.fxml");
-                lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
-                setLakeText(Context.lakeImplementation.visitlake());
+            lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
+            setLakeText(Context.lakeImplementation.visitlake());
         } else if (Context.farmImplementation.seasonCount % 4 == 2) {
             goAnotherRoom("/rooms/fxml/summerlake.fxml");
-                lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
-                setLakeText(Context.lakeImplementation.visitlake());
+            lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
+            setLakeText(Context.lakeImplementation.visitlake());
         }
     }
 
@@ -463,23 +413,19 @@ public class RoomController {
             goAnotherRoom("/rooms/fxml/autumnfield.fxml");
             fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
             fieldText.setText(Context.fieldImplementation.visitFields());
-        }
-        else if (Context.farmImplementation.seasonCount % 4 == 0) {
+        } else if (Context.farmImplementation.seasonCount % 4 == 0) {
             goAnotherRoom("/rooms/fxml/winterfield.fxml");
             fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
             fieldText.setText(Context.fieldImplementation.visitFields());
-        }
-        else if (Context.farmImplementation.seasonCount % 4 == 1) {
+        } else if (Context.farmImplementation.seasonCount % 4 == 1) {
             goAnotherRoom("/rooms/fxml/springfield.fxml");
             fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
             fieldText.setText(Context.fieldImplementation.visitFields());
-        }
-        else if (Context.farmImplementation.seasonCount % 4 == 2) {
+        } else if (Context.farmImplementation.seasonCount % 4 == 2) {
             goAnotherRoom("/rooms/fxml/summerfield.fxml");
             fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
             fieldText.setText(Context.fieldImplementation.visitFields());
-        }
-        else {
+        } else {
             goAnotherRoom("/rooms/fxml/field.fxml");
             fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
             fieldText.setText(Context.fieldImplementation.visitFields());
@@ -512,6 +458,7 @@ public class RoomController {
             e.printStackTrace();
         }
     }
+
     public void goToCity(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_city");
         if (Context.farmImplementation.seasonCount % 4 == 3) {
@@ -740,19 +687,6 @@ public class RoomController {
                 "Following items are available for purchase..." +
                 "Phosphor and Land.");
     }
-    public void changeShopText(MouseEvent mouseEvent){
-        shopText = (TextArea) roomStage.getScene().lookup("#shopText");
-        shopText.setText(originalShopText);
-    }
-
-    public void changeLandText(MouseEvent mouseEvent) {
-        shopText = (TextArea) roomStage.getScene().lookup("#shopText");
-        shopText.setText(landHoverText);
-    }
-    public void changePhosphorText(MouseEvent mouseEvent) {
-        shopText = (TextArea) roomStage.getScene().lookup("#shopText");
-        shopText.setText(phosphorHoverText);
-    }
 
     public void buyLand(ActionEvent actionEvent) {
         if (playerImplementation.money >= Context.farmImplementation.getPriceOfLand()) {
@@ -783,6 +717,8 @@ public class RoomController {
             }
         } else {
             shopText.setText("It seems you lack the sufficient funds...");
+
+
         }
     }
 }

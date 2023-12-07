@@ -42,14 +42,17 @@
       xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="presentation.controllers.RoomController">
     <children>
-        <ToolBar prefHeight="40.0" prefWidth="200.0">
-            <items>
-                <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButton" text="Quit" />
-                <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#openAboutPopup" text="About" />
-                <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpPopup" text="Help" />
-                <Button fx:id="lastHarvestButton" mnemonicParsing="false" onAction="#openLastHarvestPopup" text="Last harvest" />
-            </items>
-        </ToolBar>
+        <MenuBar VBox.vgrow="NEVER">
+            <Menu mnemonicParsing="false" text="Menu">
+                <MenuItem mnemonicParsing="false" onAction="#quitButton" text="Quit"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="About">
+                <MenuItem mnemonicParsing="false" text="Feed the world"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <MenuItem mnemonicParsing="false" onAction="#openPopup" text="Tips"/>
+            </Menu>
+        </MenuBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="278.0" prefWidth="643.0"
                     stylesheets="/rooms/styles/textAreaMadmanStyles.css" VBox.vgrow="ALWAYS">
             <TextArea fx:id="cityText" editable="false" layoutX="220.0" layoutY="144.0" prefHeight="107.0"

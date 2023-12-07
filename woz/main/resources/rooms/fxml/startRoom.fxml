@@ -8,30 +8,30 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" prefHeight="375.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/IdyllicFarm3.png');
 -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-position: center;"
-      stylesheets="/rooms/styles/textAreaMadmanStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+      stylesheets="/rooms/styles/textAreaFarmStyles.css" xmlns="http://javafx.com/javafx/21"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
-   <BorderPane prefHeight="337.0" prefWidth="640.0">
+   <BorderPane prefHeight="311.0" prefWidth="640.0">
       <center>
-         <TextArea fx:id="introText" editable="false" opacity="0.9" prefHeight="292.0" prefWidth="520.0" wrapText="true" BorderPane.alignment="CENTER">
+         <TextArea fx:id="introText" editable="false" opacity="0.9" prefHeight="253.0" prefWidth="520.0" wrapText="true" BorderPane.alignment="CENTER">
             <BorderPane.margin>
                <Insets bottom="40.0" left="60.0" right="60.0" top="40.0" />
             </BorderPane.margin>
          </TextArea>
       </center>
    </BorderPane>
-    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="640.0" spacing="50.0">
-        <Button fx:id="playGameButton" alignment="CENTER" contentDisplay="CENTER" onAction="#init" prefHeight="24.0" prefWidth="100.0" text="Play Game">
+    <HBox alignment="CENTER" prefHeight="60.0" prefWidth="640.0" spacing="50.0">
+        <Button fx:id="playGameButton" alignment="CENTER" contentDisplay="CENTER" onAction="#init" prefHeight="24.0"
+                prefWidth="100.0" text="Play Game">
 
             <font>
-                <Font size="14.0" />
+                <Font size="14.0"/>
             </font>
         </Button>
         <Button fx:id="quitButton" alignment="CENTER" mnemonicParsing="false" onAction="#quitButton" text="Quit">
            <font>
-               <Font size="14.0" />
+               <Font size="14.0"/>
            </font>
         </Button>
     </HBox>
