@@ -71,6 +71,10 @@ public class RoomController {
     public HBox farmTextBox;
     public Button closePopup;
     public Button quitButton;
+    public TextArea alertText;
+    public TextArea balanceText;
+    public TextArea taxText;
+    public TextArea incomeText;
     private MediaPlayer mediaPlayer;
     public TextArea populationBox;
     public Label goldLabel;
@@ -89,6 +93,7 @@ public class RoomController {
     @FXML
     private Label descriptionLabel;
     String hungerText = "";
+    String alertOrNot = "";
 
     FarmImplementation farmImplementation = new FarmImplementation();
 
@@ -182,11 +187,45 @@ public class RoomController {
             popupStage.setTitle("LastHarvest");
             popupStage.setScene(new Scene(root));
 
+            if (Context.farmImplementation.lastYearsHunger) {
+                alertOrNot = "Last year there was a famine in the city!";
+            } else {
+                alertOrNot = "No alerts";
+            }
+
             // Show the popup window
             popupStage.showAndWait(); // Show and wait for it to close
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        if (Context.farmImplementation != null) {
+            incomeText = (TextArea) roomStage.getScene().lookup("#incomeText");
+            if (incomeText != null) {
+                incomeText.setText(String.valueOf(Context.farmImplementation.calculatedProfit));
+            } else {
+                System.out.println("Error");
+            }
+
+            incomeText.setText(String.valueOf(Context.farmImplementation.calculatedProfit));
+
+            taxText = (TextArea) roomStage.getScene().lookup("#taxText");
+            taxText.setText(String.valueOf(Context.farmImplementation.lastYearsTax));
+
+            balanceText = (TextArea) roomStage.getScene().lookup("#balanceText");
+            balanceText.setText(String.valueOf(Context.farmImplementation.lastYearsMoney));
+
+            alertText = (TextArea) roomStage.getScene().lookup("#alertText");
+            alertText.setText(alertOrNot);
+
+        } else {
+            incomeText.setText("Error");
+            taxText.setText("Error");
+            taxText.setText("Error");
+            alertText.setText("Error");
+        }
+
+
     }
 
     public void closePopup(ActionEvent event) {
@@ -317,33 +356,28 @@ public class RoomController {
             try {
                 lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
                 setLakeText(Context.lakeImplementation.visitlake());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
             }
         } else if (Context.farmImplementation.seasonCount % 4 == 1) {
             goAnotherRoom("/rooms/fxml/springlake.fxml");
             try {
                 lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
                 setLakeText(Context.lakeImplementation.visitlake());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
             }
         } else if (Context.farmImplementation.seasonCount % 4 == 2) {
             goAnotherRoom("/rooms/fxml/summerlake.fxml");
             try {
                 lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
                 setLakeText(Context.lakeImplementation.visitlake());
+            } catch (Exception e) {
             }
-            catch (Exception e) {
-            }
-        }
-        else {
+        } else {
             goAnotherRoom("/rooms/fxml/lake.fxml");
             try {
                 lakeText = (TextArea) roomStage.getScene().lookup("#lakeText");
                 setLakeText(Context.lakeImplementation.visitlake());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
             }
         }
     }
@@ -463,23 +497,19 @@ public class RoomController {
             goAnotherRoom("/rooms/fxml/autumnfield.fxml");
             fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
             fieldText.setText(Context.fieldImplementation.visitFields());
-        }
-        else if (Context.farmImplementation.seasonCount % 4 == 0) {
+        } else if (Context.farmImplementation.seasonCount % 4 == 0) {
             goAnotherRoom("/rooms/fxml/winterfield.fxml");
             fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
             fieldText.setText(Context.fieldImplementation.visitFields());
-        }
-        else if (Context.farmImplementation.seasonCount % 4 == 1) {
+        } else if (Context.farmImplementation.seasonCount % 4 == 1) {
             goAnotherRoom("/rooms/fxml/springfield.fxml");
             fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
             fieldText.setText(Context.fieldImplementation.visitFields());
-        }
-        else if (Context.farmImplementation.seasonCount % 4 == 2) {
+        } else if (Context.farmImplementation.seasonCount % 4 == 2) {
             goAnotherRoom("/rooms/fxml/summerfield.fxml");
             fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
             fieldText.setText(Context.fieldImplementation.visitFields());
-        }
-        else {
+        } else {
             goAnotherRoom("/rooms/fxml/field.fxml");
             fieldText = (TextArea) roomStage.getScene().lookup("#fieldText");
             fieldText.setText(Context.fieldImplementation.visitFields());
@@ -512,6 +542,7 @@ public class RoomController {
             e.printStackTrace();
         }
     }
+
     public void goToCity(ActionEvent actionEvent) {
         Game.dispatchCommand("go to_city");
         if (Context.farmImplementation.seasonCount % 4 == 3) {
@@ -740,7 +771,8 @@ public class RoomController {
                 "Following items are available for purchase..." +
                 "Phosphor and Land.");
     }
-    public void changeShopText(MouseEvent mouseEvent){
+
+    public void changeShopText(MouseEvent mouseEvent) {
         shopText = (TextArea) roomStage.getScene().lookup("#shopText");
         shopText.setText(originalShopText);
     }
@@ -749,6 +781,7 @@ public class RoomController {
         shopText = (TextArea) roomStage.getScene().lookup("#shopText");
         shopText.setText(landHoverText);
     }
+
     public void changePhosphorText(MouseEvent mouseEvent) {
         shopText = (TextArea) roomStage.getScene().lookup("#shopText");
         shopText.setText(phosphorHoverText);

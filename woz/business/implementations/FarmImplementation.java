@@ -49,6 +49,7 @@ public class FarmImplementation implements Farm {
     public double calculatedProfit;
     public double lastYearsTax;
     public double lastYearsMoney;
+    public boolean lastYearsHunger;
 
     public void checkVictoryConditions() {
         if (Context.cityImplementation.isSppDone && Context.cityImplementation.isBfDone && Context.farmImplementation.scalePhosphor > 100) {
@@ -190,6 +191,7 @@ public class FarmImplementation implements Farm {
         calculatedProfit = calculateProfit();
         lastYearsTax = endYearTaxCalculater();
         lastYearsMoney = playerImplementation.money;
+        lastYearsHunger = cityImplementation.isHunger;
         calculateProjects(); // mainly about phosphor consumption and price
         Context.cityImplementation.quizzCount = 0; // reset quiz
         PrintingUtilities.printOnScreen("Ending Year...");
