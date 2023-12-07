@@ -25,8 +25,8 @@ public class FarmImplementation implements Farm {
     public boolean isInFarm;
     public boolean isPhophorized;
     public int phosphorPrice = 15;
-    public final int priceOfLand = 200;
-    private final int yieldOfLand = 15;
+    public final int priceOfLand = 150;
+    private final int yieldOfLand = 20;
     public int fieldsForPurchase = 5;
 
     // TODO make checker for scalePhosphor for events
@@ -113,7 +113,7 @@ public class FarmImplementation implements Farm {
 
 
     public void checkSeasonProgress() {
-        if (seasonProgress == 3) {
+        if (seasonProgress == 5) {
             endSeason();
         }
     }
@@ -176,7 +176,7 @@ public class FarmImplementation implements Farm {
 
     public void endYearPopulationCalculater() {
         if (cityImplementation.calculateHunger()) { // If hunger: population decrease!
-            cityImplementation.population = cityImplementation.population/2 -5;
+            cityImplementation.population = cityImplementation.population/2 -15;
         }
         if (!cityImplementation.calculateHunger()) { // If there is no hunger the population increments with 25 every week
             Context.cityImplementation.population += 25;
@@ -184,7 +184,7 @@ public class FarmImplementation implements Farm {
         }
     }
     public double endYearTaxCalculater() { // pay for food
-        return Context.cityImplementation.population + ( (100 - scalePhosphor ) * 5.0 ) ;
+        return Context.cityImplementation.population + ( (100 - scalePhosphor ) * 3.0 ) ;
     }
     public void endYear() {
         calculatedProfit = calculateProfit();
