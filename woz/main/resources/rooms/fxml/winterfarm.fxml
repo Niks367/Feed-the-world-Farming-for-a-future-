@@ -58,7 +58,6 @@
             <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButton" text="Quit" />
             <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#openAboutPopup" text="About" />
             <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpPopup" text="Help" />
-            <Button fx:id="lastHarvestButton" mnemonicParsing="false" onAction="#openLastHarvestPopup" text="Last harvest" />
         </items>
     </ToolBar>
     <BorderPane stylesheets="/rooms/styles/textAreaMadmanStyles.css">
