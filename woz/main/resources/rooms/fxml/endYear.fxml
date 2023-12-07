@@ -12,7 +12,7 @@
          <Font size="24.0"/>
       </font>
    </Label>
-   <Label layoutX="14.0" layoutY="89.0" prefHeight="18.0" prefWidth="259.0"
+   <Label layoutX="14.0"  layoutY="89.0" prefHeight="18.0" prefWidth="259.0"
           text="After harvesting, your gold has increased to:"/>
    <Label layoutX="14.0" layoutY="163.0" text="The population in the city has grown to:"/>
    <Label layoutX="14.0" layoutY="246.0" text="Your knowledge is at:"/>
