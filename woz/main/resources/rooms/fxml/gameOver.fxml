@@ -19,7 +19,7 @@
     <BorderPane prefHeight="374.0" prefWidth="640.0">
         <center>
             <TextArea fx:id="victoryText" opacity="0.9" prefHeight="200.0" prefWidth="393.0" BorderPane.alignment="CENTER"
-                      wrapText="true" editable="false" text="You Fucking lost stupid!">
+                      wrapText="true" editable="false" text="You lost!">
                 <BorderPane.margin>
                     <Insets bottom="200.0" left="100.0" right="100.0" top="200.0"/>
                 </BorderPane.margin>
