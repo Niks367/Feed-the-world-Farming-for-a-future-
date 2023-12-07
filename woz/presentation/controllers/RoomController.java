@@ -94,7 +94,7 @@ public class RoomController {
 
     String landHoverText = "The price of a piece of land is " + Context.farmImplementation.priceOfLand + " gold. " +
             "You can have " + Context.farmImplementation.fieldsForPurchase + " at Max.";
-    String phosphorHoverText = "It will cost " + Context.farmImplementation.phosphorPrice + " to apply phosphor to fa piece of land.";
+    String phosphorHoverText = "It will cost " + Context.farmImplementation.phosphorPrice + " to apply phosphor to a piece of land.";
 
     String originalShopText = "Boy in the shop: 'What can I do for you today? " +
             "Following items are available for purchase..." +
