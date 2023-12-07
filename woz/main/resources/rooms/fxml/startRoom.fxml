@@ -9,7 +9,10 @@
 <?import javafx.scene.text.Font?>
 
 
-<VBox alignment="CENTER" prefHeight="375.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/IdyllicFarm3.png'); -fx-background-size: cover;       -fx-background-repeat: no-repeat; -fx-background-position: center;" stylesheets="/rooms/styles/textAreaMediaplayerStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
+<VBox alignment="CENTER" prefHeight="375.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/IdyllicFarm3.png');
+-fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-position: center;"
+      stylesheets="/rooms/styles/textAreaMadmanStyles.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
    <BorderPane prefHeight="337.0" prefWidth="640.0">
       <center>
          <TextArea fx:id="introText" editable="false" opacity="0.9" prefHeight="292.0" prefWidth="520.0" wrapText="true" BorderPane.alignment="CENTER">
