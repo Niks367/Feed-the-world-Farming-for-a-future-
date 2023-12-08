@@ -49,7 +49,10 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.ToolBar?>
-<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/AutumnField.png');             -fx-background-size: cover;             -fx-background-repeat: no-repeat;             -fx-background-position: center;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
+<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/AutumnField.png');
+ -fx-background-size: cover; -fx-background-repeat: no-repeat; -fx-background-position: center;"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="presentation.controllers.RoomController">
     <children>
         <ToolBar prefHeight="40.0" prefWidth="200.0">
             <items>
@@ -97,13 +100,15 @@
                 </HBox>
             </top>
             <center>
-                <HBox alignment="TOP_CENTER" prefHeight="324.0" prefWidth="640.0" spacing="120.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <TextArea fx:id="fieldText" editable="false" layoutX="200.0" layoutY="49.0" opacity="0.7" prefHeight="200.0" prefWidth="200.0" stylesheets="/rooms/styles/textAreaFieldStyles.css" wrapText="true">
-                     <HBox.margin>
-                        <Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
-                     </HBox.margin></TextArea>
-                    </children>
+                <HBox alignment="TOP_CENTER" prefHeight="324.0" prefWidth="640.0" spacing="120.0"
+                      BorderPane.alignment="CENTER">
+                    <TextArea fx:id="fieldText" editable="false" layoutX="200.0" layoutY="49.0" opacity="0.7"
+                              prefHeight="200.0" prefWidth="200.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css"
+                              wrapText="true">
+                        <HBox.margin>
+                            <Insets bottom="40.0" left="40.0" right="40.0" top="40.0"/>
+                        </HBox.margin>
+                    </TextArea>
                 </HBox>
             </center>
             <bottom>
