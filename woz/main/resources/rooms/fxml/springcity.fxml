@@ -44,9 +44,9 @@
     <children>
         <ToolBar prefHeight="40.0" prefWidth="200.0">
             <items>
-                <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButton" text="Quit" />
-                <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#openAboutPopup" text="About" />
-                <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpPopup" text="Help" />
+                <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButton" text="Quit"/>
+                <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#openAboutPopup" text="About"/>
+                <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpPopup" text="Help"/>
             </items>
         </ToolBar>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="278.0" prefWidth="643.0"

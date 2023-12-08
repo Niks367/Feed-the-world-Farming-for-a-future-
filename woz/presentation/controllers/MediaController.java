@@ -1,26 +1,20 @@
 package presentation.controllers;
 
-import business.utils.PrintingUtilities;
-import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import main.Context;
-import main.Game;
 import main.VideoQuestions;
 
 import java.util.ArrayList;
@@ -71,8 +65,7 @@ public class MediaController {
 
     private RoomController roomController = new RoomController();
 
-    private static List<VideoQuestions> questions = new ArrayList<>();
-    private int currentScore = 0;
+    private static final List<VideoQuestions> questions = new ArrayList<>();
 
 
     public void initController(RoomController roomController) {
@@ -114,6 +107,7 @@ public class MediaController {
             mediaPlayer.play();
         });
     }
+
     @FXML
     private void handleReplay(ActionEvent event) {
         MediaPlayer player = mediaMediaView.getMediaPlayer();
@@ -143,7 +137,6 @@ public class MediaController {
         option4.setDisable(true);
         VideoQuestions currentQuestion = questions.get(0); // currently loaded question
         if (answerIndex == currentQuestion.getCorrectAnswer()) { // when answer is correct
-            currentScore++;
             questions.remove(currentQuestion); // remove question from list
             cityImplementation.knowledge += 1; // increase knowledge attribute
             playerImplementation.addMoney(25); // give player gold

@@ -2,6 +2,7 @@
     -fx-text-alignment: center; /* Try to center the text */
     -fx-alignment: center; /* Align the content */
 }
+
 .text-area {
     -fx-font-size: 22px;
     -fx-font-style: italic;
@@ -11,16 +12,19 @@
     -fx-text-fill: #fee4c4;
     -fx-background-color: #222222;
 }
+
 .text-area .content {
     -fx-background-color: #222222;
 }
 
-#ppText:hover{
+#ppText:hover {
     -fx-text-fill: red;
 }
-#sfText:hover{
+
+#sfText:hover {
     -fx-text-fill: red;
 }
+
 #introText {
     -fx-font-size: 18px;
 }
@@ -35,6 +39,7 @@
     -fx-scale-y: 0.9;
     -fx-scale-x: 0.9;
 }
+
 .button {
     -fx-font-size: 22px;
     -fx-font-style: italic;

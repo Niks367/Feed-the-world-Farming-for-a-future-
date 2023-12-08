@@ -76,6 +76,7 @@ public class Context {
                     PrintingUtilities.printOnScreen("Your current cash situation is: " + playerImplementation.money + " money");
         }
     }
+
     public void support(String command) {
         //context.initInterfaces();
         switch (command) {
@@ -189,7 +190,6 @@ public class Context {
             }
         }
     }
-
 
 
     public void buy(String command) {

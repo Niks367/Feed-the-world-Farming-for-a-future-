@@ -1,6 +1,7 @@
 #infoBox {
     -fx-: 222222;
 }
+
 .label {
     -fx-font-size: 14px;
     -fx-font-style: italic;
@@ -10,6 +11,7 @@
     -fx-background-color: #222222;
 
 }
+
 #seasonsProgress {
     -fx-accent: #ffe4c4;
 }

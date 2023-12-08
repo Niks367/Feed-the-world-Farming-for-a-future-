@@ -58,6 +58,7 @@ public class FarmImplementation implements Farm {
             main.Game.context.makeDone();
         }
     }
+
     public void checkLoosingConditions() {
         if (Context.farmImplementation.scalePhosphor <= 0 || cityImplementation.getPopulation() <= 0) {
             FXMLLoader loader = new FXMLLoader();
@@ -134,7 +135,6 @@ public class FarmImplementation implements Farm {
     }
 
 
-
     public void calculateProjects() {
         if (Context.cityImplementation.isSfDone) {
             Context.farmImplementation.phosphorEffect = Context.farmImplementation.phosphorEffect * 2;
@@ -164,6 +164,7 @@ public class FarmImplementation implements Farm {
             Context.cityImplementation.availableProjectsList.remove("Super Purification Plant(SPP)");
         }
     }
+
     public double calculateProfit() {
         double profit;
         if (isPhophorized) {
@@ -177,16 +178,18 @@ public class FarmImplementation implements Farm {
 
     public void endYearPopulationCalculater() {
         if (cityImplementation.calculateHunger()) { // If hunger: population decrease!
-            cityImplementation.population = cityImplementation.population/2 -15;
+            cityImplementation.population = cityImplementation.population / 2 - 15;
         }
         if (!cityImplementation.calculateHunger()) { // If there is no hunger the population increments with 25 every week
             Context.cityImplementation.population += 25;
             PrintingUtilities.printOnScreen("Population is growing, city now has " + Context.cityImplementation.population + " inhabitants");
         }
     }
+
     public double endYearTaxCalculater() { // pay for food
-        return Context.cityImplementation.population + ( (100 - scalePhosphor ) * 3.0 ) ;
+        return Context.cityImplementation.population + ((100 - scalePhosphor) * 3.0);
     }
+
     public void endYear() {
         calculatedProfit = calculateProfit();
         lastYearsTax = endYearTaxCalculater();

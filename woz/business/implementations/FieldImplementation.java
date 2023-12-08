@@ -16,6 +16,7 @@ public class FieldImplementation implements Field {
             "The term “peak phosphorus” is the term used to predict the maximum production of phosphorus.",
             "It is predicted that maximum production of phosphorus will be around 2030, raising concerns about future phosphorus availability for agriculture. "
     };
+
     @Override
     public String visitFields() {
         return (this.fieldArray[(int) (Math.random() * 11)]);

@@ -13,10 +13,10 @@ public interface Farm {
      */
     void endSeason();
 
-    public void setIsInFarm(boolean z);
+    void setIsInFarm(boolean z);
 
-    public boolean getIsInFarm();
+    boolean getIsInFarm();
 
-    public void reduceFieldsForPurchase();
-    public int getFieldsForPurchase();
+    void reduceFieldsForPurchase();
+    int getFieldsForPurchase();
 }

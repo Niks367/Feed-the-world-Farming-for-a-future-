@@ -37,71 +37,69 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/City.png')" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="presentation.controllers.RoomController">
-    <children>
-        <ToolBar prefHeight="40.0" prefWidth="200.0">
-            <items>
-                <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButton" text="Quit" />
-                <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#openAboutPopup" text="About" />
-                <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpPopup" text="Help" />
-            </items>
-        </ToolBar>
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="278.0" prefWidth="643.0"
-                    stylesheets="/rooms/styles/textAreaMadmanStyles.css" VBox.vgrow="ALWAYS">
-            <TextArea fx:id="cityText" editable="false" layoutX="220.0" layoutY="144.0" prefHeight="107.0"
-                      prefWidth="200.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" wrapText="true"/>
-            <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0"
-                  stylesheets="/rooms/styles/infoBarStyles.css">
-                <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
-                <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="70.0"
-                       text="Population: "/>
-                <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/PopIcon.png"/>
-                </ImageView>
-                <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
-                <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0" text="Phosphor: "/>
-                <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/PhosphorIcon.png"/>
-                </ImageView>
-                <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
-                <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="50.0" text="Gold: "/>
-                <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/GoldIcon.png"/>
-                </ImageView>
-                <ProgressBar fx:id="seasonsProgress" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="50.0"
-                             progress="1.0"/>
-                <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season"/>
-                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/SeasonsIcon.png"/>
-                </ImageView>
-                <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0"/>
-                <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Knowledge"/>
-                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                    <Image url="@../images/KnowledgeIcon.png"/>
-                </ImageView>
-            </HBox>
-            <HBox alignment="TOP_CENTER" layoutY="328.0" prefHeight="50.0" prefWidth="643.0" spacing="120.0">
-                <Button mnemonicParsing="false" onAction="#goToLakeFromCity" text="Lake">
-                    <font>
-                        <Font size="14.0"/>
-                    </font>
-                </Button>
-                <Button mnemonicParsing="false" onAction="#goToUni" text="University">
-                    <font>
-                        <Font size="14.0"/>
-                    </font>
-                </Button>
-                <Button mnemonicParsing="false" onAction="#goToMadman" text="MadMan">
-                    <font>
-                        <Font size="14.0"/>
-                    </font>
-                </Button>
-                <Button mnemonicParsing="false" onAction="#goToShop" text="Shop">
-                    <font>
-                        <Font size="14.0"/>
-                    </font>
-                </Button>
-            </HBox>
-        </AnchorPane>
-    </children>
+<VBox prefHeight="400.0" prefWidth="640.0" style="-fx-background-image: url('/rooms/images/City.png')"
+      xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="presentation.controllers.RoomController">
+    <ToolBar prefHeight="40.0" prefWidth="200.0">
+        <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButton" text="Quit"/>
+        <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#openAboutPopup" text="About"/>
+        <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpPopup" text="Help"/>
+    </ToolBar>
+    <AnchorPane prefHeight="278.0" prefWidth="643.0"
+                stylesheets="/rooms/styles/textAreaMadmanStyles.css" VBox.vgrow="ALWAYS">
+        <TextArea fx:id="cityText" editable="false" layoutX="220.0" layoutY="144.0" prefHeight="107.0"
+                  prefWidth="200.0" stylesheets="/rooms/styles/textAreaMadmanStyles.css" wrapText="true"/>
+        <HBox fx:id="infoBox" layoutX="-1.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="35.0" prefWidth="640.0"
+              stylesheets="/rooms/styles/infoBarStyles.css">
+            <Label fx:id="populationLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
+            <Label fx:id="populationText" alignment="CENTER" prefHeight="25.0" prefWidth="70.0"
+                   text="Population: "/>
+            <ImageView id="popView" fitHeight="30.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/PopIcon.png"/>
+            </ImageView>
+            <Label fx:id="phosphorLabel" alignment="CENTER" prefHeight="25.0" prefWidth="40.0"/>
+            <Label fx:id="phosphorText" alignment="CENTER" prefHeight="25.0" prefWidth="90.0" text="Phosphor: "/>
+            <ImageView id="phosView" fitHeight="28.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/PhosphorIcon.png"/>
+            </ImageView>
+            <Label fx:id="goldLabel" alignment="CENTER" prefHeight="25.0" prefWidth="50.0"/>
+            <Label fx:id="goldText" alignment="CENTER" prefHeight="25.0" prefWidth="50.0" text="Gold: "/>
+            <ImageView id="goldView" fitHeight="22.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/GoldIcon.png"/>
+            </ImageView>
+            <ProgressBar fx:id="seasonsProgress" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="50.0"
+                         progress="1.0"/>
+            <Label fx:id="seasonsLabel" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Season"/>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/SeasonsIcon.png"/>
+            </ImageView>
+            <Label fx:id="knowledgeLabel" alignment="CENTER" prefHeight="25.0" prefWidth="30.0" text="0"/>
+            <Label fx:id="knowledgeText" alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="Knowledge"/>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../images/KnowledgeIcon.png"/>
+            </ImageView>
+        </HBox>
+        <HBox alignment="TOP_CENTER" layoutY="328.0" prefHeight="50.0" prefWidth="643.0" spacing="120.0">
+            <Button mnemonicParsing="false" onAction="#goToLakeFromCity" text="Lake">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToUni" text="University">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToMadman" text="MadMan">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goToShop" text="Shop">
+                <font>
+                    <Font size="14.0"/>
+                </font>
+            </Button>
+        </HBox>
+    </AnchorPane>
 </VBox>

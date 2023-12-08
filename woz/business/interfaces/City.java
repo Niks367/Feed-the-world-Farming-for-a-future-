@@ -3,8 +3,6 @@ package business.interfaces;
 public interface City {
     void setIsInCity(boolean z);
 
-    boolean getIsInCity();
-
     void setIsInShop(boolean z);
 
     boolean getIsInShop();
@@ -13,15 +11,13 @@ public interface City {
 
     boolean getIsInUni();
 
-    int getHunger();
-
     int getPopulation();
 
-    public void visitShop();
+    void visitShop();
 
-    public void visitUni();
+    void visitUni();
 
-    public String visitMadman();
+    String visitMadman();
 
     boolean calculateHunger();
 }

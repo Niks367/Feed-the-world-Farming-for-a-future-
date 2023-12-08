@@ -55,9 +55,9 @@
       fx:controller="presentation.controllers.RoomController">
     <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-            <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButton" text="Quit" />
-            <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#openAboutPopup" text="About" />
-            <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpPopup" text="Help" />
+            <Button fx:id="quitButton" mnemonicParsing="false" onAction="#quitButton" text="Quit"/>
+            <Button fx:id="aboutButton" mnemonicParsing="false" onAction="#openAboutPopup" text="About"/>
+            <Button fx:id="helpButton" mnemonicParsing="false" onAction="#openHelpPopup" text="Help"/>
         </items>
     </ToolBar>
     <BorderPane stylesheets="/rooms/styles/textAreaMadmanStyles.css">

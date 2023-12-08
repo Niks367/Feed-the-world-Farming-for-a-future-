@@ -14,7 +14,6 @@ public class CityImplementation implements City {
 
 
     int hunger = 0;
-    private boolean isInCity;
     private boolean isInUni;
     private boolean isInShop = false;
     int population = 100;
@@ -39,13 +38,13 @@ public class CityImplementation implements City {
     /* allProjectsList is a list of all projects that can be available during different phases of the game:
     It is hardcoded.
     For now the Dean uses this list.*/
-    private final ArrayList<String> allProjectsList = new ArrayList(Arrays.asList("SuperFarm (SF)", "PurificationPlant (PP)", "BioFarm (BF)", "Super Purification Plant(SPP)"));
+    private final ArrayList<String> allProjectsList = new ArrayList<>(Arrays.asList("SuperFarm (SF)", "PurificationPlant (PP)", "BioFarm (BF)", "Super Purification Plant(SPP)"));
 
     private void printAllProjectsList() {
         PrintingUtilities.printOnScreen(String.valueOf(allProjectsList));
     }
 
-    public ArrayList<String> availableProjectsList = new ArrayList(Arrays.asList("SuperFarm(SF)", "PurificationPlant (PP)", "BioFarm (BF)", "Super Purification Plant(SPP)"));
+    public ArrayList<String> availableProjectsList = new ArrayList<>(Arrays.asList("SuperFarm(SF)", "PurificationPlant (PP)", "BioFarm (BF)", "Super Purification Plant(SPP)"));
     // availableProjectsList is  a list of the projects that player can currently support:
 //    private ArrayList<String> availableProjectsList;
 //
@@ -101,22 +100,10 @@ public class CityImplementation implements City {
     };
 
 
-
     @Override
     public void setIsInCity(boolean z) {
-        isInCity = z;
     }
 
-
-    @Override
-    public boolean getIsInCity() {
-        return isInCity;
-    }
-
-    @Override
-    public int getHunger() {
-        return this.hunger;
-    }
 
     @Override
     public int getPopulation() {

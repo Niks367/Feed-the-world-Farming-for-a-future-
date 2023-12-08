@@ -25,7 +25,6 @@ class Space extends Node {
     }
 
 
-
     public void goodbye() {
         PrintingUtilities.printOnScreen("You are leaving " + name);
     }

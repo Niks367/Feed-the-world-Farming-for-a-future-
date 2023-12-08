@@ -75,8 +75,6 @@ public class RoomController {
     public TextArea balanceText;
     public TextArea taxText;
     public TextArea incomeText;
-    private MediaPlayer mediaPlayer;
-    public TextArea populationBox;
     public Label goldLabel;
     public Label phosphorLabel;
     public HBox infoBox;
@@ -414,19 +412,7 @@ public class RoomController {
     @FXML
     private void goToCityFromShop() {
         Game.dispatchCommand("go west");
-        if (Context.farmImplementation.seasonCount % 4 == 3) {
-            goAnotherRoom("/rooms/fxml/autumncity.fxml");
-            cityTextUpdate();
-        } else if (Context.farmImplementation.seasonCount % 4 == 0) {
-            goAnotherRoom("/rooms/fxml/wintercity.fxml");
-            cityTextUpdate();
-        } else if (Context.farmImplementation.seasonCount % 4 == 1) {
-            goAnotherRoom("/rooms/fxml/springcity.fxml");
-            cityTextUpdate();
-        } else if (Context.farmImplementation.seasonCount % 4 == 2) {
-            goAnotherRoom("/rooms/fxml/summercity.fxml");
-            cityTextUpdate();
-        }
+        citySeasons();
     }
 
     private void seasonProgress() throws IOException {
@@ -464,6 +450,10 @@ public class RoomController {
     @FXML
     private void goFieldToFarm(ActionEvent actionEvent) {
         Game.dispatchCommand("go fields_to_farm");
+        weatherSeasons();
+    }
+
+    private void weatherSeasons() {
         if (Context.farmImplementation.seasonCount % 4 == 3) {
             goAnotherRoom("/rooms/fxml/autumnfarm.fxml");
         } else if (Context.farmImplementation.seasonCount % 4 == 0) {
@@ -478,15 +468,7 @@ public class RoomController {
     @FXML
     private void goToLakeFarm(ActionEvent actionEvent) {
         Game.dispatchCommand("go lake_to_farm");
-        if (Context.farmImplementation.seasonCount % 4 == 3) {
-            goAnotherRoom("/rooms/fxml/autumnfarm.fxml");
-        } else if (Context.farmImplementation.seasonCount % 4 == 0) {
-            goAnotherRoom("/rooms/fxml/winterfarm.fxml");
-        } else if (Context.farmImplementation.seasonCount % 4 == 1) {
-            goAnotherRoom("/rooms/fxml/springfarm.fxml");
-        } else if (Context.farmImplementation.seasonCount % 4 == 2) {
-            goAnotherRoom("/rooms/fxml/summerfarm.fxml");
-        }
+        weatherSeasons();
     }
 
 
@@ -543,8 +525,7 @@ public class RoomController {
         }
     }
 
-    public void goToCity(ActionEvent actionEvent) {
-        Game.dispatchCommand("go to_city");
+    private void citySeasons() {
         if (Context.farmImplementation.seasonCount % 4 == 3) {
             goAnotherRoom("/rooms/fxml/autumncity.fxml");
             cityTextUpdate();
@@ -560,39 +541,20 @@ public class RoomController {
         }
     }
 
+    public void goToCity(ActionEvent actionEvent) {
+        Game.dispatchCommand("go to_city");
+        citySeasons();
+    }
+
     public void goToCityFromUni(ActionEvent actionEvent) {
         Game.dispatchCommand("go east");
-        if (Context.farmImplementation.seasonCount % 4 == 3) {
-            goAnotherRoom("/rooms/fxml/autumncity.fxml");
-            cityTextUpdate();
-        } else if (Context.farmImplementation.seasonCount % 4 == 0) {
-            goAnotherRoom("/rooms/fxml/wintercity.fxml");
-            cityTextUpdate();
-        } else if (Context.farmImplementation.seasonCount % 4 == 1) {
-            goAnotherRoom("/rooms/fxml/springcity.fxml");
-            cityTextUpdate();
-        } else if (Context.farmImplementation.seasonCount % 4 == 2) {
-            goAnotherRoom("/rooms/fxml/summercity.fxml");
-            cityTextUpdate();
-        }
+        citySeasons();
     }
 
     @FXML
     private void goToCityFromMadman() {
         Game.dispatchCommand("go north");
-        if (Context.farmImplementation.seasonCount % 4 == 3) {
-            goAnotherRoom("/rooms/fxml/autumncity.fxml");
-            cityTextUpdate();
-        } else if (Context.farmImplementation.seasonCount % 4 == 0) {
-            goAnotherRoom("/rooms/fxml/wintercity.fxml");
-            cityTextUpdate();
-        } else if (Context.farmImplementation.seasonCount % 4 == 1) {
-            goAnotherRoom("/rooms/fxml/springcity.fxml");
-            cityTextUpdate();
-        } else if (Context.farmImplementation.seasonCount % 4 == 2) {
-            goAnotherRoom("/rooms/fxml/summercity.fxml");
-            cityTextUpdate();
-        }
+        citySeasons();
     }
 
     public void goToMadman(ActionEvent actionEvent) {

@@ -6,12 +6,15 @@
     -fx-text-fill: #ffe4c4;
 
 }
+
 #populationLabel {
     -fx-text-fill: #111111;
 }
+
 #phosphorLabel {
     -fx-text-fill: #111111;
 }
+
 #phosphorText {
     -fx-text-fill: #111111;
 }

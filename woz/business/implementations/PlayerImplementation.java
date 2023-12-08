@@ -19,9 +19,11 @@ public class PlayerImplementation implements Player {
     }
 
     @Override
-    public void useMoney(double money) { this.money -= money; }
+    public void useMoney(double money) {
+        this.money -= money;
+    }
 
-    public void playerBalance(){
+    public void playerBalance() {
         PrintingUtilities.printOnScreen("Your balance is: $" + money);
     }
 }
