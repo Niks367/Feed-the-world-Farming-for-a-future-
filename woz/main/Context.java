@@ -198,24 +198,28 @@ public class Context {
             case "land" -> {
                 if (cityImplementation.getIsInShop()) {
                     if (!farmImplementation.getIsPhosphorized()) {
-                        if ((playerImplementation.money >= farmImplementation.getPriceOfLand()) && (farmImplementation.getFieldsForPurchase()) > 0) {
+                        if ((playerImplementation.money >= farmImplementation.getPriceOfLand())
+                                && (farmImplementation.getFieldsForPurchase()) > 0) {
                             farmImplementation.land += 1; // buys a piece of land
                             cityImplementation.spentGold1 = farmImplementation.getPriceOfLand();
                             playerImplementation.useMoney(farmImplementation.getPriceOfLand());
                             // pay the price set in farmImplementation
-
                             farmImplementation.reduceFieldsForPurchase(); // reduce land available for purchase
-                            PrintingUtilities.printOnScreen("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
+                            PrintingUtilities.printOnScreen("The boy in the shop hands you a scroll of paper " +
+                                    "with a contract: You now own this piece of land!");
                         } else {
-                            PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash or there is not any more land to purchase!");
+                            PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required " +
+                                    "amount of cash or there is not any more land to purchase!");
                         }
                     } else {
-                        if (playerImplementation.money >= (farmImplementation.getPriceOfLand() + farmImplementation.phosphorPrice) && (farmImplementation.getFieldsForPurchase()) > 0) {
+                        if (playerImplementation.money >= (farmImplementation.getPriceOfLand() +
+                                farmImplementation.phosphorPrice) && (farmImplementation.getFieldsForPurchase()) > 0) {
                             cityImplementation.spentGold1 = farmImplementation.getPriceOfLand() + farmImplementation.phosphorPrice;
-                            PrintingUtilities.printOnScreen("Since you recently have phosphorized your fields you will be charged " +
-                                    (farmImplementation.getPriceOfLand() + farmImplementation.phosphorPrice) + " gold!");
+                            PrintingUtilities.printOnScreen("Since you recently have phosphorized your fields you will be " +
+                                    "charged " + (farmImplementation.getPriceOfLand() + farmImplementation.phosphorPrice) + " gold!");
 
-                            PrintingUtilities.printOnScreen("The boy in the shop hands you a scroll of paper with a contract: You now own this piece of land!");
+                            PrintingUtilities.printOnScreen("The boy in the shop hands you a scroll of paper with a contract: " +
+                                    "You now own this piece of land!");
                             farmImplementation.land += 1;
                             playerImplementation.useMoney(farmImplementation.getPriceOfLand() + farmImplementation.phosphorPrice);
                             farmImplementation.reduceFieldsForPurchase();
@@ -223,8 +227,6 @@ public class Context {
                             PrintingUtilities.printOnScreen("Unfortunately, you don't seem to have the required amount of cash!");
                         }
                     }
-
-
                 } else {
                     PrintingUtilities.printOnScreen("You have to be in the shop to buy land");
                 }
@@ -246,7 +248,8 @@ public class Context {
                     //PrintingUtilities.printOnScreen("The boy in the shop hands you a bag of Phosphor: 'Here you go...'");
                     // Phosphor increase by one, Phosphor_Scale decrease by one
                     //farmImplementation.scalePhosphor -= farmImplementation.phosphorConsumationSpeed;
-                    if ((playerImplementation.money >= farmImplementation.land * farmImplementation.phosphorPrice) && !farmImplementation.getIsPhosphorized()) {
+                    if ((playerImplementation.money >= farmImplementation.land * farmImplementation.phosphorPrice)
+                            && !farmImplementation.getIsPhosphorized()) {
                         cityImplementation.spentGold2 = farmImplementation.land * farmImplementation.phosphorPrice;
                         System.out.printf("You currently own %d pieces of land, so you will be charged %d money to buy phosphor.",
                                 farmImplementation.land, farmImplementation.land * farmImplementation.phosphorPrice);

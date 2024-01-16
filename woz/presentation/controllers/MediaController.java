@@ -139,7 +139,7 @@ public class MediaController {
         if (answerIndex == currentQuestion.getCorrectAnswer()) { // when answer is correct
             questions.remove(currentQuestion); // remove question from list
             cityImplementation.knowledge += 1; // increase knowledge attribute
-            playerImplementation.addMoney(25); // give player gold
+            playerImplementation.addMoney(40 + cityImplementation.knowledge); // give player gold
             cityImplementation.quizzCount++; // increase quizzcount attribute
             int choice = (int) (Math.random() * 3); // pick one out of three replies
             switch (choice) {

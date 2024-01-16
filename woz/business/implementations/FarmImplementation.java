@@ -28,6 +28,7 @@ public class FarmImplementation implements Farm {
     public final int priceOfLand = 150;
     private final int yieldOfLand = 20;
     public int fieldsForPurchase = 5;
+    public boolean isGameEnded = false;
 
     // TODO make checker for scalePhosphor for events
     public int seasonCount = 1; //Integer that tells us the day we are currently at.
@@ -53,9 +54,26 @@ public class FarmImplementation implements Farm {
 
     public void checkVictoryConditions() {
         if (Context.cityImplementation.isSppDone && Context.cityImplementation.isBfDone && Context.farmImplementation.scalePhosphor > 100) {
-            PrintingUtilities.printOnScreen("Congrats, YOU HAVE WON!!!");
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/rooms/fxml/victory.fxml"));
+            isGameEnded = true;
+            Parent parent = null;
+            try {
+                parent = loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Stage stage = new Stage();
+            stage.setResizable(false); // Prevent resizing of the window
+            stage.setScene(new Scene(parent));
+            stage.show();
+            Platform.setImplicitExit(true); // when closing window game stops (system exit)
+            stage.setOnCloseRequest((ae) -> {
+                Platform.exit();
+                System.exit(0);
+            });
 
-            main.Game.context.makeDone();
+
         }
     }
 
@@ -63,6 +81,7 @@ public class FarmImplementation implements Farm {
         if (Context.farmImplementation.scalePhosphor <= 0 || cityImplementation.getPopulation() <= 0) {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/rooms/fxml/gameOver.fxml"));
+            isGameEnded = true;
             Parent parent = null;
             try {
                 parent = loader.load();
@@ -151,7 +170,7 @@ public class FarmImplementation implements Farm {
             Context.cityImplementation.availableProjectsList.remove("BioFarm (BF)");
         }
         if (Context.cityImplementation.isPpDone) {
-            Context.farmImplementation.scalePhosphor = Context.farmImplementation.scalePhosphor + 1;
+            Context.farmImplementation.scalePhosphor = Context.farmImplementation.scalePhosphor + 3;
             PrintingUtilities.printOnScreen("Congrats, you now own a Purification Plant!!!");
             Context.cityImplementation.availableProjectsList.remove("PurificationPlant (PP)");
             Context.cityImplementation.isSppReady = true;
@@ -177,12 +196,14 @@ public class FarmImplementation implements Farm {
 
 
     public void endYearPopulationCalculater() {
-        if (cityImplementation.calculateHunger()) { // If hunger: population decrease!
-            cityImplementation.population = cityImplementation.population / 2 - 15;
+        if (cityImplementation.calculateHunger()) { // If hunger: population decrease with 15!
+            cityImplementation.population = cityImplementation.population  - 15;
+            cityImplementation.isHunger = true;
         }
-        if (!cityImplementation.calculateHunger()) { // If there is no hunger the population increments with 25 every week
-            Context.cityImplementation.population += 25;
+        if (!cityImplementation.calculateHunger()) { // If there is no hunger the population increments with 10 every week
+            Context.cityImplementation.population += 10;
             PrintingUtilities.printOnScreen("Population is growing, city now has " + Context.cityImplementation.population + " inhabitants");
+            cityImplementation.isHunger = false;
         }
     }
 

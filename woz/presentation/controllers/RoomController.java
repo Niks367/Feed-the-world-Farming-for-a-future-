@@ -254,8 +254,15 @@ public class RoomController {
     public void endYearButton(ActionEvent event) {
         if (Context.farmImplementation != null) {
             Context.farmImplementation.endYear();
+            Context.farmImplementation.seasonProgress = 1;
+            Context.farmImplementation.seasonCount = 1;
             setLabels();
-            endYearTextPrint();
+            Context.farmImplementation.checkVictoryConditions(); // have player won?
+            Context.farmImplementation.checkLoosingConditions(); // or lost?
+            if(!Context.farmImplementation.isGameEnded) {
+                goAnotherRoom("/rooms/fxml/springfarm.fxml");
+                endYearTextPrint();
+            }
         } else {
             endYearText = (TextArea) roomStage.getScene().lookup("#endYearText");
             endYearText.setText("Error");
@@ -500,8 +507,6 @@ public class RoomController {
 
 
     public void goAnotherRoom(String roomFXM) {
-
-        //TODO implementation when to switch the room
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(roomFXM));
             Parent parent = loader.load();
